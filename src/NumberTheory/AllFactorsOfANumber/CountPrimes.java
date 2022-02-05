@@ -30,6 +30,8 @@ public class CountPrimes {
         return primeCount;
     }
 
+
+    // Efficient
     public int countPrimes(int n){
         boolean[] primes = new boolean[n];
         for (int i = 2; i <n; i++) {
