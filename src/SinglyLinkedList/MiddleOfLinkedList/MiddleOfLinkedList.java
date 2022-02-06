@@ -27,11 +27,21 @@ class MiddleOfLinkedList{
             fast = fast.next.next;
             slow = slow.next;
         }
-        if (fast.next != null)
-            return slow.next;
-        else
-            return slow;
+        return fast.next==null ? slow : slow.next;
+    }
 
+
+    public ListNode middleNode_Alter(ListNode head){        // Based on counting nodes
+        ListNode mid = head;
+        int count = 1;
+
+        while(head.next!=null){
+            if (count%2 == 1)
+                mid = mid.next;
+            count++;
+            head = head.next;
+        }
+        return mid;
     }
 
     public static void main(String[] args) {

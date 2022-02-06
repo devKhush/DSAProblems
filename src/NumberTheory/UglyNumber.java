@@ -1,4 +1,4 @@
-package NumberTheory.AllFactorsOfANumber;
+package NumberTheory;
 
 public class UglyNumber {
     public boolean isUgly(int n) {

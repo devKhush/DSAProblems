@@ -1,4 +1,4 @@
-package NumberTheory.AllFactorsOfANumber;
+package NumberTheory.Primes;
 
 // https://leetcode.com/problems/count-primes/
 // https://www.youtube.com/watch?v=nDPo9hsDNvU
@@ -55,7 +55,7 @@ public class CountPrimes {
     }
 
     public static void main(String[] args) {
-        int n = 5000000;
+        int n = 3;
         System.out.println(new CountPrimes().countPrimes(n));
     }
 }
