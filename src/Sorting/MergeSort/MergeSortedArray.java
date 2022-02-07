@@ -1,4 +1,4 @@
-package SortedArray.MergeSortedArray;
+package Sorting.MergeSort;
 
 // https://leetcode.com/problems/merge-sorted-array/
 
