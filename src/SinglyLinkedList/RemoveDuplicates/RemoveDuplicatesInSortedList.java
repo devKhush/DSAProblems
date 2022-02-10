@@ -1,5 +1,7 @@
 package SinglyLinkedList.RemoveDuplicates;
 
+// https://practice.geeksforgeeks.org/problems/remove-duplicate-element-from-sorted-linked-list/1
+
 class Node{
     int data;
     Node next;

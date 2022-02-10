@@ -1,5 +1,7 @@
 package SinglyLinkedList.DetectLoop;
 
+// https://practice.geeksforgeeks.org/problems/detect-loop-in-linked-list/1
+
 public class DetectLoopInSinglyLinkedList {
     static class Node{
         int data;
