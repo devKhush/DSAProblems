@@ -1,4 +1,4 @@
-package TwoSum;
+package Arrays.TwoSum;
 
 public class SolutionUsingArray {
 

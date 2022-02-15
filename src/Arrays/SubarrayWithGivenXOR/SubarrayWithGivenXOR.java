@@ -1,4 +1,4 @@
-package SubarrayWithGivenXOR;
+package Arrays.SubarrayWithGivenXOR;
 // remaining
 
 public class SubarrayWithGivenXOR {
