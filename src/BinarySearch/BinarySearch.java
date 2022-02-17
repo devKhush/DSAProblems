@@ -1,4 +1,4 @@
-package Sorting;
+package BinarySearch;
 
 public class BinarySearch {
     public int binarySearch(int[] arr, int low, int high, int target) {
