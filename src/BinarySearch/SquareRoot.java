@@ -22,7 +22,6 @@ public class SquareRoot {
 
 
     public int mySqrt_Correct(int x) {
-
         int low = 1, high = x;
         int sqrt = 0;
 

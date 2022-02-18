@@ -35,8 +35,8 @@ public class ValidTriangleNumber {
 
 
     public int triangleNumber(int[] arr) {
-
         quickSort(arr, 0, arr.length-1);
+
         int triangleCount = 0;
 
         for (int i= arr.length-1; i>=0; i--){
