@@ -34,10 +34,7 @@ class Solution {
             TreeNode temp = preOrderTraversal.get(i);
             temp.left = null;
             temp.right = null;
-        }
-        
-        for (int i = 0; i < preOrderTraversal.size(); i++){
-            ptr.right = preOrderTraversal.get(i);
+            ptr.right = temp;
             ptr = ptr.right;
         }
     }
