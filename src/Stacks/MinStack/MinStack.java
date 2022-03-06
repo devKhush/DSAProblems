@@ -1,4 +1,4 @@
-package Stacks;
+package Stacks.MinStack;
 
 class Node{
     public int value;

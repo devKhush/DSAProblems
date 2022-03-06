@@ -23,7 +23,6 @@ public class FindChocolates {
         return chocolate + (chocolate-1)/(wraps-1);
     }
 
-
     public static void main(String[] args) {
         int money = 30 ;
         int price = 4;
