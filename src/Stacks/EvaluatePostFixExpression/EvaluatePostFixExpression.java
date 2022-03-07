@@ -1,7 +1,10 @@
-class Solution {
-    
+package Stacks.EvaluatePostFixExpression;
+
+import java.util.Stack;
+
+
+public class EvaluatePostFixExpression {
     public int evalRPN(String[] tokens) {
-        
         Stack<Integer> stack = new Stack<>();
         int a, b;
         
