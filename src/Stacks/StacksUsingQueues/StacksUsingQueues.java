@@ -1,9 +1,13 @@
-class MyStack {
+package Stacks.StacksUsingQueues;
+
+// https://youtu.be/FbPIay0KN00
+
+public class StacksUsingQueues {
     
     private MyQueue q1;
     private MyQueue q2;
 
-    public MyStack() {
+    public StacksUsingQueues() {
         q1 = new MyQueue();
         q2 = new MyQueue();
     }
@@ -74,12 +78,3 @@ class MyQueue{
         return front ==null;
     }
 }
-
-/**
- * Your MyStack object will be instantiated and called as such:
- * MyStack obj = new MyStack();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.top();
- * boolean param_4 = obj.empty();
- */
