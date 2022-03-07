@@ -18,7 +18,7 @@ public class MinStack {
     }
 
     public void push(int value) {
-        if (top==null){
+        if (top == null) {
             top = new Node(value, value);
             return;
         }

@@ -1,4 +1,4 @@
-package BInaryTree.DiameterOfBinaryTree;
+package BinaryTree.DiameterOfBinaryTree;
 
 // https://leetcode.com/problems/diameter-of-binary-tree/
 // https://www.youtube.com/watch?v=Toe0UQMWhjM

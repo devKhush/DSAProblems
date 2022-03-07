@@ -1,21 +1,24 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+package BinaryTree.FlattenBinaryTreeIntoLinkedList;
+
+import java.util.ArrayList;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+
+public class FlattenBinaryTreeIntoLinkedList {
     
-    private List<TreeNode> preOrderTraversal = new ArrayList<>();
+    private ArrayList<TreeNode> preOrderTraversal = new ArrayList<>();
     
     public void preOrder(TreeNode root){
         if (root!=null){
@@ -37,5 +40,9 @@ class Solution {
             ptr.right = temp;
             ptr = ptr.right;
         }
+    }
+
+    public static void main(String[] args) {
+
     }
 }
