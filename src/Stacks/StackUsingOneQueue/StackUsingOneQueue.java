@@ -1,8 +1,10 @@
-class MyStack {
-    
-    private MyQueue q;
+package Stacks.StackUsingOneQueue;
 
-    public MyStack() {
+public class StackUsingOneQueue {
+    
+    private final MyQueue q;
+
+    public StackUsingOneQueue() {
         q = new MyQueue();
     }
     
@@ -70,13 +72,3 @@ class MyQueue{
         return front ==null;
     }
 }
-
-
-/**
- * Your MyStack object will be instantiated and called as such:
- * MyStack obj = new MyStack();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.top();
- * boolean param_4 = obj.empty();
- */
