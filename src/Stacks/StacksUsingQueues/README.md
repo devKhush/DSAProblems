@@ -44,5 +44,4 @@ myStack.empty(); // return False
 </ul>
 
 <p>&nbsp;</p>
-<p><strong>Follow-up:</strong> Can you implement the stack using only one queue?</p>
-</div>
+<p><strong>Follow-up:</strong> Can you implement the stack using only one queue?</p></div>
