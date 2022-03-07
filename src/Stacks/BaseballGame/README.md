@@ -55,5 +55,4 @@ The total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27.
 	<li><code>ops[i]</code> is <code>"C"</code>, <code>"D"</code>, <code>"+"</code>, or a string representing an integer in the range <code>[-3 * 10<sup>4</sup>, 3 * 10<sup>4</sup>]</code>.</li>
 	<li>For operation <code>"+"</code>, there will always be at least two previous scores on the record.</li>
 	<li>For operations <code>"C"</code> and <code>"D"</code>, there will always be at least one previous score on the record.</li>
-</ul>
-</div>
+</ul></div>
