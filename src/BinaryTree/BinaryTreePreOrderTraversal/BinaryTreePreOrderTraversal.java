@@ -17,13 +17,14 @@ class TreeNode {
 
 public class BinaryTreePreOrderTraversal {
     List<Integer> preOrderTraversal = new ArrayList<Integer>();
+
     
     public void preOrder(TreeNode root) {
         if (root!=null){
             preOrderTraversal.add(root.val);
             preOrder(root.left);
             preOrder(root.right);
-        }    
+        }
     }
     
 

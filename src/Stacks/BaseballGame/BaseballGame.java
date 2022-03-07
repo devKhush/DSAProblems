@@ -1,6 +1,8 @@
+package Stacks.BaseballGame;
+
 import java.util.ArrayList;
 
-class Solution {
+public class BaseballGame {
     public int calPoints(String[] ops) {
         
         ArrayList<Integer> records = new ArrayList<>();
