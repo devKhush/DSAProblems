@@ -1,10 +1,11 @@
-class MyQueue {
-    
+package Queues.ImplementQueueUsingStacks;
+
+public class ImplementQueueUsingStack {
     private MyStack stack1;
     private MyStack stack2;
     private int front = -1;
 
-    public MyQueue() {
+    public ImplementQueueUsingStack() {
         stack1 = new MyStack();
         stack2 = new MyStack();
     }
@@ -81,12 +82,3 @@ class MyStack{
         }
     }
 }
-
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue obj = new MyQueue();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.peek();
- * boolean param_4 = obj.empty();
- */
