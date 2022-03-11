@@ -1,4 +1,4 @@
-package Queues.ImplementQueueUsingStacks;
+package Queues.ImplementQueueUsingStacks.Pop_Order_Of_N;
 
 public class ImplementQueueUsingStack {
     private MyStack stack1;
@@ -11,7 +11,7 @@ public class ImplementQueueUsingStack {
     }
     
     public void push(int x) {
-        if (stack1.top==null)
+        if (stack1.isEmpty())
             front = x;
         stack1.push(x);
     }
@@ -50,6 +50,7 @@ class Node{
         this.next = null;
     }
 }
+
 
 class MyStack{
     public Node top;
