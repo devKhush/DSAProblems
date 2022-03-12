@@ -1,4 +1,11 @@
-class Solution {
+package Stacks.NextGreaterElement_I;
+
+import java.util.HashMap;
+import java.util.Stack;
+
+// https://www.youtube.com/watch?v=8BDKB2yuGyg
+
+public class NextGreaterElement_i {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         HashMap<Integer, Integer> nextGreaterPair = new HashMap<>();
         Stack<Integer> stack = new Stack<>();
