@@ -9,8 +9,10 @@ class Solution {
         while(index < s.length()){
             if (Character.isDigit(s.charAt(index))){
                 int count = 0;
-                while(Character.isDigit(s.charAt(index)))
-                    count = count*10 + (s.charAt(index++) - '0');
+                while(Character.isDigit(s.charAt(index))){
+                    count = count*10 + (s.charAt(index) - '0');
+                    index++;
+                }
                 counts.push(count);
             }
             else if (s.charAt(index)=='['){
