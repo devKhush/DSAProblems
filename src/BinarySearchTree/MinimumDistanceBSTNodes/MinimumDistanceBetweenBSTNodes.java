@@ -1,7 +1,7 @@
 package BinarySearchTree.MinimumDistanceBSTNodes;
 import java.util.ArrayList;
 
-// https://leetcode.com/pr  oblems/minimum-distance-between-bst-nodes/
+// https://leetcode.com/problems/minimum-distance-between-bst-nodes/
 
 class TreeNode {
      int val;
@@ -39,6 +39,7 @@ public class MinimumDistanceBetweenBSTNodes {
         }
         return minDistance;
     }
+
 
 
     // Approach 2 faster

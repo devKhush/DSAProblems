@@ -1,3 +1,9 @@
+package Stacks.DecodeString;
+import java.util.Stack;
+
+// https://leetcode.com/problems/decode-string/submissions/
+// https://www.youtube.com/watch?v=0iQqj5egK9k
+
 class Solution {
     public String decodeString(String s) {
         Stack<String> results = new Stack<>();
