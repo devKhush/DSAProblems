@@ -21,7 +21,7 @@ class LRUCache {
         if (node!=null){
             value = node.value;
             this.remove(node);
-            this.add(node);
+            this.addToHead(node);
         }
         return value;
     }
@@ -31,8 +31,8 @@ class LRUCache {
         if (keyNodePairs.containsKey(key)){
             Node updateNode = keyNodePairs.get(key);
             updateNode.value = value;
-            remove(updateNode);
-            add(updateNode);
+            this.remove(updateNode);
+            this.addToHead(updateNode);
         }
         else{
             Node toPut = new Node(key, value);
@@ -40,17 +40,17 @@ class LRUCache {
                 keyNodePairs.remove(tail.prev.key);
                 keyNodePairs.put(key, toPut);
                 this.remove(tail.prev);
-                this.add(toPut);
+                this.addToHead(toPut);
             }
             else{
-                this.add(toPut);
+                this.addToHead(toPut);
                 keyNodePairs.put(key, toPut);
             }
         }
     }
     
     // Consider as adding a node in the Doubly LL in b/w of the list (always add after head)
-    public void add(Node node){
+    public void addToHead(Node node){
         Node nextToHead = head.next;
         
         head.next = node;
