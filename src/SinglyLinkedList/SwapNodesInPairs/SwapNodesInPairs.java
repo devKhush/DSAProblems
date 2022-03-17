@@ -1,6 +1,17 @@
-package SinglyLinkedList.ReverseLinkedList;
+package SinglyLinkedList.SwapNodesInPairs;
 
-public class ReverseAlternateNodes {
+// https://leetcode.com/problems/swap-nodes-in-pairs/
+
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+
+public class SwapNodesInPairs {
     public ListNode swapPairs(ListNode head) {
         if (head==null || head.next==null)
             return head;
@@ -39,7 +50,7 @@ public class ReverseAlternateNodes {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
 
-        ReverseAlternateNodes solution = new ReverseAlternateNodes();
+        SwapNodesInPairs solution = new SwapNodesInPairs();
         solution.display(head);
         head = solution.swapPairs(head);
         solution.display(head);

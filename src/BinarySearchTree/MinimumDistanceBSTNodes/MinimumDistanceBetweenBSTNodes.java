@@ -1,7 +1,7 @@
 package BinarySearchTree.MinimumDistanceBSTNodes;
 import java.util.ArrayList;
 
-// https://leetcode.com/problems/minimum-distance-between-bst-nodes/
+// https://leetcode.com/pr  oblems/minimum-distance-between-bst-nodes/
 
 class TreeNode {
      int val;
@@ -18,17 +18,17 @@ class TreeNode {
 
 public class MinimumDistanceBetweenBSTNodes {
 
-    // Approach 1 using PRE-ORDER Traversal
+    // Approach 1 using IN-ORDER Traversal
     private ArrayList<Integer> allValues = new ArrayList<>();
-    public void preOrder(TreeNode root){
+    public void inOrder(TreeNode root){
         if (root!=null){
-            preOrder(root.left);
+            inOrder(root.left);
             allValues.add(root.val);
-            preOrder(root.right);
+            inOrder(root.right);
         }
     }
     public int minDiff(TreeNode root) {
-        preOrder(root);
+        inOrder(root);
         int minDistance = Integer.MAX_VALUE;
 
         for (int i=0; i<allValues.size()-1; i++){
