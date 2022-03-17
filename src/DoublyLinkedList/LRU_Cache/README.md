@@ -39,6 +39,4 @@ lRUCache.get(4);    // return 4
 	<li><code>1 &lt;= capacity &lt;= 3000</code></li>
 	<li><code>0 &lt;= key &lt;= 10<sup>4</sup></code></li>
 	<li><code>0 &lt;= value &lt;= 10<sup>5</sup></code></li>
-	<li>At most 2<code>&nbsp;* 10<sup>5</sup></code>&nbsp;calls will be made to <code>get</code> and <code>put</code>.</li>
-</ul>
-</div>
+	<li>At most 2<code>&nbsp;* 10<sup>5</sup></code>&nbsp;calls will be made to <code>get</code> and <code>put</code>.</li></ul></div>
