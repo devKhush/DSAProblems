@@ -33,5 +33,4 @@
 	<li><code>s</code> consists of lowercase English letters, digits, and square brackets <code>'[]'</code>.</li>
 	<li><code>s</code> is guaranteed to be <strong>a valid</strong> input.</li>
 	<li>All the integers in <code>s</code> are in the range <code>[1, 300]</code>.</li>
-</ul>
-</div>
+</ul></div>
