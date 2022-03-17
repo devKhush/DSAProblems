@@ -1,4 +1,10 @@
-class Solution {
+package Stacks.AsteroidCollision;
+import java.util.Stack;
+
+// https://leetcode.com/problems/asteroid-collision/
+// https://www.youtube.com/watch?v=6GGTBM7mwfs
+
+class  AsteroidCollision {
     public int[] asteroidCollision(int[] asteroids) {
         Stack<Integer> stack = new Stack<>();
         
