@@ -1,4 +1,10 @@
-class Solution {
+package Stacks.MinimumCostTreeFromLeafValues;
+import java.util.Stack;
+
+// https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/discuss/339959/One-Pass-O(N)-Time-and-Space
+// https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/discuss/476513/Java-Mono-Stack-98-Example-to-explain
+
+public class MinimumCostTreeFromLeafValues_UsingStack {
     public int mctFromLeafValues(int[] arr) {
         int minSum = 0;
         Stack<Integer> stack = new Stack<>();
