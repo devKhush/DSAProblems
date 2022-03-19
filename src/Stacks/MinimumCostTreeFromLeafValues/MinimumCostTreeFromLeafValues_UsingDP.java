@@ -40,7 +40,7 @@ class Pair{
     }
 }
     
-class Solution {
+public class MinimumCostTreeFromLeafValues_UsingDP {
     public int mctFromLeafValues(int[] arr) {
         return solve(arr, 0, arr.length-1, new Pair[arr.length][arr.length]).minSum;
     }
