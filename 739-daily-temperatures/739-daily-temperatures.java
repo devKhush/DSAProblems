@@ -1,6 +1,5 @@
 class Solution {
     public int[] dailyTemperatures(int[] temperatures) {
-     //   HashMap<Integer, Integer> valueIndex = new HashMap<>();
         Stack<Integer> stack = new Stack<>();
         int[] answer = new int[temperatures.length];
         
