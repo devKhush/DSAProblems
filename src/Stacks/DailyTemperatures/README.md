@@ -17,5 +17,4 @@
 <ul>
 	<li><code>1 &lt;=&nbsp;temperatures.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>30 &lt;=&nbsp;temperatures[i] &lt;= 100</code></li>
-</ul>
-</div>
+</ul></div>

@@ -1,4 +1,10 @@
-class Solution {
+package Stacks.DailyTemperatures;
+import java.util.Stack;
+
+// https://leetcode.com/problems/daily-temperatures/
+// This approach is similar to Next Greater EElement in 'Stack' Problem
+
+class DailyTemperatures_UsingStack {
     public int[] dailyTemperatures(int[] temperatures) {
         Stack<Integer> stack = new Stack<>();
         int[] answer = new int[temperatures.length];
