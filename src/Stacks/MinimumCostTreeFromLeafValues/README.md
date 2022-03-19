@@ -32,5 +32,4 @@ The first has a non-leaf node sum 36, and the second has non-leaf node sum 32.
 	<li><code>2 &lt;= arr.length &lt;= 40</code></li>
 	<li><code>1 &lt;= arr[i] &lt;= 15</code></li>
 	<li>It is guaranteed that the answer fits into a <strong>32-bit</strong> signed integer (i.e., it is less than 2<sup>31</sup>).</li>
-</ul>
-</div>
+</ul></div>

@@ -1,3 +1,8 @@
+package Stacks.MinimumCostTreeFromLeafValues;
+
+//https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/
+// https://www.youtube.com/watch?v=T6E74ypY_tU&t=1848s
+// https://www.youtube.com/watch?v=pYs3qj42h3c
 
 /*
 class Solution {
@@ -24,6 +29,16 @@ class Solution {
     }
 }
 */
+
+class Pair{
+    int maxLeaf;
+    int minSum;
+    public Pair(int maxLeaf, int minSum){
+        this.minSum = minSum;
+        this.maxLeaf = maxLeaf;
+
+    }
+}
     
 class Solution {
     public int mctFromLeafValues(int[] arr) {
@@ -51,17 +66,5 @@ class Solution {
         
         dp[low][high] = root;
         return root;
-    }
-}
-
-
-
-class Pair{
-    int maxLeaf;
-    int minSum;
-    public Pair(int maxLeaf, int minSum){
-        this.minSum = minSum;
-        this.maxLeaf = maxLeaf;
-        
     }
 }

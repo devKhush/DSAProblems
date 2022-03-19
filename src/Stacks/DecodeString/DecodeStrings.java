@@ -35,7 +35,7 @@ class Solution {
                 result = previousResult.toString();
                 index++;
             }
-            else{
+            else{           // will be a character
                 result += s.charAt(index);
                 index++;
             }
