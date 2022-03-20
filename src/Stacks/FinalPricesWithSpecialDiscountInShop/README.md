@@ -33,5 +33,4 @@ For items 3 and 4 you will not receive any discount at all.
 <ul>
 	<li><code>1 &lt;= prices.length &lt;= 500</code></li>
 	<li><code>1 &lt;= prices[i] &lt;= 10^3</code></li>
-</ul>
-</div>
+</ul></div>
