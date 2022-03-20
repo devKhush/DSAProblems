@@ -1,4 +1,9 @@
-class Solution {
+package Stacks.TrappingRainWater;
+
+// https://youtu.be/m18Hntz4go8
+// O(n) Time, O(1) Space
+
+public class TrappingRainWater_Efficient {
     public int trap(int[] height) {
         int low = 0;
         int high = height.length-1;
