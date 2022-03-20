@@ -3,6 +3,8 @@ import java.util.Stack;
 
 // https://www.youtube.com/watch?v=vhUxKxiconE          // Solution in this this
 // https://www.youtube.com/watch?v=0do2734xhnU          // Intuitive idea in this (first 10 min)
+// Based on Previous smaller element & next smaller element,
+// similar to Next smaller element problem in stack
 
 public class LargestRectangleInHistogram_UsingStack {
     public int largestRectangleArea(int[] heights) {
