@@ -21,5 +21,4 @@
 	<li><code>n == height.length</code></li>
 	<li><code>1 &lt;= n &lt;= 2 * 10<sup>4</sup></code></li>
 	<li><code>0 &lt;= height[i] &lt;= 10<sup>5</sup></code></li>
-</ul>
-</div>
+</ul></div>

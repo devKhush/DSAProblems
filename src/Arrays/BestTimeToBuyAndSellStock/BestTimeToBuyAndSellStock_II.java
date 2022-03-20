@@ -1,6 +1,7 @@
 package Arrays.BestTimeToBuyAndSellStock;
 
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+// https://www.youtube.com/watch?v=Q7v239y-Tik
 
 public class BestTimeToBuyAndSellStock_II {
     public int maxProfit(int[] prices) {

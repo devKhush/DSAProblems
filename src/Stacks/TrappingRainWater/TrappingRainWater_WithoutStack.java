@@ -1,4 +1,9 @@
-class Solution {
+package Stacks.TrappingRainWater;
+
+// https://www.youtube.com/watch?v=UZG3-vZlFM4&t=35s
+// Based on simple observation
+
+public class TrappingRainWater_WithoutStack {
     public int trap(int[] height) {
         int[] leftMaxWater = new int[height.length];
         int[] rightMaxWater = new int[height.length];
@@ -20,8 +25,7 @@ class Solution {
         
         for (int i=0; i<height.length-1; i++){
             int minBoundary = Math.min(leftMaxWater[i] , rightMaxWater[i]);
-            // if (minBoundary-height[i] >0)
-                water += (minBoundary - height[i]);
+            water += (minBoundary - height[i]);
         }
         return water;
     }
