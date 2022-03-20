@@ -20,7 +20,7 @@ class Solution {
         
         for (int i=0; i<height.length-1; i++){
             int minBoundary = Math.min(leftMaxWater[i] , rightMaxWater[i]);
-            if (minBoundary-height[i] >0)
+            // if (minBoundary-height[i] >0)
                 water += (minBoundary - height[i]);
         }
         return water;
