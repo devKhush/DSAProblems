@@ -21,5 +21,4 @@ The largest rectangle is shown in the red area, which has an area = 10 units.
 <ul>
 	<li><code>1 &lt;= heights.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>0 &lt;= heights[i] &lt;= 10<sup>4</sup></code></li>
-</ul>
-</div>
+</ul></div>

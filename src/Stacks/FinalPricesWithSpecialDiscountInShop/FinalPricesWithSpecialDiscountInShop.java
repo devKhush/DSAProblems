@@ -15,9 +15,9 @@ public class FinalPricesWithSpecialDiscountInShop {
                  prices[index] = prices[index] - prices[i];
 //                 answer[index] = prices[index] - prices[i];
              }
-            
              stack.push(i);
          }
+
  //         while (!stack.isEmpty()){
  //             int index = stack.pop();
  //             answer[index] = prices[index];

@@ -1,10 +1,13 @@
-class Solution {
+package Stacks.LargestRectangleInHistogram;
+import java.util.Stack;
+
+// https://www.youtube.com/watch?v=vhUxKxiconE          // Solution in this this
+// https://www.youtube.com/watch?v=0do2734xhnU          // Intuitive idea in this (first 10 min)
+
+public class LargestRectangleInHistogram_UsingStack {
     public int largestRectangleArea(int[] heights) {
         int[] nextSmallerElement = nextSmallerElementIndices(heights, heights.length);
         int[] prevSmallerElement = previousSmallerElementIndices(heights, heights.length);
-        
-        System.out.println(Arrays.toString(nextSmallerElement));
-        System.out.println(Arrays.toString(prevSmallerElement));
         
         int maxArea = 0;
         
