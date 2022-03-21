@@ -25,7 +25,8 @@ public class FinalPricesWithSpecialDiscountInShop {
          // return answer;
          return prices;
      }
-    
+
+
     public int[] finalPrices(int[] prices) {
         for (int i=0; i<prices.length; i++){
             int j=i+1;

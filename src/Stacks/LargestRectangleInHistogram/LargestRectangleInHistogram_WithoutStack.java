@@ -1,4 +1,6 @@
-class Solution {
+package Stacks.LargestRectangleInHistogram;
+
+class LargestRectangleInHistogram_WithoutStack {
      public int largestRectangleArea(int[] heights) {
         int n = heights.length;
         int[] nextSmaller = new int[n];
