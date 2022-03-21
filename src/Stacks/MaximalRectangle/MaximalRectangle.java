@@ -1,4 +1,10 @@
-class Solution {
+package Stacks.MaximalRectangle;
+import java.util.Stack;
+
+// https://www.youtube.com/watch?v=dAVF2NpC3j4&t=582s
+// https://www.youtube.com/watch?v=oaN9ibZKMpA
+
+class MaximalRectangle {
     public int maximalRectangle(char[][] matrix) {
         int row = matrix.length;
         int column = matrix[0].length;
@@ -22,7 +28,7 @@ class Solution {
     }
     
     
-     // Maximum area in a Histogram Problem
+    // Same Problem as Maximum area in a Histogram Problem
     public int maximumAreaInHistogram(char[] arr){
         int n = arr.length;
         int[] nextSmaller = new int[n];
