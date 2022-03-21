@@ -21,8 +21,35 @@ class Solution {
         return maxArea;
     }
     
-    // Maximum area in a Histogram Problem
     public int maximumAreaInHistogram(char[] arr){
+        int n = arr.length;
+        Stack<Integer> stack = new Stack<>();
+        
+        stack.push(0);
+        int maxArea = 0;
+        for (int i = 0; i < n; i++){
+            while (!stack.isEmpty()  &&  arr[i] < arr[stack.peek()]){
+                int height = arr[stack.pop()];
+                if (stack.isEmpty())
+                    maxArea = Math.max(maxArea, height*i);
+                else
+                    maxArea = Math.max(maxArea, height*(i - stack.peek() - 1));
+            }
+            stack.push(i);
+        }
+        
+        while (!stack.isEmpty()){
+            int height = arr[stack.pop()];
+            if (stack.isEmpty())
+                maxArea = Math.max(maxArea, n*height);
+            else
+                maxArea = Math.max(maxArea, height*(n - stack.peek() - 1));
+        }
+        return maxArea;
+    }
+    
+    // Maximum area in a Histogram Problem
+    public int maximumAreaInHistogram_V2(char[] arr){
         int n = arr.length;
         int[] nextSmaller = new int[n];
         int[] prevSmaller = new int[n];
