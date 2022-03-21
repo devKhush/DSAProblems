@@ -21,7 +21,9 @@ public class LargestRectangleInHistogram_UsingStack {
         
         return maxArea;
     }
-    
+
+    // Similar to the problem of Next Greater element, this is the code for problem of
+    // Next Smaller Element using stack
     public int[] nextSmallerElementIndices(int[] arr, int n){
         int[] nextSmallerElement = new int[n];
         Stack<Integer> stack = new Stack<>();
@@ -37,7 +39,9 @@ public class LargestRectangleInHistogram_UsingStack {
 
         return nextSmallerElement;
     }
-    
+
+    // Similar to the problem of Next Greater element, this is the code for problem of
+    // Previous Smaller Element using stack
     public int[] previousSmallerElementIndices(int[] arr, int n){
         int[] prevSmallerElement = new int[n];
         Stack<Integer> stack = new Stack<>();
@@ -52,40 +56,5 @@ public class LargestRectangleInHistogram_UsingStack {
             prevSmallerElement[stack.pop()] = -1;
 
         return prevSmallerElement;
-    }
-
-
-    public static void main(String[] args) {
-        int heights[] = {2,1,5,6,2,3};
-
-        int n = heights.length;
-        int[] nextSmaller = new int[n];
-        int[] prevSmaller = new int[n];
-        prevSmaller[0] = -1;
-        nextSmaller[n-1] = n;
-
-        for (int i=1; i<n; i++){
-            int low = i-1;
-            System.out.println(low);
-            while (low>0 && heights[low] >= heights[i]) {
-                System.out.println("...");
-                low--;
-            }
-            System.out.println(low);
-            System.out.println(Arrays.toString(prevSmaller));
-            prevSmaller[i] = prevSmaller[low];
-            System.out.println(Arrays.toString(prevSmaller));
-            System.out.println();
-        }
-
-        for (int i = n-2; i >= 0; i--){
-            int high = i+1;
-            while (high<n-1 && heights[i] <= heights[high])
-                high++;
-            nextSmaller[i] = nextSmaller[high];
-        }
-
-        System.out.println(Arrays.toString(prevSmaller));
-        System.out.println(Arrays.toString(nextSmaller));
     }
 }
