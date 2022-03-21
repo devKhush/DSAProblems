@@ -8,11 +8,6 @@ class Solution {
             currentHistogram[i] = (char)(currentHistogram[i] - '0');
         int maxArea = maximumAreaInHistogram(currentHistogram);
         
-        for (int k : currentHistogram)
-                System.out.print(k +" ");
-        System.out.println();
-
-        System.out.println(maxArea);
         
         for (int i = 1; i<row; i++){
             for (int j = 0; j<column; j++){
@@ -21,14 +16,7 @@ class Solution {
                 else
                     currentHistogram[j] = 0;
             }
-            
-            for (int k : currentHistogram)
-                System.out.print(k +" ");
-            System.out.println();
-            
             maxArea = Math.max(maxArea, maximumAreaInHistogram(currentHistogram));
-            
-            System.out.println(maxArea);
         }
         return maxArea;
     }
@@ -43,10 +31,7 @@ class Solution {
         nextSmaller[n-1] = n;
         
         for (int i=1; i<n; i++){
-            int low = i-1;
-            // int currentElement = arr[i];
-            // int prevElement = arr[low];
-            
+            int low = i-1;         
             while (low>=0 && arr[low] >= arr[i])
                 low = prevSmaller[low];
             
@@ -55,9 +40,6 @@ class Solution {
         
         for (int i = n-2; i>=0; i--){
             int high = i+1;
-            // int currentElement = arr[i];
-            // int nextElement = arr[high];
-            
             while (high<n && arr[i] <= arr[high])
                 high = nextSmaller[high];
             nextSmaller[i] = high;
