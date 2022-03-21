@@ -27,7 +27,7 @@ class Solution {
                 maxArea = Math.max(maxArea, height*n);
             else{
                 int width = n - stack.peek() - 1;
-                maxArea = Math.max(maxArea, height * (n - stack.peek() -1));
+                maxArea = Math.max(maxArea, height * width);
 
             }
         }
