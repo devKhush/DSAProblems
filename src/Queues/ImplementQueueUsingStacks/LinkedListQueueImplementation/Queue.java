@@ -1,9 +1,9 @@
 package Queues.ImplementQueueUsingStacks.LinkedListQueueImplementation;
+import java.util.Deque;
 import java.util.LinkedList;
 
 /*
-Another option is DEQUE which is preferred than linked-list or ArrayList
-
+Another option is DEQUE using LinkedList
 // https://www.geeksforgeeks.org/implementation-deque-using-doubly-linked-list/
  */
 

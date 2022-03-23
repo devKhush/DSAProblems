@@ -1,4 +1,4 @@
-package Queues.ImplementQueueUsingStacks.QueueUsingArray;
+package Queues.QueueUsingArray;
 
 import java.util.Arrays;
 
