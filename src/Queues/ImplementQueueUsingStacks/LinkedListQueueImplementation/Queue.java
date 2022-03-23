@@ -1,6 +1,12 @@
 package Queues.ImplementQueueUsingStacks.LinkedListQueueImplementation;
 import java.util.LinkedList;
 
+/*
+Another option is DEQUE which is preferred than linked-list or ArrayList
+
+// https://www.geeksforgeeks.org/implementation-deque-using-doubly-linked-list/
+ */
+
 public class Queue {
     public static void main(String[] args) {
         LinkedList<Integer> q = new LinkedList<>();
@@ -70,6 +76,11 @@ public class Queue {
         //This method is equivalent to addFirst().
         q.push(2);
 
+        // Removes the element at the specified position in this list. Shifts any
+        // subsequent elements to the left (subtracts one from their indices).
+        // Returns the element that was removed from the list.
+        q.remove(1);
+
         // Retrieves and removes the head (first element) of this list.
         q.remove();
 
@@ -85,5 +96,9 @@ public class Queue {
         q.removeFirstOccurrence(1);
         q.removeLastOccurrence(1);
         q.clear();
+
+        // You can use the enhanced for loop to iterate over its elements.
+        for (int val: q)
+            System.out.println(val);
     }
 }
