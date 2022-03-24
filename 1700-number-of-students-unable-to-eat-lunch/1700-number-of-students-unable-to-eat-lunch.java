@@ -8,14 +8,13 @@ class Solution {
         int i = 0;
         
         while (!queue.isEmpty() && queue.contains(sandwiches[i])){
-            if (queue.peek() == sandwiches[i]){
-                queue.remove();
+            int currentStudentPreference = queue.remove();
+            
+            if (currentStudentPreference == sandwiches[i])
                 i++;
-            }
             else
-                queue.add(queue.remove());
+                queue.add(currentStudentPreference);
         }
-        
         return queue.size();
     }
 }
