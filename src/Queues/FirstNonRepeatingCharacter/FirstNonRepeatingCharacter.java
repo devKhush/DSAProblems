@@ -17,7 +17,7 @@ class FirstNonRepeatingCharacter {
                     break;
                 }
             }
-            if (!seenDuplicate)
+            if (!seenDuplicate)             // if (j==s.length())    condition also works
                 return i;
         }
         
