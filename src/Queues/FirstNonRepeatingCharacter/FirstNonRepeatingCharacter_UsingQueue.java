@@ -1,5 +1,4 @@
 package Queues.FirstNonRepeatingCharacter;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -32,14 +31,14 @@ public class FirstNonRepeatingCharacter_UsingQueue {
              else
                  System.out.print(-1 + " ");
         }
-        System.out.println();
 
         return !queue.isEmpty() ? s.indexOf(queue.peek()) : -1;
     }
 
     public static void main(String[] args) {
-        String s = "aabb";
+        String s = "aabbcdddakgsac";
         int answer = new FirstNonRepeatingCharacter_UsingQueue().firstUniqChar(s);
+        System.out.println();
 
         System.out.println(answer);
     }

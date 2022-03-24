@@ -1,5 +1,9 @@
+package Queues.NumberOfRecentCalls;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 class RecentCounter {
-    
     private Queue<Integer> queue;
 
     public RecentCounter() {
@@ -10,8 +14,7 @@ class RecentCounter {
         int requests = 1;
         int startRange = t - 3000;
         int endRange = t;
-                            
-                            
+
         while (!queue.isEmpty()){
             if (queue.peek() >= startRange && queue.peek() <= endRange){
                 requests += queue.size();
@@ -21,13 +24,7 @@ class RecentCounter {
                 queue.remove();
         }
         queue.add(t);
-        
+
         return requests;
     }
 }
-
-/**
- * Your RecentCounter object will be instantiated and called as such:
- * RecentCounter obj = new RecentCounter();
- * int param_1 = obj.ping(t);
- */
