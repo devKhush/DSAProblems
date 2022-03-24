@@ -2,13 +2,17 @@ package Queues.FirstNonRepeatingCharacter;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Queue;
 
 // https://www.youtube.com/watch?v=2Z--YYbzigU&t=195s
 
 public class FirstNonRepeatingCharacter_UsingQueue {
     public int firstUniqChar(String s) {
+        // stores the count of the characters
         HashMap<Character, Integer> count = new HashMap<>();
-        Deque<Character> queue = new LinkedList<>();
+
+        // queue stores the first non-repeating characters
+        Queue<Character> queue = new LinkedList<>();
 
         for (int i=0; i<s.length(); i++){
             char ch = s.charAt(i);
