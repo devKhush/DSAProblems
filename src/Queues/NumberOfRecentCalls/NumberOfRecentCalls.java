@@ -3,13 +3,14 @@ package Queues.NumberOfRecentCalls;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class RecentCounter {
+public class NumberOfRecentCalls {
     private Queue<Integer> queue;
 
-    public RecentCounter() {
+    public NumberOfRecentCalls() {
         queue = new LinkedList<>();
     }
-    
+
+    // O(N)
     public int ping(int t) {
         int requests = 1;
         int startRange = t - 3000;
@@ -24,7 +25,17 @@ class RecentCounter {
                 queue.remove();
         }
         queue.add(t);
-
         return requests;
+    }
+
+    // Another approach (Faster & easier than previous one)
+    public int ping_(int time) {
+        int startRange = time -3000;
+        this.queue.add(time);
+
+        while (this.queue.peek() < startRange)
+            this.queue.remove();
+
+        return this.queue.size();
     }
 }
