@@ -1,12 +1,12 @@
 class Solution {
     public int firstUniqChar(String s) {
-        char[] charCount = new char[26];
-        
-        for (int i=0; i<s.length(); i++)
-            charCount[s.charAt(i) - 'a']++;
-        
+        int j;
         for (int i=0; i<s.length(); i++){
-            if (charCount[s.charAt(i) - 'a'] == 1)
+            for (j=0; j<s.length(); j++){
+                if (i!=j && s.charAt(i)==s.charAt(j))
+                    break;
+            }
+            if (j == s.length())
                 return i;
         }
         
