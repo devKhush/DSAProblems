@@ -35,5 +35,4 @@ The person at&nbsp;position 0 has successfully bought 5 tickets and it took 4 + 
 	<li><code>1 &lt;= n &lt;= 100</code></li>
 	<li><code>1 &lt;= tickets[i] &lt;= 100</code></li>
 	<li><code>0 &lt;= k &lt; n</code></li>
-</ul>
-</div>
+</ul></div>

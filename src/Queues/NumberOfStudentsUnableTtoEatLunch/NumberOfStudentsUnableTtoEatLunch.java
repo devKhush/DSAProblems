@@ -20,7 +20,7 @@ public class NumberOfStudentsUnableTtoEatLunch {
             // sandwich of current student
             int currentStudentPreference = queue.remove();
 
-            // students got his sandwich so removed
+            // students got his sandwich, so student and sandwich removed
             if (currentStudentPreference == sandwiches[i])
                 i++;
             // student didn't get his sandwich, so goes to the last
