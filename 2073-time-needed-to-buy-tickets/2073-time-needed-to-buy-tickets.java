@@ -13,10 +13,12 @@ class Solution {
             seconds++;
             
             if (tickets[i] == 0){
-                if (i == k)
+                if (i == k)     // when kth person has all the tickets purchased, so return answer
                     return seconds;
+                else            // when some other person has all the tickets purchased, so removed
+                    continue;
             }
-            else
+            else                // when tickets are not finished, add backs to queue 
                 queue.add(i);
         }
         
