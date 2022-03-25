@@ -20,6 +20,6 @@ class Solution {
                 queue.add(i);
         }
         
-        return seconds;
+        return -1;
     }
 }
