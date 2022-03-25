@@ -24,7 +24,7 @@ public class TimeNeededToBuyTickets {
     }
 
 
-    public int timeRequiredToBuy_UsingQueeu(int[] tickets, int k) {
+    public int timeRequiredToBuy_UsingQueue(int[] tickets, int k) {
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i<tickets.length; i++)
             queue.add(i);
