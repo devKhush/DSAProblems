@@ -5,12 +5,10 @@ class LargestRectangleInHistogram_WithoutStack {
         int n = heights.length;
         int[] nextSmaller = new int[n];
         int[] prevSmaller = new int[n];
-        prevSmaller[0] = -1;
-        nextSmaller[n-1] = n;
 
          // Similar to the problem of Next Greater element, this is the code for problem of
          // Previous Smaller Element without using stack
-        for (int i=1; i<n; i++){
+        for (int i=0; i<n; i++){
             int low = i-1;
             while (low >= 0 && heights[low] >= heights[i])
                 low = prevSmaller[low];
@@ -19,7 +17,7 @@ class LargestRectangleInHistogram_WithoutStack {
 
          // Similar to the problem of Next Greater element, this is the code for problem of
          // Next Smaller Element without using stack
-        for (int i = n-2; i >= 0; i--){
+        for (int i = n-1; i >= 0; i--){
             int high = i+1;
             while (high < n && heights[i] <= heights[high])
                 high = nextSmaller[high];

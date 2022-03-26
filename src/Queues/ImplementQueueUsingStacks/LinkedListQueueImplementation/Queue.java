@@ -97,6 +97,7 @@ public class Queue {
         q.removeLastOccurrence(1);
         q.clear();
         q.contains(1);
+        q.size();
 
         // You can use the enhanced for loop to iterate over its elements.
         for (int val: q)

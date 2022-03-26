@@ -2,7 +2,7 @@ package Stacks.LargestRectangleInHistogram;
 import java.util.Stack;
 
 // https://www.youtube.com/watch?v=qj4RcJbp03g
-// Do DRy run for better understanding....
+// Do Dry run for better understanding....
 
 public class LargestRectangleInHistogram_UsingStackEfficient {
     
