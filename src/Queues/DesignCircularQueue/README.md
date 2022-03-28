@@ -45,5 +45,4 @@ myCircularQueue.Rear();     // return 4
 	<li><code>1 &lt;= k &lt;= 1000</code></li>
 	<li><code>0 &lt;= value &lt;= 1000</code></li>
 	<li>At most <code>3000</code> calls will be made to&nbsp;<code>enQueue</code>, <code>deQueue</code>,&nbsp;<code>Front</code>,&nbsp;<code>Rear</code>,&nbsp;<code>isEmpty</code>, and&nbsp;<code>isFull</code>.</li>
-</ul>
-</div>
+</ul></div>

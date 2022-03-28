@@ -1,3 +1,4 @@
+package Queues.DesignCircularQueue;
 
 class Node{
     public int data;
@@ -9,13 +10,13 @@ class Node{
 }
     
     
-class MyCircularQueue {
+public class DesignCircularQueue_UsingNodes {
     public Node head = null;
     public Node tail = null;
     public int size;
     public int maxSize;
 
-    public MyCircularQueue(int maxSize) {
+    public DesignCircularQueue_UsingNodes(int maxSize) {
         this.maxSize = maxSize;
         this.size = 0;
     }
@@ -49,7 +50,7 @@ class MyCircularQueue {
         node.next = null;
         this.size--;
         
-        if (this.size != 0)
+        if (!this.isEmpty())
             this.tail.next = this.head;
         else
             this.tail = null;
@@ -77,14 +78,3 @@ class MyCircularQueue {
     }
 }
 
-
-/**
- * Your MyCircularQueue object will be instantiated and called as such:
- * MyCircularQueue obj = new MyCircularQueue(k);
- * boolean param_1 = obj.enQueue(value);
- * boolean param_2 = obj.deQueue();
- * int param_3 = obj.Front();
- * int param_4 = obj.Rear();
- * boolean param_5 = obj.isEmpty();
- * boolean param_6 = obj.isFull();
- */
