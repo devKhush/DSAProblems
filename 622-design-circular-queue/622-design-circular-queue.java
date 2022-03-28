@@ -21,7 +21,7 @@ class MyCircularQueue {
     }
     
     public boolean enQueue(int value) {
-        if (this.size == this.maxSize)
+        if (this.isFull())
             return false;
         
         Node node = new Node(value);
