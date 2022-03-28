@@ -57,13 +57,13 @@ class MyCircularQueue {
     }
     
     public int Front() {
-        if (this.size == 0)
+        if (this.isEmpty())
             return -1;
         return this.head.data;
     }
     
     public int Rear() {
-        if (this.size == 0)
+        if (this.isEmpty())
             return -1;
         return this.tail.data;
     }
