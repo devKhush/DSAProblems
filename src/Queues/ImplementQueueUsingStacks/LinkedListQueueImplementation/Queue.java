@@ -99,6 +99,9 @@ public class Queue {
         q.contains(1);
         q.size();
 
+        // Retrieves and removes the head (first element) of this list.
+        q.poll();
+
         // You can use the enhanced for loop to iterate over its elements.
         for (int val: q)
             System.out.println(val);
