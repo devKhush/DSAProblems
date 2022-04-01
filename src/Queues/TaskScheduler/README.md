@@ -42,5 +42,4 @@ A -&gt; B -&gt; C -&gt; A -&gt; D -&gt; E -&gt; A -&gt; F -&gt; G -&gt; A -&gt; 
 	<li><code>1 &lt;= task.length &lt;= 10<sup>4</sup></code></li>
 	<li><code>tasks[i]</code> is upper-case English letter.</li>
 	<li>The integer <code>n</code> is in the range <code>[0, 100]</code>.</li>
-</ul>
-</div>
+</ul></div>

@@ -1,11 +1,13 @@
-class MyCircularQueue {
+package Queues.DesignCircularQueue;
+
+public class DesignCircularQueue_UsingArrays {
     public int front;
     public int rear;
     public int size;
     public int maxSize;
     private int[] queue;
 
-    public MyCircularQueue(int k) {
+    public DesignCircularQueue_UsingArrays(int k) {
         front = 0;
         rear = -1;
         size = 0;
