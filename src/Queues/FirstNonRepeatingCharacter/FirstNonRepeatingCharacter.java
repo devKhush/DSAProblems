@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 class FirstNonRepeatingCharacter {
 
-    // O(n^2)
+    // O(n^2) Brute force
     public int firstUniqChar_O_NSquare(String s) {
         
         for (int i=0; i<s.length(); i++){
