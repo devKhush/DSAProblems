@@ -28,5 +28,4 @@
 </ul>
 
 <p>&nbsp;</p>
-<p><strong>Follow up:</strong> What if the number of rows is much larger than the number of columns?</p>
-</div>
+<p><strong>Follow up:</strong> What if the number of rows is much larger than the number of columns?</p></div>
