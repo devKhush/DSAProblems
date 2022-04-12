@@ -1,4 +1,13 @@
-class Solution {
+package Arrays.MaxSumOfRectangleNoLargerThanK;
+import java.util.TreeSet;
+
+// https://www.youtube.com/watch?v=IDv9yvQN3Uc
+// https://www.youtube.com/watch?v=VsBXWpBbuig
+
+// If rows are larger than columns, then a if-else condition can be added
+//And the problem can be done using column wise sum
+
+class MaxSumOfRectangleNoLargerThanK {
     public int maxSumSubmatrix(int[][] matrix, int k) {
         int row = matrix.length;        
         int column = matrix[0].length;
