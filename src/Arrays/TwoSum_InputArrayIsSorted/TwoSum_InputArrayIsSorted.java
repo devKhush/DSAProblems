@@ -1,4 +1,6 @@
-class Solution {
+package Arrays.TwoSum_InputArrayIsSorted;
+
+class TwoSum_InputArrayIsSorted {
     public int[] twoSum(int[] nums, int target) {
         int left = 0;
         int right = nums.length-1;
