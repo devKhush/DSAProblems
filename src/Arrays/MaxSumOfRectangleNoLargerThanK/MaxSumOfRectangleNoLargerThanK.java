@@ -5,7 +5,7 @@ import java.util.TreeSet;
 // https://www.youtube.com/watch?v=VsBXWpBbuig
 
 // If rows are larger than columns, then a if-else condition can be added
-//And the problem can be done using column wise sum
+// And the problem can be done using column wise sum
 
 class MaxSumOfRectangleNoLargerThanK {
     public int maxSumSubmatrix(int[][] matrix, int k) {
@@ -32,7 +32,8 @@ class MaxSumOfRectangleNoLargerThanK {
     private int maxSumNoGreaterThanK_1D(int[] arr, int n, int k){
         int maxSumNoGreaterThanK = Integer.MIN_VALUE;
         int prefixSum = 0;
-        
+
+        // https://www.javatpoint.com/java-treeset
         TreeSet<Integer> set = new TreeSet<>();
         set.add(0);
         
