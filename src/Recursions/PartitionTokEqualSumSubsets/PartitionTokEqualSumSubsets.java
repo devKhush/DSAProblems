@@ -26,10 +26,10 @@ class PartitionTokEqualSumSubsets {
     }
     
     private boolean canPartition(int[] nums, boolean[] visited, int k, int eachPartitionSum, int index, int sumInProgress){
-        System.out.println("\n********************************************* New  Call ******************************************");
-        System.out.println(Arrays.toString(nums));
-        System.out.println(Arrays.toString(visited));
-        System.out.printf("index = %d, sumInProgress = %d, k = %d \n",index, sumInProgress, k);
+//        System.out.println("\n********************************************* New  Call ******************************************");
+//        System.out.println(Arrays.toString(nums));
+//        System.out.println(Arrays.toString(visited));
+//        System.out.printf("index = %d, sumInProgress = %d, k = %d \n",index, sumInProgress, k);
 
         if (k==1)
             return true;
@@ -41,18 +41,18 @@ class PartitionTokEqualSumSubsets {
             return canPartition(nums, visited, k-1, eachPartitionSum, 0, 0);
         
         for (int i = index; i < nums.length; i++){
-            System.out.printf("\ni = %d, sumInProgress = %d \n",i, sumInProgress);
-            System.out.println(Arrays.toString(visited));
+//            System.out.printf("\ni = %d, sumInProgress = %d \n",i, sumInProgress);
+//            System.out.println(Arrays.toString(visited));
             if (!visited[i]){
                 visited[i] = true;
 
-                System.out.printf("\ni = %d, sumInProgress = %d \n",i, sumInProgress);
-                System.out.println(Arrays.toString(visited));
+//                System.out.printf("\ni = %d, sumInProgress = %d \n",i, sumInProgress);
+//                System.out.println(Arrays.toString(visited));
 
                 if (canPartition(nums, visited, k, eachPartitionSum, i + 1, sumInProgress + nums[i]))
                     return true;
 
-                System.out.println("....................... Returned .......................");
+//                System.out.println("....................... Returned .......................");
                 visited[i] = false;
             }
 
@@ -60,7 +60,6 @@ class PartitionTokEqualSumSubsets {
                 while (i < nums.length-1  &&  nums[i] == nums[i+1])
                     i++;
             }
-
         }
         return false;
     }
