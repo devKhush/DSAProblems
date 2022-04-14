@@ -2,8 +2,11 @@ package Recursions.PartitionTokEqualSumSubsets;
 import java.util.Arrays;
 
 // https://www.youtube.com/watch?v=qpgqhp_9d1s&t=45s
+// https://youtu.be/mBk4I0X46oI
+// https://www.youtube.com/watch?v=8t8TeyRJDvk
 
 class PartitionTokEqualSumSubsets {
+
     public boolean canPartitionKSubsets(int[] nums, int k) {
         if (k==0 || nums==null)
             return false;
@@ -18,7 +21,8 @@ class PartitionTokEqualSumSubsets {
             return false;
         
         int eachPartitionSum = sum / k;
-        
+
+        // sorting here makes base cases & for loop cases reach faster
         Arrays.sort(nums);
 
         // if last element is greater than required sum of partition set, then the partition
@@ -71,13 +75,4 @@ class PartitionTokEqualSumSubsets {
         // with given elements of array
         return false;
     }
-
 }
-
-
-
-
-
-
-
-
