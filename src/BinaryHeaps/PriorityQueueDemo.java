@@ -48,6 +48,8 @@ public class PriorityQueueDemo {
         maxHeap.remove();
         System.out.println(maxHeap);
 
+        maxHeap.size();
+
         maxHeap.remove();
         System.out.println(maxHeap);
 

@@ -1,32 +1,37 @@
-class Solution {
+package BinaryHeaps.KthLargestElementInArray;
+import java.util.PriorityQueue;
+
+// https://www.youtube.com/watch?v=yAs3tONaf3s
+
+public class KthLargestElementInArray {
     
-    public int findKthLargest(int[] arr, int k) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
+    public int findKthLargest_ByMinHeap(int[] arr, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
         for (int i=0; i<k; i++)
-            pq.add(arr[i]);
+            minHeap.add(arr[i]);
         
         for (int i=k; i<arr.length; i++){
-            if (arr[i] > pq.peek()){
-                pq.remove();
-                pq.add(arr[i]);
+            if (arr[i] > minHeap.peek()){
+                minHeap.remove();
+                minHeap.add(arr[i]);
             }
         }
         
-        return pq.peek();
+        return minHeap.peek();
     }
     
     public int findKthLargest_ByMaxHeap(int[] arr, int k) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b) -> (b-a));
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> (b-a));
         
         for (int val : arr)
-            pq.add(val);
+            maxHeap.add(val);
         
         int i = 1;
         while (i++ < k)
-            pq.remove();
+            maxHeap.remove();
         
-        return pq.peek();
+        return maxHeap.peek();
     }
     
     public void merge(int[] arr, int[] temp, int low, int mid, int high){
