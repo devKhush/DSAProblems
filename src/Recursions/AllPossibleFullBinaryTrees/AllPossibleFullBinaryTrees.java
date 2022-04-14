@@ -1,19 +1,25 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+package Recursions.AllPossibleFullBinaryTrees;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+// https://www.youtube.com/watch?v=VYczyMiMTqA
+// https://www.youtube.com/watch?v=nZtrZPTTCAo
+
+class AllPossibleFullBinaryTrees {
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
     
     public List<TreeNode> allPossibleFBT_RecursionOnly(int n) {
         ArrayList<TreeNode> answer = new ArrayList<>();
@@ -23,8 +29,8 @@ class Solution {
         
         else{
             for (int i=1; i<n; i+=2){
-                List<TreeNode> leftTrees = allPossibleFBT(i);          
-                List<TreeNode> rightTrees = allPossibleFBT(n - i -1);
+                List<TreeNode> leftTrees = allPossibleFBT_RecursionWithDP(i);
+                List<TreeNode> rightTrees = allPossibleFBT_RecursionWithDP(n - i -1);
     
                 for (TreeNode leftTree : leftTrees){
                     for (TreeNode rightTree : rightTrees){
@@ -37,10 +43,11 @@ class Solution {
         return answer;
     }
     
-    
+
+
     private HashMap<Integer, List<TreeNode>> allFullBinaryTrees = new HashMap<>();
 
-    public List<TreeNode> allPossibleFBT(int n) {
+    public List<TreeNode> allPossibleFBT_RecursionWithDP(int n) {
         ArrayList<TreeNode> answer = new ArrayList<>();
         
         if (allFullBinaryTrees.containsKey(n))
@@ -51,8 +58,8 @@ class Solution {
         
         else{
             for (int i=1; i<n; i+=2){
-                List<TreeNode> leftTrees = allPossibleFBT(i);          
-                List<TreeNode> rightTrees = allPossibleFBT(n - i -1);
+                List<TreeNode> leftTrees = allPossibleFBT_RecursionWithDP(i);
+                List<TreeNode> rightTrees = allPossibleFBT_RecursionWithDP(n - i -1);
     
                 for (TreeNode leftTree : leftTrees){
                     for (TreeNode rightTree : rightTrees){
