@@ -33,7 +33,7 @@ class Solution {
             return canPartition(nums, visited, k-1, eachPartitionSum, 0, 0);
         
         for (int i = index; i < nums.length; i++){
-            if (!visited[i]){
+            if (!visited[i] &&  sumInProgress + nums[i] <= eachPartitionSum){
             
                 visited[i] = true;
                 
