@@ -1,4 +1,17 @@
 class Solution {
+    public int findKthLargest(int[] arr, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b) -> (b-a));
+        
+        for (int val : arr)
+            pq.add(val);
+        
+        int i = 1;
+        while (i++ < k)
+            pq.remove();
+        
+        return pq.peek();
+    }
+    
     public void merge(int[] arr, int[] temp, int low, int mid, int high){
         int i=low, j=mid+1, k=low;
         
@@ -29,7 +42,7 @@ class Solution {
         mergeSort(arr, new int[arr.length], 0, arr.length-1);
     }
     
-    public int findKthLargest(int[] arr, int k) {
+    public int findKthLargest_BySorting(int[] arr, int k) {
         sort(arr);
         return arr[arr.length-k];
     }
