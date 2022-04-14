@@ -1,4 +1,4 @@
-package Recursions;
+package Recursions.NthFibonacciNumber;
 
 import java.util.HashMap;
 
