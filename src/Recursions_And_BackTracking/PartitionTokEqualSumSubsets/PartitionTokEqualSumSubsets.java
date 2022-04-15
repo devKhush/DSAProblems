@@ -1,4 +1,4 @@
-package Recursions.PartitionTokEqualSumSubsets;
+package Recursions_And_BackTracking.PartitionTokEqualSumSubsets;
 import java.util.Arrays;
 
 // https://www.youtube.com/watch?v=qpgqhp_9d1s&t=45s

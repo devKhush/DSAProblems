@@ -1,4 +1,6 @@
-class Solution {
+package Arrays.BuildArrayFromPermutation;
+
+class BuildArrayFromPermutation {
     public int[] buildArray(int[] nums) {
         int[] ans = new int[nums.length];
         

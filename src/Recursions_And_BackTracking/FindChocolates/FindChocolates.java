@@ -1,4 +1,4 @@
-package Recursions.FindChocolates;
+package Recursions_And_BackTracking.FindChocolates;
 
 // https://www.geeksforgeeks.org/program-chocolate-wrapper-puzzle/
 

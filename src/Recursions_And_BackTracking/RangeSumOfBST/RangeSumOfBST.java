@@ -1,4 +1,4 @@
-package Recursions.RangeSumOfBST;
+package Recursions_And_BackTracking.RangeSumOfBST;
 
 // https://leetcode.com/problems/range-sum-of-bst/submissions/
 
