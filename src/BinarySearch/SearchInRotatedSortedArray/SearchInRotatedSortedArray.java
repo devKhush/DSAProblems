@@ -1,4 +1,4 @@
-package BinarySearch;
+package BinarySearch.SearchInRotatedSortedArray;
 
 // https://leetcode.com/problems/search-in-rotated-sorted-array/
 // https://www.youtube.com/watch?v=r3pMQ8-Ad5s

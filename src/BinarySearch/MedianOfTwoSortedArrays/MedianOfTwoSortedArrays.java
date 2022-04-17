@@ -1,4 +1,4 @@
-package BinarySearch;
+package BinarySearch.MedianOfTwoSortedArrays;
 
 // https://leetcode.com/problems/median-of-two-sorted-arrays/
 // https://youtu.be/jDJuW7tSxio

@@ -1,4 +1,4 @@
-package BinarySearch;
+package BinarySearch.SquareRoot;
 
 public class SquareRoot {
     public int mySqrt(int x) {

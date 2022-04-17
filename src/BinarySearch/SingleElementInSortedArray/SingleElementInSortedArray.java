@@ -1,4 +1,4 @@
-package BinarySearch;
+package BinarySearch.SingleElementInSortedArray;
 
 // https://leetcode.com/problems/single-element-in-a-sorted-array/submissions/
 // https://www.youtube.com/watch?v=nMGL2vlyJk0
