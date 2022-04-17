@@ -50,7 +50,7 @@ class Solution {
         return majorElement;
     }
     
-    public int majorityElement(int[] arr) {
+    public int majorityElement_ByHashMap(int[] arr) {
         HashMap<Integer, Integer> count = new HashMap<>();
         
         for (int value : arr)
@@ -67,5 +67,10 @@ class Solution {
         }
         
         return MajorElement;
+    }
+    
+    public int majorityElement(int[] arr) {
+        this.mergeSort(arr, new int[arr.length], 0, arr.length-1);
+        return arr[arr.length/2];
     }
 }
