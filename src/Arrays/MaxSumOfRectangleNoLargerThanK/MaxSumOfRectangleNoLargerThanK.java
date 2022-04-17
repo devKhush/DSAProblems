@@ -8,7 +8,7 @@ import java.util.TreeSet;
 // And the problem can be done using column wise sum
 
 class MaxSumOfRectangleNoLargerThanK {
-    public int maxSumSubmatrix(int[][] matrix, int k) {
+    public int maxSumSubMatrix(int[][] matrix, int k) {
         int row = matrix.length;        
         int column = matrix[0].length;
         int[] dp = new int[row];

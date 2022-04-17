@@ -1,4 +1,4 @@
-package NumberTheory;
+package Recursions_And_BackTracking.Power;
 
 public class Power {
     public static int power(int a, int n){          // a^n
