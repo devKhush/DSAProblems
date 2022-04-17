@@ -28,8 +28,10 @@ public class KthLargestElementInArray {
             maxHeap.add(val);
         
         int i = 1;
-        while (i++ < k)
+        while (i < k) {
             maxHeap.remove();
+            i++;
+        }
         
         return maxHeap.peek();
     }

@@ -28,6 +28,10 @@ public class PriorityQueueDemo {
         if (minHeap.contains(100))
             minHeap.remove(100);
 
+        minHeap.peek();
+        minHeap.poll();
+        minHeap.size();
+
         System.out.println();
 
 
