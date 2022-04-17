@@ -25,13 +25,9 @@ class Solution {
             merge(arr, temp, low, mid, high);
         }
     }
-
-    public void sortArray(int[] nums) {
-        mergeSort(nums, new int[nums.length], 0, nums.length-1);
-    }
     
-    public int majorityElement(int[] arr) {
-        this.sortArray(arr);
+    public int majorityElement_BySorting(int[] arr) {
+        this.mergeSort(arr, new int[arr.length], 0, arr.length-1);
         
         int majorElement = arr[0];
         int count = 1;
@@ -52,5 +48,24 @@ class Solution {
             }
         }
         return majorElement;
+    }
+    
+    public int majorityElement(int[] arr) {
+        HashMap<Integer, Integer> count = new HashMap<>();
+        
+        for (int value : arr)
+            count.put(value, count.getOrDefault(value, 0) + 1);
+        
+        int MajorElement = arr[0];
+        int MajorCount = count.get(arr[0]);
+        
+        for (int value : count.keySet()){
+            if (count.get(value) > MajorCount){
+                MajorElement = value;
+                MajorCount = count.get(value);
+            }
+        }
+        
+        return MajorElement;
     }
 }
