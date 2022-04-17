@@ -1,4 +1,4 @@
-package BinarySearch.ValidTriangleNumberCount;
+package Sorting.ValidTriangleNumberCount;
 
 // https://leetcode.com/problems/valid-triangle-number/
 // https://www.youtube.com/watch?v=PqEiJDdt3S4
