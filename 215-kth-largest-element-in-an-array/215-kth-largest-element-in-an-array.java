@@ -1,22 +1,22 @@
 class Solution {
     
-    public int findKthLargest_ByMinHeap(int[] arr, int k) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
+    public int findKthLargest(int[] arr, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
-        for (int i=0; i<k; i++)
-            pq.add(arr[i]);
+        for (int i = 0; i < k; i++)
+            minHeap.add(arr[i]);
         
-        for (int i=k; i<arr.length; i++){
-            if (arr[i] > pq.peek()){
-                pq.remove();
-                pq.add(arr[i]);
+        for (int i = k; i < arr.length; i++){
+            if (minHeap.peek() < arr[i]){
+                minHeap.remove();
+                minHeap.add(arr[i]);
             }
         }
         
-        return pq.peek();
+        return minHeap.peek();
     }
     
-    public int findKthLargest(int[] arr, int k) {
+    public int findKthLargest_ByMaxHeap(int[] arr, int k) {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
         
         for (int i : arr)
