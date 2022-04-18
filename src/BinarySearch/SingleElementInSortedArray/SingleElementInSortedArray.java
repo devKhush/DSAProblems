@@ -5,6 +5,7 @@ package BinarySearch.SingleElementInSortedArray;
 
 public class SingleElementInSortedArray {
 
+    // One approach is using HashMap to store count of each element & decide the answr
     public static int bruteForceSolution(int[] arr){        // O(N)
         int XOR = 0;                // By taking XOR of all values in ARRAY
         for (int j : arr)           // After that that number will be XOR itself
