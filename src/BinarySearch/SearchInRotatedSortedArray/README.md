@@ -26,5 +26,4 @@
 	<li>All values of <code>nums</code> are <strong>unique</strong>.</li>
 	<li><code>nums</code> is an ascending array that is possibly rotated.</li>
 	<li><code>-10<sup>4</sup> &lt;= target &lt;= 10<sup>4</sup></code></li>
-</ul>
-</div>
+</ul></div>
