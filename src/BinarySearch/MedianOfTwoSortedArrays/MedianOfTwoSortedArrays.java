@@ -3,8 +3,6 @@ package BinarySearch.MedianOfTwoSortedArrays;
 // https://leetcode.com/problems/median-of-two-sorted-arrays/
 // https://youtu.be/jDJuW7tSxio
 
-import java.util.ArrayList;
-
 public class MedianOfTwoSortedArrays {
     public double bruteForce(int[] nums1, int[] nums2) {
         int m = nums1.length;
@@ -36,13 +34,13 @@ public class MedianOfTwoSortedArrays {
         }
 
         int totalElement = A.length + B.length;
-        int half = (totalElement + 1) / 2;
+        int halfElement = (totalElement + 1) / 2;
 
         int low = 0, high = A.length;
 
         while(low <= high){
             int midA = (low + high)/2;
-            int midB = half - midA;
+            int midB = halfElement - midA;
 
             int ALeft = (midA - 1 >= 0) ? A[midA-1] : Integer.MIN_VALUE;
             int ARight = (midA < A.length) ? A[midA] : Integer.MAX_VALUE;
@@ -55,13 +53,14 @@ public class MedianOfTwoSortedArrays {
 
             if (ALeft <= BRight && BLeft <= ARight){
                 if (totalElement%2 != 0)
-                    return Integer.max(ALeft, BLeft);
+                    return Math.max(ALeft, BLeft);
                 else
-                    return (Integer.min(ARight, BRight) + Integer.max(ALeft, BLeft)) /2.0;
+                    return (Math.min(ARight, BRight) + Math.max(ALeft, BLeft)) / 2.0;
             }
 
             else if (ALeft > BRight)
                 high = midA - 1;
+
             else if (BLeft > ARight)
                 low = midA + 1;
         }
@@ -70,10 +69,8 @@ public class MedianOfTwoSortedArrays {
     }
 
     public static void main(String[] args) {
-        int[] A = {1,2};
-        int[] B = {3,4};
-
-        ArrayList<Integer> arrayList = new ArrayList<>();
+        int[] A = {1,2,3};
+        int[] B = {5,6,7,8,9,10,11,12};
 
         System.out.println(new MedianOfTwoSortedArrays().findMedianSortedArrays(A,B));
     }
