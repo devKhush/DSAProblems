@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 // https://www.youtube.com/watch?v=wSOfYesTBRk
+// https://www.spoj.com/problems/AGGRCOW/
 
 public class AggressiveCows {
 
