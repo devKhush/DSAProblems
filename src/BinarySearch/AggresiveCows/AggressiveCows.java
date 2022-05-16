@@ -25,7 +25,7 @@ public class AggressiveCows {
         int maximumDistance = 0;
 
         while (low <= high){
-            int mid = (low + high)/2;    // Recall same as dividing by 2
+            int mid = (low + high)/2;
 
             if (canPlaceCows(n, Cows, stallPositions, mid)){
                 maximumDistance = Math.max(maximumDistance, mid);

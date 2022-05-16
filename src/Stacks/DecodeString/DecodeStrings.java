@@ -4,7 +4,7 @@ import java.util.Stack;
 // https://leetcode.com/problems/decode-string/submissions/
 // https://www.youtube.com/watch?v=0iQqj5egK9k
 
-class Solution {
+public class DecodeStrings {
     public String decodeString(String s) {
         Stack<String> results = new Stack<>();
         Stack<Integer> counts = new Stack<>();
@@ -42,5 +42,9 @@ class Solution {
         }
         
         return result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new DecodeStrings().decodeString("3[a10[c]]"));
     }
 }

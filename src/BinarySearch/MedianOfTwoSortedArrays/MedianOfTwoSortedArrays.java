@@ -2,6 +2,7 @@ package BinarySearch.MedianOfTwoSortedArrays;
 
 // https://leetcode.com/problems/median-of-two-sorted-arrays/
 // https://youtu.be/jDJuW7tSxio
+// https://youtu.be/NTop3VTjmxk
 
 public class MedianOfTwoSortedArrays {
     public double bruteForce(int[] nums1, int[] nums2) {

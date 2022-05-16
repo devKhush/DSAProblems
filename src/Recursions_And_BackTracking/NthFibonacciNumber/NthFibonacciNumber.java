@@ -1,6 +1,9 @@
-class Solution {
-    /*
-    public int fib(int n) {
+package Recursions_And_BackTracking.NthFibonacciNumber;
+import java.util.HashMap;
+
+class NthFibonacciNumber {
+
+    public int fib_OrderOf1Space(int n) {
         if (n==0)
             return 0;
         if (n==1)
@@ -17,7 +20,7 @@ class Solution {
         }
         return sum;
     }
-    */
+
     private HashMap<Integer, Integer> fib = new HashMap<>();
     
     public int fib(int n) {
