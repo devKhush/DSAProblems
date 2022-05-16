@@ -24,7 +24,7 @@ public class ClimbingStairs {
             return n;
 
         if (dp[n] == 0)
-            dp[n] = dp[n-1] + dp[n-2];
+            dp[n] = climbStairs(n-1, dp) + climbStairs(n-2, dp);
         return dp[n];
     }
     public int climbStairs_Memoization(int n){
