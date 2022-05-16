@@ -1,6 +1,14 @@
 package Recursions_And_BackTracking.NthFibonacciNumber;
 import java.util.HashMap;
 
+// https://youtu.be/tyB0ztf0DNY
+
+// Tabulation -> Go from Base cases to High level cases
+// Memoization -> Go from High level cases to Base cases
+// Both Stores answer of bases cases to solve high level cases
+
+//https://takeuforward.org/data-structure/dynamic-programming-introduction/
+
 class NthFibonacciNumber {
 
     // Constant space solution
@@ -12,7 +20,7 @@ class NthFibonacciNumber {
         int a = 0;
         int b = 1;
         int sum=0;
-        
+
         while(n>1){
             sum = a+b;
             a=b;
@@ -22,7 +30,7 @@ class NthFibonacciNumber {
         return sum;
     }
 
-    // Array solution
+    // Array solution with both TC and SC O(n)
     private int[] dp;
     public int fibonacci(int n){
         if (n<=1)
@@ -42,10 +50,10 @@ class NthFibonacciNumber {
     public int fib_HashMapSolution(int n) {
         if (n <= 1)
             return n;
-        
+
         if (fib.containsKey(n))
             return fib.get(n);
-        
+
         fib.put(n, fib(n-1)+fib(n-2));
         return fib.get(n);
     }
