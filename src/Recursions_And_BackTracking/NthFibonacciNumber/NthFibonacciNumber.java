@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 class NthFibonacciNumber {
 
+    // Constant space solution
     public int fib_OrderOf1Space(int n) {
         if (n==0)
             return 0;
@@ -21,9 +22,24 @@ class NthFibonacciNumber {
         return sum;
     }
 
-    private HashMap<Integer, Integer> fib = new HashMap<>();
-    
+    // Array solution
+    private int[] dp;
+    public int fibonacci(int n){
+        if (n<=1)
+            return n;
+
+        if (dp[n] == 0)
+            dp[n] = fibonacci(n-1) + fibonacci(n-2);
+        return dp[n];
+    }
     public int fib(int n) {
+        dp = new int[n+1];
+        return fibonacci(n);
+    }
+
+    // Solution using HashMap
+    private HashMap<Integer, Integer> fib = new HashMap<>();
+    public int fib_HashMapSolution(int n) {
         if (n <= 1)
             return n;
         

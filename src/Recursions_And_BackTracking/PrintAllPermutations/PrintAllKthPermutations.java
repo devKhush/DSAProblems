@@ -23,6 +23,6 @@ public class PrintAllKthPermutations {
     public static void main(String[] args) {
         String[] arr = {"a", "b", "c", "d"};
 
-        printAllKthPermutations(arr, 2);
+        printAllKthPermutations(arr, 4);
     }
 }
