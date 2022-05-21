@@ -1,4 +1,8 @@
-class Solution {
+package Strings.IsSubsequence;
+
+// https://leetcode.com/problems/is-subsequence/discuss/1811180/C%2B%2B-oror-Easy-oror-3-Approaches-oror-Brute-Force-oror-Recursive-oror-Memoization
+
+class IsSubsequence {
     public boolean isSubsequence(String s, String t) {    
         int i = 0;
         
