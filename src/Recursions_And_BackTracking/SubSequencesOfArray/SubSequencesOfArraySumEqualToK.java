@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 public class SubSequencesOfArraySumEqualToK {
 
+    // T.C --> O(n * 2^n)
+    // S.C --> O(n)
+
     private ArrayList<ArrayList<Integer>> answer;
 
     private void subSequencesSumEqualToK(int index, ArrayList<Integer> list, int[] arr, int k, int sum){
