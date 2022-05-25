@@ -1,4 +1,8 @@
-class Solution {
+package DynamicProgramming.MaximumSumOfNonAdjacentElements.HouseRobber_II;
+
+import java.util.ArrayList;
+
+class HouseRobber__II {
     public int rob(ArrayList<Integer> arr) {
         
         int maxSumPrevTwoIndex = 0;  

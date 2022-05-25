@@ -1,4 +1,4 @@
-package DynamicProgramming;
+package DynamicProgramming.MaximumSumOfNonAdjacentElements;
 import java.util.Arrays;
 
 // https://www.codingninjas.com/codestudio/problems/maximum-sum-of-non-adjacent-elements_843261?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos
@@ -55,20 +55,20 @@ public class MaximumSumOfNonAdjacentElements {
 
     // Constant Space Solution
     public static int constantSpaceSolution(int[] arr, int n){
-        int maxSumPrevTwoStep = 0;
-        int maxSumPrevOneStep = arr[0];
+        int maxSumPrevTwoIndex = 0;
+        int maxSumPrevOneIndex = arr[0];
 
         for (int i = 1; i < n; i++) {
-            int maxSumByPicking = arr[i] + maxSumPrevTwoStep;
-            int maxSumByNonPicking = 0 + maxSumPrevOneStep;
+            int maxSumByPicking = arr[i] + maxSumPrevTwoIndex;
+            int maxSumByNonPicking = 0 + maxSumPrevOneIndex;
 
             int maxSumTill_i_index = Integer.max(maxSumByNonPicking, maxSumByPicking);
 
-            maxSumPrevTwoStep = maxSumPrevOneStep;
-            maxSumPrevOneStep = maxSumTill_i_index;
+            maxSumPrevTwoIndex = maxSumPrevOneIndex;
+            maxSumPrevOneIndex = maxSumTill_i_index;
         }
 
         // As answer is stored at dp[n-1] in tabulation
-        return maxSumPrevOneStep;
+        return maxSumPrevOneIndex;
     }
 }

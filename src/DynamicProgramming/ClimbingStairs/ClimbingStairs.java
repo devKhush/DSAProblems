@@ -3,8 +3,6 @@ package DynamicProgramming.ClimbingStairs;
 // https://youtu.be/mLfjzJsN8us
 // https://takeuforward.org/data-structure/dynamic-programming-climbing-stairs/
 
-import java.util.Scanner;
-
 public class ClimbingStairs {
     
     // DP via Tabulation

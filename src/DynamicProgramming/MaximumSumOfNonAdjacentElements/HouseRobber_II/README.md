@@ -31,4 +31,3 @@ Total amount you can rob = 1 + 3 = 4.
 	<li><code>1 &lt;= nums.length &lt;= 100</code></li>
 	<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>
 </ul>
-</div>
