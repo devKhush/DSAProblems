@@ -35,8 +35,8 @@ public class NinjaTraining_DP {
 
     // *************************************** Memoization ***************************************
     // This is memoization of above recursion
-    // T.C = O(3*n) = O(n)   (memoization is solving three tasks for each day)
-    // S.C = O(3*N) (DP array) + O(N) (recursion stack space) (at most n calls) = O(N)
+    // T.C = O(3*3*n) = O(n)   (memoization is solving three tasks for each day)
+    // S.C = O(3*N) (DP array) + O(N) (recursion stack space, at most n calls) = O(N)
 
     public static int memoizationApproach(int day, int lastTaskDone, int[][] arr, int[][] dp){
         if (day == 0){
