@@ -4,21 +4,22 @@ class Solution {
         int n = obstacleGrid[0].length;
         int[][] dp = new int[m][n];
 
-        // If obstacle is at the (0,0), then we can't reach from (0,0) to (m-1,n-1) or vice-versa
-        if (obstacleGrid[0][0] == 1)
-            return 0;
+      
         
         dp[0][0] = 1;
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (i==0 && j==0)
-                    continue;
-                
+                                
                 if (obstacleGrid[i][j] == 1){
                     dp[i][j] = 0;
                     continue;
-                }
+                }                
+
+                
+                if (i==0 && j==0)
+                    continue;
+                
                 
                 int totalWaysByMovingUp = 0, totalWaysByMovingLeft = 0;
                 if (i > 0) totalWaysByMovingUp = dp[i-1][j];
