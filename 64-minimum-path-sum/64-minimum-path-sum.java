@@ -10,13 +10,9 @@ class Solution {
                     dp[0][0] = grid[0][0];
                     continue;
                 }
-                
-                int minPathByMovingUp = Integer.MAX_VALUE/100, minPathByMovingLeft = Integer.MAX_VALUE/100;
-                
-                if (i > 0) minPathByMovingUp = dp[i-1][j] + grid[i][j];
-                
-                if (j > 0) minPathByMovingLeft = dp[i][j-1] + grid[i][j];
-                
+                int minPathByMovingUp = i > 0 ? dp[i-1][j] + grid[i][j] : Integer.MAX_VALUE/2;
+
+                int minPathByMovingLeft = (j > 0) ? dp[i][j-1] + grid[i][j] : Integer.MAX_VALUE/2;
                 dp[i][j] = Math.min(minPathByMovingUp, minPathByMovingLeft);
             }
         }
