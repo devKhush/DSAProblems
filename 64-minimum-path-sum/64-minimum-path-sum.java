@@ -11,7 +11,7 @@ class Solution {
                     continue;
                 }
                 
-                int minPathByMovingUp = Integer.MAX_VALUE/2, minPathByMovingLeft = Integer.MAX_VALUE/2;
+                int minPathByMovingUp = Integer.MAX_VALUE/100, minPathByMovingLeft = Integer.MAX_VALUE/100;
                 
                 if (i > 0) minPathByMovingUp = dp[i-1][j] + grid[i][j];
                 
