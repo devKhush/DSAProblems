@@ -12,13 +12,17 @@ class Solution {
     }
     
     public int solve(int i, int j, int[][] dp, int[][] arr){
-        if (i==0 && j==0)
-            return arr[i][j] != 1 ? 1 : 0;
-        
         if (i<0 || j<0)
             return 0;
+        
         if (arr[i][j] == 1)
             return 0;
+        
+        if (i==0 && j==0)
+            return 1;
+        
+        
+        
         
         if (dp[i][j] != -1)
             return dp[i][j];
