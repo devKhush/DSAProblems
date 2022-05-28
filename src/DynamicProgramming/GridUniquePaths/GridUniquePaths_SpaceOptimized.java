@@ -4,7 +4,8 @@ package DynamicProgramming.GridUniquePaths;
 // https://takeuforward.org/data-structure/grid-unique-paths-dp-on-grids-dp8/
 // https://www.codingninjas.com/codestudio/problems/total-unique-paths_1081470?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos&leftPanelTab=0
 
-import java.util.Arrays;
+
+import java.util.ArrayList;
 
 public class GridUniquePaths_SpaceOptimized {
 
@@ -84,7 +85,6 @@ public class GridUniquePaths_SpaceOptimized {
                 dp_totalWaysByMovingLeft[j] = totalWaysByMovingLeft + totalWaysByMovingUp;
             }
 
-            System.out.println(Arrays.toString(dp_totalWaysByMovingLeft));
             // current dp_totalWaysByMovingUp will become dp_totalWaysByMovingLeft as
             // we move down, in this outer loop
             dp_totalWaysByMovingUp = dp_totalWaysByMovingLeft;
