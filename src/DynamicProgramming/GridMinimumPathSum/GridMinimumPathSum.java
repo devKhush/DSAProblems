@@ -1,6 +1,8 @@
 package DynamicProgramming.GridMinimumPathSum;
-
 import java.util.Arrays;
+
+// https://youtu.be/_rgTlyky1uQ
+// https://takeuforward.org/data-structure/minimum-path-sum-in-a-grid-dp-10/
 
 public class GridMinimumPathSum {
 
