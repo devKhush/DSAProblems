@@ -1,5 +1,10 @@
-class Solution {
+package Arrays.PlusOne;
+
+class PlusOne {
+
+    // Simple solution
     public int[] plusOne(int[] digits) {
+
         int n = digits.length;
         int carry = 0, sum;
         
