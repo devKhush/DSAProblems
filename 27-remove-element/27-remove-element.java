@@ -1,22 +1,19 @@
 class Solution {
     public int removeElement(int[] nums, int val) {
         int n = nums.length;
-        
-        Queue<Integer> queue = new LinkedList<Integer>();
-        
-        for (int value : nums){
-            if (value != val)
-                queue.add(value);
-        }
-        
-        int k = queue.size();
+        int k = 0;
+
+        // Two pointers approach
         int i = 0;
-        
-        while (!queue.isEmpty()){
-            nums[i] = queue.remove();
-            i++;
+
+        for (int value : nums){
+            if (value != val){
+                nums[i] = value;
+                i++;
+                k++;
+            }
         }
-        
-        return k;    
+
+        return k;
     }
 }
