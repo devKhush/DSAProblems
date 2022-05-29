@@ -13,18 +13,18 @@ class Solution {
                     continue;
                 }
                 
-                int minPathByMovingUp = triangle.get(i).get(j);
-                int minPathByMovingUpLeft = triangle.get(i).get(j);
+                int minPathByMovingUp = 0, minPathByMovingUpLeft = 0;
+
                 
                 if (j <= i-1)
-                    minPathByMovingUp += dp[i-1][j];
+                    minPathByMovingUp = dp[i-1][j] + triangle.get(i).get(j);
                 else
-                    minPathByMovingUp += Integer.MAX_VALUE/2;
-                
+                    minPathByMovingUp = Integer.MAX_VALUE/2;
+
                 if (j > 0)
-                    minPathByMovingUpLeft += dp[i-1][j-1];
+                    minPathByMovingUpLeft = dp[i-1][j-1] + triangle.get(i).get(j);
                 else
-                    minPathByMovingUpLeft += Integer.MAX_VALUE/2;
+                    minPathByMovingUpLeft = Integer.MAX_VALUE/2;
                 
                 dp[i][j] = Math.min(minPathByMovingUp, minPathByMovingUpLeft);
             }
