@@ -35,4 +35,3 @@ There is no root-to-leaf path with sum = 5.
 	<li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>
 	<li><code>-1000 &lt;= targetSum &lt;= 1000</code></li>
 </ul>
-</div>
