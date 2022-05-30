@@ -19,6 +19,9 @@ public class GridUniquePathWithObstacles {
 
         if (i==0 & j==0) return 1;
 
+        if (dp[i][j] != -1)
+            return dp[i][j];
+
         // same as previous question on Total unique paths on grids
         int totalWaysByMovingUp = memoizationSolution(i-1, j, dp, arr);
         int totalWaysByMovingLeft = memoizationSolution(i, j-1, dp, arr);
