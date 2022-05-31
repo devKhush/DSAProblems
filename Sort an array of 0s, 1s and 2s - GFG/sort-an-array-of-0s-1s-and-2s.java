@@ -20,12 +20,19 @@ class Solution{
         }
         
         int i = 0;
+        
         while (i < count0)
             a[i++] = 0;
+            
         while (i < count0  + count1)
             a[i++] = 1;
-        while (i < count0  + count1  + count2)
+            
+            
+        // while (i < count0  + count1  + count2)
+        //     a[i++] = 2;
+        while (i < n)
             a[i++] = 2;
+            
     }
 }
 
