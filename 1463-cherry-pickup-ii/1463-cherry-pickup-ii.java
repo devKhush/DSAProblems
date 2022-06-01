@@ -1,20 +1,48 @@
 class Solution {
     public int cherryPickup(int[][] grid) {
-        // m is no. of rows
-        int m = grid.length;
-        
-        // n is no. of columns
+           int m = grid.length;
         int n = grid[0].length;
-        
+
         int[][][] dp = new int[m][n][n];
-        
-        for (int[][] arr1 : dp){
-            for (int[] arr2 : arr1)
-                Arrays.fill(arr2, -1);
+
+        for (int j1 = 0; j1 < n; j1++){
+            for (int j2 = 0; j2 < n; j2++)
+                dp[m-1][j1][j2] =  j1 == j2 ? grid[m-1][j1] : grid[m-1][j1] + grid[m-1][j2];
         }
-        
-        return recursiveSolution(0, 0, n-1, grid, dp, m, n);
+
+
+        for (int i = m-2; i >= 0; i--){
+            for (int j1 = 0; j1 < n; j1++){
+                for (int j2 = 0; j2 < n; j2++){
+
+                    int maxCherryPicked = Integer.MIN_VALUE;
+                    
+                    for (int dj1 = -1; dj1 <= 1; dj1++){
+                        for (int dj2 = -1; dj2 <= 1; dj2++) {
+                            
+                            if (j1 + dj1 < 0 || j2 + dj2 < 0 || j1 + dj1 >= n || j2 + dj2 >=n )
+                                continue;
+                            
+                            int currCherryPicked;
+                            
+                            if (j1 == j2)
+                                currCherryPicked = grid[i][j1] + dp[i+1][j1 + dj1][j2 + dj2];
+                            else
+                                currCherryPicked = grid[i][j1] + grid[i][j2] + dp[i+1][j1 + dj1][j2 + dj2];
+                            
+                            maxCherryPicked = Math.max(maxCherryPicked, currCherryPicked);
+                        }
+                    }
+                    
+                    dp[i][j1][j2] = maxCherryPicked;
+                }
+            }
+        }
+        return dp[0][0][n-1];
     }
+    
+    
+    
     
     public int recursiveSolution(int i, int j1, int j2, int[][] arr, int[][][] dp, int m, int n){
         if (j1 < 0 || j1 >= n || j2 < 0 || j2 >= n)
