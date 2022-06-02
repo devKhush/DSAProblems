@@ -16,7 +16,7 @@ class Solution {
         
         if (targetSum == currentSum){
             answer.add(new ArrayList<>(list));
-            return;
+            // return;
         }
     
         for (int i = index; i < arr.length; i++){
