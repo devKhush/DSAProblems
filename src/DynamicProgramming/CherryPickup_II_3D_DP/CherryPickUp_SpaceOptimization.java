@@ -30,7 +30,7 @@ public class CherryPickUp_SpaceOptimization {
         }
 
         // Other cases
-        // Inner nested loops to try out 9 options
+        // nner nested loops to try out 9 options
         for (int i = m-2; i >=0; i--){
             int[][] tempDP = new int[n][n];
 

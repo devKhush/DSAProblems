@@ -36,4 +36,3 @@ These are the only two combinations.
 	<li>All elements of <code>candidates</code> are <strong>distinct</strong>.</li>
 	<li><code>1 &lt;= target &lt;= 500</code></li>
 </ul>
-</div>

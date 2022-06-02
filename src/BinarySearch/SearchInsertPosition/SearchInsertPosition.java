@@ -1,4 +1,6 @@
-class Solution {
+package BinarySearch.SearchInsertPosition;
+
+class SearchInsertPosition {
     public int searchInsert(int[] arr, int target) {
         int low = 0, high = arr.length-1;
         
