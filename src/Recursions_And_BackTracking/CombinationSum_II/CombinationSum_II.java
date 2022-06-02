@@ -1,8 +1,17 @@
-class Solution {
+package Recursions_And_BackTracking.CombinationSum_II;
+import java.util.ArrayList;
+import java.util.List;
+
+// https://youtu.be/G1fRTGRxXU8
+// https://takeuforward.org/data-structure/combination-sum-ii-find-all-unique-combinations/
+
+class CombinationSum_II {
     
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         int n = candidates.length;
-        
+
+        // Sorting makes easier to generate all subsequence with given sum, as repeating element
+        // can be easily ignored
         mergeSort(candidates, 0, n-1, new int[n]);
                 
         List<List<Integer>> allCombinations = new ArrayList<>();
@@ -16,12 +25,20 @@ class Solution {
         
         if (targetSum == currentSum){
             answer.add(new ArrayList<>(list));
-            // return;
+
+            // Can stop the further recursion as current Sum will become greater than target Sum
+            // No need of this here as this is handled by for loop's 2nd condition
+            return;
         }
     
         for (int i = index; i < arr.length; i++){
+
+            // As the combinations should be unique (no repeating combination like [1,2,2] & [1,2,2] for two repeating 2's)
+            // If this element has been previously considered in the unique combinations, we can skip it
             if (i > index  &&  arr[i] == arr[i-1])
                 continue;
+
+            // Can stop the further recursion as current Sum will become greater than target Sum
             if (targetSum < currentSum + arr[i])
                 break;
             
@@ -31,7 +48,8 @@ class Solution {
         }
     }
     
-    
+
+    // Sorting the array
     private void mergeSort(int[] arr, int low, int high, int[] temp){
         if (low < high){
             int mid = (low + high)/2;

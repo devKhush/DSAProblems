@@ -35,4 +35,3 @@
 	<li><code>1 &lt;=&nbsp;candidates[i] &lt;= 50</code></li>
 	<li><code>1 &lt;= target &lt;= 30</code></li>
 </ul>
-</div>

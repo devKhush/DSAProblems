@@ -1,16 +1,32 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = new int[]{1,2,3,4,5,6,7,8,9,10};
-        int n = arr.length;
+        // Instantiate an object of HashSet
+        HashSet<ArrayList> set = new HashSet<>();
 
-        for (int i = 0; i < n/2 ; i++){
-            int temp = arr[i];
-            arr[i] = arr[n -i -1];
-            arr[n-i-1] = temp;
-        }
-        System.out.println(Arrays.toString(arr));
+        // create ArrayList list1
+        ArrayList<Integer> list1 = new ArrayList<>();
+
+        // create ArrayList list2
+        ArrayList<Integer> list2 = new ArrayList<>();
+
+        // Add elements using add method
+        list1.add(1);
+        list1.add(2);
+        list2.add(2);
+        list2.add(1);
+
+        System.out.println(list1);
+        System.out.println(list2);
+
+        set.add(list1);
+        set.add(list2);
+
+        // print the set size to understand the
+        // internal storage of ArrayList in Set
+        System.out.println(set.size());
     }
 }
 
