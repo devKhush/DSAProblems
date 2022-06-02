@@ -39,6 +39,8 @@ class CombinationSum_II {
                 continue;
 
             // Can stop the further recursion as current Sum will become greater than target Sum
+            // As in later part of array, there will be much higher element (we have sorted)
+            // So this condition will become true for later elements of array too, hence can be breaked
             if (targetSum < currentSum + arr[i])
                 break;
             

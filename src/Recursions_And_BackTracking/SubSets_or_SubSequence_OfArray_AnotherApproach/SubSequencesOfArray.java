@@ -4,6 +4,17 @@ import java.util.List;
 
 // This is another approach for Printing all the Subsequence/Subsets/Combination of array elements
 
+// Difference between both versions is that :
+
+// In Pick & Non-pick version, subsequence/subset is generated at the end of recursion call
+// Or when index == array.length, only then sub-sequence are generated
+
+// In second approach, subsequence/subset is generated at every step of recursion call
+// Sub-sequence generated at every index of recursion call
+// Advantage of this approach is that, with the help of this approach we can generate unique subsets
+
+// See Combination Sum II
+
 public class SubSequencesOfArray {
 
     private List<List<Integer>> subsets(int[] arr) {
@@ -27,8 +38,10 @@ public class SubSequencesOfArray {
 
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3};
+        int[] arr = {1, 2, 3, 4};
 
-        System.out.println(new SubSequencesOfArray().subsets(arr));
+        List<List<Integer>> answer = new SubSequencesOfArray().subsets(arr);
+        System.out.println(answer);
+        System.out.println(answer.size());
     }
 }
