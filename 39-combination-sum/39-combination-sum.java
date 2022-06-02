@@ -3,10 +3,10 @@ class Solution {
     private List<List<Integer>> allCombinations = new ArrayList<>();
     
     private void getAllCombinationSums(int index, int target, int currentSum, int[] arr, ArrayList<Integer> list){
-        // if (currentSum > target)
-        //     return;
+        if (currentSum > target)
+            return;
         
-        if (index == arr.length){
+        if (index == arr.length || currentSum == target){
             if (currentSum == target)
                 allCombinations.add(new ArrayList<>(list));
             return;
