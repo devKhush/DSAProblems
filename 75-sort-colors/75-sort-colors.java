@@ -33,7 +33,31 @@ class Solution {
         }
     }
     
-    public void sortColors(int[] nums) {
+    public void sortColors_(int[] nums) {
         mergeSort(nums, new int[nums.length],0, nums.length-1);
+    }
+    
+    
+    
+    
+
+    
+    // Sorting 0s, 1s, & 2s
+    public void sortColors(int[] nums) {
+        int count0 = 0, count1 = 0;
+        
+        for (int ele: nums){
+            if (ele == 0) count0++;
+            else if (ele == 1) count1++;
+        }
+        
+        int i = 0;
+        while (i < count0)
+            nums[i++] = 0;
+        while (i < count0 + count1)
+            nums[i++] = 1;
+        while (i < nums.length)
+            nums[i++] = 2;
+        
     }
 }
