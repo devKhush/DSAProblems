@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 class UniqueSubSetsOfArray {
     public List<List<Integer>> subsetsWithDup(int[] arr) {
-        // Sorting makes easier to generate all subsequence with given sum, as repeating element
+        // Sorting makes easier to generate all unique subsequence with given sum, as repeating element
         // can be easily ignored
         Arrays.sort(arr);
         

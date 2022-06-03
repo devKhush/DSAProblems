@@ -1,7 +1,10 @@
 package Recursions_And_BackTracking.SubsetSum;
 import java.util.ArrayList;
 
-// https://practice.geeksforgeeks.org/problems/subset-sums2234/1#
+// https://practice.geeksforgeeks.org/problems/subset-sums2234/1
+// https://youtu.be/rYkfBRtMJr8
+//https://takeuforward.org/data-structure/subset-sum-sum-of-all-subsets/
+
 // Pre req ==> Sub Sequence of array (both versions)
 
 // Difference between both versions is that :
