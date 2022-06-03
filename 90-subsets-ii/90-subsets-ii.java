@@ -35,8 +35,11 @@ class Solution {
         
         getAllSubsets(0, arr, list, set);
 
-        for (ArrayList<Integer> li : set)
-            allUniqueSubsets.add(li);
+        // for (ArrayList<Integer> li : set)
+        //     allUniqueSubsets.add(li);
+        
+                allUniqueSubsets.addAll(set);
+
         
         return allUniqueSubsets;
     }
