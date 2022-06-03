@@ -1,4 +1,4 @@
-package Recursions_And_BackTracking.PrintAllPermutations;
+package Recursions_And_BackTracking.PrintAllPermutations.Approach_1;
 
 // https://www.youtube.com/watch?v=DKCbsiDBN6c
 // https://www.youtube.com/watch?v=SJ_pXT-L5IE
@@ -14,7 +14,8 @@ package Recursions_And_BackTracking.PrintAllPermutations;
 - Backtracking follows Depth-First Search method.
 - Branch and Bound is also a Brute Force approach, which uses Breadth-First Search method.
  */
-public class PrintAllPermutationOfArray {
+
+public class PrintAllPermutationOfString {
     public static void allPermutations(String[] arr){
         getAllPermutations(arr, new boolean[arr.length], 0, "");
     }
@@ -35,7 +36,6 @@ public class PrintAllPermutationOfArray {
 
     public static void main(String[] args) {
         String[] arr = {"a", "b", "c", "d"};
-
         allPermutations(arr);
     }
 }

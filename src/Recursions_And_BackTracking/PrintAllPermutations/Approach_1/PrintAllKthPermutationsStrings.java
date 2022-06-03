@@ -1,6 +1,6 @@
-package Recursions_And_BackTracking.PrintAllPermutations;
+package Recursions_And_BackTracking.PrintAllPermutations.Approach_1;
 
-public class PrintAllKthPermutations {
+public class PrintAllKthPermutationsStrings {
     public static void printAllKthPermutations(String[] arr, int k){
         getAllKthPermutations(arr, new boolean[arr.length], k, "", 0);
     }

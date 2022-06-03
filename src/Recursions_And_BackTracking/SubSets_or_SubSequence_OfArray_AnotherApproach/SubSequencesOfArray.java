@@ -12,6 +12,11 @@ import java.util.List;
 // In second approach, subsequence/subset is generated at every step of recursion call
 // Sub-sequence generated at every index of recursion call
 // Advantage of this approach is that, with the help of this approach we can generate unique subsets
+// Here also we create subsets size by size (first we create subsets of 0 size, then size 1 subsets,
+// then size 2 subsets & so on...)
+
+// https://takeuforward.org/data-structure/subset-ii-print-all-the-unique-subsets/
+// https://youtu.be/RIn3gOkbhQE
 
 // See Combination Sum II
 
