@@ -33,13 +33,39 @@ class GFG
 //User function Template for Java
 
 class Solution{
-    static Boolean isSubsetSum(int n, int arr[], int sum){
-        int[][] dp = new int[n][sum+1];
-        
-        for (int[] row : dp)
-            Arrays.fill(row, -1);   
-        
-        return containsSubsetSumEqualsK_Memoization(n-1, sum, arr, dp);
+    static Boolean isSubsetSum(int n, int arr[], int targetSum){
+         n = arr.length;
+
+        // dp[index][targetSum] means whether at index 'index' the subset whose sum is 'targetSum' is
+        // possible or not
+        boolean[][] dp = new boolean[n][targetSum + 1];
+
+        // Base case when target == 0
+        for (int index = 0; index < n; index++)
+            dp[index][0] = true;
+
+        // Base case when index == 0
+        for (int target = 0; target <= targetSum; target++)
+            dp[0][target] = (arr[0] == target);
+        // Shorthand base case for index == 0, it means on index 0 can we format a target arr[0]
+        if (arr[0] <= targetSum)
+            dp[0][arr[0]] = true;
+
+        // Other cases
+        for (int index = 1; index < n; index++) {
+            for (int target = 1; target <= targetSum; target++) {
+
+                boolean subsetMadeByPickingCurrElement = false;
+                if (arr[index] <= target)
+                    subsetMadeByPickingCurrElement = dp[index - 1][target - arr[index]];
+
+                boolean subsetMadeByNotPickingCurrElement = dp[index-1][target];
+
+                dp[index][target] = subsetMadeByNotPickingCurrElement || subsetMadeByPickingCurrElement;
+            }
+        }
+
+        return dp[n-1][targetSum];
     }
     
     static boolean containsSubsetSumEqualsK_Memoization(int index, int target, int[] arr, int[][] dp){
