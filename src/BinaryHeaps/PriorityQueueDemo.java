@@ -14,7 +14,7 @@ public class PriorityQueueDemo {
         minHeap.add(20);
         System.out.println(minHeap);
 
-        minHeap.remove();
+        minHeap.remove(2);
         System.out.println(minHeap);
         System.out.println(minHeap.peek());
 
