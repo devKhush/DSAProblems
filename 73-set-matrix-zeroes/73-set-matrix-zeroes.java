@@ -1,5 +1,4 @@
-class Solution {
-    
+class Solution { 
      public void setZeroes(int[][] matrix) {
         int m = matrix.length;
         int n = matrix[0].length;
@@ -11,7 +10,6 @@ class Solution {
 
                     int row = i -1;
                     while (row >= 0){
-                        if (matrix[row][j] != 0)
                             matrix[row][j] = -999;
                         row--;
                     }
@@ -25,7 +23,6 @@ class Solution {
 
                     int column = j -1;
                     while (column >= 0){
-                        if (matrix[i][column] != 0)
                             matrix[i][column] = -999;
                         column--;
                     }
