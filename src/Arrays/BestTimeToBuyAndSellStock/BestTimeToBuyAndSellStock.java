@@ -1,6 +1,8 @@
 package Arrays.BestTimeToBuyAndSellStock;
 
 //https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+// https://takeuforward.org/data-structure/stock-buy-and-sell/
+// Question of SDE Sheet
 
 public class BestTimeToBuyAndSellStock {
 
@@ -41,13 +43,17 @@ public class BestTimeToBuyAndSellStock {
         // Here we keep track of min. buying prices as we move on each day
         // Here we are storing min. buying prices so far & try to sell on each day
         // and calculate profit on each day
-        int maxProfit = 0;
         int minBuyPriceSoFar = prices[0];
-        for (int i = 0; i<prices.length; i++){
-            if (prices[i] < minBuyPriceSoFar)
-                minBuyPriceSoFar = prices[i];
-            maxProfit = Integer.max(maxProfit, prices[i] - minBuyPriceSoFar);
+        int maxProfit = 0;
+
+        for (int i = 0; i < prices.length; i++){
+            int profit = prices[i] - minBuyPriceSoFar;
+
+            maxProfit = Math.max(maxProfit, profit);
+
+            minBuyPriceSoFar = Math.min(minBuyPriceSoFar, prices[i]);
         }
+
         return maxProfit;
     }
 
