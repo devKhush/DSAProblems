@@ -16,4 +16,3 @@
 <ul>
 	<li><code>1 &lt;= numRows &lt;= 30</code></li>
 </ul>
-</div>
