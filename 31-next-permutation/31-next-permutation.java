@@ -9,13 +9,12 @@ class Solution {
                 breakDownIndex = i;
                 break;
             }
-        
-        // System.out.println(breakDownIndex);
-        
+                
         if (breakDownIndex == -1){
             reverse(0, n-1, arr);
             return;
         }
+        
         
         int justGreaterThanBreakDownIndex = -1;
         
@@ -39,10 +38,7 @@ class Solution {
     }
     
     private void reverse(int low, int high, int[] arr){
-        while (low < high){
-            swap(low, high, arr);
-            low++;
-            high--;
-        }
+        while (low < high)
+            swap(low++, high--, arr);
     }
 }
