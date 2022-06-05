@@ -4,19 +4,24 @@ class Solution {
         
         for (int i = 0; i < n; i++){
             ArrayList<Integer> currentPascal = new ArrayList<>();
-            allPascals.add(currentPascal);
             
-            currentPascal.add(1);
-            
-            for (int j = 1; j <= i; j++){
-                int prevPascal1 = allPascals.get(i-1).get(j-1);
-                int prevPascal2 = allPascals.get(i-1).size() == j ?  0 : allPascals.get(i-1).get(j);
+            for (int j = 0; j <= i; j++){
+                if (j == 0)
+                    currentPascal.add(1);
                 
-                currentPascal.add(prevPascal1 + prevPascal2);
+                else if (j == i)
+                    currentPascal.add(1);
+                
+                else{
+                    int prevPascal1 = allPascals.get(i-1).get(j-1);
+                    int prevPascal2 = allPascals.get(i-1).get(j);
+                    currentPascal.add(prevPascal1 + prevPascal2);
+                }
             }
+            
+            allPascals.add(currentPascal);
         }
         
         return allPascals;
-        
     }
 }
