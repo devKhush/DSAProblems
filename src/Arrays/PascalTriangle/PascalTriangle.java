@@ -45,12 +45,8 @@ public class PascalTriangle {
             ArrayList<Integer> currentPascal = new ArrayList<>();
 
             for (int j = 0; j <= i; j++){
-                if (j == 0)
+                if (j == 0 || j == i)
                     currentPascal.add(1);
-
-                else if (j == i)
-                    currentPascal.add(1);
-
                 else{
                     int prevPascal1 = allPascals.get(i-1).get(j-1);
                     int prevPascal2 = allPascals.get(i-1).get(j);
