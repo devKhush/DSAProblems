@@ -23,4 +23,3 @@
 	<li><code>intervals[i].length == 2</code></li>
 	<li><code>0 &lt;= start<sub>i</sub> &lt;= end<sub>i</sub> &lt;= 10<sup>4</sup></code></li>
 </ul>
-</div>
