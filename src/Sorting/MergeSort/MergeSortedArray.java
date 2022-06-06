@@ -1,8 +1,9 @@
 package Sorting.MergeSort;
+import java.util.Arrays;
 
 // https://leetcode.com/problems/merge-sorted-array/
-
-import java.util.Arrays;
+// https://takeuforward.org/data-structure/merge-two-sorted-arrays-without-extra-space/
+// Question of Striver SDE Sheet
 
 public class MergeSortedArray {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
