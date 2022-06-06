@@ -7,8 +7,8 @@ class Solution {
             for (int j = i; j < n; j++)
                 swap(i, j, j, i, matrix);                
         
-        for (int j = 0; j < n/2; j++)
-            for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n/2; j++)
                 swap(i, j, i, n - 1 -j, matrix);
     }
     
