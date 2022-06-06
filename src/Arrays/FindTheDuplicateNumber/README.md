@@ -34,4 +34,3 @@
 	<li>How can we prove that at least one duplicate number must exist in <code>nums</code>?</li>
 	<li>Can you solve the problem in linear runtime complexity?</li>
 </ul>
-</div>
