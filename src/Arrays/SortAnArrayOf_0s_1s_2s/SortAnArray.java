@@ -1,8 +1,15 @@
 package Arrays.SortAnArrayOf_0s_1s_2s;// { Driver Code Starts
 
+// https://youtu.be/oaVa-9wmpns
 // https://takeuforward.org/data-structure/sort-an-array-of-0s-1s-and-2s/
+// Question of Striver SDE Sheet
 
 class SortAnArray{
+
+    //  ******************** Count Sort ==> Counting the number of  0s, 1s & 2s ********************
+    // This is also known as Count Sort, a Sorting algorithm
+    // T.C --> O(n)
+    // S.C --> O(1)
 
     public static void sort012(int a[], int n){
         int count0 = 0;
@@ -27,6 +34,38 @@ class SortAnArray{
         //     a[i++] = 2;
 
         while (i < n)   a[i++] = 2;
+    }
 
+
+    // ********************************** Approach 2 **********************************
+    // Dutch National flag algorithm
+
+    public void sort012(int[] arr){
+        int low = 0, mid = 0, high = arr.length - 1;
+
+        while (mid <= high){
+            switch (arr[mid]) {
+
+                case 0 -> {
+                    swap(low, mid, arr);
+                    low++;
+                    mid++;
+                }
+
+                case 1 -> mid++;
+
+                case 2 -> {
+                    swap(mid, high, arr);
+                    high--;
+                }
+            }
+        }
+
+    }
+
+    private void swap(int i, int j, int[] arr){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 }
