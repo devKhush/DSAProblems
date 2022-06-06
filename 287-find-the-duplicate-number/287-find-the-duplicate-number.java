@@ -3,11 +3,11 @@ class Solution {
         int n = arr.length;
         int[] count = new int[n];
         
-        for (int value : arr){
-            count[value]++;
+        for (int i = 0; i < n; i++){
+            count[arr[i]]++;
             
-            if (count[value] > 1)
-                return value;
+            if (count[arr[i]] > 1)
+                return arr[i];
         }
         
         return -1;
