@@ -3,12 +3,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+// Must Watch Video (Notes not much helpful)
+// https://youtu.be/2JzRBPFYbKE
+// https://takeuforward.org/data-structure/merge-overlapping-sub-intervals/
+// Question of Striver SDE Sheet
+
 public class MergeIntervals_BestApproach {
 
     public int[][] merge(int[][] intervals) {
 
         // Sorting intervals according to their starting time
-        Arrays.sort(intervals, new IntervalComparator());
+        Arrays.sort(intervals, new MyIntervalComparator());
 
         // Another way of sorting interval according to the starting time
         // Arrays.sort(intervals, (a, b) -> (a[0] - b[0]));
@@ -47,7 +52,7 @@ public class MergeIntervals_BestApproach {
 
 
 
-class IntervalComparator implements Comparator<int[]>{
+class MyIntervalComparator implements Comparator<int[]>{
 
     @Override
     public int compare(int[] a, int[] b) {
