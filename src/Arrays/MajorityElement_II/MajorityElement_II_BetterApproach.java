@@ -15,6 +15,9 @@ public class MajorityElement_II_BetterApproach {
     // and at min. we can have 0 majority elements
     // Here, we are not given that these two majority element will actually exist, so we need to check
 
+    // TC --> O(n)
+    // SC --> O(1)
+
     public List<Integer> majorityElement(int[] arr) {
         int n = arr.length;
 
