@@ -29,4 +29,3 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Could you solve the problem in linear time and in <code>O(1)</code> space?</p>
-</div>
