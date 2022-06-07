@@ -10,6 +10,10 @@ import java.util.Comparator;
 
 public class MergeIntervals_BestApproach {
 
+    // *********************************** Fastest Approach ***********************************
+    // T.C --> O(n * log(n)) + O(n)    Sorting + Traversal of Intervals
+    // S.C --> O(n)  in worst case  due to arranges list
+
     public int[][] merge(int[][] intervals) {
 
         // Sorting intervals according to their starting time
@@ -63,9 +67,8 @@ class MyIntervalComparator implements Comparator<int[]>{
             return 1;
 
             // Case for a[0] < b[0]
-        else if (a[0] < b[0]) {
+        else if (a[0] < b[0])
             return -1;
-        }
 
         // Case for a[0] == b[0]
         else {
