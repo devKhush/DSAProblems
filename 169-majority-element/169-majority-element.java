@@ -1,6 +1,6 @@
 class Solution {
     
-    public int majorityElement(int[] arr) {
+    public int majorityElement_(int[] arr) {
         int majorityElement = 0;
         int count = 0;
         
@@ -42,15 +42,14 @@ class Solution {
         return majorElement;
     }
     
-    public int majorityElement_ByHashMap(int[] arr) {
+    public int majorityElement(int[] arr) {
         HashMap<Integer, Integer> count = new HashMap<>();
         
-        for (int value : arr)
+        for (int value : arr){
             count.put(value, count.getOrDefault(value, 0) + 1);
-        
-        for (int value : count.keySet()){
+            
             if (count.get(value) > arr.length/2)
-                return value;
+                return value;    
         }
         return -1;
     }
