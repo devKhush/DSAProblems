@@ -7,6 +7,7 @@ package Sorting.InversionCount;
 // https://www.geeksforgeeks.org/counting-inversions/
 // https://youtu.be/kQ1mJlwW-c0
 // https://takeuforward.org/data-structure/count-inversions-in-an-array/
+// Question of Striver SDE sheet
 
 import java.util.Arrays;
 import java.util.Scanner;
