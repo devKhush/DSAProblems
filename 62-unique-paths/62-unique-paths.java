@@ -1,6 +1,27 @@
 class Solution {
     
     public int uniquePaths(int m, int n) {
+        int[] dp = new int[n];
+        dp[0] = 1;
+        
+        for (int i = 0; i < m; i++){
+            for (int j = 0; j < n; j++){
+                if (i == 0 && j == 0) continue;
+                
+                int moveUp = 0, moveLeft = 0;
+                
+                if (i > 0) moveUp = dp[j];
+                if (j > 0) moveLeft = dp[j-1];
+                
+                dp[j] = moveUp + moveLeft;
+            }
+        }
+        return dp[n-1];
+    }
+    
+    
+    // Tabulation *************************************************************************
+    public int uniquePaths_tabulation(int m, int n) {
         int[][] dp = new int[m][n];
         dp[0][0] = 1;
         
