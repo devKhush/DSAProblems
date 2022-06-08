@@ -33,24 +33,21 @@ class gfg
 
 class Sol{
     public static int matSearch(int[][] matrix, int N, int M, int target){
-        // your code here
-       
-        int m = matrix.length;
+      int m = matrix.length;
         int n = matrix[0].length;
-        
+
         int i = 0, j = n-1;
-        
-        while (i < m && j >= 0){
-            
+
+        while (i < m  &&  j >= 0){
             if (matrix[i][j] == target)
                 return 1;
-            else if (matrix[i][j] < target)
-                i++;
-        
+
             else if (matrix[i][j] > target)
                 j--;
+            
+            else if (matrix[i][j] < target)
+                i++;
         }
-        
         return 0;
     }
 }
