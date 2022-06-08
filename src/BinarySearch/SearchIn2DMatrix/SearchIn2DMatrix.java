@@ -99,7 +99,7 @@ public class SearchIn2DMatrix {
     // Case 2: This algo will work for above case of """last element of current column is not greater
     // than first element of next column""" too
 
-    // T.C -> O(m + n)    Only one traversal is needed, i.e, i from 0 to n and j from n-1 to 0 with at most m+n steps
+    // T.C -> O(m + n)  as only one traversal is needed, i.e, i from 0 to n and j from n-1 to 0 with at most m+n steps
     // SC -> O(1)
     // MUST SEE:  https://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/
 
