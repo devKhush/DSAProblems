@@ -6,10 +6,6 @@ class Solution {
         int mid = (low + high)/2;
         int row = mid / totalColumn;
         int column = mid % totalColumn;
-        // System.out.println(low + " "+high + "    " + mid + " "+ row + " "+ column);
-        
-        if (row >= totalRow || column >= totalColumn)
-            return false;
         
         if (matrix[row][column] == target)
             return true;
