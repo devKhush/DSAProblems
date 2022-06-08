@@ -6,6 +6,7 @@ import java.util.List;
 // https://youtu.be/yDbkQd9t2ig
 // https://leetcode.com/problems/majority-element-ii/
 // https://takeuforward.org/data-structure/majority-elementsn-3-times-find-the-elements-that-appears-more-than-n-3-times-in-the-array/
+// Question of Striver SDE Sheet
 
 public class MajorityElement_II_BetterApproach {
 
