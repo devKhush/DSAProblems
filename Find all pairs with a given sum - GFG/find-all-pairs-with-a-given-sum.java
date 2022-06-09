@@ -79,10 +79,7 @@ class pair  {
 */
 
 class Solution {
-    public pair[] allPairs( long a[], long b[], long n, long m, long sum) {
-        long[] arr1 = a;
-        long[] arr2 = b;
-        
+    public pair[] allPairs( long arr1[], long arr2[], long n, long m, long sum) {
 
         HashSet<Long> set = new HashSet<>();
         ArrayList<pair> list = new ArrayList<>();
