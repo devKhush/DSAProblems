@@ -79,25 +79,37 @@ class pair  {
 */
 
 class Solution {
-    public pair[] allPairs( long arr1[], long arr2[], long N, long M, long X) {
+    public pair[] allPairs( long a[], long b[], long n, long m, long sum) {
+        long[] arr1 = a;
+        long[] arr2 = b;
         
-        HashMap<Long, Integer> map = new HashMap<>();
-        
-        for (long val : arr1)
-            map.put(val, 1);
-            
+
+        HashSet<Long> set = new HashSet<>();
         ArrayList<pair> list = new ArrayList<>();
         
-        for (long val : arr2)
-            if (map.containsKey(X - val))
-                list.add(new pair(X - val, val));
-        
-        pair[] answer = new pair[list.size()];
+        for (long val1 : arr1)
+            set.add(val1);
+            
+        for (long val2 : arr2)
+            if (set.contains(sum - val2))
+                list.add(new pair(sum - val2, val2));
+                
+        pair[] pairs = new pair[list.size()];
         for (int i = 0; i < list.size(); i++)
-            answer[i] = list.get(i);
-        
-        Arrays.sort(answer, (a,b) ->(int) (a.first - b.first));
-        return answer;
+            pairs[i] = list.get(i);
+            
+        Arrays.sort(pairs, new PairComparator());
+        return pairs;
+    }
+}
+
+class PairComparator implements Comparator<pair>{
+    @Override
+    public int compare(pair a, pair b){
+        if (a.first != b.first)
+            return a.first > b.first ? 1 : -1;
+        else
+            return (int)(a.second - b.second);
     }
 }
 
