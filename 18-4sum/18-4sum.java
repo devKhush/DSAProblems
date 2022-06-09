@@ -38,6 +38,7 @@ class Solution {
                         while (high - 1 > low  &&  arr[high] == arr[high - 1])
                             high--;
                         low++;
+                        high--;
                     }
                     
                     if (arr[i] + arr[j] + arr[low] + arr[high] > target)
