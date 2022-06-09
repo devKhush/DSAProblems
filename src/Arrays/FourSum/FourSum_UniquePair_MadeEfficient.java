@@ -1,6 +1,23 @@
-class Solution {
-    
-    public List<List<Integer>> fourSum(int[] arr, int target) {
+package Arrays.FourSum;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+// https://youtu.be/4ggF3tXIAp0
+// https://takeuforward.org/data-structure/4-sum-find-quads-that-add-up-to-a-target-value/
+// Question of Striver SDE Sheet
+
+public class FourSum_UniquePair_MadeEfficient {
+
+    // **************************** Efficient Solution ****************************************888
+    // Same solution can be made faster by not iterating over ranges of array/values that are
+    // out of range of targetSum. We can avoid redundant iteration based on certain conditions
+    // 'Redundant' in sense that there is no use of going through current iteration
+    // TC -> O(n^3)
+    // SC -> O(1)
+    // This problem is combination of problems 'Three sum' & 'Two sum: Input array is sorted'
+
+    private List<List<Integer>> fourSum(int[] arr, int target) {
         int n = arr.length;
         List<List<Integer>> allQuadruplets = new ArrayList<>();
 
@@ -12,7 +29,7 @@ class Solution {
         // Sorting is a must to ignore duplicates
         Arrays.sort(arr);
 
-        
+
         // Loop running from 0 to n-4, i.e, [0, n-4] to account for exactly 3 values after 'ith' index
         for (int i = 0; i < n-3; i++) {
 
@@ -57,7 +74,7 @@ class Solution {
                         currQuadruple.add(arr[low]);
                         currQuadruple.add(arr[high]);
                         allQuadruplets.add(currQuadruple);
-                        
+
                         // Ignoring duplicates values of arr[low] & arr[high]
                         while (low + 1 < high  && arr[low] == arr[low + 1])
                             low++;
