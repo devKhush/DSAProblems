@@ -1,6 +1,32 @@
 class Solution {
     public int longestConsecutive(int[] arr) {
         int n = arr.length;
+        int longestStreak = 0;
+
+        HashSet<Integer> set = new HashSet<>();
+        
+        for (int val : arr) 
+            set.add(val);
+    
+        for (int value : arr){
+            if (!set.contains(value -1)){
+                int currentStreak = 1;
+                
+                while (set.contains(value + 1)){
+                    currentStreak++;
+                    value++;
+                }
+                longestStreak = Math.max(longestStreak, currentStreak);
+            }
+        }
+        
+        return longestStreak;
+    }
+    
+    
+    
+    public int longestConsecutive_BruteForce(int[] arr) {
+        int n = arr.length;
         if (n == 0)
             return 0;
         
