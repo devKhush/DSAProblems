@@ -10,11 +10,12 @@ class Solution {
     
         for (int value : arr){
             if (!set.contains(value -1)){
+                int currentValue = value;
                 int currentStreak = 1;
                 
-                while (set.contains(value + 1)){
+                while (set.contains(currentValue + 1)){
                     currentStreak++;
-                    value++;
+                    currentValue++;
                 }
                 longestStreak = Math.max(longestStreak, currentStreak);
             }
