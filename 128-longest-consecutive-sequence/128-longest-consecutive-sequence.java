@@ -8,7 +8,7 @@ class Solution {
         for (int val : arr) 
             set.add(val);
     
-        for (int value : arr){
+        for (int value : set){
             if (!set.contains(value -1)){
                 int currentValue = value;
                 int currentStreak = 1;
