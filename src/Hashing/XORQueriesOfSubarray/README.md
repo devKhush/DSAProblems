@@ -37,4 +37,3 @@ The XOR values for queries are:
 	<li><code>queries[i].length == 2</code></li>
 	<li><code>0 &lt;= left<sub>i</sub> &lt;= right<sub>i</sub> &lt; arr.length</code></li>
 </ul>
-</div>
