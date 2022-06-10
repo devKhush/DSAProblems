@@ -51,6 +51,7 @@ public class LargestSubarrayWithZeroSum {
 
             // we don't meed Math.max() condition here, as if the entire prefix sum becomes 0 at any index 'i'
             // then it will be of maximum length till index 'i' (think)
+            // So no need to check for next (else if) condition
             if (prefixSum == 0)
                 maxSubArrayLength = i + 1;
 

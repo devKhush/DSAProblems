@@ -1,35 +1,24 @@
-# Largest subarray of 0's and 1's
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given an array of 0s and 1s. Find the length of the largest subarray with equal number of 0s and 1s.</span></p>
+<h2><a href="https://leetcode.com/problems/contiguous-array/">525. Contiguous Array</a></h2><h3>Medium</h3><hr><div><p>Given a binary array <code>nums</code>, return <em>the maximum length of a contiguous subarray with an equal number of </em><code>0</code><em> and </em><code>1</code>.</p>
 
-<p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
-<pre><span style="font-size:18px"><strong>Input:
-</strong>N = 4
-A[] = {0,1,0,1}
-<strong>Output: </strong>4<strong>
-Explanation: </strong>The array from index [0...3]
-contains equal number of 0's and 1's.
-Thus maximum length of subarray having
-equal number of 0's and 1's is 4.</span>
+<pre><strong>Input:</strong> nums = [0,1]
+<strong>Output:</strong> 2
+<strong>Explanation:</strong> [0, 1] is the longest contiguous subarray with an equal number of 0 and 1.
 </pre>
 
-<p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
+<p><strong>Example 2:</strong></p>
 
-<pre><span style="font-size:18px"><strong>Input:
-</strong>N = 5
-A[] = {0,0,1,0,0}
-<strong>Output: </strong>2</span></pre>
+<pre><strong>Input:</strong> nums = [0,1,0]
+<strong>Output:</strong> 2
+<strong>Explanation:</strong> [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.
+</pre>
 
-<p><span style="font-size:18px"><strong>Your Task:</strong><br>
-You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>maxLen()</strong>&nbsp;which takes the array arr[] and the size of the array as inputs and returns the length of the largest subarray with equal number of 0s and 1s.</span></p>
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-<p><span style="font-size:18px"><strong>Expected Time Complexity:</strong>&nbsp;O(N).<br>
-<strong>Expected Auxiliary Space:</strong>&nbsp;O(N).</span></p>
-
-<p><span style="font-size:18px"><strong>Constraints:</strong><br>
-1 &lt;= N &lt;= 10<sup>5</sup><br>
-0 &lt;= A[] &lt;= 1</span></p>
- <p></p>
-            </div>
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>nums[i]</code> is either <code>0</code> or <code>1</code>.</li>
+</ul>

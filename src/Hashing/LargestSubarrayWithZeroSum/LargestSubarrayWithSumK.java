@@ -32,6 +32,7 @@ public class LargestSubarrayWithSumK {
 
             // we don't meed Math.max() condition here, as if the entire prefix sum becomes 'k' at any index 'i'
             // then it will be of maximum length till index 'i' (think...)
+            // So no need to check for next (else if) condition
             if (prefixSum == k)
                 maxSubArrayLength = i + 1;
 
