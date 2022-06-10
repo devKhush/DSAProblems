@@ -1,4 +1,4 @@
-package Sorting.InversionCount;
+package Sorting.CountInversion;
 
 
 // It is entirely based on MERGE SORT Algorithm

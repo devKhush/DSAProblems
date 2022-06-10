@@ -4,6 +4,7 @@ import java.util.HashMap;
 // https://takeuforward.org/data-structure/length-of-the-longest-subarray-with-zero-sum/
 // https://youtu.be/xmguZ6GbatA
 // https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
+// https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1
 // Question of Striver SDE Sheet
 
 public class LargestSubarrayWithZeroSum {
@@ -30,7 +31,7 @@ public class LargestSubarrayWithZeroSum {
 
 
     // ********************************* Efficient Solution using Hashing ********************************
-    // 1) are two conditions under which we can get Sub array with sum
+    // 1) There are two conditions under which we can get Sub array with sum
     // One when the prefixSum at ith index itself becomes 0, then till the ith index (i+1) is required length
     // of subarray with 0 sum
     // 2) Now let’s say we know that the sum of subarray(i, j) = S, and we also know that sum of
@@ -53,15 +54,18 @@ public class LargestSubarrayWithZeroSum {
             if (prefixSum == 0)
                 maxSubArrayLength = i + 1;
 
-            else{
-                if (prefixSumMap.containsKey(prefixSum)) {
-                    int startIndexOfSum = prefixSumMap.get(prefixSum);
-                    int endingIndexOfSameSum = i;
-                    maxSubArrayLength = Math.max(maxSubArrayLength, endingIndexOfSameSum - startIndexOfSum);
-                }
-                else
-                    prefixSumMap.put(prefixSum, i);
+
+            else if (prefixSumMap.containsKey(prefixSum)) {
+                int startIndexOfSum = prefixSumMap.get(prefixSum);
+                int endingIndexOfSameSum = i;
+                maxSubArrayLength = Math.max(maxSubArrayLength, endingIndexOfSameSum - startIndexOfSum);
             }
+
+            // We do not update the 'prefixSum' in HashMap if 'prefixSum' exits earlier in the map
+            // because we want maximum Sub array length with sum 0 & not recent one
+            // So we added a 'else block' here
+            else
+                prefixSumMap.put(prefixSum, i);
         }
         return maxSubArrayLength;
     }
