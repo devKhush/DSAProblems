@@ -37,7 +37,7 @@ class GfG{
             sum += arr[i];
             
             if (sum == 0)
-                maxSubArrayLength = Math.max(maxSubArrayLength, i+1);
+                maxSubArrayLength = i+1;
             
             else{
                 if (prefixSumMap.containsKey(sum)){
