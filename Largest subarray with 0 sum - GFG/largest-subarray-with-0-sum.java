@@ -39,15 +39,15 @@ class GfG{
             if (sum == 0)
                 maxSubArrayLength = i+1;
             
-            else{
-                if (prefixSumMap.containsKey(sum)){
-                    int startIndex = prefixSumMap.get(sum);
-                    int endingIndex = i;
-                    maxSubArrayLength = Math.max(maxSubArrayLength, endingIndex - startIndex);
-                }
-                else
-                    prefixSumMap.put(sum, i);
+            else if (prefixSumMap.containsKey(sum)){
+                int startIndex = prefixSumMap.get(sum);
+                int endingIndex = i;
+                maxSubArrayLength = Math.max(maxSubArrayLength, endingIndex - startIndex);
             }
+            
+            else
+                prefixSumMap.put(sum, i);
+            
         }
         return maxSubArrayLength;
     }
