@@ -29,25 +29,27 @@ class MaxLenZeroSumSub
 class GfG{
     int maxLen(int arr[], int n){
         int maxSubArrayLength = 0;
-        int sum = 0;
+        int prefixSum = 0;
         
         HashMap<Integer, Integer> prefixSumMap = new HashMap<>();
-        
+
         for (int i = 0; i < arr.length; i++){
-            sum += arr[i];
-            
-            if (sum == 0)
-                maxSubArrayLength = i+1;
-            
-            else if (prefixSumMap.containsKey(sum)){
-                int startIndex = prefixSumMap.get(sum);
-                int endingIndex = i;
-                maxSubArrayLength = Math.max(maxSubArrayLength, endingIndex - startIndex);
+            prefixSum += arr[i];
+
+            // we don't meed Math.max() condition here, as if the entire prefix sum becomes 0 at any index 'i'
+            // then it will be of maximum length till index 'i' (think)
+            if (prefixSum == 0)
+                maxSubArrayLength = i + 1;
+
+
+            else if (prefixSumMap.containsKey(prefixSum)) {
+                int startIndexOfSum = prefixSumMap.get(prefixSum);
+                int endingIndexOfSameSum = i;
+                maxSubArrayLength = Math.max(maxSubArrayLength, endingIndexOfSameSum - startIndexOfSum);
             }
             
             else
-                prefixSumMap.put(sum, i);
-            
+                prefixSumMap.put(prefixSum, i);
         }
         return maxSubArrayLength;
     }
