@@ -1,20 +1,23 @@
 class Solution {
-    public int lengthOfLongestSubstring(String s) {
-        int l=0, r=0;
-        int maxSubStringLength = 0;
-        String subString = "";
+    public int lengthOfLongestSubstring(String str) {
+        int left = 0, right = 0;
+        int maxLengthOfSubstringWithoutRepeatingChars = 0;
+
+        HashSet<Character> allUniqueCharacters = new HashSet<>();
         
-        while(r<s.length()){
-            if (subString.indexOf(s.charAt(r))==-1){
-                subString += s.charAt(r);
-                maxSubStringLength = Integer.max(maxSubStringLength,subString.length());
-                r++;
+        while (right < str.length()){
+            
+            if (allUniqueCharacters.contains(str.charAt(right))){
+                while (allUniqueCharacters.contains(str.charAt(right))){
+                    allUniqueCharacters.remove(str.charAt(left));
+                    left++;
+                }
             }
-            else{
-                subString = "";
-                r = ++l;
-            }
+            
+            allUniqueCharacters.add(str.charAt(right));
+            maxLengthOfSubstringWithoutRepeatingChars = Math.max(right - left + 1 , maxLengthOfSubstringWithoutRepeatingChars);
+            right++;
         }
-        return maxSubStringLength;
+        return maxLengthOfSubstringWithoutRepeatingChars;
     }
 }
