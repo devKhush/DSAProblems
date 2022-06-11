@@ -52,6 +52,7 @@ public class SubArraySumEqualsK {
 
             // If map contains subarray with sum "prefixSum - k", then updates 'count' by no. of
             // times that sub-array occurs previously. For more clarity see example below!
+            // because that many no. of  sub-array with required sum 'k' will exits before that 'ith' index
             if (prefixSumMap.containsKey(prefixSum - k))
                 subArraysWithSumK += prefixSumMap.get(prefixSum - k);
 
