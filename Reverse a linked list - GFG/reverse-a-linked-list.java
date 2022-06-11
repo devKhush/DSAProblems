@@ -67,15 +67,22 @@ class Node {
 class Solution{
     //Function to reverse a linked list.
     Node reverseList(Node head){
-         if (head == null || head.next == null)
-            return head;
-        
-        Node nextToHead = head.next;
-        head.next = null;
-        
-        Node newHead = reverseList(nextToHead);
-        
-        nextToHead.next = head;
+        Node ptr = head;
+
+        Stack<Node> stack = new Stack<>();
+        while (ptr.next != null){
+            stack.push(ptr);
+            ptr = ptr.next;
+        }
+
+        Node newHead = ptr;
+        while (!stack.isEmpty()){
+            ptr.next = stack.pop();
+            ptr = ptr.next;
+        }
+        ptr.next = null;
+
+
         return newHead;
     }
 }
