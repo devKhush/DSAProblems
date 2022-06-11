@@ -10,14 +10,14 @@
  */
 class Solution {
     
-    public ListNode reverseList(ListNode oldHead) {
+    public ListNode reverseList_(ListNode oldHead) {
         if (oldHead == null || oldHead.next == null)
             return oldHead;
         
         ListNode nextToHead = oldHead.next;
         oldHead.next = null;
         
-        ListNode newHead = reverseList(nextToHead);
+        ListNode newHead = reverseList_(nextToHead);
         
         nextToHead.next = oldHead;
         return newHead;
@@ -28,11 +28,7 @@ class Solution {
     
     
     
-    
-    
-
-    
-    public ListNode reverseList_Iterative(ListNode head) {
+    public ListNode reverseList(ListNode head) {
         ListNode curr = head, prev = null, next;
         
         while (curr != null){
