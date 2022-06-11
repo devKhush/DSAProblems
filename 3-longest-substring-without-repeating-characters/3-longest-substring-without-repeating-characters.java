@@ -9,7 +9,8 @@ class Solution {
         while (right < str.length()){
             
             if (lastSeenAtIndexMap.containsKey(str.charAt(right)))
-                left = Math.max(lastSeenAtIndexMap.get(str.charAt(right)) + 1, left);
+                if (lastSeenAtIndexMap.get(str.charAt(right)) +1 > left)
+                    left = Math.max(lastSeenAtIndexMap.get(str.charAt(right)) + 1, left);
             
             lastSeenAtIndexMap.put(str.charAt(right), right);
             maxLengthOfSubstringWithoutRepeatingChars = Math.max(right - left + 1, maxLengthOfSubstringWithoutRepeatingChars);
