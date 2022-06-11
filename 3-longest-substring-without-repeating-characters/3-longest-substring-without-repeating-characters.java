@@ -2,6 +2,29 @@ class Solution {
     
     public int lengthOfLongestSubstring(String str) {
         int left = 0, right = 0;
+        int maxLengthOfSubstringNonRepeatingChars = 0;
+
+        // For 128 ASCII Characters
+        int[] lastSeenAtIndexArray = new int[128];
+        Arrays.fill(lastSeenAtIndexArray, -1);
+
+        while (right < str.length()){
+            char currentChar = str.charAt(right);
+
+            if (lastSeenAtIndexArray[currentChar] != -1)
+                left = Math.max(lastSeenAtIndexArray[currentChar] + 1, left);
+
+            lastSeenAtIndexArray[currentChar] = right;
+
+            maxLengthOfSubstringNonRepeatingChars = Math.max(right - left + 1, maxLengthOfSubstringNonRepeatingChars);
+            right++;
+        }
+        return maxLengthOfSubstringNonRepeatingChars;
+    }
+    
+    
+    public int lengthOfLongestSubstring_HashMap_OptimizedSolution(String str) {
+        int left = 0, right = 0;
         int maxLengthOfSubstringWithoutRepeatingChars = 0;
 
         HashMap<Character, Integer> lastSeenAtIndexMap = new HashMap<>();
