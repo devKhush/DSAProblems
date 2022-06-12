@@ -1,4 +1,8 @@
-class Solution {
+package Arrays.CalculateAmountPaidInTaxes;
+
+class CalculateAmountPaidInTaxes {
+
+    // Simple solution
     public double calculateTax(int[][] brackets, int income) {
         double tax = 0.0;
 

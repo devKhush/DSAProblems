@@ -53,4 +53,3 @@ You have no income to tax, so you have to pay a total of $0 dollars in taxes.
 	<li>All the values of <code>upper<sub>i</sub></code> are <strong>unique</strong>.</li>
 	<li>The upper bound of the last tax bracket is greater than or equal to <code>income</code>.</li>
 </ul>
-</div>

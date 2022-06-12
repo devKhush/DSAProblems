@@ -38,4 +38,3 @@ So the total cost of this path is 5 + 1 = 6.
 	<li><code>moveCost[i].length == n</code></li>
 	<li><code>1 &lt;= moveCost[i][j] &lt;= 100</code></li>
 </ul>
-</div>
