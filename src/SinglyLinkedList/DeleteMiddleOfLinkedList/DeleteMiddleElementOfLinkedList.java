@@ -1,4 +1,4 @@
-package SinglyLinkedList.MiddleOfLinkedList;
+package SinglyLinkedList.DeleteMiddleOfLinkedList;
 
 import java.util.Scanner;
 
@@ -26,9 +26,15 @@ public class DeleteMiddleElementOfLinkedList {
         return head;
     }
 
+    static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) { this.val = val; }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ListNode head = new ListNode();
+        ListNode head = new ListNode(1);
 
         int n = sc.nextInt();
         ListNode ptr = head;

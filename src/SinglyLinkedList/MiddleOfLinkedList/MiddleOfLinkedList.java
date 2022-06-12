@@ -1,67 +1,50 @@
 package SinglyLinkedList.MiddleOfLinkedList;
-import java.util.Scanner;
 
-// https://leetcode.com/problems/middle-of-the-linked-list/
+// https://youtu.be/sGdwSH8RK-o
+// https://takeuforward.org/data-structure/find-middle-element-in-a-linked-list/
 
-class ListNode {
-    int val;
-    ListNode next;
+public class MiddleOfLinkedList {
 
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
-
-class MiddleOfLinkedList{
-    public ListNode middleNode(ListNode head) {
+    // ****************************** Tortoise & Hare Approach *************************************
+    // TC -> O(n)
+    // SC -> O(1)
+    public ListNode middleNode_FastSlow(ListNode head) {
         ListNode fast = head, slow = head;
-        while (fast.next != null && fast.next.next != null) {
+
+        while (fast != null && fast.next != null){
             fast = fast.next.next;
             slow = slow.next;
         }
-        return fast.next==null ? slow : slow.next;
+        return slow;
     }
 
 
-    public ListNode middleNode_Alter(ListNode head){        // Based on counting nodes
-        ListNode mid = head;
-        int count = 1;
-
-        while(head.next!=null){
-            if (count%2 == 1)
-                mid = mid.next;
-            count++;
-            head = head.next;
-        }
-        return mid;
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ListNode head = new ListNode();
-
-        int n = sc.nextInt();
+    // *************************** By Counting every node ***************************************
+    // TC -> O(3*n/2) = O(n)
+    // SC -> O(1)
+    public ListNode middleNode_ByCounting(ListNode head){
+        int countOfNodes = 0;
         ListNode ptr = head;
-        for (int i = 0; i < n; i++) {
-            ptr.next = new ListNode(sc.nextInt());
+
+        while (ptr != null){
+            countOfNodes++;
             ptr = ptr.next;
         }
 
-        ListNode midHead = new MiddleOfLinkedList().middleNode(head.next);
-        ptr = midHead;
-        while (ptr != null) {
-            System.out.print(ptr.val + " ");
+        ptr = head;
+        int count = 0;
+
+        while (count < countOfNodes /2){
             ptr = ptr.next;
+            count++;
         }
-        System.out.println();
-        sc.close();
+        return ptr;
+    }
+
+
+    static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) { this.val = val; }
     }
 }
