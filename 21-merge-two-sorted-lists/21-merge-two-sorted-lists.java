@@ -25,7 +25,7 @@ class Solution {
 
             }
             ptr = ptr.next;
-            ptr.next = null;
+            // ptr.next = null;
         }
 
         if (list1 != null)
