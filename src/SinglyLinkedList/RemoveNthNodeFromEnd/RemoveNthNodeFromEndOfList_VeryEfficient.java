@@ -30,7 +30,7 @@ public class RemoveNthNodeFromEndOfList_VeryEfficient {
             return null;
 
         // Initialize a dummy Node
-        ListNode start = new ListNode(-1);
+        ListNode start = new ListNode(-1) ;
 
         // assign dummy's next node to head
         start.next = head;
