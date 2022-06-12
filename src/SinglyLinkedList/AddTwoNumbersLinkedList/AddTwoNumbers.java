@@ -1,99 +1,113 @@
 package SinglyLinkedList.AddTwoNumbersLinkedList;
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int val) {
-        this.val = val;
-    }
-}
+// https://youtu.be/LBVsXSMOIk4
+// https://takeuforward.org/data-structure/add-two-numbers-represented-as-linked-lists/
+
 
 public class AddTwoNumbers {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode ptr1 = l1, ptr2 = l2, ptr;
-        ListNode head = new ListNode(0);
-        ptr = head;
-        Integer sum = 0, carry = 0, i, j;
 
-        while (ptr1 != null && ptr2 != null) {
-            i = ptr1.val;
-            j = ptr2.val;
-            sum = i + j + carry;
-            if (sum.toString().length() == 1) {
-                ptr.next = new ListNode(sum);
-                carry = 0;
-            } else if (sum.toString().length() == 2) {
-                carry = Integer.parseInt(((Character) sum.toString().charAt(0)).toString());
-                ptr.next = new ListNode(Integer.parseInt(((Character) sum.toString().charAt(1)).toString()));
-            }
+    // **************************** Brute Force *************************************
+    // Simple Logic of adding the values in linked-list while traversing
+
+    // Complexity Analysis:
+    // Time complexity : O(max(m,n)). Assume that m and n represents the length of l1 and l2 respectively,
+    // the algorithm above iterates at most max(m,n) times.
+    // Space complexity : O(max(m,n)). The length of the new list is at most max(m,n)+1.
+
+    public ListNode addTwoNumbers_V1(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(-1);
+        ListNode ptr1 = l1, ptr2 = l2, ptr = dummy;
+
+        int carry = 0;
+
+        while (ptr1 != null && ptr2 != null){
+            int sum = ptr1.val + ptr2.val + carry;
+            carry = sum/10;
+
+            ptr.next = new ListNode(sum % 10);
+
             ptr1 = ptr1.next;
             ptr2 = ptr2.next;
             ptr = ptr.next;
         }
 
-        while (ptr1 != null) {
-            i = ptr1.val;
-            sum = i + carry;
-            if (sum.toString().length() == 1) {
-                ptr.next = new ListNode(sum);
-                carry = 0;
-            } else if (sum.toString().length() == 2) {
-                carry = Integer.parseInt(((Character) sum.toString().charAt(0)).toString());
-                ptr.next = new ListNode(Integer.parseInt(((Character) sum.toString().charAt(1)).toString()));
-            }
-            ptr1 = ptr1.next;
+        while (ptr1 != null){
+            int sum = ptr1.val + carry;
+            carry = sum/10;
+
+            ptr.next = new ListNode(sum % 10);
+
             ptr = ptr.next;
+            ptr1 = ptr1.next;
         }
 
-        while (ptr2 != null) {
-            j = ptr2.val;
-            sum = j + carry;
-            if (sum.toString().length() == 1) {
-                ptr.next = new ListNode(sum);
-                carry = 0;
-            } else if (sum.toString().length() == 2) {
-                carry = Integer.parseInt(((Character) sum.toString().charAt(0)).toString());
-                ptr.next = new ListNode(Integer.parseInt(((Character) sum.toString().charAt(1)).toString()));
-            }
-            ptr2 = ptr2.next;
+        while (ptr2 != null){
+            int sum = ptr2.val + carry;
+            carry = sum/10;
+
+            ptr.next = new ListNode(sum % 10);
+
             ptr = ptr.next;
+            ptr2 = ptr2.next;
         }
-        if (carry != 0) {
+
+        if (carry == 1)
             ptr.next = new ListNode(carry);
-        }
-        return head.next;
+
+        return dummy.next;
     }
 
-    public static void main(String[] args) {
-        ListNode head1 = new ListNode(9);
-        // ListNode n1 = new ListNode(4);
-        // ListNode n2 = new ListNode(3);
-        // head1.next = n1;
-        // n1.next = n2;
-        ListNode ptr = head1;
-        for (int i = 1; i <= 6; i++) {
-            ptr.next = new ListNode(9);
+
+
+    // **************************** Short hand Code *************************************
+    // Another Shorter Code that does same thing
+    // Simple Logic of adding the values in linked-list while traversing
+    // TC -> O(max(m,n))
+    // SC -> O(max(m,n) + 1) = O(max(m,n))      +1 due to Node for storing carry
+
+    public ListNode addTwoNumbers_V2(ListNode head1, ListNode head2) {
+        ListNode dummy = new ListNode(-1);
+        ListNode ptr1 = head1, ptr2 = head2, ptr = dummy;
+        int carry = 0;
+
+        while (ptr1 != null  ||  ptr2 != null){
+            int sum = 0;
+
+            if (ptr1 != null){
+                sum += ptr1.val;
+                ptr1 = ptr1.next;
+            }
+            if (ptr2 != null){
+                sum += ptr2.val;
+                ptr2 = ptr2.next;
+            }
+            sum += carry;
+
+            // We can even do this too..
+            // int ptr1Val = ptr1 != null ? ptr1.val : 0;
+            // int ptr2Val = ptr2 != null ? ptr2.val : 0;
+            // sum += (ptr1Val + ptr2Val + carry);
+
+            carry = sum / 10;
+
+            ptr.next = new ListNode(sum % 10);
             ptr = ptr.next;
-        }
 
-        ListNode head2 = new ListNode(9);
-        // ListNode p1 = new ListNode(6);
-        // ListNode p2 = new ListNode(4);
-        // head2.next = p1;
-        // p1.next = p2;
-        ptr = head2;
-        for (int i = 1; i <= 3; i++) {
-            ptr.next = new ListNode(9);
-            ptr = ptr.next;
-        }
+            // We can even do this too...
+            // ptr1 = ptr1 == null ? null : ptr1.next;
+            // ptr2 = ptr2 == null ? null : ptr2.next;
 
-        ListNode head = new AddTwoNumbers().addTwoNumbers(head1, head2);
-        ListNode ptr1 = head;
-        while (ptr1 != null) {
-            System.out.print(ptr1.val + " ");
-            ptr1 = ptr1.next;
         }
+        if (carry == 1)
+            ptr.next = new ListNode(carry);
 
+        return dummy.next;
     }
 
+
+    static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) { this.val = val; }
+    }
 }
