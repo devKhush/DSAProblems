@@ -16,8 +16,8 @@ class Solution {
     }
 
     public int minPath(int i, int j, int[][] arr, int[][] moveCost, int[][] dp, int m, int n){
-        if (j < 0 || j >= n)
-            return Integer.MAX_VALUE;
+        // if (j < 0 || j >= n)
+        //     return Integer.MAX_VALUE;
 
         if (i == m-1)
             return arr[m-1][j];
