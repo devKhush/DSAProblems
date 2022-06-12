@@ -4,6 +4,38 @@ class Solution {
         int n = grid[0].length;
         int[][] dp = new int[m][n];
 
+        for (int j = 0; j < n; j++)
+            dp[m-1][j] = grid[m-1][j];
+ 
+        for (int i = m-2; i >= 0; i--){
+            for (int j = 0; j < n; j++){
+                int minPathCost = Integer.MAX_VALUE;
+
+                for (int dj = 0; dj < n; dj++){
+                    int cellValue = grid[i][j];
+                    int pathCost = moveCost[cellValue][dj] + dp[i+1][dj];
+                    int currPathCost = cellValue + pathCost;
+                    
+                    minPathCost = Math.min(minPathCost, currPathCost);
+                }
+                
+                dp[i][j] = minPathCost;
+            }
+        }
+        
+        int totalMinPathCost = Integer.MAX_VALUE;
+        for (int j = 0; j < n; j++)
+            totalMinPathCost = Math.min(totalMinPathCost, dp[0][j]);
+        
+        return totalMinPathCost;
+    }
+    
+    
+    public int minPathCost_Memoization(int[][] grid, int[][] moveCost) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dp = new int[m][n];
+
         for (int[] row : dp)
             Arrays.fill(row, -1);
 
