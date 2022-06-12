@@ -15,7 +15,7 @@ class Solution {
         ListNode ptr1 = head1, ptr2 = head2, ptr = dummy;
         int carry = 0;
 
-        while (ptr1 != null  ||  ptr2 != null){
+        while (ptr1 != null || ptr2 != null){
             int sum = 0;
             sum += carry;
 
