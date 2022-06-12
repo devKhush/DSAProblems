@@ -11,6 +11,53 @@
 class Solution {
     
     public ListNode mergeTwoLists(ListNode head1, ListNode head2) {
+      if (head1 == null)
+           return head2;
+       if (head2 == null)
+           return head1;
+
+       ListNode ptr1 = head1, ptr2 = head2;
+       ListNode head;
+
+        // Assigning head to the smaller Node out of ptr1 & ptr2
+        // By doing this 'head' node acts as dummy node in previous case
+        if (ptr1.val <= ptr2.val){
+            head = ptr1;
+            ptr1 = ptr1.next;
+        }
+       else{
+           head = ptr2;
+           ptr2 = ptr2.next;
+       }
+        head.next = null;
+
+       
+       ListNode headPtr = head;
+
+       while (ptr1 != null && ptr2 != null){
+           if (ptr1.val <= ptr2.val){
+               headPtr.next = ptr1;
+               ptr1 = ptr1.next;
+           }
+           else{
+               headPtr.next = ptr2;
+               ptr2 = ptr2.next;
+           }
+           headPtr = headPtr.next;
+           headPtr.next = null;
+       }
+       
+       if (ptr1 != null)
+           headPtr.next = ptr1;
+       if (ptr2 != null)
+           headPtr.next = ptr2;
+       
+       return head;
+    }
+    
+    
+    
+    public ListNode mergeTwoLists_WithoutDummyNode(ListNode head1, ListNode head2) {
           // Simple Base cases
         if (head1 == null)
             return head2;
@@ -44,6 +91,8 @@ class Solution {
 
         return head;
     }
+    
+    
     
     // By creating a Dummy varaible Node ************************************************************************
     public ListNode mergeTwoLists_DummyNode(ListNode list1, ListNode list2) {
