@@ -2,6 +2,41 @@ class Solution {
     public int minPathCost(int[][] grid, int[][] moveCost) {
         int m = grid.length;
         int n = grid[0].length;
+        int[] dp = new int[n];
+
+        // Base case
+        for (int j = 0; j < n; j++)
+            dp[j] = grid[m-1][j];
+
+        for (int i = m-2; i >= 0; i--){
+            int[] tempDP = new int[n];
+            
+            for (int j = 0; j < n; j++){
+                int minPathCost = Integer.MAX_VALUE;
+
+                for (int dj = 0; dj < n; dj++){
+                    int cellValue = grid[i][j];
+                    int pathCost = moveCost[cellValue][dj] + dp[dj];
+
+                    minPathCost = Math.min(minPathCost, cellValue + pathCost);
+                }
+
+                tempDP[j] = minPathCost;
+            }
+            dp = tempDP;
+        }
+
+        int totalMinPathCost = Integer.MAX_VALUE;
+        for (int j = 0; j < n; j++)
+            totalMinPathCost = Math.min(totalMinPathCost, dp[j]);
+
+        return totalMinPathCost;
+    }
+    
+    
+    public int minPathCost_Tabulation(int[][] grid, int[][] moveCost) {
+        int m = grid.length;
+        int n = grid[0].length;
         int[][] dp = new int[m][n];
 
         for (int j = 0; j < n; j++)
