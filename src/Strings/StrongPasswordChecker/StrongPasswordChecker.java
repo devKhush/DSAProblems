@@ -1,4 +1,7 @@
-class Solution {
+package Strings.StrongPasswordChecker;
+
+class StrongPasswordChecker {
+
     public boolean strongPasswordCheckerII(String password) {
         boolean lengthGreaterThan8 = password.length() >= 8;
         boolean hasLowercase = false;

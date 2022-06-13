@@ -39,4 +39,3 @@
 	<li><code>1 &lt;= password.length &lt;= 100</code></li>
 	<li><code>password</code> consists of letters, digits, and special characters: <code>"!@#$%^&amp;*()-+"</code>.</li>
 </ul>
-</div>

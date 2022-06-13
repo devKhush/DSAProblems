@@ -1,4 +1,11 @@
-class Solution {
+package BinarySearch.SuccessfulPairsOfSpellsAndPotions;
+import java.util.Arrays;
+
+class SuccessfulPairsOfSpellsAndPotions {
+
+    // TC -> O(n * Log(m))
+    // SC -> O(n) due to sorting & ignoring output array
+
     public int[] successfulPairs(int[] spells, int[] potions, long success) {
         int[] pairs = new int[spells.length];
         Arrays.sort(potions);
