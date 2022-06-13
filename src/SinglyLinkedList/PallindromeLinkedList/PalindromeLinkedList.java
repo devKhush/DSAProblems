@@ -30,8 +30,10 @@ public class PalindromeLinkedList {
             fast = fast.next.next;
             slow = slow.next;
         }
+        // make the half of the linked-list reversed
+        slow.next = reverse(slow.next);
 
-        ListNode reversedPtr = reverse(slow.next);
+        ListNode reversedPtr = slow.next;
         ListNode ptr = head;
 
         while (reversedPtr != null){
@@ -40,6 +42,9 @@ public class PalindromeLinkedList {
             reversedPtr = reversedPtr.next;
             ptr = ptr.next;
         }
+
+        // To again modify the list into the original one
+        slow.next = reverse(slow.next);
         return true;
     }
 
