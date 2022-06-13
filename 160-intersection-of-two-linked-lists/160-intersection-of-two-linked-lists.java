@@ -10,6 +10,20 @@
  * }
  */
 public class Solution {
+    
+    // Much Shorter Code
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode ptrA = headA, ptrB = headB;
+        
+        while (ptrA != ptrB){
+            ptrA = ptrA != null ? ptrA.next : headB;
+            ptrB = ptrB != null ? ptrB.next : headA;
+        }
+        
+        return ptrA;
+    }
+
+    //
     private int getLengthDifference(ListNode headA, ListNode headB){
         int lenA = 0, lenB = 0;
         
@@ -24,7 +38,7 @@ public class Solution {
         return lenA - lenB;
     }
     
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    public ListNode getIntersectionNode_Method1(ListNode headA, ListNode headB) {
         int lengthDifference = getLengthDifference(headA, headB);
         
         ListNode ptrA = headA, ptrB = headB;
@@ -51,7 +65,7 @@ public class Solution {
         }
         
         return null;
-    }
+    } 
 }
 
 
