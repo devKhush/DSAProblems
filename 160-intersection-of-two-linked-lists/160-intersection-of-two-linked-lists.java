@@ -10,21 +10,50 @@
  * }
  */
 public class Solution {
+    private int getLengthDifference(ListNode headA, ListNode headB){
+        int lenA = 0, lenB = 0;
+        
+        while (headA != null || headB != null){
+            lenA = headA == null ? lenA : lenA + 1;
+            lenB = headB == null ? lenB : lenB + 1;
+            
+            headA = headA == null ? null : headA.next;
+            headB = headB == null ? null : headB.next;
+        }
+        
+        return lenA - lenB;
+    }
+    
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-         HashSet<ListNode> set = new HashSet<>();
+        int lengthDifference = getLengthDifference(headA, headB);
         
-        while (headA != null){
-            set.add(headA);
-            headA = headA.next;
+        ListNode ptrA = headA, ptrB = headB;
+        
+        if (lengthDifference > 0)
+            while (lengthDifference > 0){
+                ptrA = ptrA.next;
+                lengthDifference--;
+            }
+        
+        else
+            while (lengthDifference < 0){
+                ptrB = ptrB.next;
+                lengthDifference++;
+            }
+        
+        
+        while (ptrA != null){
+            if (ptrA == ptrB)
+                return ptrA;
+            
+            ptrA = ptrA.next;
+            ptrB = ptrB.next;
         }
         
-        while (headB != null){
-            if (set.contains(headB))
-                return headB;
-            headB = headB.next;
-        }
-        
-        // unable to find any point of intersection
         return null;
     }
 }
+
+
+
+
