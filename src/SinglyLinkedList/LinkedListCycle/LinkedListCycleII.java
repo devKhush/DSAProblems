@@ -1,4 +1,4 @@
-package SinglyLinkedList.DetectLoop;
+package SinglyLinkedList.LinkedListCycle;
 
 // https://leetcode.com/problems/linked-list-cycle-ii/
 
