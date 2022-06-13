@@ -38,7 +38,7 @@ class Solution {
             }
             prevNode.next = null;
             
-            if (ptr != null  || count == k)
+            if (count == k)
                 kthDividedNodes.add(reverse(kthDividedHead));
             else
                 kthDividedNodes.add(kthDividedHead);
