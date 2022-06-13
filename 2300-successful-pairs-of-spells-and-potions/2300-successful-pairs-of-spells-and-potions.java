@@ -11,7 +11,7 @@ class Solution {
             int high = potions.length-1;
 
             while (low <= high){
-                int mid = (low + high)/2;
+                int mid = (low + high) >> 1;
 
                 if ((long) potions[mid] * spell >= success){
                     high = mid - 1;
