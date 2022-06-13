@@ -22,23 +22,22 @@ class Solution {
     }
     
     public boolean isPalindrome(ListNode head) {
-        ListNode fast=head, slow=head, mid, ptr1, ptr2;
-        
-        while(fast.next!=null && fast.next.next!=null){
+        ListNode fast = head, slow = head;
+
+        while (fast.next != null  && fast.next.next != null){
             fast = fast.next.next;
             slow = slow.next;
         }
-        mid = slow.next;
-        
-        ptr1 = head;
-        ptr2 = reverse(mid);
-        
-        while(ptr1!=null && ptr2!=null){
-            if (ptr1.val!=ptr2.val)
+
+        ListNode reversedPtr = reverse(slow.next);
+        ListNode ptr = head;
+
+        while (reversedPtr != null){
+            if (reversedPtr.val != ptr.val)
                 return false;
-            ptr1 = ptr1.next;
-            ptr2 = ptr2.next;
+            reversedPtr = reversedPtr.next;
+            ptr = ptr.next;
         }
-        return true;    
+        return true;  
     }
 }
