@@ -1,6 +1,35 @@
 class Solution {
     
+    // SPace Optimization *********************************************************************
     public int longestCommonSubsequence(String str1, String str2){
+        int m = str1.length(), n = str2.length();
+        char[] s1 = str1.toCharArray();
+        char[] s2 = str2.toCharArray();
+        int[] dp = new int[n + 1];
+
+        for (int i = 1; i <= m; i++){
+            int[] tempDP = new int[n + 1];
+
+            for (int j = 1; j <= n; j++){
+
+                if (s1[i - 1] == s2[j - 1]) {
+                    tempDP[j] = 1 + dp[j - 1];      // dp[j-1] = dp[i-1][j-1]
+                    continue;
+                }
+
+                // dp[j] = dp[i-1][j]
+                // tempDP[j-1] = dp[i][j-1]     as i belongs to current row
+                tempDP[j] = Math.max(dp[j], tempDP[j-1]);
+            }
+            dp = tempDP;
+        }
+        return dp[n];
+    }
+
+    
+    
+    // Tabulation *********************************************************************************************8
+    public int longestCommonSubsequence_Tabulation(String str1, String str2){
         int m = str1.length();
         int n = str2.length();
         char[] s1 = str1.toCharArray();
