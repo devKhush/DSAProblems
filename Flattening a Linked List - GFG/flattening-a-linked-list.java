@@ -118,48 +118,26 @@ class Node
     the flattened linked list. */
 class GfG{
     public Node flatten(Node head){
-        Node ptr = head;
-
-        while (ptr != null){
-            Node bottomPtr = ptr;
-
-            while (bottomPtr.bottom != null)
-                bottomPtr = bottomPtr.bottom;
-
-            bottomPtr.bottom = ptr.next;
-
-            Node prev = ptr;
-             ptr = ptr.next;
-            prev.next = null;
-        }
-        return mergeSort(head);
-    }
-
-    private Node mergeSort(Node head){
-        if (head == null || head.bottom == null)
+       if (head == null || head.next == null)
             return head;
 
-        Node fast = head, slow = head;
+        // first flatten the 'next' pointer of current head
+        head.next = flatten(head.next);
 
-        while (fast.bottom != null  &&  fast.bottom.bottom != null){
-            fast = fast.bottom.bottom;
-            slow = slow.bottom;
-        }
-        Node midHalf = slow.bottom;
-        slow.bottom = null;
+        // now merge sorted list head & head.next
+        head = mergeTwoSortedList(head, head.next);
 
-        Node sortedHalf1 = mergeSort(head);
-        Node sortedHalf2 = mergeSort(midHalf);
-        return merge(sortedHalf1, sortedHalf2);
+        //return the head
+        return head;
     }
 
-    private Node merge(Node head1, Node head2){
-        if (head1 == null)
-            return head2;
-        if (head2 == null)
-            return head1;
+   private Node mergeTwoSortedList(Node list1, Node list2){
+        if (list1 == null)
+            return list2;
+        if (list2 == null)
+            return list1;
 
-        Node l1 = head1, l2 = head2;
+        Node l1 = list1, l2 = list2;
         if (l1.data > l2.data){
             Node temp = l1;
             l1 = l2;
@@ -167,16 +145,15 @@ class GfG{
         }
         Node head = l1;
 
-        while (l1 != null && l2 != null){
-            Node prevSmaller = null;
+        while (l1 != null  && l2 != null){
+            Node prev = null;
 
-            while (l1 != null && l1.data <= l2.data){
-                prevSmaller = l1;
+            while (l1 != null  && l1.data <= l2.data){
+                prev = l1;
                 l1 = l1.bottom;
             }
 
-            prevSmaller.bottom = l2;
-
+            prev.bottom = l2;
             Node temp = l1;
             l1 = l2;
             l2 = temp;
