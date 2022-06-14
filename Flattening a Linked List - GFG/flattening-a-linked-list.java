@@ -118,17 +118,14 @@ class Node
     the flattened linked list. */
 class GfG{
     public Node flatten(Node head){
-       if (head == null || head.next == null)
-            return head;
+        Node l1 = head;
+        Node l2 = head.next;
 
-        // first flatten the 'next' pointer of current head
-        head.next = flatten(head.next);
-
-        // now merge sorted list head & head.next
-        head = mergeTwoSortedList(head, head.next);
-
-        //return the head
-        return head;
+        while (l2 != null){
+            l1 = mergeTwoSortedList(l1, l2);
+            l2 = l2.next;
+        }
+        return l1;
     }
 
    private Node mergeTwoSortedList(Node list1, Node list2){
