@@ -128,9 +128,9 @@ class GfG{
 
             bottomPtr.bottom = ptr.next;
 
-            // Node prev = ptr;
+            Node prev = ptr;
              ptr = ptr.next;
-            // prev.next = null;
+            prev.next = null;
         }
         return mergeSort(head);
     }
