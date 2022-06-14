@@ -29,7 +29,7 @@ public class ReverseNodesInArbitraryGroups {
        return length;
     }
 
-    public static Node getListAfterReverseOperation(Node head, int k, int[] size) {
+    public static Node getListAfterReverseOperation(Node head, int[] size) {
         if (head == null)
             return null;
         int length = getListLength(head);
