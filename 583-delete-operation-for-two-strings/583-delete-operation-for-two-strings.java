@@ -3,6 +3,7 @@ class Solution {
         int m = str1.length();
         int n = str2.length();
         
+        // length of longest common subsequence
         int lenLCS = LCS(str1, str2, m, n);
         
         return m + n - 2 * lenLCS;
