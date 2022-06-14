@@ -3,9 +3,9 @@ class Solution {
         int m = str1.length();
         int n = str2.length();
         
-        int len_lcs = LCS(str1, str2, m, n);
+        int lenLCS = LCS(str1, str2, m, n);
         
-        return m + n - 2*len_lcs;
+        return m + n - 2 * lenLCS;
     }
     
     public int LCS(String str1, String str2, int m, int n){
