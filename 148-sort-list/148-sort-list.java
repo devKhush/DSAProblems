@@ -10,28 +10,35 @@
  */
 class Solution {
    
-     public ListNode merge(ListNode list1, ListNode list2){
-        ListNode sorted = new ListNode(-1);
-        ListNode sortedPtr = sorted;
+     public ListNode merge(ListNode head1, ListNode head2){
+        if (head1 == null)
+            return head2;
+        if (head2 == null)
+            return head1;
 
-        while (list1!=null && list2!=null){
-            if (list1.val < list2.val){
-                sortedPtr.next = list1;
-                list1 = list1.next;
-            }
-            else {
-                sortedPtr.next = list2;
-                list2 = list2.next;
-            }
-            sortedPtr = sortedPtr.next;
+        ListNode l1 = head1, l2 = head2;
+        if (l1.val > l2.val){
+            ListNode temp = l1;
+            l1 = l2;
+            l2 = temp;
         }
+        ListNode head = l1;
 
-        if (list1 != null)
-            sortedPtr.next = list1;
-        if (list2 != null)
-            sortedPtr.next = list2;
-         
-        return sorted.next;
+        while (l1 != null && l2 != null){
+            ListNode prevSmaller = null;
+
+            while (l1 != null && l1.val <= l2.val){
+                prevSmaller = l1;
+                l1 = l1.next;
+            }
+
+            prevSmaller.next = l2;
+
+            ListNode temp = l1;
+            l1 = l2;
+            l2 = temp;
+        }
+        return head;
     }
 
     public ListNode mergeSort(ListNode head){
