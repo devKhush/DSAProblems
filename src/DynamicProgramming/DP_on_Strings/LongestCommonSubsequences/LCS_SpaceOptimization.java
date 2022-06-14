@@ -37,14 +37,13 @@ public class LCS_SpaceOptimization {
 
             for (int j = 1; j <= n; j++){
 
-                if (s1[i - 1] == s2[j - 1]) {
+                if (s1[i - 1] == s2[j - 1])
                     tempDP[j] = 1 + dp[j - 1];      // dp[j-1] = dp[i-1][j-1]
-                    continue;
-                }
 
                 // dp[j] = dp[i-1][j]
                 // tempDP[j-1] = dp[i][j-1]     as i belongs to current row
-                tempDP[j] = Math.max(dp[j], tempDP[j-1]);
+                else
+                    tempDP[j] = Math.max(dp[j], tempDP[j-1]);
             }
             dp = tempDP;
         }

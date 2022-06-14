@@ -23,4 +23,3 @@
 	<li><code>1 &lt;= word1.length, word2.length &lt;= 500</code></li>
 	<li><code>word1</code> and <code>word2</code> consist of only lowercase English letters.</li>
 </ul>
-</div>

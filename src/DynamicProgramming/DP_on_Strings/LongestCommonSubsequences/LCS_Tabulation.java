@@ -32,7 +32,8 @@ public class LCS_Tabulation {
         // Here, dp[i][j] denotes LCS of string1[0:i] & string2[0:j] (unlike normal string indexing)
         int[][] dp = new int[m][n];
 
-        // No base cases to handle for i < 0 || j < 0 (as such index don't exists)
+        // No base cases to handle for i < 0 || j < 0 (as such index don't exist)
+        // We have to handle such cases manually using if else conditions
         for (int i = 0; i < m; i++){
             for (int j = 0; j < n; j++){
 
@@ -77,17 +78,24 @@ public class LCS_Tabulation {
         // (just like normal string indexing)
         int[][] dp = new int[m + 1][n + 1];
 
-        // No need to handle base cases for i==0 || j==0 as default values of Arrays are always 0
+        // ****** NOTE *******
+        // NOTE: No need to handle base cases for i==0 || j==0 manually as default values of Arrays are always 0
+        // Base case : i == 0
+        for (int j = 0; j <= n; j++)
+            dp[0][j] = 0;
+        // Base case : j == 0
+        for (int i = 0; i <= m; i++)
+            dp[i][0] = 0;
+
+
         // Other cases that starts from i = [1:m] & j = [1:n]
         for (int i = 1; i <= m; i++){
             for (int j = 1; j <= n; j++){
 
-                if (s1[i - 1] == s2[j - 1]){
+                if (s1[i - 1] == s2[j - 1])
                     dp[i][j] = 1 + dp[i-1][j-1];
-                    continue;
-                }
-
-                dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+                else
+                    dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
             }
         }
         // dp[m][n] denotes LCS of string1[0:m] & string2[0:n] (just like normal string indexing)
