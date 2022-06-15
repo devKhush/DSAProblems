@@ -17,7 +17,6 @@ class Solution {
     public Node copyRandomList(Node head) {
         if (head == null)
             return null;
-        
         Node originalPtr = head, copyPtr;
 
         //1. create nodes in one link, eg.original: A-B-C, add copy A-A'-B-B'-C-C'
@@ -31,9 +30,7 @@ class Solution {
         //2. add random for each node
         originalPtr = head;
         while (originalPtr != null){
-            copyPtr = originalPtr.next;
-            copyPtr.random = originalPtr.random == null ? null : originalPtr.random.next;
-
+            originalPtr.next.random = originalPtr.random == null ? null : originalPtr.random.next;
             originalPtr = originalPtr.next.next;
         }
 
@@ -41,6 +38,7 @@ class Solution {
         originalPtr = head;
         Node copiedList = originalPtr.next;
 
+        //3.unlink & arrange all original nodes & copied nodes and relink as required again
         while (originalPtr != null){
             copyPtr = originalPtr.next;
 
