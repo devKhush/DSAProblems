@@ -19,29 +19,36 @@ class Solution {
     }
     
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null)
-            return head;
-        
-        int length = getLength(head);
+       if (head == null)
+            return null;
+
+        ListNode lastNode = head;
+        int length = 1;
+
+        while (lastNode.next != null){
+            lastNode = lastNode.next;
+            length++;
+        }
+
+        // Since k >= length, so we rotate the list by "k % length". After this k becomes less than 'length'
+        // if k==length, that means rotated list is same as original list
+        // if k==0 OR k==length, after division modulo by length k reduces to k==0, which means list doesn't need to rotated
         k = k % length;
         
-        if (k == 0)
-            return head;
-        
-        int distanceToTravel = length - k;
+        if (k == 0) return head;
+
+        int distanceToTravel = length - k, travelled = 1;
         ListNode ptr = head;
-        
-        for (int i = 1; i < distanceToTravel; i++)
+
+        while (travelled < distanceToTravel){
             ptr = ptr.next;
-        
-        ListNode newHead = ptr.next;
-        ptr.next = null;
-        
-        ListNode lastNode = newHead;
-        while (lastNode.next != null)
-            lastNode = lastNode.next;
+            travelled++;
+        }
         
         lastNode.next = head;
-        return newHead;
+        head = ptr.next;
+        ptr.next = null;
+        
+        return head;
     }
 }
