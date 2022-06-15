@@ -10,6 +10,7 @@ class Solution {
                 currOnesLength = 0;
             
             maxOnesLength = Math.max(maxOnesLength, currOnesLength);
+
         }
         return maxOnesLength;
     }
