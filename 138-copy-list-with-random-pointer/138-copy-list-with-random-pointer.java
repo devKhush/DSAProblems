@@ -15,31 +15,41 @@ class Node {
 
 class Solution {
     public Node copyRandomList(Node head) {
-        HashMap<Node, Node> originalToNewListMap = new HashMap<>();
+        if (head == null)
+            return null;
         
-        Node dummy = new Node(-1);
-        Node ptr1 = head, ptr2 = dummy;
-        
-        while (ptr1 != null){
-            ptr2.next = new Node(ptr1.val);
-            ptr2 = ptr2.next;
+        Node originalPtr = head, copyPtr;
 
-            originalToNewListMap.put(ptr1, ptr2);            
-            ptr1 = ptr1.next;
+        //1. create nodes in one link, eg.original: A-B-C, add copy A-A'-B-B'-C-C'
+        while (originalPtr != null){
+            Node next = originalPtr.next;
+            originalPtr.next = new Node(originalPtr.val);
+            originalPtr.next.next = next;
+            originalPtr = originalPtr.next.next;
         }
-        
-        ptr1 = head;
-        ptr2 = dummy.next;
-        
-        while (ptr2 != null){
-            if (ptr1.random == null)
-                ptr2.random = null;
-            else
-                ptr2.random = originalToNewListMap.get(ptr1.random);
-            
-            ptr1 = ptr1.next;
-            ptr2 = ptr2.next;
+
+        //2. add random for each node
+        originalPtr = head;
+        while (originalPtr != null){
+            copyPtr = originalPtr.next;
+            copyPtr.random = originalPtr.random == null ? null : originalPtr.random.next;
+
+            originalPtr = originalPtr.next.next;
         }
-        return dummy.next;
+
+
+        originalPtr = head;
+        Node copiedList = originalPtr.next;
+
+        while (originalPtr != null){
+            copyPtr = originalPtr.next;
+
+            originalPtr.next = originalPtr.next.next;
+            originalPtr = originalPtr.next;
+
+            copyPtr.next = originalPtr == null ? null : originalPtr.next;
+        }
+
+        return copiedList;
     }
 }
