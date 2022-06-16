@@ -43,10 +43,10 @@ class Solution {
 
 
         // 1st meeting with the smallest ending time is performed at start
-        int meetingsPerformed = 1;
-        int previousMeetingEndTime = allMeetings.get(0).end;
+        int meetingsPerformed = 0;
+        int previousMeetingEndTime = -1;
 
-        for (int i = 1; i < allMeetings.size(); i++){
+        for (int i = 0; i < allMeetings.size(); i++){
             int currMeetingStartTime = allMeetings.get(i).start;
 
             if (currMeetingStartTime > previousMeetingEndTime){
