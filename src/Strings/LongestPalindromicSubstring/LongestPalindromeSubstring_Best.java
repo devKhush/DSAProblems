@@ -1,5 +1,8 @@
 package Strings.LongestPalindromicSubstring;
 
+// https://leetcode.com/problems/longest-palindromic-substring/solution/
+// https://youtu.be/y2BD4MJqV20
+
 public class LongestPalindromeSubstring_Best {
     /*
      ********************************* Approach 3: Expand Around Center ******************************
@@ -16,7 +19,6 @@ public class LongestPalindromeSubstring_Best {
      */
 
     public String longestPalindrome(String string) {
-        int n = string.length();
         char[] s = string.toCharArray();
 
         int longestPalindromeLength = 0;
