@@ -1,6 +1,6 @@
 package Strings.LongestPalindromicSubstring;
 
-public class LongestPalindromicSubstring {
+public class LongestPalindromicSubstring_Brute {
 
     /*
      ********************************Approach 1 : Brute Force ****************************************
@@ -50,10 +50,4 @@ public class LongestPalindromicSubstring {
         return longestPalindrome;
     }
 
-
-
-
-    /*
-    ********************************* Approach 3: Expand Around Center ******************************
-     */
 }

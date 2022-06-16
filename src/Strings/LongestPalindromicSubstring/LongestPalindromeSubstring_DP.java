@@ -3,7 +3,7 @@ package Strings.LongestPalindromicSubstring;
 // https://youtu.be/UflHuQj6MVA
 // https://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
 
-public class LongestPalindrome_DP {
+public class LongestPalindromeSubstring_DP {
     /*
         ************************************ Efficient DP Solution ******************************
         * Approach: The time complexity can be reduced by storing results of sub-problems.
@@ -59,14 +59,9 @@ public class LongestPalindrome_DP {
 
         boolean[][] dp = new boolean[n][n];
 
-        // we loop here from i-1 to 0, because to determine whether s[i:j] is palindrome or not
-        // we need to determine whether s[i+1:j-1] is palindrome or not.
-        // So, we need next row (i+1) & previous column (j-1) value to determine dp[i][j]
-        // So, loop must run from i = [n-1,0]  &  j  [i,n-1]
         for (int i = n-1; i >= 0; i--){
             for (int j = i; j < n; j++){
 
-                // This below condition (j-i+1<=2) is for substring of length 1 & 2. For eg, "a", "cd", "cx"
                 dp[i][j] =  (s[i] == s[j])  &&  (j - i + 1 <= 2 || dp[i+1][j-1]);
 
                 if (dp[i][j]  &&  j - i + 1 > maxPalindromeLength){
