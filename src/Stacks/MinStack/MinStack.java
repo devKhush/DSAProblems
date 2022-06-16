@@ -22,7 +22,7 @@ public class MinStack {
             top = new Node(value, value);
             return;
         }
-        int min = value < this.top.MinValue ? value : this.top.MinValue;
+        int min = Math.min(value, this.top.MinValue);
         Node temp = new Node(value, min);
         temp.next = this.top;
         this.top = temp;
