@@ -46,11 +46,12 @@ class Solution {
         int meetingsPerformed = 0;
         int previousMeetingEndTime = -1;
 
-        for (int i = 0; i < allMeetings.size(); i++){
-            int currMeetingStartTime = allMeetings.get(i).start;
 
-            if (currMeetingStartTime > previousMeetingEndTime){
-                previousMeetingEndTime = allMeetings.get(i).end;
+        for (int i = 0; i < allMeetings.size(); i++){
+            Meeting currMeeting = allMeetings.get(i);
+
+            if (currMeeting.start > previousMeetingEndTime){
+                previousMeetingEndTime = currMeeting.end;
                 meetingsPerformed++;
             }
         }
