@@ -44,14 +44,11 @@ class Solution
 {
     //Function to find the minimum number of platforms required at the
     //railway station such that no train waits.
-    static int findPlatform(int arrival[], int departure[], int n)
-    {
-        // add your code here
-       Arrays.sort(arrival);
+    static int findPlatform(int arrival[], int departure[], int n)    {
+        Arrays.sort(arrival);
         Arrays.sort(departure);
 
         int platformsNeeded = 1;
-
         int arrivalIndex = 1, departureIndex = 0;
         int platform = 1;
 
@@ -61,16 +58,12 @@ class Solution
                 arrivalIndex++;
             }
             else if (arrival[arrivalIndex] > departure[departureIndex]){
-//                platform--;
+                platform--;
                 departureIndex++;
-                arrivalIndex++;
             }
-            // System.out.println();
-
             platformsNeeded = Math.max(platform, platformsNeeded);
         }
-        return platformsNeeded;   
+        return platformsNeeded;
     }
-    
 }
 
