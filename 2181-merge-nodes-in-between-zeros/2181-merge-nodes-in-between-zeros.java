@@ -20,7 +20,7 @@ class Solution {
         while (ptr != null){
             if (ptr.val != 0){
                 sumBetweenZeros += ptr.val;
-                previousOfCurrentZeroNode = ptr;
+                // previousOfCurrentZeroNode = ptr;
             }
             
             else{
@@ -32,7 +32,7 @@ class Solution {
                     previousZeroNode.next = ptr;
                 
                 previousZeroNode = ptr;
-                previousOfCurrentZeroNode.next = null;
+                // previousOfCurrentZeroNode.next = null;
                 sumBetweenZeros = 0;
             }
             ptr = ptr.next;
