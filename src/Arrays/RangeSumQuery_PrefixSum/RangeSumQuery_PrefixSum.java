@@ -1,6 +1,10 @@
-class NumArray {
-    private int[] prefix;
-    public NumArray(int[] nums) {
+package Arrays.RangeSumQuery_PrefixSum;
+
+class RangeSumQuery_PrefixSum {
+    private final int[] prefix;
+
+    // Simple Prefix Sum
+    public RangeSumQuery_PrefixSum(int[] nums) {
         this.prefix = new int[nums.length];
         int prefixSum = 0;
         

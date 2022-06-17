@@ -35,4 +35,3 @@ The above figure represents the given linked list. The modified list contains
 	<li>There are <strong>no</strong> two consecutive nodes with <code>Node.val == 0</code>.</li>
 	<li>The <strong>beginning</strong> and <strong>end</strong> of the linked list have <code>Node.val == 0</code>.</li>
 </ul>
-</div>
