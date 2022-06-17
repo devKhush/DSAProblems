@@ -26,16 +26,13 @@ class Solution {
             else{
                 previousZeroNode.val = sumBetweenZeros;
                 
-                
                 if (ptr.next == null)
                     previousZeroNode.next = null;
                 else
                     previousZeroNode.next = ptr;
                 
                 previousZeroNode = ptr;
-                
                 previousOfCurrentZeroNode.next = null;
-                
                 sumBetweenZeros = 0;
             }
             ptr = ptr.next;
