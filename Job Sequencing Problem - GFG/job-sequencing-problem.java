@@ -56,7 +56,7 @@ class Solution{
         for (int i = 0; i < allJobs.length; i++){
             int currentJobDeadline = allJobs[i].deadline;
             
-            while (deadlinesDone[currentJobDeadline] != 0)
+          while (currentJobDeadline > 0  &&  deadlinesDone[currentJobDeadline] != 0)
                 currentJobDeadline--;
             
             if (currentJobDeadline == 0)
