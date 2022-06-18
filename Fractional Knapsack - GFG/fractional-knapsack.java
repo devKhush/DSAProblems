@@ -51,7 +51,7 @@ class Solution{
         double totalWeight = 0.0;
 
         for (int i = 0; i < allItems.length; i++){
-            if (allItems[i].weight <= knapsackWeight - totalWeight){
+            if (allItems[i].weight + totalWeight<= knapsackWeight){
                 totalValue += allItems[i].value;
                 totalWeight += allItems[i].weight;
             }
