@@ -36,4 +36,3 @@ The total number of units will be = (1 * 3) + (2 * 2) + (1 * 1) = 8.
 	<li><code>1 &lt;= numberOfBoxes<sub>i</sub>, numberOfUnitsPerBox<sub>i</sub> &lt;= 1000</code></li>
 	<li><code>1 &lt;= truckSize &lt;= 10<sup>6</sup></code></li>
 </ul>
-</div>
