@@ -61,6 +61,8 @@ class Solution{
                 totalWeight += weightToBeAdded;
                 totalValue += valuePerWeightOFCurrentItem * weightToBeAdded;
             }
+            if (totalWeight == knapsackWeight)
+                break;
         }
         return totalValue;
     }
