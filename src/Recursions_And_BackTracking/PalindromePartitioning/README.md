@@ -17,4 +17,3 @@
 	<li><code>1 &lt;= s.length &lt;= 16</code></li>
 	<li><code>s</code> contains only lowercase English letters.</li>
 </ul>
-</div>
