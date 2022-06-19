@@ -13,9 +13,9 @@ class Solution {
         }
 
         for (int i = index; i < n; i++){
-            String substringFromIndexToI = s.substring(index, i + 1);
 
-            if (isPalindrome(substringFromIndexToI)){
+            if (isPalindrome(s, index, i)){
+                String substringFromIndexToI = s.substring(index, i + 1);
                 list.add(substringFromIndexToI);
                 palindromePartitioning(i + 1, s, n, answer, list);
                 list.remove(list.size() - 1);
@@ -23,8 +23,8 @@ class Solution {
         }
     }
 
-    private boolean isPalindrome(String str){
-        int low = 0, high = str.length() - 1;
+    private boolean isPalindrome(String str, int startIndex, int endIndex){
+        int low = startIndex, high = endIndex;
 
         while (low <= high){
             if (str.charAt(low) != str.charAt(high))
