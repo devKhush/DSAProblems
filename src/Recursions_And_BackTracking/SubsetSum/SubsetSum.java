@@ -18,9 +18,12 @@ import java.util.ArrayList;
 
 
 public class SubsetSum {
-
-    // ************************************ Approach 1 **************************************
     // Same as solved in SubSequenceOfArray Folder
+    /*
+     ***************************** Approach 1 : Pick & Not Pick Approach *********************************
+     * TC -> O(2^n)      Generating all possible subsets that are 2^n in numbers
+     * SC -> O(n)        At most n recursive calls, as we can either pick/not-pick only n elements
+     */
     private ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
         ArrayList<Integer> answer = new ArrayList<>();
 
@@ -42,9 +45,12 @@ public class SubsetSum {
     }
 
 
-    // ************************************ Approach 2 **************************************
     // Same as solved in SubSets_or_SubSequence_OfArray_AnotherApproach Folder
-
+    /*
+     ***************************** Approach 2 : Construct Subset Size by Size *************************
+     * TC -> O(2^n)      Generating all possible subsets that are 2^n in numbers
+     * SC -> O(n)        At most n recursive calls, as we produce subsets size-by-size by considering all n values
+     */
     private ArrayList<Integer> subsetSum(ArrayList<Integer> arr){
         ArrayList<Integer> subsetSums = new ArrayList<>();
 
