@@ -5,18 +5,28 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Arrays;
 
-// https://takeuforward.org/data-structure/subset-ii-print-all-the-unique-subsets/
 // https://youtu.be/RIn3gOkbhQE
+// https://takeuforward.org/data-structure/subset-ii-print-all-the-unique-subsets/
 
 // Similar to Combination-Sum-II
 
 class UniqueSubSetsOfArray {
 
-    // ****************************************** Approach 1 ******************************************
-    // Using new approach
-    // T.C -> O(n*log(n)) (sorting) +  O(2^n) Due to time to calculate 2^n subsets in worst case
-    // S.C -> O(2^n * k) to store every subset of average length k. Auxiliary space is O(n)  if n is the depth of the recursion tree.
+    /*
+    ********** Approach 1: By Constructing all the Subsets size-by-size in every step/recursion *********
+    * We also sort the array to avoid duplicates, this takes O(n*log(n))
+    * We generate all 2^n subsets (this takes O(2^n) time) that are of length 'n' im worst case,
+      & we also add all the 2^n subsets into a unique-sub-set list. So, this takes O(n * 2^n) time
 
+    * T.C --> O(n*log(n)) + O(2^n) +O(n * 2^n)  ~ O(n * 2^n)
+
+    * Space Complexity:  O(2^n * k) + O(n)   ~  O(n * 2^n)
+    * Space Complexity:  O(2^n * k) + O(n)   ~  O(n)    Ignoring output
+    * O(2^n * k) To store every subset of average length k. (k = n in worst case)
+    * O(n) for 'n' recursion stack space (recursive calls).
+    * If we Ignore output ArrayList of Subsets (that are 2^n in number) into Space complexity,
+    * then also Space Complexity is O(n) only due to Recursion calls
+    */
     public List<List<Integer>> subsetsWithDup(int[] arr) {
         // Sorting makes easier to generate all unique subsequence with given sum, as repeating element
         // can be easily ignored
@@ -45,17 +55,26 @@ class UniqueSubSetsOfArray {
     }
 
 
-    // ****************************************** Approach 2 ******************************************
-    // Same as previous one
+    /*
+    **************** Approach 2: Pick & Non-pick by using HashSet to avoid Duplicate ***************
+    * We also sort the array to avoid duplicates, this takes O(n*log(n))
+    * We generate all 2^n subsets (this takes O(2^n) time) that are of length 'n' im worst case,
+      & we also add all the 2^n subsets into a unique-sub-set list. So, this takes O(n * 2^n) time
 
-    // T.C --> O(n*log(n)) (sorting) + O(2^n) (finding all subsets) +O(n * 2^n) (To add all subsets inside the set into list)
-    // HashSet addition takes O(1) time
+    * T.C --> O(n*log(n)) + O(2^n) +O(n * 2^n)  ~ O(n * 2^n)
+    * HashSet addition takes O(1) time for its all methods
 
-    // Space Complexity:  O(2^n * k) to store every subset of average length k.
-    // Since we are initially using a set to store the answer another O(2^n *k) is also used.
+    * Space Complexity:  O(2^n * k) + O(n)  + O(n * 2^n)  ~  O(n * 2^n)
+    * O(2^n * k) To store every subset of average length k. (k = n in worst case)
+    * Since we are initially using a set to store the answer another O(2^n *k) is also used.
+    * O(n) for 'n' recursion stack space (recursive calls).
+    * Even if we don't Ignore output ArrayList of Subsets (that are 2^n in number) into Space complexity,
+    * then also Space Complexity is O(2^n * k) + O(n) due to HashSet & Recursion calls
+    */
 
     public List<List<Integer>> subsetsWithDup_(int[] arr) {
         // By sorting we ensure that every subset inside the all Unique combinations sets are in sorted fashion
+        // and hence HashSet can avoid duplicates
         Arrays.sort(arr);
 
         HashSet<ArrayList<Integer>> set = new HashSet<>();
