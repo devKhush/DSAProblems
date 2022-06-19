@@ -5,11 +5,21 @@ import java.util.List;
 // https://youtu.be/G1fRTGRxXU8
 // https://takeuforward.org/data-structure/combination-sum-ii-find-all-unique-combinations/
 
+
+/*
+Time Complexity:  O(n*log(n)) + O(2^n * k)   ~  O(2^n * k)
+Reason: Assume if all the elements in the array are unique then the no. of subsequence we will get
+(will be made by recursive calls) will be O(2^n). We also add the combination (whose sum is target)
+to our "allUniqueCombinations" ArrayList when we reach the base case that will take O(k) time
+k is the average length of the combination
+
+Space Complexity:O(k*x)
+Reason: if we have x combinations then space will be x*k where k is the average length of the combination.
+ */
+
 class CombinationSum_II {
-    
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         int n = candidates.length;
-
         // Sorting makes easier to generate all subsequence with given sum, as repeating element
         // can be easily ignored
         mergeSort(candidates, 0, n-1, new int[n]);
@@ -17,7 +27,6 @@ class CombinationSum_II {
         List<List<Integer>> allCombinations = new ArrayList<>();
         
         getCombinationSum(0, target, 0, candidates, allCombinations, new ArrayList<>());
-        
         return allCombinations;
     }
     
