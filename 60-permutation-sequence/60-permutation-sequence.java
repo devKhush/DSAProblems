@@ -1,6 +1,30 @@
 class Solution {
     public String getPermutation(int n, int k) {
         int previousFactorial = 1;
+        ArrayList<Integer> numbers = new ArrayList<>();
+        
+        for (int i = 1; i <= n; i++){
+            numbers.add(i);
+            if (i != n)
+                previousFactorial *= i;
+        }
+        
+        return findKthPermutation(n, k - 1, previousFactorial, numbers);
+    }
+    
+    private String findKthPermutation(int n, int k, int prevFact, ArrayList<Integer> nums){
+        String kthPermutation = "" + nums.get(k / prevFact);
+        nums.remove(k / prevFact);
+        n--;
+        
+        if (n == 0)
+            return kthPermutation;        
+        return kthPermutation + findKthPermutation(n, k % prevFact, prevFact / n, nums);
+    }
+    
+    // Iterative Solution *********************************************************************
+    public String getPermutation_Iterative(int n, int k) {
+        int previousFactorial = 1;
         ArrayList<Integer> number = new ArrayList<>();
         
         for (int i = 1; i <= n; i++){
