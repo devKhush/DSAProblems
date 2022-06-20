@@ -1,5 +1,34 @@
 class Solution {
+    // Iterative Solution *********************************************************************
     public String getPermutation(int n, int k) {
+         int previousFactorial = 1;
+        ArrayList<Integer> number = new ArrayList<>();
+
+        for (int i = 1; i <= n; i++){
+            number.add(i);
+            if (i != n)
+                previousFactorial *= i;
+        }
+
+        k--;
+        StringBuilder kthPermutation = new StringBuilder();
+
+        while (true){
+            kthPermutation.append(number.get(k / previousFactorial));
+            number.remove(k / previousFactorial);
+            n--;
+
+            if (n == 0)
+                break;
+            k = k % previousFactorial;
+            previousFactorial = previousFactorial / n;
+        }
+        return kthPermutation.toString();
+    }
+    
+    
+    // Recursive Solution ***************************************************************************
+    public String getPermutation_Recursive(int n, int k) {
         int previousFactorial = 1;
         ArrayList<Integer> numbers = new ArrayList<>();
         
@@ -20,35 +49,6 @@ class Solution {
         if (n == 0)
             return kthPermutation;        
         return kthPermutation + findKthPermutation(n, k % prevFact, prevFact / n, nums);
-    }
-    
-    // Iterative Solution *********************************************************************
-    public String getPermutation_Iterative(int n, int k) {
-        int previousFactorial = 1;
-        ArrayList<Integer> number = new ArrayList<>();
-        
-        for (int i = 1; i <= n; i++){
-            number.add(i);
-            
-            if (i != n)
-                previousFactorial *= i;
-        }
-        
-        k--;
-        String kthPermutation = "";
-        
-        while (true){
-            kthPermutation += number.get(k / previousFactorial);
-            number.remove(k / previousFactorial);
-            n--;
-            
-            if (n == 0)
-                break;
-            
-            k = k % previousFactorial;
-            previousFactorial = previousFactorial / n;
-        }
-        return kthPermutation;
     }
     
     
