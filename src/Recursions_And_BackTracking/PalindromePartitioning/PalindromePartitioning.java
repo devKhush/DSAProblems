@@ -58,9 +58,8 @@ public class PalindromePartitioning {
             // If Yes, then partition the right substring too. Else, skip that partition & continue
             // partition at next index.
             if (isPalindrome(s, index, i)){
-                String substringFrom_index_To_i = s.substring(index, i + 1);
                 // add current left partition substring (which is palindrome) into a list
-                list.add(substringFrom_index_To_i);
+                list.add(s.substring(index, i + 1));
                 palindromePartitioning(i + 1, s, n, answer, list);
                 list.remove(list.size() - 1);
             }

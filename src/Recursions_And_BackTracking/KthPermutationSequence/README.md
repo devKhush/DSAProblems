@@ -31,4 +31,3 @@
 	<li><code>1 &lt;= n &lt;= 9</code></li>
 	<li><code>1 &lt;= k &lt;= n!</code></li>
 </ul>
-</div>
