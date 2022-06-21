@@ -29,4 +29,3 @@
 	<li><code>board[i][j]</code> is a digit or <code>'.'</code>.</li>
 	<li>It is <strong>guaranteed</strong> that the input board has only one solution.</li>
 </ul>
-</div>
