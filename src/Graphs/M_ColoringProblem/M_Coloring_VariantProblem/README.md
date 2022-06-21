@@ -41,4 +41,3 @@ Hence, [1,2,3] is a valid answer. Other valid answers include [1,2,4], [1,4,2], 
 	<li><code>x<sub>i</sub> != y<sub>i</sub></code></li>
 	<li>Every garden has <strong>at most 3</strong> paths coming into or leaving it.</li>
 </ul>
-</div>
