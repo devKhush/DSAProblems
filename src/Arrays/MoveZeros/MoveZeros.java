@@ -1,4 +1,11 @@
-class Solution {
+package Arrays.MoveZeros;
+
+class MoveZeros {
+    /*
+    Simple Two pointer approach
+    * TC -> O(n)
+    * SC -> O(1)
+    */
     public void moveZeroes(int[] arr) {
         int n = arr.length;
 
