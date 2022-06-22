@@ -1,28 +1,25 @@
 class Solution {
-     public List<String> wordBreak(String s, List<String> wordDict) {
-        HashSet<String> dictionary = new HashSet<>(wordDict);
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        ArrayList<String> allBrokenWords = new ArrayList<>();
 
-        List<String> allBrokenSentences = new ArrayList<>();
-
-        breakWord(0, s, s.length(), dictionary, new ArrayList<>(), allBrokenSentences);
-        return allBrokenSentences;
+        breakWord(0, s, s.length(), wordDict, new ArrayList<>(), allBrokenWords);
+        return allBrokenWords;
     }
 
-    private void breakWord(int index, String s, int n, HashSet<String> dictionary, ArrayList<String> currenBrokenWords, List<String> allBrokenWords){
+    private void breakWord(int index, String s, int n, List<String> dictionary, ArrayList<String> currentBrokenWord, ArrayList<String> allBrokenWords){
         if (index == n){
-            allBrokenWords.add(String.join(" ", currenBrokenWords));
+            allBrokenWords.add(String.join(" ", currentBrokenWord));
             return;
         }
 
         for (int i = index; i < n; i++){
-            String subString = s.substring(index, i+1);
+            String subString = s.substring(index, i + 1);
 
             if (dictionary.contains(subString)){
-                currenBrokenWords.add(subString);
-                breakWord(i + 1, s, n, dictionary, currenBrokenWords, allBrokenWords);
-                currenBrokenWords.remove(currenBrokenWords.size() - 1);
+                currentBrokenWord.add(subString);
+                breakWord(i + 1, s, n, dictionary, currentBrokenWord, allBrokenWords);
+                currentBrokenWord.remove(currentBrokenWord.size() - 1);
             }
         }
     }
- 
 }
