@@ -41,8 +41,8 @@ class Solution {
     }
     
     private static void findPath(int i, int j, int[][] maze, int n, ArrayList<Character> path, ArrayList<String> allPaths, boolean[][] visited){
-        if (i < 0 || j < 0 || j >= n || i >= n)
-            return;
+        // if (i < 0 || j < 0 || j >= n || i >= n)
+        //     return;
         if (maze[i][j] == 0)
             return;
             
