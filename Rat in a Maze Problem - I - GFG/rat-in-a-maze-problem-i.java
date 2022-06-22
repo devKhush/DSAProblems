@@ -33,56 +33,55 @@ class Rat {
 
 // m is the given matrix and n is the order of matrix
 class Solution {
-    public static ArrayList<String> findPath(int[][] maze, int n) {
+    public ArrayList<String> findPath(int[][] maze, int n) {
+        // Stores all the paths that Rat can take to reach destination
         ArrayList<String> allPaths = new ArrayList<>();
+
+        // visited boolean array
         boolean[][] visited = new boolean[n][n];
-        findPath(0, 0, maze, n, new ArrayList<>(), allPaths, visited);
+
+        // Finding all paths starting from maze[0][0] to maze[n-1][m-1]
+        if (maze[0][0] == 1)
+            findAllPathsToDestination(0, 0, maze, n, "", allPaths, visited);
         return allPaths;
     }
-    
-    private static void findPath(int i, int j, int[][] maze, int n, ArrayList<Character> path, ArrayList<String> allPaths, boolean[][] visited){
-        // if (i < 0 || j < 0 || j >= n || i >= n)
-        //     return;
-        if (maze[i][j] == 0)
-            return;
-            
+
+    private void findAllPathsToDestination(int i, int j, int[][] maze, int n, String path, ArrayList<String> allPaths, boolean[][] visited){
+        // If we reached destination, store the path taken into an arraylist
         if (i == n-1 && j == n-1){
-            String pathTaken = "";
-            for (char ch : path)
-                pathTaken += ch;
-            allPaths.add(pathTaken);
+            allPaths.add(path);
             return;
         }
-        
-        if (i+1 < n && !visited[i+1][j]){
+
+        // Moving downwards: Marks current cell as visited, add the Down 'D' direction into the 'path' String
+        // and move downwards, after backtracking mark it as unvisited
+        if (i+1 < n  &&  !visited[i+1][j]  &&  maze[i+1][j] == 1){
             visited[i][j] = true;
-            path.add('D');
-            findPath(i+1, j, maze, n, path, allPaths, visited);
-            path.remove(path.size() -1);
+            findAllPathsToDestination(i+1, j, maze, n, path + "D", allPaths, visited);
             visited[i][j] = false;
         }
-        
-        if (j-1 >= 0 && !visited[i][j-1]){
+
+        // Moving Left: Marks current cell as visited, add the Left 'L' direction into the 'path' String
+        // and move left, after backtracking mark it as unvisited
+        if (j-1 >= 0  &&  !visited[i][j-1]  &&  maze[i][j-1] == 1){
             visited[i][j] = true;
-            path.add('L');
-            findPath(i, j-1, maze, n, path, allPaths, visited);
-            path.remove(path.size() -1);
+            findAllPathsToDestination(i, j-1, maze, n, path + "L", allPaths, visited);
             visited[i][j] = false;
         }
-        
-        if (j+1 < n && !visited[i][j+1]){
+
+        // Moving Right: Marks current cell as visited, add the Right 'R' direction into the 'path' String
+        // and move right, after backtracking mark it as unvisited
+        if (j+1 < n  &&  !visited[i][j+1]  &&  maze[i][j+1] == 1){
             visited[i][j] = true;
-            path.add('R');
-            findPath(i, j+1, maze, n, path, allPaths, visited);
-            path.remove(path.size() -1);
+            findAllPathsToDestination(i, j+1, maze, n, path + "R", allPaths, visited);
             visited[i][j] = false;
         }
-        
-        if (i-1 >= 0 && !visited[i-1][j]){
+
+        // Moving Upwards: Marks current cell as visited, add the Upwards 'U' direction into the 'path' String
+        // and move upwards, after backtracking mark it as unvisited
+        if (i-1 >= 0  &&  !visited[i-1][j] &&  maze[i-1][j] == 1){
             visited[i][j] = true;
-            path.add('U');
-            findPath(i-1, j, maze, n, path, allPaths, visited);
-            path.remove(path.size() -1);
+            findAllPathsToDestination(i - 1, j, maze, n, path + "U", allPaths, visited);
             visited[i][j] = false;
         }
     }
