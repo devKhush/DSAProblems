@@ -45,20 +45,13 @@ class Solution {
             return;
         if (maze[i][j] == 0)
             return;
+            
         if (i == n-1 && j == n-1){
             String pathTaken = "";
             for (char ch : path)
                 pathTaken += ch;
             allPaths.add(pathTaken);
             return;
-        }
-        
-        if (i-1 >= 0 && !visited[i-1][j]){
-            visited[i][j] = true;
-            path.add('U');
-            findPath(i-1, j, maze, n, path, allPaths, visited);
-            path.remove(path.size() -1);
-            visited[i][j] = false;
         }
         
         if (i+1 < n && !visited[i+1][j]){
@@ -68,6 +61,7 @@ class Solution {
             path.remove(path.size() -1);
             visited[i][j] = false;
         }
+        
         if (j-1 >= 0 && !visited[i][j-1]){
             visited[i][j] = true;
             path.add('L');
@@ -75,10 +69,19 @@ class Solution {
             path.remove(path.size() -1);
             visited[i][j] = false;
         }
+        
         if (j+1 < n && !visited[i][j+1]){
             visited[i][j] = true;
             path.add('R');
             findPath(i, j+1, maze, n, path, allPaths, visited);
+            path.remove(path.size() -1);
+            visited[i][j] = false;
+        }
+        
+        if (i-1 >= 0 && !visited[i-1][j]){
+            visited[i][j] = true;
+            path.add('U');
+            findPath(i-1, j, maze, n, path, allPaths, visited);
             path.remove(path.size() -1);
             visited[i][j] = false;
         }
