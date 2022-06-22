@@ -8,7 +8,7 @@ class Solution {
 
     private  void breakWord(int index, String s, int n, List<String> dictionary, ArrayList<String> currentBrokenWord, ArrayList<String> allBrokenWords){
         if (index == n){
-           allBrokenWords.add(convertListIntoString(currentBrokenWord));
+           allBrokenWords.add(String.join(" ", currentBrokenWord));
             return;
         }
 
@@ -23,20 +23,5 @@ class Solution {
         }
     }
     
-    private String convertListIntoString(ArrayList<String> list){
-        int n = list.size();
-        String string = "";
-        String previousWord = "";
-        
-        int i = 0;
-        
-        for (String word : list){
-            if (i < n-1)
-                string += word + " ";
-            previousWord = word;
-            i++;
-        }
-        string += previousWord;
-        return string;
-    }
+ 
 }
