@@ -12,7 +12,7 @@ public class SumOfAllOddLengthSubArrays {
     *
     * Intuition/Thought Process:
     * Efficient Approach: To optimize the above approach, the idea is to observe the following pattern
-      after generating all the arrays of odd length:
+      after generating all the sub-arrays:
     * For any element at index 'i' there are ('i' + 1) choices of sub-arrays on the left side of it
       and (N – 'i') choices of sub-arrays on the right side of it.
     * Therefore, for any element arr[i], the count of arr[i] is (i + 1) * (N – i) in all the sub-arrays.
