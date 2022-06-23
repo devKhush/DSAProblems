@@ -1,15 +1,24 @@
 package BinarySearch.SquareRoot;
 
+// https://leetcode.com/problems/sqrtx/
+
 public class SquareRoot {
-    public int mySqrt(int x) {
-        int low = 1, high = x;
+    /*
+    Time Complexity: O(log(n))
+    Space Complexity: O(1)
+    */
+    // ************************************** Basic Approach **************************************
+    public int mySqrt(int n) {
+        int low = 1, high = n;
         int sqrt = 0;
 
         while (low <= high){
             int mid = (low+high)/2;
-            if (mid*mid == x)
+
+            // overflow may occur when do 'mid * mid' if 'n' is Integer.MAX_VALUE
+            if (mid * mid == n)
                 return mid;
-            else if (mid*mid > x)
+            else if (mid * mid > n)
                 high = mid - 1;
             else{
                 sqrt = mid;
@@ -20,18 +29,25 @@ public class SquareRoot {
     }
 
 
+    // ************************************** Correct Solution **************************************
+    public int mySqrt_Correct(int n) {
+        int low = 1, high = n;
 
-    public int mySqrt_Correct(int x) {
-        int low = 1, high = x;
+        // made sqrt as 0, to satisfy the answer for n = 0
         int sqrt = 0;
 
+        // Standard Binary Search
         while (low <= high){
-            int mid = (low+high)/2;
+            int mid = (low + high) / 2;
 
-            if  (mid <= x/mid){
+            // To avoid overflow in value of "mid * mid" we do "mid <= n / mid"
+            // If "mid <= n/mid" then save the current answer 'mid' and shrink Search Space to right
+            // sub-half to find further greater value of sqrt
+            if (mid <= n / mid){
                 sqrt = mid;
                 low = mid + 1;
             }
+            // If "mid > n/mid" then shrink the Search Space to left sub-half
             else
                 high = mid - 1;
         }
