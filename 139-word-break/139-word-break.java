@@ -1,4 +1,5 @@
 class Solution {
+    // Tabulation Solution ****************************************************
    public boolean wordBreak(String s, List<String> wordDict){
         int n = s.length();
         boolean[] dp = new boolean[n + 1];
