@@ -1,33 +1,26 @@
 class Solution {
-    
-    public boolean wordBreak(String s, List<String> wordDict){
+   public boolean wordBreak(String s, List<String> wordDict){
         int n = s.length();
-        HashMap<Integer, Boolean> dp = new HashMap<>(); 
-        
-        return canBreakWord(0, n, s, wordDict, dp);
-    }
-    public boolean canBreakWord(int index, int n, String s, List<String> dictionary, HashMap<Integer, Boolean> dp){
-        if (index == n)
-            return true;
+        boolean[] dp = new boolean[n + 1];
+        dp[n] = true;
 
-        if (dp.containsKey(index))
-            return dp.get(index);
+        for (int index = n-1; index >= 0; index--){
 
-        for (int i = index; i < n; i++){
-            String subString = s.substring(index, i + 1);
+            for (int i = index; i < n; i++){
+                String subString = s.substring(index, i + 1);
 
-            if (dictionary.contains(subString)  &&  canBreakWord(i + 1, n, s, dictionary, dp)){
-                dp.put(index, true);
-                return true;
+                if (wordDict.contains(subString)  &&  dp[i + 1]) {
+                    dp[index] = true;
+                    break;
+                }
             }
         }
-        dp.put(index, false);
-        return false;
+        return dp[0];
     }
     
     // Memoization *************************************************************************
     public boolean wordBreak_Memoization(String s, List<String> wordDict){
-        int n =s.length();
+        int n = s.length();
 
         int[] dp = new int[n];
         Arrays.fill(dp, -1);
