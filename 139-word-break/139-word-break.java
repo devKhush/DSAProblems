@@ -31,7 +31,7 @@ class Solution {
     
     
     // BACK TRACKING Solution **************************************************************
-    public boolean wordBreak_BAckTracking(String s, List<String> wordDict) {
+    public boolean wordBreak_BackTracking(String s, List<String> wordDict) {
         return canBreakWord(0, s, s.length(), new HashSet<>(wordDict));
     }
     private boolean canBreakWord(int index, String s, int n, HashSet<String> wordDict){
