@@ -34,4 +34,3 @@ Note that you are allowed to reuse a dictionary word.
 	<li><code>s</code> and <code>wordDict[i]</code> consist of only lowercase English letters.</li>
 	<li>All the strings of <code>wordDict</code> are <strong>unique</strong>.</li>
 </ul>
-</div>
