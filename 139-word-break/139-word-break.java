@@ -1,6 +1,32 @@
 class Solution {
     
     public boolean wordBreak(String s, List<String> wordDict){
+        int n = s.length();
+        HashMap<Integer, Boolean> dp = new HashMap<>(); 
+        
+        return canBreakWord(0, n, s, wordDict, dp);
+    }
+    public boolean canBreakWord(int index, int n, String s, List<String> dictionary, HashMap<Integer, Boolean> dp){
+        if (index == n)
+            return true;
+
+        if (dp.containsKey(index))
+            return dp.get(index);
+
+        for (int i = index; i < n; i++){
+            String subString = s.substring(index, i + 1);
+
+            if (dictionary.contains(subString)  &&  canBreakWord(i + 1, n, s, dictionary, dp)){
+                dp.put(index, true);
+                return true;
+            }
+        }
+        dp.put(index, false);
+        return false;
+    }
+    
+    // Memoization *************************************************************************
+    public boolean wordBreak_Memoization(String s, List<String> wordDict){
         int n =s.length();
 
         int[] dp = new int[n];
