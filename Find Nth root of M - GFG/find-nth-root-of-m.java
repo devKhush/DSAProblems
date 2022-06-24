@@ -29,20 +29,19 @@ class GFG
 
 class Solution{
     public int NthRoot(int n, int m){
-    int start=1;
-    int end=m;
-    while(start<=end){
-        int mid=(start+end)/2;
-        double power = Math.pow(mid, n);
-        if(power==m)        
-            return mid;
-        
-        else if(power>m)
-            end= mid-1;
-        else if(power<m)
-        
-            start=mid+1;
-    }
-    return -1;
+       int low = 1, high = m;
+
+        while (low <= high){
+            int mid = (low + high) / 2;
+            double power = Math.pow(mid, n);
+
+            if (power == m)
+                return mid;
+            else if (power < m)
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+        return -1;
     }
 }
