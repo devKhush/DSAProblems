@@ -38,6 +38,7 @@ class GFG
 class Solution {
     int median(int matrix[][], int r, int c) {
         int low = 1, high = (int)1e8;
+        int median = 0;
         
         while (low <= high){
             int mid = (low + high) >> 1;
@@ -47,10 +48,12 @@ class Solution {
                 count += countOfNumberLessThanOrEqualTo(matrix[i], mid, c);
             if (count <= (r * c)/2)
                 low = mid + 1;
-            else
+            else{
+                median = mid;
                 high = mid - 1;
+            }
         }
-        return low;
+        return median;
     }
     
     
