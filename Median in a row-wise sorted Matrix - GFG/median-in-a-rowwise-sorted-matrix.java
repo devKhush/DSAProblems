@@ -45,7 +45,6 @@ class Solution {
             int count = 0;
             for (int i = 0; i < r; i++)
                 count += countOfNumberLessThanOrEqualTo(matrix[i], mid, c);
-            
             if (count <= (r * c)/2)
                 low = mid + 1;
             else
