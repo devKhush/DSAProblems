@@ -46,17 +46,36 @@ class GFG {
 class Solution {
     public long kthElement( int a[], int b[], int n1, int n2, int k){
        int m = a.length, n = b.length;
-        int[] arr = new int[m + n];
-        int i = 0,  j = 0, l = 0;
+        int i = 0,  j = 0, count = 0;
 
-        while (i < m || j < n){
-            int valA = i < m ? a[i] : Integer.MAX_VALUE;
-            int valB = j < n ? b[j] : Integer.MAX_VALUE;
-
-            arr[l++] = Math.min(valA, valB);
-            if (valA <= valB) i++;
-            else if (valA > valB) j++;
+        while (i < m && j < n){
+            if (a[i] <= b[j]){
+                i++;
+                count++;
+                if (count == k)
+                    return a[i - 1];
+            }
+            else{
+                j++;
+                count++;
+                if (count == k)
+                    return b[j - 1];
+            }
         }
-        return arr[k - 1];
+
+        while (i < m){
+            i++;
+            count++;
+            if (count == k)
+                return a[i - 1];
+        }
+
+        while (j < n){
+            j++;
+            count++;
+            if (count == k)
+                return b[j - 1];
+        }
+        return -1;
     }
 }
