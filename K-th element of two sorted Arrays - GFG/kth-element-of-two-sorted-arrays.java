@@ -46,25 +46,20 @@ class GFG {
 class Solution {
     public long kthElement( int a[], int b[], int n1, int n2, int k){
      int m = a.length, n = b.length;
-        int i = 0,  j = 0, k_index = 0;
+        int i = 0,  j = 0;
+        int counter = 0;
+        int kthElement = -1;
 
-        while (i < m || j < n){
+        while (counter < k){
             int valA = i < m ? a[i] : Integer.MAX_VALUE;
             int valB = j < n ? b[j] : Integer.MAX_VALUE;
-            
-            if (valA <= valB){
-                i++;
-                k_index++;
-                if (k_index == k)
-                    return a[i - 1];
-            }
-            else if (valA > valB){
-                j++;
-                k_index++;
-                if (k_index == k)
-                    return b[j - 1];
-            }
+
+            if (valA <= valB)
+                kthElement = a[i++];
+            else if (valA > valB)
+                kthElement = b[j++];
+            counter++;
         }
-        return -1;
+        return kthElement;
     }
 }
