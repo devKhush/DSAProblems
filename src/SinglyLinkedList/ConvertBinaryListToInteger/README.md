@@ -24,4 +24,3 @@
 	<li>Number of nodes&nbsp;will not exceed <code>30</code>.</li>
 	<li>Each node's value is either&nbsp;<code>0</code> or <code>1</code>.</li>
 </ul>
-</div>
