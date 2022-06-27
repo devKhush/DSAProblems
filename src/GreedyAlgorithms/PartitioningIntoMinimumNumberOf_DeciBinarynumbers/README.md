@@ -30,4 +30,3 @@
 	<li><code>n</code> consists of only digits.</li>
 	<li><code>n</code> does not contain any leading zeros and represents a positive integer.</li>
 </ul>
-</div>
