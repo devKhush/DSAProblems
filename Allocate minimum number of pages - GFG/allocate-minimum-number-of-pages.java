@@ -55,7 +55,7 @@ class Solution {
             else
                 low = midPages + 1;
         }
-        return minimumPagesAllocated;
+        return minimumPagesAllocated == -1 ? -1 : low;
     }
      private static boolean canAllocateCurrentPagesAsMinimumPages(int[] bookArray, int students, int pageToBeAllocate){
         int studentsAllocatedBooks = 1;
