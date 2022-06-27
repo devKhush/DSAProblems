@@ -1,5 +1,5 @@
 class Solution {
-    public int minPartitions_Efficient(String n) {
+    public int minPartitions(String n) {
         int minNumberOfDeciBinaryNumber = 0;
         char[] number = n.toCharArray();
         
@@ -8,7 +8,7 @@ class Solution {
         return minNumberOfDeciBinaryNumber;
     }
     
-     public int minPartitions(String n) {
+     public int minPartitions_BruteForce(String n) {
         int minNumberOfDeciBinaryNumber = 0;
         char[] number = n.toCharArray();
         
