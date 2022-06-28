@@ -1,4 +1,10 @@
-class Solution {
+package BinarySearch.MagneticForceBetweenTwoBalls;
+import java.util.Arrays;
+
+// PRE-REQUISITE: "AGGRESSIVE COWS: BINARY SEARCH"
+//  SAME AS THAT QUESTION
+
+class MagneticForceBetweenTwoBalls {
     public int maxDistance(int[] position, int m) {
         Arrays.sort(position);
         

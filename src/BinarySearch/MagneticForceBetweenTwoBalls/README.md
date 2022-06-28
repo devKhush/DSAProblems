@@ -29,4 +29,3 @@
 	<li>All integers in <code>position</code> are <strong>distinct</strong>.</li>
 	<li><code>2 &lt;= m &lt;= position.length</code></li>
 </ul>
-</div>
