@@ -6,14 +6,15 @@ class Solution {
         int deleteOperations = 0;
         
         while (low < high){
-            if (arr[low] + arr[high] == k){
+            int sum = arr[low] + arr[high];
+            if (sum == k){
                 deleteOperations++;
                 low++;
                 high--;
             }
-            else if (arr[low] + arr[high] < k)
+            else if (sum < k)
                 low++;
-            else
+            else if (sum > k)
                 high--;
         }
         return deleteOperations;
