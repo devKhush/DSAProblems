@@ -1,4 +1,15 @@
-class Solution {
+package Sorting.MaximumNumberOfKSumPairs;
+import java.util.Arrays;
+
+/*
+Pre-requisite: "TWO SUM: ARRAY IS SORTED"
+ */
+
+class MaximumNumberOfKSumPairs {
+    /*
+    Time Complexity: O(n * log(n)) + O(n/2)   =  O(n * log(n))
+    Space Complexity: O(1)
+     */
     public int maxOperations(int[] arr, int k) {
         Arrays.sort(arr);
         
