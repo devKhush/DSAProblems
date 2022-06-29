@@ -1,32 +1,38 @@
 class MedianFinder {
-    private ArrayList<Integer> numbers;
-    private int n;
+    private final PriorityQueue<Integer> leftNumbersMaxHeap;
+    private final PriorityQueue<Integer> rightNumbersMinHeap;
     
     public MedianFinder() {
-        this.numbers = new ArrayList<>();    
+        leftNumbersMaxHeap = new PriorityQueue<>((a, b) -> (b - a));
+        rightNumbersMinHeap = new PriorityQueue<>((a, b) -> (a - b));
     }
     
     public void addNum(int num) {
-        int low = 0, high = n - 1;
-                
-        while (low <= high){
-            int mid = (low + high) >> 1;
-            
-            if (numbers.get(mid) <= num)
-                low = mid + 1;
-            else if (numbers.get(mid) > num)
-                high = mid - 1;
-        }
+        if (leftNumbersMaxHeap.size() == 0)
+            leftNumbersMaxHeap.add(num);
         
-        numbers.add(low, num);
-        n++;
+        else if (num <= leftNumbersMaxHeap.peek()){
+            leftNumbersMaxHeap.add(num);
+            
+            if (leftNumbersMaxHeap.size() > rightNumbersMinHeap.size() + 1)
+                rightNumbersMinHeap.add(leftNumbersMaxHeap.remove());
+        }
+        else{
+            rightNumbersMinHeap.add(num);
+            
+            if (rightNumbersMinHeap.size() > leftNumbersMaxHeap.size())
+                leftNumbersMaxHeap.add(rightNumbersMinHeap.remove());
+        }
     }
     
-    public double findMedian() {                
-        if (n % 2 == 1)
-            return numbers.get(n / 2);
-        else
-            return (numbers.get(n/2) + numbers.get(n/2 - 1)) / 2.0;
+    public double findMedian() {
+        if (leftNumbersMaxHeap.size() == rightNumbersMinHeap.size())
+           return (leftNumbersMaxHeap.peek() + rightNumbersMinHeap.peek()) / 2.0;
+        
+        if (leftNumbersMaxHeap.size() == rightNumbersMinHeap.size() + 1)
+            return leftNumbersMaxHeap.peek();
+        
+        return -1;
     }
 }
 
