@@ -13,7 +13,7 @@ class Solution {
         return moves;
     }
     
-     public int minMoves2(int[] arr) {
+     public int minMoves2_Solution1(int[] arr) {
         Arrays.sort(arr);
         
         int mid = arr.length / 2;
@@ -24,6 +24,16 @@ class Solution {
             moves += arr[high] - arr[low];
             low++;
             high--;
+        }
+        return moves;
+    }
+    
+    public int minMoves2(int[] nums) {
+        Arrays.sort(nums);
+        int mid = nums[nums.length / 2];
+        int moves = 0;
+        for (int n : nums) {
+            moves += Math.abs(n - mid);
         }
         return moves;
     }
