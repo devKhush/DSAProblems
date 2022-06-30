@@ -33,38 +33,39 @@ class GFG{
 
 class Solution{
     //Function to merge k sorted arrays.
-    public static ArrayList<Integer> mergeKArrays(int[][] kArrays,int K) 
-    {
-        ArrayList<Integer> mergedKSortedList = new ArrayList<>();
-        ArrayList<Integer> arr1 = new ArrayList<>();
-
-        for (int i = 0; i < kArrays[0].length; i++)
-            arr1.add(kArrays[0][i]);
-
-        for (int ind = 1; ind < kArrays.length; ind++){
-            int[] arr2 = kArrays[ind];
-
-            int i = 0;
-            int j = 0;
-            while (i < arr1.size() || j < arr2.length){
-                int valA = i < arr1.size() ? arr1.get(i) : Integer.MAX_VALUE;
-                int valB = j < arr2.length ? arr2[j] : Integer.MAX_VALUE;
-
-                if (valA <= valB) {
-                    mergedKSortedList.add(valA);
-                    i++;
-                }
-                else {
-                    mergedKSortedList.add(valB);
-                    j++;
-                }
-            }
-           arr1.clear();
-            ArrayList<Integer> temp = arr1;
-            arr1 = mergedKSortedList;
-            mergedKSortedList = temp;
-        }
-        mergedKSortedList = arr1;
-        return mergedKSortedList;
+    public static ArrayList<Integer> mergeKArrays(int[][] kArrays,int k){
+       ArrayList<Integer> array = new ArrayList<Integer>();
+       
+       PriorityQueue<Value> minHeap = new PriorityQueue<>();
+       
+       for (int i = 0; i < k; i++){
+           Value minValue = new Value(kArrays[i][0], i, 0);
+           minHeap.add(minValue);
+       }
+       
+       while (!minHeap.isEmpty()){
+           Value min = minHeap.remove();
+           array.add(min.value);
+           
+           if (min.j < kArrays[min.i].length - 1)
+            minHeap.add(new Value(kArrays[min.i][min.j + 1], min.i, min.j + 1));
+       }
+       return array;
     }
+    
+    public static class Value implements Comparable<Value>{
+        int value, i, j;
+        public Value(int value, int i, int j){
+            this.value = value;
+            this.i = i;
+            this.j = j;
+        }
+        
+        @Override
+        public int compareTo(Value obj){
+            return this.value - obj.value;
+        }
+    } 
+
+    
 }
