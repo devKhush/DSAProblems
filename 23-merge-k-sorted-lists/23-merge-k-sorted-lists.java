@@ -9,44 +9,33 @@
  * }
  */
 class Solution {
-    public ListNode mergeKLists(ListNode[] kLists) {
-        if (kLists.length == 0)
-            return null;
-        ListNode head = kLists[0];
+    public ListNode mergeKLists(ListNode[] lists) {
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>(new NodeComparator());
 
-        for (int i = 1; i < kLists.length; i++)
-            head = mergeTwoSortedList(head, kLists[i]);
+        for (ListNode head : lists)
+            if (head != null)
+                minHeap.add(head);
 
-        return head;
-    }
-
-    private ListNode mergeTwoSortedList(ListNode head1, ListNode head2){
-        if (head1 == null)
-            return head2;
-        if (head2 == null)
-            return head1;
-        ListNode list1 = head1, list2 = head2;
-
-        if (list1.val > list2.val){
-            ListNode temp = list2;
-            list2 = list1;
-            list1 = temp;
-        }
-        ListNode head = list1;
-
-        while (list1 != null  &&  list2 != null){
-            ListNode previous = null;
-
-            while (list1 != null && list1.val <= list2.val){
-                previous = list1;
-                list1 = list1.next;
+        ListNode dummy = new ListNode(0), ptr = dummy;
+        
+        while (!minHeap.isEmpty()){
+            ListNode minValueNode = minHeap.remove();
+            
+            ptr.next = minValueNode;
+            ptr = ptr.next;
+            
+            if (minValueNode.next != null){
+                minHeap.add(minValueNode.next);
+                minValueNode.next = null;
             }
-            previous.next = list2;
-            ListNode temp = list1;
-            list1 = list2;
-            list2 = temp;
         }
-        return head;
+        return dummy.next;
     }
 
+    private class NodeComparator implements Comparator<ListNode>{
+        @Override
+        public int compare(ListNode a, ListNode b){
+            return a.val - b.val;
+        }
+    }
 }
