@@ -28,4 +28,3 @@ Only two moves are needed (remember each move increments or decrements one eleme
 	<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
 </ul>
-</div>
