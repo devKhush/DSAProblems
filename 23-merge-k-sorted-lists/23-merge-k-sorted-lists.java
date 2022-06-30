@@ -41,7 +41,7 @@ class Solution {
             else
                 l2 = l2 != null ? l2.next : null;
             
-            // ptr.next = null;
+            ptr.next = null;
         }
         return dummy.next;
     }
