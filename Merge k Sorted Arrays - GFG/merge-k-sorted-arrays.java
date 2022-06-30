@@ -31,8 +31,7 @@ class GFG{
 //User function Template for Java
 
 
-class Solution
-{
+class Solution{
     //Function to merge k sorted arrays.
     public static ArrayList<Integer> mergeKArrays(int[][] kArrays,int K) 
     {
