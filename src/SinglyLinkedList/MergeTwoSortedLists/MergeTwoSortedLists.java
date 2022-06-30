@@ -186,6 +186,29 @@ public class MergeTwoSortedLists {
         return head;
     }
 
+    // ********************************* Much Efficient 3 ******************************************
+    // Compact Code
+    // TC -> O(max(m,n))
+    // SC -> O(1)
+    private ListNode mergeTwoLists(ListNode l1, ListNode l2){
+        ListNode dummy = new ListNode(0), ptr = dummy;
+
+        while (l1 != null || l2 != null){
+            int l1_val = l1 != null ? l1.val : Integer.MAX_VALUE;
+            int l2_val = l2 != null ? l2.val : Integer.MAX_VALUE;
+
+            ptr.next = l1_val <= l2_val ? l1 : l2;
+            ptr = ptr.next;
+
+            if (l1_val <= l2_val)
+                l1 = l1 != null ? l1.next : null;
+            else
+                l2 = l2 != null ? l2.next : null;
+
+            ptr.next = null;
+        }
+        return dummy.next;
+    }
 
 
     static class ListNode {
