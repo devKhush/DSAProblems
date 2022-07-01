@@ -1,7 +1,25 @@
-class Solution {    
-    
-    // Aprroach 1 Using MaxHeap ***************************************************************
+class Solution {
     public int[] topKFrequent(int[] arr, int k) {
+        HashMap<Integer, Integer> frequencies = new HashMap<>();
+
+        for (int num : arr)
+            frequencies.put(num, frequencies.getOrDefault(num, 0) + 1);
+
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((key1, key2) -> (frequencies.get(key2) - frequencies.get(key1)));
+
+        for (int key : frequencies.keySet())
+            maxHeap.add(key);
+
+        int[] kFrequentElement = new int[k];
+        for (int i = 0; i < k; i++)
+            kFrequentElement[i] = maxHeap.remove();
+
+        return kFrequentElement;
+    }
+    
+    
+    // Aprroach 1 Using HashMap and MaxHeap *******************************************************
+    public int[] topKFrequent_1(int[] arr, int k) {
         HashMap<Integer, Integer> frequencies = new HashMap<>();
         
         for (int num : arr)
