@@ -39,4 +39,3 @@ Note that we did not use all of the additional rocks.
 	<li><code>0 &lt;= rocks[i] &lt;= capacity[i]</code></li>
 	<li><code>1 &lt;= additionalRocks &lt;= 10<sup>9</sup></code></li>
 </ul>
-</div>
