@@ -1,6 +1,4 @@
-package Queues.QueueUsingArray;
-
-import java.util.Arrays;
+package Queues.ImplementQueue;
 
 public class QueueUsingArray {
     private int front;
@@ -61,36 +59,5 @@ public class QueueUsingArray {
 
     public int[] getArr() {
         return arr;
-    }
-}
-
-class QueueTest{
-    public static void main(String[] args) {
-        QueueUsingArray queue = new QueueUsingArray(5);
-
-        for (int i = 1; i < 7; i++) {
-            queue.enqueue(i);
-            System.out.println(queue.getSize());
-            System.out.println("is Full ? " +queue.isFull());
-            System.out.println(Arrays.toString(queue.getArr()));
-            System.out.println();
-        }
-
-        for (int i = 1; i < 8; i++) {
-            if (i==2){
-                queue.enqueue(i*20);
-                System.out.println(queue.getSize());
-                System.out.println("is Full ? " +queue.isFull());
-                System.out.println(Arrays.toString(queue.getArr()));
-                System.out.println();
-                continue;
-            }
-            queue.dequeue();
-            System.out.println(queue.getSize());
-            System.out.println("is Empty ? " + queue.isEmpty());
-            System.out.println(Arrays.toString(queue.getArr()));
-            System.out.println();
-        }
-
     }
 }
