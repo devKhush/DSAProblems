@@ -1,4 +1,6 @@
-class Solution {
+class Solution {    
+    
+    // Aprroach 1 Using MaxHeap ***************************************************************
     public int[] topKFrequent(int[] arr, int k) {
         HashMap<Integer, Integer> frequencies = new HashMap<>();
         
