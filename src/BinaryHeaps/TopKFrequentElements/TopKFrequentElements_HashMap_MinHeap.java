@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 // PRE_REQUISITE: "Kth Largest Element using Min-Heap"
+// https://youtu.be/Wh3A29psE_Y
+// https://youtu.be/7VoJn544QrM
 
 /** *********************************** INTUITION ***********************************
  * How we will get the k most frequent element?

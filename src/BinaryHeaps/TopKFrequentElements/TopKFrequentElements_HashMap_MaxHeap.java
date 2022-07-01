@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 // https://www.geeksforgeeks.org/find-k-numbers-occurrences-given-array/
+// https://youtu.be/Wh3A29psE_Y
+// https://youtu.be/7VoJn544QrM
 
 /** *********************************** INTUITION ***********************************
  * How we will get the k most frequent element?
