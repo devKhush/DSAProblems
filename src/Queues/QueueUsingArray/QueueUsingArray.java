@@ -36,7 +36,7 @@ public class QueueUsingArray {
     }
 
     public int front(){
-        if (this.size <= 0)
+        if (this.size == 0)
             return Integer.MIN_VALUE;
         return this.arr[this.front];
     }
