@@ -1,5 +1,5 @@
 class Solution {
-    public int[] nextGreaterElements(int[] arr) {
+    public int[] nextGreaterElements_Solution2(int[] arr) {
         Stack<Integer> stack = new Stack<>();
         int n = arr.length;
         int[] nextGreaterElement = new int[n];
@@ -16,7 +16,7 @@ class Solution {
     }
     
     
-    public int[] nextGreaterElements_Solution1(int[] arr) {
+    public int[] nextGreaterElements(int[] arr) {
         Stack<Integer> stack = new Stack<>();
         int n = arr.length;
         int[] nge = new int[n];
