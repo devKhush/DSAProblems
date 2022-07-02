@@ -17,6 +17,7 @@ class Solution {
         for (int i = 0; i < vCuts - 1; i++)
             maxPieceWidth = Math.max(verticalCuts[i + 1] - verticalCuts[i], maxPieceWidth);
         
-        return (int) (((maxPieceWidth % mod) * (maxPieceHeight % mod)) % mod);
+        // return (int) (((maxPieceWidth % mod) * (maxPieceHeight % mod)) % mod);
+        return (int) ((maxPieceWidth * maxPieceHeight) % mod);
     }
 }
