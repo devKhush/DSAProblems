@@ -33,4 +33,3 @@
 	<li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li>
 	<li><code>s</code> consists of parentheses only <code>'()[]{}'</code>.</li>
 </ul>
-</div>
