@@ -4,11 +4,10 @@ class Solution {
         int n = arr.length;
         int[] nge = new int[n];
         
-        // Arrays.fill(nge, -1);
         
         for (int i = 0; i < 2*n; i++){
-            while (!stack.isEmpty()  &&  arr[stack.peek() % n] < arr[i % n])
-                nge[stack.pop() % n] = arr[i % n];
+            while (!stack.isEmpty()  &&  arr[stack.peek()] < arr[i % n])
+                nge[stack.pop()] = arr[i % n];
             
             if (i < n)
                 stack.push(i);
