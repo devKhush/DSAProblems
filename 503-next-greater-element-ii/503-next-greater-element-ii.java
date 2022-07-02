@@ -4,14 +4,18 @@ class Solution {
         int n = arr.length;
         int[] nge = new int[n];
         
-        Arrays.fill(nge, -1);
+        // Arrays.fill(nge, -1);
         
         for (int i = 0; i < 2*n; i++){
             while (!stack.isEmpty()  &&  arr[stack.peek() % n] < arr[i % n])
                 nge[stack.pop() % n] = arr[i % n];
             
-            stack.push(i);
+            if (i < n)
+                stack.push(i);
         }
+        
+        while (!stack.isEmpty())
+            nge[stack.pop()] = -1;
         
         return nge;
     }
