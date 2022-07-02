@@ -40,4 +40,3 @@
 	<li>All the elements in <code>horizontalCuts</code> are distinct.</li>
 	<li>All the elements in <code>verticalCuts</code> are distinct.</li>
 </ul>
-</div>
