@@ -1,8 +1,8 @@
 class Solution {
     public int[] nextGreaterElements(int[] arr) {
         Stack<Integer> stack = new Stack<>();
-        int[] nge = new int[arr.length];
         int n = arr.length;
+        int[] nge = new int[n];
         
         Arrays.fill(nge, -1);
         
@@ -12,9 +12,6 @@ class Solution {
             
             stack.push(i);
         }
-        
-        // while (!stack.isEmpty())
-        //     nge[stack.pop() % n] = -1;
         
         return nge;
     }
