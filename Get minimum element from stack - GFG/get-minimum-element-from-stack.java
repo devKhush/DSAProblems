@@ -46,37 +46,41 @@ class Get_Min_From_Stack
 
 
 class GfG{
-    int minEle;
-    Stack<Node> s = new Stack<>();
+    int min;
+    Stack<Integer> s = new Stack<>();
 
     public int getMin(){
         if (s.isEmpty()) return -1;
-        return s.peek().min;
+        return min;
     }
     
     /*returns poped element from stack*/
     public int pop(){
         if (s.isEmpty()) return -1;
-        return s.pop().data;
+        int top = s.pop();
+        if (min > top){
+            int topOfStack = min;
+            min = 2*min - top;
+            return topOfStack;
+        }
+        return top;
     }
 
     /*push element x into the stack*/
     public void push(int x){
-        if (s.isEmpty())
-            s.push(new Node(x, x));
+        if (s.isEmpty()){
+            s.push(x);
+            min = x;
+        }
         else{
-            int min = Math.min(x, s.peek().min);
-            s.push(new Node(x, min));
+            if (min > x){
+                s.push(2*x - min);
+                min = x;
+            }
+            else
+                s.push(x);
         }
     }	
-    
-    class Node{
-        int data, min;
-        Node(int data, int min){
-            this.data = data;
-            this.min = min;
-        }
-    }
 }
 
 
