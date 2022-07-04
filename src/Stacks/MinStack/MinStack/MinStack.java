@@ -1,5 +1,18 @@
+package Stacks.MinStack.MinStack;
 
-class MinStack {
+/*
+ * ******************************** Time Complexity ********************************
+ * Push: O(1)
+ * Pop: O(1)
+ * Peek: O(1)
+ * GetMinimum: O(1)
+ *
+ * ******************************** Space Complexity ********************************
+ * Total Space Complexity: O(n)
+ * O(n) for storing pairs/nodes of values inside stack
+ */
+
+public class MinStack {
     private Node top;
     public MinStack() {
         this.top = null;
@@ -45,12 +58,3 @@ class MinStack {
         }
     }
 }
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack obj = new MinStack();
- * obj.push(val);
- * obj.pop();
- * int param_3 = obj.top();
- * int param_4 = obj.getMin();
- */
