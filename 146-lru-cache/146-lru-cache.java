@@ -56,6 +56,8 @@ class LRUCache {
         
         beforeNode.next = afterNode;
         afterNode.prev = beforeNode;
+         node.next = null;
+        node.prev = null;
     }
     
     private void addInFront(Node node){
