@@ -1,6 +1,39 @@
 class Solution {
     public int largestRectangleArea(int[] heights) {
         int n = heights.length;
+        int[] prevSmallerIndex = new int[n];
+        int[] nextSmallerIndex = new int[n];
+
+        prevSmallerIndex[0] = -1;
+        for (int i = 1; i < n; i++){
+            int j = i - 1;
+            while (j >= 0  &&  heights[j] >= heights[i])
+                j = prevSmallerIndex[j];
+
+            prevSmallerIndex[i] = j;
+        }
+
+        nextSmallerIndex[n - 1] = n;
+        for (int i = n - 2; i >= 0; i--){
+            int j = i + 1;
+            while (j < n  &&  heights[i] <= heights[j])
+                j = nextSmallerIndex[j];
+
+            nextSmallerIndex[i] = j;
+        }
+
+        int maxAreaInHistogram = 0;
+        for (int i = 0; i < n; i++) {
+            int area = (nextSmallerIndex[i] - prevSmallerIndex[i] - 1) * heights[i];
+            maxAreaInHistogram = Math.max(area, maxAreaInHistogram);
+        }
+        return maxAreaInHistogram;
+    }
+    
+    
+    // Approach 1 Using Next Greater & Smaller Element **************************************************
+    public int largestRectangleArea_Solution1(int[] heights) {
+        int n = heights.length;
         int[] NSE = nextSmallerElement(heights, n);
         int[] PSE = previousSmallerElement(heights, n);
         
