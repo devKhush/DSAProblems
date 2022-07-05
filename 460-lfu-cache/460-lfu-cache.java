@@ -1,99 +1,125 @@
-class LFUCache {
-    private Node head, tail;
-    private HashMap<Integer, Node> map;
-    int size, capacity;
+
+public class LFUCache {
+    private HashMap<Integer, DoublyLinkedList> frequencyTolistMap;
+    private HashMap<Integer, DLLNode> cacheMap;
+    private int size, capacity;
+    private int leastFrequencyKey;
 
     public LFUCache(int capacity) {
-        this.head = new Node(0, 0, 0);
-        this.tail = new Node(0, 0, 0);
-        this.map = new HashMap<>();
+        this.frequencyTolistMap = new HashMap<>();
+        this.cacheMap = new HashMap<>();
+        this.capacity = capacity;
         this.size = 0;
-        this.capacity = capacity; 
-        head.next = tail;
-        tail.prev = head;
+        this.leastFrequencyKey = 0;
     }
-    
+
     public int get(int key) {
-        if (!map.containsKey(key) || capacity == 0)
+        if (!cacheMap.containsKey(key) || capacity == 0)
             return -1;
-        
-        Node node = map.get(key);
-        node.frequencyCount++;
-        removeNode(node);
-        addNode(node);
-        return node.data;
+
+        DLLNode node = cacheMap.get(key);
+        updateNode(node);
+        return node.value;
     }
-    
+
     public void put(int key, int value) {
-        if (capacity == 0) 
+        if (capacity == 0)
             return;
-        
-        Node node = map.get(key);
-        
+        DLLNode node = cacheMap.get(key);
+
         if (node != null){
-            node.frequencyCount++;
-            node.data = value;
-            
-            removeNode(node);
-            addNode(node);
+            node.value = value;
+            updateNode(node);
         }
         else{
             if (size == capacity){
-                Node nodeToRemove = tail.prev;
-                removeNode(nodeToRemove);
-                map.remove(nodeToRemove.key);
-                
-                Node nodeToAdd = new Node(key, value, 1);
-                addNode(nodeToAdd);
-                map.put(key, nodeToAdd);
+                DoublyLinkedList leastFrequentList = frequencyTolistMap.get(leastFrequencyKey);
+                DLLNode leastFrequentNode = leastFrequentList.tail.prev;
+                leastFrequentList.removeNode(leastFrequentNode);
+                cacheMap.remove(leastFrequentNode.key);
+                size--;
             }
-            else if (size < capacity){
-                Node nodeToAdd = new Node(key, value, 1);
-                
-                addNode(nodeToAdd);
-                map.put(key, nodeToAdd);
-                size++;
-            }
+
+            DLLNode nodeToInsert = new DLLNode(key, value);
+            DoublyLinkedList leastFrequentList = frequencyTolistMap.getOrDefault(1, new DoublyLinkedList());
+            leastFrequentList.addNodeInFront(nodeToInsert);
+            frequencyTolistMap.put(1, leastFrequentList);
+            cacheMap.put(key, nodeToInsert);
+
+            leastFrequencyKey = 1;
+            size++;
         }
     }
-    
-    private void addNode(Node nodeToAdd){
-        Node ptr = head.next;
-        
-        while (ptr.frequencyCount > nodeToAdd.frequencyCount)
-            ptr = ptr.next;
-        
-        Node addAfterNode = ptr.prev;
-        
-        addAfterNode.next = nodeToAdd;
-        nodeToAdd.next = ptr;
-        ptr.prev = nodeToAdd;
-        nodeToAdd.prev = addAfterNode;
+
+    private void updateNode(DLLNode node){
+        DoublyLinkedList earlierDLL = frequencyTolistMap.get(node.frequency);
+        earlierDLL.removeNode(node);
+
+        if (leastFrequencyKey == node.frequency  && earlierDLL.size == 0)
+            leastFrequencyKey++;
+
+        node.frequency++;
+        DoublyLinkedList newDLLToPutInNode = frequencyTolistMap.getOrDefault(node.frequency, new DoublyLinkedList());
+        newDLLToPutInNode.addNodeInFront(node);
+        frequencyTolistMap.put(node.frequency, newDLLToPutInNode);
     }
-    
-    
-    private void removeNode(Node node){
-        Node beforeNode = node.prev;
-        Node afterNode = node.next;
-        
-        beforeNode.next = afterNode;
-        afterNode.prev = beforeNode;
-        
-        node.next = null;
-        node.prev = null;
+
+
+    /** ********************************* Utility Class ****************************************
+     Class "Doubly Linked List"
+     Same as created in LRU Cache with same functions of "addNodeInFront()" & "removeLastNode()"
+     */
+    static class DoublyLinkedList{
+        DLLNode head, tail;
+        int size;
+
+        public DoublyLinkedList(){
+            this.head = new DLLNode(0, 0);
+            this.tail = new DLLNode(0, 0);
+            this.size = 0;
+            head.next = tail;
+            tail.prev = head;
+        }
+
+        // Same as "addNode()" in LRU Cache
+        public void addNodeInFront(DLLNode node){
+            DLLNode nextToHead = head.next;
+            head.next = node;
+            node.next = nextToHead;
+            nextToHead.prev = node;
+            node.prev = head;
+            size++;
+        }
+
+        // Same as "removeLastNode()" in LRU Cache
+        public void removeNode(DLLNode node){
+            DLLNode beforeNode = node.prev;
+            DLLNode afterNode = node.next;
+
+            beforeNode.next = afterNode;
+            afterNode.prev = beforeNode;
+            node.next = null;
+            node.prev = null;
+            size--;
+        }
     }
-    
-    static class Node{
-        int data, key, frequencyCount;
-        Node next, prev;
-        public Node(int key, int value, int count){
+
+
+    /** ********************************* Utility Class ****************************************
+     Class "Doubly Linked List Node"
+     Attributes are Node{key, value, nextNode, previousNode, frequencyOfAccessingThisNode}
+     */
+    static class DLLNode{
+        int key, value, frequency;
+        DLLNode next, prev;
+
+        public DLLNode(int key, int value){
             this.key = key;
-            this.data = value;
-            this.frequencyCount = count;
+            this.value = value;
+            this.frequency = 1;
         }
     }
 }
-
 /**
  * Your LFUCache object will be instantiated and called as such:
  * LFUCache obj = new LFUCache(capacity);
