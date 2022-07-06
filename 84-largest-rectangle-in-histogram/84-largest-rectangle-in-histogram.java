@@ -1,5 +1,23 @@
 class Solution {
+    
     public int largestRectangleArea(int[] heights) {
+        int n = heights.length;
+        Stack<Integer> stack = new Stack<>();
+        int maxAreaInHistogram = 0;
+        for (int i = 0; i <= n; i++){
+            while (!stack.isEmpty()  &&  (i == n  ||  heights[stack.peek()] >= heights[i])){
+                int height = heights[stack.pop()];
+                int width = !stack.isEmpty() ? i - stack.peek() - 1 : i;
+                maxAreaInHistogram = Math.max(height * width, maxAreaInHistogram);
+            }
+            stack.push(i);
+        }
+        return maxAreaInHistogram;
+    }
+    
+    
+    // Approach 1 Using Next Greater & Smaller Element (Using Array)***********************************
+    public int largestRectangleArea_Solution2(int[] heights) {
         int n = heights.length;
         int[] prevSmallerIndex = new int[n];
         int[] nextSmallerIndex = new int[n];
@@ -29,6 +47,7 @@ class Solution {
         }
         return maxAreaInHistogram;
     }
+    
     
     
     // Approach 1 Using Next Greater & Smaller Element **************************************************
