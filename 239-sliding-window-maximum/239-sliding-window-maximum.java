@@ -10,7 +10,7 @@ class Solution {
             if (!deque.isEmpty()  &&  deque.peekFirst() == i - k)
                 deque.removeFirst();
 
-            while (!deque.isEmpty()  &&  arr[i] > arr[deque.peekLast()])
+            while (!deque.isEmpty()  &&  arr[i] >= arr[deque.peekLast()])
                 deque.removeLast();
 
             deque.addLast(i);
