@@ -1,4 +1,4 @@
-package DoublyLinkedList.LFUCache.LFUCache_Optimal;
+package DoublyLinkedList.LFU_Cache.LFUCache_Optimal;
 import java.util.HashMap;
 
 // MUST WATCH:

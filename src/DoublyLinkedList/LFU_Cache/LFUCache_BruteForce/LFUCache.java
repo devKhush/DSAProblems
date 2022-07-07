@@ -1,4 +1,4 @@
-package DoublyLinkedList.LFUCache.LFUCache_BruteForce;
+package DoublyLinkedList.LFU_Cache.LFUCache_BruteForce;
 import java.util.HashMap;
 
 /** ********************************** INTUITION *****************************************

@@ -1,4 +1,9 @@
-class Solution {
+package Recursions_And_BackTracking.SplitStringIntoMaxNumberOfUniqueSubstrings;
+import java.util.HashSet;
+
+// PRE-REQUISITE: "PALINDROME PARTITIONING" & "WORD BREAK"
+
+class SplitStringIntoMaxNumberOfUniqueSubstrings {
     private int maximumPartitions;
     
     public int maxUniqueSplit(String s) {

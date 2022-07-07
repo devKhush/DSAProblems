@@ -37,4 +37,3 @@
 	<p><code>s</code> contains&nbsp;only lower case English letters.</p>
 	</li>
 </ul>
-</div>
