@@ -40,4 +40,3 @@
 	<li><code>1 &lt;= m, n &lt;= 10</code></li>
 	<li><code>grid[i][j]</code> is <code>0</code>, <code>1</code>, or <code>2</code>.</li>
 </ul>
-</div>
