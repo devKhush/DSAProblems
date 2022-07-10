@@ -9,7 +9,7 @@ class Solution {
             
             else if (asteroids[i] < 0){
                 while (true){
-                    if (stack.peek() <= 0){
+                    if (stack.peek() < 0){
                         stack.push(asteroids[i]);
                         break;
                     }
