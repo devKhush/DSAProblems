@@ -1,6 +1,23 @@
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
         int n = cost.length;
+        int[] dp = new int[n + 1];
+        
+        dp[0] = dp[1] = 0;
+        
+        for (int i = 2; i <= n; i++){
+            int costTwoStepBehind = dp[i - 2] + cost[i - 2];
+            int costOneStepBehind = dp[i - 1] + cost[i - 1];
+            
+            dp[i] = Math.min(costTwoStepBehind, costOneStepBehind);
+        }
+        return dp[n];
+    }
+    
+    
+    // MEMOIZATION ***************************************************************************
+    public int minCostClimbingStairs_Memoization(int[] cost) {
+        int n = cost.length;
         
         int[] dp = new int[n + 1];
         Arrays.fill(dp, -1);
@@ -8,7 +25,6 @@ class Solution {
         return climbStairs(n, cost, dp);
     }
     
-    // MEMOIZATION ***************************************************************************
     public int climbStairs(int index, int[] cost, int[] dp){
         if (index == 0 || index == 1)
             return dp[index] = 0;
@@ -26,6 +42,7 @@ class Solution {
         
         return dp[index] = Math.min(costTwoStepBehind, costOneStepBehind);
     }
+    
     
     // RECURSION ***************************************************************************
     public int climbStairs_Recursion(int index, int[] cost){
