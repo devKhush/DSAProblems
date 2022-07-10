@@ -1,5 +1,28 @@
 class Solution {
+    // Space Optimization ****************************************************************
     public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+        
+        int costTwoStepBehind = 0;
+        int costOneStepBehind = 0;
+        
+        for (int i = 2; i <= n; i++){
+            int currentCostTwoStepBehind = costTwoStepBehind + cost[i - 2];
+            int currentCostOneStepBehind = costOneStepBehind + cost[i - 1];
+            
+            int costToReachCurrentIndex = Math.min(currentCostTwoStepBehind, currentCostOneStepBehind);
+            
+            costTwoStepBehind = costOneStepBehind;
+            costOneStepBehind = costToReachCurrentIndex;
+        }
+        
+        int costToReachEndOfArray = costOneStepBehind;
+        return costToReachEndOfArray;
+    }
+    
+    
+    // TABULATION ****************************************************************************
+    public int minCostClimbingStairs_Tabulation(int[] cost) {
         int n = cost.length;
         int[] dp = new int[n + 1];
         
