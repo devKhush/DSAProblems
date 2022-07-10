@@ -33,28 +33,19 @@ class Solution
 { 
     //Function to find if there is a celebrity in the party or not.
     int celebrity(int knows[][], int n){
-    	Stack<Integer> stack = new Stack<>();
-    	
-    	for (int i = 0; i < n; i++) 
-    	    stack.push(i);
-        
-        while (stack.size() > 1){
-            int A = stack.pop();
-            int B = stack.pop();
-            
-            if (knows[A][B] == 1)
-                stack.push(B);
-            else
-                stack.push(A);
+        int personA = 0, personB = n - 1;
+        while (personA < personB){
+            if (knows[personA][personB] == 1)
+                personA++;
+            else 
+                personB--;
         }
-        if (stack.isEmpty()) return -1;
-        
-        int celebrity = stack.pop();
-        
+        int celebrity = personA;
+
         for (int person = 0; person < n; person++)
             if (celebrity != person  &&  (knows[celebrity][person] == 1 || knows[person][celebrity] == 0))
                 return -1;
-                
+
         return celebrity;
     }
 }
