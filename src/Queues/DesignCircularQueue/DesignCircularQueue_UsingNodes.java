@@ -1,15 +1,5 @@
 package Queues.DesignCircularQueue;
 
-class Node{
-    public int data;
-    public Node next;
-    
-    public Node(int data){
-        this.data = data;
-    }
-}
-    
-    
 public class DesignCircularQueue_UsingNodes {
     public Node head = null;
     public Node tail = null;
@@ -76,5 +66,16 @@ public class DesignCircularQueue_UsingNodes {
     public boolean isFull() {
         return this.size == this.maxSize;
     }
+
+
+    static class Node{
+        public int data;
+        public Node next;
+
+        public Node(int data){
+            this.data = data;
+        }
+    }
+
 }
 

@@ -5,14 +5,16 @@ import java.util.Stack;
 // https://youtu.be/dAVF2NpC3j4
 // GREAT READING:
 // https://www.codingninjas.com/codestudio/library/maximum-size-of-rectangle-in-a-binary-matrix
-// PRE_REQUISITE: "MAXIMUM/LARGEST AREA IN A HISTOGRAM"
+// PRE_REQUISITE: "MAXIMUM/LARGEST AREA OF RECTANGLE IN A HISTOGRAM"
 
 class MaximalRectangle {
     /** *********************************** INTUITION ***********************************************
-     * This problem can be solved using "LARGEST AREA IN HISTOGRAM".
+     * This problem can be solved using "LARGEST AREA OF RECTANGLE IN HISTOGRAM".
      * If any cell in the matrix is '1', it means "Rectangle can be extended To the current cell in matrix"
      * These, rectangle that are formed can be visualized as bars/heights.
      * Thus, we solve it using Maximum area in a Histogram.
+     * So, we can convert the matrix into "Histograms/Rectangles" row-wise & find the maximum area
+       of the rectangle in each of the Histogram.
      *
      * Whenever, cell value is '1' it means current rectangle can be extended in below direction. So,
        increment the height of that rectangle/bar.
