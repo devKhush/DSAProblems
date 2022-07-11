@@ -1,35 +1,41 @@
 package Stacks.EvaluatePostFixExpression;
-
 import java.util.Stack;
 
+// https://www.geeksforgeeks.org/stack-set-4-evaluation-postfix-expression/
 
 public class EvaluatePostFixExpression {
+    // ******************************* EFFICIENT STACK SOLUTION ***************************************
+    // Time Complexity: O(n)
+    // Space Complexity: O(n)
+
     public int evalRPN(String[] tokens) {
         Stack<Integer> stack = new Stack<>();
-        int a, b;
-        
-        for (int i=0; i<tokens.length; i++){
-            switch(tokens[i]){
-                case "+":
-                    b = stack.pop(); a = stack.pop();
-                    stack.push(a+b);
-                    break;
-                case "-":
-                    b = stack.pop(); a = stack.pop();
-                    stack.push(a-b);
-                    break;
-                case "*":
-                    b = stack.pop(); a = stack.pop();
-                    stack.push(a*b);
-                    break;
-                case "/":
-                    b = stack.pop(); a = stack.pop();
-                    stack.push(a/b);
-                    break;
-                default:
-                    stack.push(Integer.parseInt(tokens[i]));
+
+        for (String token : tokens) {
+            switch (token) {
+                case "+" -> {
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(a + b);
+                }
+                case "-" -> {
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(b - a);
+                }
+                case "*" -> {
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(a * b);
+                }
+                case "/" -> {
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(b / a);
+                }
+                default -> stack.push(Integer.parseInt(token));
             }
         }
-        return stack.peek();
+        return stack.pop();
     }
 }
