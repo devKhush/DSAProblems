@@ -1,90 +1,98 @@
 package Stacks.MaximalRectangle;
 import java.util.Stack;
 
-// https://www.youtube.com/watch?v=dAVF2NpC3j4&t=582s
-// https://www.youtube.com/watch?v=oaN9ibZKMpA
+// https://youtu.be/oaN9ibZKMpA
+// https://youtu.be/dAVF2NpC3j4
+// GREAT READING:
+// https://www.codingninjas.com/codestudio/library/maximum-size-of-rectangle-in-a-binary-matrix
+// PRE_REQUISITE: "MAXIMUM/LARGEST AREA IN A HISTOGRAM"
 
 class MaximalRectangle {
+    /** *********************************** INTUITION ***********************************************
+     * This problem can be solved using "LARGEST AREA IN HISTOGRAM".
+     * If any cell in the matrix is '1', it means "Rectangle can be extended To the current cell in matrix"
+     * These, rectangle that are formed can be visualized as bars/heights.
+     * Thus, we solve it using Maximum area in a Histogram.
+     *
+     * Whenever, cell value is '1' it means current rectangle can be extended in below direction. So,
+       increment the height of that rectangle/bar.
+     * Whenever, cell value is '0' it means current rectangle can't be extended in below direction. So,
+       we make the height of that rectangle/bar to be 0.
+
+
+     * If m -> columns  &  n -> rows
+     *  Time Complexity :  O(m * (n + n))  =  O(m * n)
+     * Space Complexity:  O(n) + O(n) + O(n)  =  O(n)
+     */
     public int maximalRectangle(char[][] matrix) {
-        int row = matrix.length;
-        int column = matrix[0].length;
-        
-        char[] currentHistogram = matrix[0];
-        for (int i=0; i<column; i++)
-            currentHistogram[i] = (char)(currentHistogram[i] - '0');
-        int maxArea = maximumAreaInHistogram(currentHistogram);
-        
-        
-        for (int i = 1; i<row; i++){
-            for (int j = 0; j<column; j++){
-                if (matrix[i][j]=='1')
-                    currentHistogram[j]++;
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+
+        int[] histogram = new int[columns];
+        int maxRectangleArea = 0;
+
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; j < columns; j++){
+                if (matrix[i][j] == '1')
+                    histogram[j]++;
                 else
-                    currentHistogram[j] = 0;
+                    histogram[j] = 0;
             }
-            maxArea = Math.max(maxArea, maximumAreaInHistogram(currentHistogram));
+            maxRectangleArea = Math.max(maximumAreaInHistogram_V1(histogram, columns), maxRectangleArea);
         }
-        return maxArea;
+        return maxRectangleArea;
     }
-    
-    
-    // Same Problem as Maximum area in a Histogram Problem
-    public int maximumAreaInHistogram(char[] arr){
-        int n = arr.length;
-        int[] nextSmaller = new int[n];
-        int[] prevSmaller = new int[n];
-        
-        prevSmaller[0] = -1;
-        nextSmaller[n-1] = n;
-        
-        for (int i=1; i<n; i++){
-            int low = i-1;         
-            while (low>=0 && arr[low] >= arr[i])
-                low = prevSmaller[low];
-            
-            prevSmaller[i] = low;
+
+    // ***************************** Same as Maximum area in the Histogram *****************************
+    public int maximumAreaInHistogram_V1(int[] arr, int n){
+        int[] PSE = new int[n];
+        int[] NSE = new int[n];
+
+        PSE[0] = -1;
+        NSE[n - 1] = n;
+
+        for (int i = 1; i < n; i++){
+            int low = i - 1;
+            while (low >= 0  &&  arr[low] >= arr[i])
+                low = PSE[low];
+            PSE[i] = low;
         }
-        
-        for (int i = n-2; i>=0; i--){
-            int high = i+1;
-            while (high<n && arr[i] <= arr[high])
-                high = nextSmaller[high];
-            nextSmaller[i] = high;
+
+        for (int i = n - 1; i >= 0; i--){
+            int high = i + 1;
+            while (high < n  &&  arr[i] <= arr[high])
+                high = NSE[high];
+            NSE[i] = high;
         }
-        
-        int maxArea = 0;
-        for (int i=0; i<n; i++){
-            int height = arr[i];
-            maxArea = Math.max(maxArea, (nextSmaller[i] - prevSmaller[i] - 1)*height);
-        }
-        return maxArea;
-    }
-    
-    
-    public int maximumAreaInHistogram_V1(char[] arr){
-        int n = arr.length;
-        Stack<Integer> stack = new Stack<>();
-        
-        stack.push(0);
-        int maxArea = 0;
+
+        int maxAreaInHistogram = 0;
+
         for (int i = 0; i < n; i++){
-            while (!stack.isEmpty()  &&  arr[i] < arr[stack.peek()]){
+            int width = NSE[i] - PSE[i] - 1;
+            int height = arr[i];
+            maxAreaInHistogram = Math.max(height * width, maxAreaInHistogram);
+        }
+        return maxAreaInHistogram;
+    }
+
+    // ***************************** Same as Maximum area in the Histogram *****************************
+    public int maximumAreaInHistogram(int[] arr, int n){
+        Stack<Integer> stack = new Stack<>();
+        int maximumAreaInHistogram = 0;
+
+        for (int i = 0; i <= n; i++){
+            while (!stack.isEmpty()  &&  (i == n || arr[stack.peek()] >= arr[i])){
                 int height = arr[stack.pop()];
-                if (stack.isEmpty())
-                    maxArea = Math.max(maxArea, height*i);
+                int width;
+                if (!stack.isEmpty())
+                    width = i - stack.peek() - 1;
                 else
-                    maxArea = Math.max(maxArea, height*(i - stack.peek() - 1));
+                    width = i;
+
+                maximumAreaInHistogram = Math.max(height * width, maximumAreaInHistogram);
             }
             stack.push(i);
         }
-        
-        while (!stack.isEmpty()){
-            int height = arr[stack.pop()];
-            if (stack.isEmpty())
-                maxArea = Math.max(maxArea, n*height);
-            else
-                maxArea = Math.max(maxArea, height*(n - stack.peek() - 1));
-        }
-        return maxArea;
+        return maximumAreaInHistogram;
     }
 }

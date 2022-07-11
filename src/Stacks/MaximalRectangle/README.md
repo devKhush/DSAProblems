@@ -28,4 +28,4 @@
 	<li><code>cols == matrix[i].length</code></li>
 	<li><code>1 &lt;= row, cols &lt;= 200</code></li>
 	<li><code>matrix[i][j]</code> is <code>'0'</code> or <code>'1'</code>.</li>
-</ul></div>
+</ul>
