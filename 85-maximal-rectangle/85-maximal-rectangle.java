@@ -19,6 +19,28 @@ class Solution {
     }
     
     public int maximumAreaInHistogram(int[] arr, int n){
+        Stack<Integer> stack = new Stack<>();
+        int maximumAreaInHistogram = 0;
+        
+        for (int i = 0; i <= n; i++){
+            while (!stack.isEmpty()  &&  (i == n || arr[stack.peek()] >= arr[i])){
+                int height = arr[stack.pop()];
+                int width;
+                
+                if (!stack.isEmpty())
+                    width = i - stack.peek() - 1;
+                else 
+                    width = i;
+                
+                maximumAreaInHistogram = Math.max(height * width, maximumAreaInHistogram);
+            }
+            stack.push(i);
+        }
+        return maximumAreaInHistogram;
+    }
+    
+    
+    public int maximumAreaInHistogram_V1(int[] arr, int n){
         int[] PSE = new int[n];
         int[] NSE = new int[n];
         
