@@ -1,9 +1,10 @@
-package Stacks.BinarySearchTreeIterator.UsingStack_Order_of_Height;
+package Stacks.BinarySearchTreeIterator.UsingStack;
 
 import Stacks.BinarySearchTreeIterator.TreeNode;
 import java.util.Stack;
 // https://www.youtube.com/watch?v=D2jMcmxU4bs
 
+// This Question is same as Iterative-Inorder traversal of BST using Stack
 // We are actually maintaining In-order traversal here, but putting right ones later
 
 public class BSTIterator {
@@ -22,6 +23,7 @@ public class BSTIterator {
 
     public int next() {
         TreeNode value = inOrderIterator.pop();
+
         inOrderIterator(value.right);
         return value.val;
     }

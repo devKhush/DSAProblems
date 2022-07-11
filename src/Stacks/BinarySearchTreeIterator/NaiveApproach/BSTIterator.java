@@ -1,10 +1,17 @@
-package Stacks.BinarySearchTreeIterator.NaiveApproach_Order_Of_N;
-
+package Stacks.BinarySearchTreeIterator.NaiveApproach;
 import Stacks.BinarySearchTreeIterator.TreeNode;
 import java.util.ArrayList;
 
+/*
+* Time Complexity:
+    * O(n) for Constructor   Due to in-order traversal of entire tree
+    * O(1) for next()        ArrayList.get() takes O(1) time
+    * O(1) for HasNext       ArrayList.size() takes O(1) time
+
+ * Space Complexity: O(n)    We are maintaining in-order traversal of tree in arraylist
+ */
+
 public class BSTIterator {
-    
     private ArrayList<Integer> traversal = new ArrayList<>();
     private int iterator;
     
@@ -18,15 +25,14 @@ public class BSTIterator {
 
     public BSTIterator(TreeNode root) {
         inOrder(root);
-        iterator = -1;
+        iterator = 0;
     }
     
     public int next() {
-        iterator++;
-        return traversal.get(iterator);
+        return traversal.get(iterator++);
     }
     
     public boolean hasNext() {
-        return iterator+1 < traversal.size();
+        return iterator != traversal.size();
     }
 }
