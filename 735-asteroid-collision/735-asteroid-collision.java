@@ -1,39 +1,27 @@
 class Solution {
     public int[] asteroidCollision(int[] asteroids) {
-        Stack<Integer> stack = new Stack<>();
+        int n = asteroids.length;
         
-        for (int i=0; i<asteroids.length; i++){
+        int[] stack = new int[n];
+        int stackSize = 0;
+        
+        for (int i = 0; i < n; i++){
+            while (stackSize > 0  &&  stack[stackSize - 1] > 0  && asteroids[i] < 0  &&  stack[stackSize - 1] < -asteroids[i])
+                stackSize--;
             
-            if (stack.isEmpty() || asteroids[i] >= 0)
-                stack.push(asteroids[i]);
+            if (stackSize > 0  &&  stack[stackSize - 1] > 0  && asteroids[i] < 0  &&  stack[stackSize - 1] == -asteroids[i])
+                stackSize--;
             
-            else if (asteroids[i] < 0){
-                while (true){
-                    if (stack.peek() < 0){
-                        stack.push(asteroids[i]);
-                        break;
-                    }
-                    else if (stack.peek() == -asteroids[i]){
-                        stack.pop();
-                        break;
-                    }
-                    else if (stack.peek() > -asteroids[i])
-                        break;
-                    else{       // implies stack.peek() < -asteroids[i]
-                        stack.pop();
-                        if (stack.isEmpty()){
-                            stack.push(asteroids[i]);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+            else if (stackSize > 0  &&  stack[stackSize - 1] > 0  && asteroids[i] < 0  &&  stack[stackSize - 1] > -asteroids[i])
+                continue;
+            else
+                stack[stackSize++] = asteroids[i];
+        }   
         
-        int[] arr = new int[stack.size()];
-        for (int j = arr.length - 1; j >= 0; j--)
-            arr[j] = stack.pop();
+        int[] collidedAsteroid = new int[stackSize];
+        for (int i = collidedAsteroid.length - 1;  i >= 0;  i--)
+            collidedAsteroid[i] = stack[--stackSize];
         
-        return arr;
+        return collidedAsteroid;
     }
 }
