@@ -1,35 +1,34 @@
 package Stacks.BaseballGame;
-
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class BaseballGame {
-    public int calPoints(String[] ops) {
-        
-        ArrayList<Integer> records = new ArrayList<>();
-        int j = -1;
-        
-        for (int i=0; i<ops.length; i++){
-            switch(ops[i]){
-                case "+":
-                    records.add(records.get(j) + records.get(j-1));
-                    j++;
-                    break;
-                case "C":
-                    records.remove(j);
-                    j--;
-                    break;
-                case "D":
-                    records.add(2*records.get(j++));
-                    break;
-                default:
-                    records.add(Integer.parseInt(ops[i]));
-                    j++;
+    // Simple Stack Solution
+    // Time Complexity: O(n)
+    // Space Complexity: O(n)
+    public int calculatePoints(String[] ops) {
+        Stack<Integer> stack = new Stack<>();
+
+        for (String operation : ops) {
+            switch (operation) {
+                case "+" -> {
+                    int A = stack.pop();
+                    int B = stack.pop();
+                    int newRecord = A + B;
+                    stack.push(B);
+                    stack.push(A);
+                    stack.push(newRecord);
+                }
+                case "D" ->
+                        stack.push(2 * stack.peek());
+                case "C" ->
+                        stack.pop();
+                default ->
+                        stack.push(Integer.parseInt(operation));
             }
         }
-        
-        int sum = 0;
-        for (int i=0; i<records.size(); i++)
-            sum += records.get(i);
-        return sum;
+        int sumOfRecords = 0;
+        while (!stack.isEmpty())
+            sumOfRecords += stack.pop();
+        return sumOfRecords;
     }
 }
