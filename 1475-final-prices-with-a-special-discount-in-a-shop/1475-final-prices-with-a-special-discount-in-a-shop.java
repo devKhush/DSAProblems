@@ -3,19 +3,14 @@ class Solution {
         int[] finalPrices = new int[prices.length];
         Stack<Integer> stack = new Stack<>();
         
-        for (int i = 0; i < prices.length; i++){
-            while (!stack.isEmpty()  &&  prices[stack.peek()] >= prices[i]){
-                int index = stack.pop(); 
-                finalPrices[index] = prices[index] - prices[i]; 
-            }
-            stack.push(i);
+        for (int i = prices.length - 1; i >= 0; i--){
+            while (!stack.isEmpty()  &&  stack.peek() > prices[i])
+                stack.pop();
+            
+            finalPrices[i] = !stack.isEmpty() ? prices[i] - stack.peek() : prices[i];
+            
+            stack.push(prices[i]);
         }
-        
-        while (!stack.isEmpty()){
-            int index = stack.pop();
-            finalPrices[index] = prices[index];
-        }
-        
         return finalPrices;
     }
 }
