@@ -4,22 +4,28 @@ import java.util.Arrays;
 // https://www.youtube.com/watch?v=eGf-26OTI-A&t=5s
 
 public class TaskScheduler_Simpler {
+    // Time Complexity :    O(n) + O(26 * log(26)) + O(25)  =  O(n)
+    // Space Complexity:    O(Map Array of size: 26)  =  O(1)
     public int leastInterval(char[] tasks, int n) {
-        int[] counts = new int[26];
-        
+        int[] tasksCount = new int[26];
+
         for (char task : tasks)
-            counts[task - 'A']++;
-        
-        Arrays.sort(counts);
-        
-        int maxValue = counts[25] - 1;
-        int idleSlots = maxValue * n;
-        
-        for (int i = 24; i>=0; i--)
-            idleSlots -= Math.min(counts[i], maxValue);
-        
-        return idleSlots > 0 ? idleSlots + tasks.length : tasks.length; 
-        
+            tasksCount[task - 'A']++;
+
+        Arrays.sort(tasksCount);
+
+        // This is the most frequent (greater in freq.) task to be performed
+        int mostFrequentTask = tasksCount[25];
+
+        // Idle slots that need to be filled are
+        int idleSlots = (mostFrequentTask - 1) * n;
+
+        // Filling Idle Slots
+        for (int i = 24; i >= 0; i--)
+            idleSlots -= Math.min(tasksCount[i], mostFrequentTask - 1);
+
+        // Finding the Time taken to do all tasks
+        return idleSlots > 0 ? idleSlots + tasks.length : tasks.length;
     }
 }
 
