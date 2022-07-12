@@ -1,41 +1,25 @@
 package Queues.NumberOfRecentCalls;
-
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class NumberOfRecentCalls {
-    private Queue<Integer> queue;
+    private final Queue<Integer> queue;
 
     public NumberOfRecentCalls() {
-        queue = new LinkedList<>();
+        queue = new ArrayDeque<>();
     }
 
-    // O(N)
-    public int ping(int t) {
-        int requests = 1;
-        int startRange = t - 3000;
-        int endRange = t;
-
-        while (!queue.isEmpty()){
-            if (queue.peek() >= startRange && queue.peek() <= endRange){
-                requests += queue.size();
-                break;
-            }
-            else
-                queue.remove();
-        }
-        queue.add(t);
-        return requests;
-    }
-
-    // Another approach (Faster & easier than previous one)
+    // Time Complexity: O(1)
+    // On average, Time complexity is O(1), Amortized Complexity
+    // Space Complexity: O(3000) = O(1)
+    // Queue size will be at most 3000
     public int ping_(int time) {
-        int startRange = time -3000;
-        this.queue.add(time);
+        int startRange = time - 3000;
 
-        while (this.queue.peek() < startRange)
-            this.queue.remove();
+        while (!queue.isEmpty()  &&  queue.peek() < startRange)
+            queue.remove();
 
-        return this.queue.size();
+        queue.add(time);
+        return queue.size();
     }
 }
