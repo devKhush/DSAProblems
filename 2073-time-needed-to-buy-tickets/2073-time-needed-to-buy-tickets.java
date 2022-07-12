@@ -1,16 +1,19 @@
 class Solution {
     public int timeRequiredToBuy(int[] tickets, int k) {
-        int n = tickets.length;
-        int i = 0;
-        int time = 0;
+        Queue<Integer> queue = new ArrayDeque<>();
+        int timeRequired = 0;
+        
+        for (int i = 0; i < tickets.length; i++)
+            queue.add(i);
         
         while (tickets[k] != 0){
-            if (tickets[i] != 0){
-                tickets[i]--;
-                time++;
-            }
-            i = (i + 1) % n;
+            int index = queue.remove();
+            tickets[index]--;
+            timeRequired++;
+
+            if (tickets[index] != 0)
+                queue.add(index);
         }
-        return time;
+        return timeRequired;
     }
 }
