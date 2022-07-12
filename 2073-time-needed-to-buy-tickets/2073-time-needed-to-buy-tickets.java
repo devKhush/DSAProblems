@@ -4,7 +4,8 @@ class Solution {
         int timeRequired = 0;
         
         for (int i = 0; i < tickets.length; i++)
-            queue.add(i);
+            if (tickets[i] != 0)
+                queue.add(i);
         
         while (tickets[k] != 0){
             int index = queue.remove();
