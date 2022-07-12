@@ -1,5 +1,31 @@
 class Solution {
     public int countStudents(int[] students, int[] sandwiches) {
+        int zeros = 0, ones = 0;
+        for (int student : students){
+            if (student == 1)
+                ones++;
+            else
+                zeros++;
+        }
+
+        for (int sandwich : sandwiches){
+            if (sandwich == 0){
+                if (zeros == 0)
+                    return ones;
+                else
+                    zeros--;
+            }
+            else if (sandwich == 1){
+                if (ones == 0)
+                    return zeros;
+                else
+                    ones--;
+            }
+        }
+        return 0;
+    }
+    
+    public int countStudents_Queue_2(int[] students, int[] sandwiches) {
         Queue<Integer> queue = new LinkedList<>();
 
         for (int student : students)
@@ -25,7 +51,7 @@ class Solution {
     
     
     
-    public int countStudents_Solution1(int[] students, int[] sandwiches) {
+    public int countStudents_Queue_1(int[] students, int[] sandwiches) {
         Queue<Integer> queue = new ArrayDeque<>();
         
         for (int student : students)
