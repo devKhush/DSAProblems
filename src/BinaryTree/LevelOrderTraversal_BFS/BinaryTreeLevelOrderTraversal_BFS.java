@@ -1,19 +1,16 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+package BinaryTree.LevelOrderTraversal_BFS;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
+// PRE_REQUISITE: "ROTTEN ORANGES" in QUEUES
+
+class BinaryTreeLevelOrderTraversal_BFS {
+    /* Level Order traversal is simply BFS (Breadth First Search) of Tree
+    * Time Complexity: O(n)
+    * Space Complexity: O(n)        Due to queue  (though much less than O(n))
+     */
     public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null)
             return new ArrayList<>();
@@ -41,4 +38,12 @@ class Solution {
         }
         return levelOrderTraversal;
     }
+
+
+    public static class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode(int val) { this.val = val; }
+  }
 }
