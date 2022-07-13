@@ -55,23 +55,19 @@ class Solution {
     }
 
     public void bfs(int node, int V, int[][] adjMatrix, boolean[] visited, ArrayList<Integer> bfs){
-        Queue<Integer> bfsQueue = new ArrayDeque<>();
+         Queue<Integer> bfsQueue = new ArrayDeque<>();
         bfsQueue.add(node);
         visited[node] = true;
 
         while (!bfsQueue.isEmpty()){
-            int size = bfsQueue.size();
+            int currentVertex = bfsQueue.remove();
+            bfs.add(currentVertex);
 
-            for (int i = 1; i <= size; i++){
-                int currentVertex = bfsQueue.remove();
-                bfs.add(currentVertex);
-
-                for (int neighbourVertex = 0; neighbourVertex < V; neighbourVertex++)
-                    if (!visited[neighbourVertex]  &&  adjMatrix[currentVertex][neighbourVertex] != 0){
-                        visited[neighbourVertex] = true;
-                        bfsQueue.add(neighbourVertex);
-                    }
-            }
+            for (int neighbourVertex = 0; neighbourVertex < V; neighbourVertex++)
+                if (adjMatrix[currentVertex][neighbourVertex] != 0  &&  !visited[neighbourVertex]){
+                    visited[neighbourVertex] = true;
+                    bfsQueue.add(neighbourVertex);
+                }
         }
     }
 }
