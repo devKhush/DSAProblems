@@ -32,6 +32,39 @@ class GFG {
 
 
 class Solution {
+    // BFS Solution **********************************************************************
+    public boolean cycleCheck_BFS(int vertex, int V, ArrayList<ArrayList<Integer>> adjList, boolean[] visited){
+        Queue<VertexPair> queue = new ArrayDeque<>();
+
+        queue.add(new VertexPair(vertex, -1));
+        visited[vertex] = true;
+
+        while (!queue.isEmpty()){
+            VertexPair currVertex = queue.remove();
+
+            for (int adjacentVertex : adjList.get(currVertex.vertex)){
+                if (visited[adjacentVertex]  &&  adjacentVertex != currVertex.parentVertex)
+                    return true;
+                if (!visited[adjacentVertex]){
+                    queue.add(new VertexPair(adjacentVertex, currVertex.vertex));
+                    visited[adjacentVertex] = true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+        boolean[] visited = new boolean[V];
+
+        for (int vertex = 0; vertex < V; vertex++)
+            if (!visited[vertex]  &&  cycleCheck_BFS(vertex, V, adj, visited))
+                return true;
+        return false;
+    }    
+    
+    
+    
+    // DFS Solution **********************************************************************
     public boolean dfs(int vertex, int V, ArrayList<ArrayList<Integer>> adjList, boolean[] visited, int prevVertex){
         visited[vertex] = true;
         
@@ -43,12 +76,20 @@ class Solution {
         }
         return false;
     }
-    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+    public boolean isCycle_DFS(int V, ArrayList<ArrayList<Integer>> adj) {
         boolean[] visited = new boolean[V];
         
         for (int vertex = 0; vertex < V; vertex++)
             if (!visited[vertex]  &&  dfs(vertex, V, adj, visited, -1))
                 return true;
         return false;
+    }
+    
+    static class VertexPair{
+        int vertex, parentVertex;
+        public VertexPair(int vertex, int parentVertex) {
+            this.vertex = vertex;
+            this.parentVertex = parentVertex;
+        }
     }
 }
