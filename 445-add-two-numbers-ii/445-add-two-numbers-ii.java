@@ -28,7 +28,7 @@ class Solution {
         int carry = 0;
         Stack<ListNode> result = new Stack<>();
         
-        while (!num1.isEmpty() || !num2.isEmpty()){
+        while (!num1.isEmpty() || !num2.isEmpty() || carry != 0){
             int sum = 0;
             sum += !num1.isEmpty() ? num1.pop().val : 0;
             sum += !num2.isEmpty() ? num2.pop().val : 0;
@@ -37,8 +37,6 @@ class Solution {
             result.push(new ListNode(sum % 10));
             carry = sum / 10;
         }
-        if (carry != 0)
-            result.push(new ListNode(carry));
         
         ListNode dummy = new ListNode(0), ptr = dummy;
         
