@@ -38,19 +38,29 @@ class Solution {
     public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adjList) {
         boolean[] visited = new boolean[V];
         ArrayList<Integer> dfsTraversal = new ArrayList<>();
+        int[][] adjMatrix = new int[V][V];
+        
+        for (int i = 0; i < adjList.size(); i++){
+            for (int j = 0; j < adjList.get(i).size(); j++){
+                adjMatrix[i][adjList.get(i).get(j)] = 1;
+                adjMatrix[adjList.get(i).get(j)][i] = 1;
+            }
+        }
+        // System.out.println(Arrays.deepToString(adjMatrix));
 
-        dfs(0, visited, adjList, dfsTraversal);
+        dfs(0, adjMatrix, V, visited, dfsTraversal);
         return dfsTraversal;
     }
     
     
-    public void dfs(int vertex, boolean[] visited, ArrayList<ArrayList<Integer>> adjList, ArrayList<Integer> dfs){
-        dfs.add(vertex);
+    public void dfs(int vertex, int[][] adjMatrix, int V, boolean[] visited, ArrayList<Integer> dfs){
         visited[vertex] = true;
+        dfs.add(vertex);
 
-        for (int adjacentVertex : adjList.get(vertex)){
-            if (!visited[adjacentVertex])
-                dfs(adjacentVertex, visited, adjList, dfs);
+        for (int adjacentVertex = 0; adjacentVertex < V; adjacentVertex++){
+            boolean isAdjacentVertex = vertex != adjacentVertex  &&  adjMatrix[vertex][adjacentVertex] != 0;
+            if (isAdjacentVertex  &&  !visited[adjacentVertex])
+                dfs(adjacentVertex, adjMatrix, V, visited, dfs);
         }
     }
 }
