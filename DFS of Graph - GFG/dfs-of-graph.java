@@ -44,9 +44,7 @@ class Solution {
     
     public void dfs_iterative(int vertex, boolean[] visited, ArrayList<ArrayList<Integer>> adjList, ArrayList<Integer> dfs){
         Stack<Integer> stack = new Stack<>();
-
         stack.add(vertex);
-        // visited[vertex] = true;
 
         while (!stack.isEmpty()){
             int currentVertex = stack.pop();
@@ -57,10 +55,8 @@ class Solution {
 
             for (int i = adjList.get(currentVertex).size() - 1; i >= 0; i--){
                 int adjacentVertex = adjList.get(currentVertex).get(i);
-                if (!visited[adjacentVertex]){
+                if (!visited[adjacentVertex])
                     stack.add(adjacentVertex);
-                    // visited[adjacentVertex] = true;
-                }
             }
         }
     }
