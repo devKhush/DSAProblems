@@ -11,10 +11,10 @@ public class DetectCycleInUnDirectGraph_BFS {
     /*
     * Intuition: The intuition behind this is to check for the visited element if it is found again,
                  this means the cycle is present in the given undirected graph.
-                 To check the loop condition (whether vertex already visited or not), we have to maintain
+                 To check the cycle condition (whether vertex already visited or not), we have to maintain
                  the parent vertex of each vertex (parent vertex is that vertex from which it is coming)
-                 This is because we are checking for loop except for adjacent vertices (adjacent vertices
-                 always forms a loop in undirected graph)
+                 This is because we are checking for cycle except for adjacent vertices (adjacent vertices
+                 always forms a cycle in undirected graph)
     * We do a BFS traversal of the given graph. For every visited vertex ‘v’, if there is an
       adjacent vertex ‘u’ such that 'u' is already visited and 'v' is not a parent of 'u', then there
       is a cycle in the graph. If we don’t find such an adjacent for any vertex, we say that there
@@ -35,11 +35,12 @@ public class DetectCycleInUnDirectGraph_BFS {
 
             // Get all adjacent vertices of the dequeued vertex u.
             for (int adjacentVertex : adjList.get(currVertex.vertex)){
-                // If "adjacentVertex" is already visited & it is the parent of "currentVertex". Then a cycle exists
+                // If any "adjacentVertex" which is already visited & it is not the Parent/Previous
+                // vertex of "currentVertex". Then a cycle exists.
                 if (visited[adjacentVertex]  &&  adjacentVertex != currVertex.parentVertex)
                     return true;
 
-                // If an adjacent has not been visited, then mark it visited and enqueue it.
+                // If an adjacent vertex has not been visited, then mark it visited and enqueue it.
                 // We also mark parent so that parent is not considered for cycle.
                 if (!visited[adjacentVertex]){
                     queue.add(new VertexPair(adjacentVertex, currVertex.vertex));
