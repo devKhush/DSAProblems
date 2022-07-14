@@ -31,16 +31,27 @@ public class DFS_Iterative {
        * Since an extra "Visited array of size V" and "Stack space of size V" is required.
     */
     public void dfs(int vertex, boolean[] visited, ArrayList<ArrayList<Integer>> adjList, ArrayList<Integer> dfs){
+        // Create a stack for DFS
         Stack<Integer> stack = new Stack<>();
+        // Push the current source node
         stack.add(vertex);
 
         while (!stack.isEmpty()){
+            // Pop a vertex from stack and to perform dfs on it
             int currentVertex = stack.pop();
+
+            // Stack may contain same vertex twice. So we need to print the popped item only
+            // if it is not visited.
             if (!visited[currentVertex]){
                 dfs.add(currentVertex);
                 visited[currentVertex] = true;
             }
 
+            // Get all adjacent vertices of the popped 'vertex'. If an adjacent vertex has not been visited,
+            // then push it to the stack.
+            // Here, we don't mark adjacent vertex when we push it into the stack, bcoz we want Depth wise traversal.
+            // So, we can't mark other adjacent vertex (while pushing into the stack) in breadth wise manner
+            // If we mark other adjacent vertex (while pushing into the stack), it would be kind of BFS
             for (int adjacentVertex : adjList.get(currentVertex))
                 if (!visited[adjacentVertex])
                     stack.push(adjacentVertex);
