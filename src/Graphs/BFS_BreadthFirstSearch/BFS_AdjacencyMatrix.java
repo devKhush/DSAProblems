@@ -5,11 +5,13 @@ import java.util.Queue;
 
 // BFS: BFS is basically traversing the adjacent vertex at first (for each & every vertex)
 // https://youtu.be/UeE67iCK2lQ
+// https://takeuforward.org/data-structure/breadth-first-searchbfs-level-order-traversal/
 // https://www.geeksforgeeks.org/implementation-of-bfs-using-adjacency-matrix/
 // https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
 
 public class BFS_AdjacencyMatrix {
     /*
+    * BFS uses a queue data structure for the traversal.
     * Time Complexity: O(V) + O(V * V)  =  O(V*V)
         * O(V) time to carry out BFS of every vertex if not done
         * For the (current) vertex whose BFS is going on, we loop through (from 1 to V) to find all the

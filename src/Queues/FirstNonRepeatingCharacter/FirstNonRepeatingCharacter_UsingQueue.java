@@ -1,6 +1,5 @@
 package Queues.FirstNonRepeatingCharacter;
 import java.util.ArrayDeque;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
