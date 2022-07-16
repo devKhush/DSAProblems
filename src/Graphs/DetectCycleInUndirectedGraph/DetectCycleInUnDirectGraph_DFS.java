@@ -1,4 +1,4 @@
-package Graphs.DetectCycleInUndirectGraph;
+package Graphs.DetectCycleInUndirectedGraph;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
