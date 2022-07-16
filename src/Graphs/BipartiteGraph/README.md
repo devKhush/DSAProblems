@@ -36,4 +36,3 @@
 	<li>All the values of <code>graph[u]</code> are <strong>unique</strong>.</li>
 	<li>If <code>graph[u]</code> contains <code>v</code>, then <code>graph[v]</code> contains <code>u</code>.</li>
 </ul>
-</div>
