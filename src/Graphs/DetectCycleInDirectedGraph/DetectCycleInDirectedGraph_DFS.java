@@ -1,4 +1,4 @@
-package Graphs.DetectCycleInDirectedGraph_DFS;
+package Graphs.DetectCycleInDirectedGraph;
 import java.util.ArrayList;
 
 // https://youtu.be/uzVUw90ZFIg
@@ -35,7 +35,7 @@ public class DetectCycleInDirectedGraph_DFS {
       again somehow in DFS Recursion stack of other adjacent Vertex".
 
      * Time Complexity: O(V + E)               Same as DFS for Graph with adjacency list
-     * Space Complexity: O(3 * V) = O(V)       Same as DFS for Graph with adjacency list
+     * Space Complexity: O(3 * V) = O(V)
      */
 
     private boolean detectCycleInDirectGraph_DFS(int vertex, ArrayList<ArrayList<Integer>> adjList, boolean[] visited, boolean[] dfsOngoing, int V){
