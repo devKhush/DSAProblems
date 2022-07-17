@@ -1,79 +1,53 @@
 class Trie {
-    private TrieNode root;
+    private Node root;
+
     public Trie() {
-        this.root = new TrieNode();
+        root = new Node();
     }
-
+    
     public void insert(String word) {
-        TrieNode node = root;
-        
-        for (int i = 0; i < word.length(); i++){
-            char ch = word.charAt(i);
-            
-            if (!node.containsKey(ch))
-                node.put(ch, new TrieNode());
-            
-            node = node.get(ch);
+        Node temp = root;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (temp.children[c - 'a'] == null) {
+                temp.children[c - 'a'] = new Node();
+            }
+            temp = temp.children[c - 'a'];
         }
-        node.setEnd();
+        temp.isEnd = true;
     }
-
+    
     public boolean search(String word) {
-        TrieNode node = root;
-        
-        for (int i = 0; i < word.length(); i++){
-            char ch = word.charAt(i);
-            
-            if (!node.containsKey(ch))
+        Node temp = root;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (temp.children[c - 'a'] == null) {
                 return false;
-            node = node.get(ch);
+            }
+            temp = temp.children[c - 'a'];
         }
-        return node.isEnd();
+        return temp.isEnd;
     }
-
+    
     public boolean startsWith(String prefix) {
-        TrieNode node = root;
-
-        for (int i = 0; i < prefix.length(); i++){
-            char ch = prefix.charAt(i);
-
-            if (!node.containsKey(ch))
+        Node temp = root;
+        for (int i = 0; i < prefix.length(); i++) {
+            char c = prefix.charAt(i);
+            if (temp.children[c - 'a'] == null) {
                 return false;
-            node = node.get(ch);
+            }
+            temp = temp.children[c - 'a'];
         }
         return true;
     }
     
-}
-
-
-class TrieNode{
-    private TrieNode[] trieNodes;
-    private boolean end;
-
-    public TrieNode(){
-        this.trieNodes = new TrieNode[26];
-        this.end = false;
-    }
-
-    public boolean containsKey(char ch){
-        return trieNodes[ch - 'a'] != null;
-    }
-
-    public void put(char ch, TrieNode node){
-        trieNodes[ch - 'a'] = node;
-    }
-    
-    public TrieNode get(char ch){
-        return trieNodes[ch - 'a'];
-    }
-    
-    public void setEnd(){
-        end = true;
-    }
-
-    public boolean isEnd(){
-        return end;
+    class Node {
+        Node[] children;
+        boolean isEnd;
+        
+        public Node() {
+            children = new Node[26];
+        }
     }
 }
 /**
