@@ -38,6 +38,8 @@ public class TopologicalSort_DFS {
         // Mark the current node as visited
         visited[vertex] = true;
 
+        // Iterate for all the adjacent nodes of 'v'. If any adjacent node to 'v' is not visited,
+        // call topologicalSort function on it.
         for (int adjacentVertex : adjList.get(vertex)){
             if (!visited[adjacentVertex])
                 topologicalSort_DFS(adjacentVertex, adjList, topologicalSortedStack, visited);
