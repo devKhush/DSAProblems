@@ -10,7 +10,7 @@ public class ShortestPathInUndirectedGraphWithUnitWeights {
     /* ********************************** Efficient BFS Solution ***********************************
      * For Unit Weighted edges, BFS Solution is much efficient & faster than DFS Solution
        This is because, BFS traverse all the vertices in breadth wise manner. So, starting from source
-       vertex, BFS assigns the shortest distance.
+       vertex, BFS assigns the shortest distance breadth wise.
      * Approach: Instead of visited array, we take a Distance array to store the shortest path
        from the source to any node. This distance array is initialized with infinity, for Disconnected
        components n the graphs, the shortest path remains infinity only.

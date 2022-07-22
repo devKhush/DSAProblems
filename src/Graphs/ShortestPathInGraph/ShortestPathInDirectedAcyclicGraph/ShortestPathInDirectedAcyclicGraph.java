@@ -1,7 +1,8 @@
 package Graphs.ShortestPathInGraph.ShortestPathInDirectedAcyclicGraph;
 import java.util.*;
 
-// BFS Solution: https://youtu.be/hwCWi7-bRfI
+// PRE-REQUISITE: DIJKSTRA ALGORITHM
+// BFS Solution: https://youtu.be/jbhuqIASjoM
 
 // DAG's always have a topological sort Solution
 // Topological Sort Solution:
@@ -15,39 +16,31 @@ public class ShortestPathInDirectedAcyclicGraph {
     /* ************************************* BFS Solution *****************************************
     * Solution is same as the "Shortest path in Undirected Graphs with Unit Weights" except that past cost is
       taken into consideration.
-    * Approach: Instead of visited array, we take a Distance array to store the shortest path
-      from the source to any node. This distance array is initialized with infinity, for Disconnected
-      components n the graphs, the shortest path remains infinity only.
+    * Dijkstra Algorithm can be used here, as Dijkstra Algorithm works for both directed and undirected, positively weighted graphs
 
     * The Intuition is to use the BFS algorithm.
-    * Time Complexity : O(V + E)                Same as BFS for Graph with adjacency list
-    * Space Complexity: O(2 * V) = O(V)         Same as BFS for Graph with adjacency list
+    * Time Complexity : O(V*log(V) + E)                Same as Dijkstra Algorithm
+    * Space Complexity: O(2 * V) = O(V)                Same as Dijkstra Algorithm
     */
     public int[] shortestPathsInDAG_BFS(int V, ArrayList<ArrayList<int[]>> adjList, int source){
-        // Array to store "Shortest path from source to the nodes"
         int[] shortestPath = new int[V];
+
         Arrays.fill(shortestPath, Integer.MAX_VALUE);
-
-        Queue<Integer> bfsQueue = new ArrayDeque<>();
-
-        // For source, the shortest path to itself will be 0
         shortestPath[source] = 0;
-        bfsQueue.add(source);
 
-        while (!bfsQueue.isEmpty()){
-            int currVertex = bfsQueue.remove();
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> (a[1] - b[1]));
+        minHeap.add(new int[]{source, 0});
 
-            // Traverse every adjacent vertex of current vertex
+        while (!minHeap.isEmpty()){
+            int currVertex  = minHeap.remove()[0];
+
             for (int[] neighbour : adjList.get(currVertex)){
                 int adjacentVertex = neighbour[0];
                 int pathCost = neighbour[1];
 
-                // If the "Distance from currVertex plus path cost to neighbour vertex" is smaller than
-                // "Distance from source to adjacentVertex". Then we found a shorter path to the
-                // 'adjacentVertex' from the source, add adjacent vertex to the queue (as in BFS)
-                if (shortestPath[currVertex] + pathCost < shortestPath[adjacentVertex]){
+                if (shortestPath[adjacentVertex] > shortestPath[currVertex] + pathCost){
                     shortestPath[adjacentVertex] = shortestPath[currVertex] + pathCost;
-                    bfsQueue.add(adjacentVertex);
+                    minHeap.add(new int[]{adjacentVertex, shortestPath[adjacentVertex]});
                 }
             }
         }
