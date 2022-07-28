@@ -1,4 +1,4 @@
-package Graphs.ArticulationPoint;
+package Graphs.ArticulationPoint_CutVertex;
 import java.util.ArrayList;
 
 // Tarjan’s algorithm
