@@ -77,6 +77,7 @@ public class KruskalAlgorithm {
 
 
     // *****************************  Structure of the Edges of the Graph  *****************************
+    // "Edge" Structure for Undirected graph, for Directed graph see "Bellman Algorithm"
      static class Edge implements Comparable<Edge>{
         private final int startVertex, endVertex, edgeWeight;
 
@@ -99,6 +100,7 @@ public class KruskalAlgorithm {
                 return false;
             Edge edge = (Edge) o;
 
+            // Since the graph is an Undirected graph, we need to handle two case separately
             // For edges like (start, end, edgeWeight) = (1, 2, 10) and (1, 2, 10)  both are same
             boolean condition1 = this.startVertex == edge.startVertex && this.endVertex == edge.endVertex;
 

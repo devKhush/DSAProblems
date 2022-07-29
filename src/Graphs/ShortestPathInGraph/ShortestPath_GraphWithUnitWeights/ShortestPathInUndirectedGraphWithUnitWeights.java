@@ -1,4 +1,4 @@
-package Graphs.ShortestPathInGraph.ShortestPath_UndirectedGraphWithUnitWeights;
+package Graphs.ShortestPathInGraph.ShortestPath_GraphWithUnitWeights;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
