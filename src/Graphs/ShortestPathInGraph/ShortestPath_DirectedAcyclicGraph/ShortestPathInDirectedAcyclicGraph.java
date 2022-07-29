@@ -1,4 +1,4 @@
-package Graphs.ShortestPathInGraph.ShortestPathInDirectedAcyclicGraph;
+package Graphs.ShortestPathInGraph.ShortestPath_DirectedAcyclicGraph;
 import java.util.*;
 
 // PRE-REQUISITE: DIJKSTRA ALGORITHM

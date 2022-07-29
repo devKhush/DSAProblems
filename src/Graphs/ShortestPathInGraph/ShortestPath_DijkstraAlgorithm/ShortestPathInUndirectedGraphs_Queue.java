@@ -1,4 +1,4 @@
-package Graphs.ShortestPathInGraph.ShortestPathInUndirectedGraphs_Dijkstra;
+package Graphs.ShortestPathInGraph.ShortestPath_DijkstraAlgorithm;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;

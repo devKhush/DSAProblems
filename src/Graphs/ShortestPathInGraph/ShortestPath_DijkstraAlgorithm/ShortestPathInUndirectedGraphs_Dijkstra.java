@@ -1,4 +1,4 @@
-package Graphs.ShortestPathInGraph.ShortestPathInUndirectedGraphs_Dijkstra;
+package Graphs.ShortestPathInGraph.ShortestPath_DijkstraAlgorithm;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
@@ -6,6 +6,8 @@ import java.util.PriorityQueue;
 // https://youtu.be/jbhuqIASjoM
 // https://takeuforward.org/data-structure/dijkstras-algorithm-shortest-distance/
 // https://www.geeksforgeeks.org/dijkstras-algorithm-for-adjacency-list-representation-greedy-algo-8/
+
+// IMP: Dijkstra Algorithm works for both directed and undirected, with positively weighted graphs only
 
 public class ShortestPathInUndirectedGraphs_Dijkstra {
     /** *********************************** Dijkstra Algorithm ******************************************
