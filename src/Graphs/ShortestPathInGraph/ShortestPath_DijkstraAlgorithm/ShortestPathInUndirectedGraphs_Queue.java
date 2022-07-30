@@ -17,7 +17,8 @@ public class ShortestPathInUndirectedGraphs_Queue {
 
     * The Intuition is to use the BFS algorithm.
     * Actual time complexity is multiple times of O(V+ E), as there will be unnecessary iterations
-    * Time Complexity : O(V + E)                Same as BFS for Graph with adjacency list
+    * Time Complexity : O(n * (V + E))                Same as BFS for Graph with adjacency list
+        * n can vary as there will be multiple repetitions
     * Space Complexity: O(2 * V) = O(V)         Same as BFS for Graph with adjacency list
     */
     public int[] shortestPathsInDAG_BFS(int V, ArrayList<ArrayList<int[]>> adjList, int source){
@@ -64,7 +65,8 @@ public class ShortestPathInUndirectedGraphs_Queue {
 
      * The Intuition is to use the DFS algorithm.
      * Actual time complexity is multiple times of O(V+ E), as there will be unnecessary iterations
-     * Time Complexity : O(V + E)                Same as DFS for Graph with adjacency list
+     * Time Complexity : O(n * (V + E))                Same as DFS for Graph with adjacency list
+        * n can vary as there will be multiple repetitions
      * Space Complexity: O(2 * V) = O(V)         Same as DFS for Graph with adjacency list
      */
     public int[] shortestPathToEveryNode_DFS(int V, ArrayList<ArrayList<int[]>> adjList, int source) {
