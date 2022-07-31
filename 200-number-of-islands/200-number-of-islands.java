@@ -1,28 +1,15 @@
 class Solution {
-   public void bfs(int i, int j, int m, int n, char[][] grid, boolean[][] visited){
-        int[] dx = {0,  0, 1, -1};
-        int[] dy = {1, -1, 0, 0};
+  public void dfs(int i, int j, int m, int n, char[][] grid, boolean[][] visited){
+        if (i < 0 || j < 0 || i >= m || j >= n || grid[i][j] == '0' || visited[i][j])
+            return;
 
-        Queue<int[]> bfsQueue = new ArrayDeque<>();
-        bfsQueue.add(new int[]{i, j});
-
+        grid[i][j] = '0';
         visited[i][j] = true;
 
-        while (!bfsQueue.isEmpty()){
-            i  = bfsQueue.peek()[0];
-            j  = bfsQueue.peek()[1];
-            bfsQueue.remove();
-
-            for (int a = 0; a < 4; a++){
-                int nextI = i + dx[a];
-                int nextJ = j + dy[a];
-
-                if (nextI >= 0  &&  nextJ >= 0  && nextI < m  &&  nextJ < n  && grid[nextI][nextJ] == '1' && !visited[nextI][nextJ]) {
-                    bfsQueue.add(new int[]{nextI, nextJ});
-                    visited[nextI][nextJ] = true;
-                }
-            }
-        }
+        dfs(i - 1, j, m, n, grid, visited);
+        dfs(i, j + 1, m, n, grid, visited);
+        dfs(i + 1, j, m, n, grid, visited);
+        dfs(i, j - 1, m, n, grid, visited);
     }
 
     
@@ -36,7 +23,7 @@ class Solution {
             for (int j = 0; j < n; j++){
                 if (grid[i][j] == '1'  &&  !visited[i][j]){
                     numberOfIslands++;
-                    bfs(i, j, m, n, grid, visited);
+                    dfs(i, j, m, n, grid, visited);
                 }
             }
         }
