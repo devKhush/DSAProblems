@@ -4,7 +4,7 @@ import java.util.Stack;
 
 // https://youtu.be/V8qIqJxCioo
 // https://takeuforward.org/data-structure/kosarajus-algorithm-for-strongly-connected-componentsscc/
-// https://www.geeksforgeeks.org/strongly-connected-components/
+// MUST READ for Intuition: https://www.geeksforgeeks.org/strongly-connected-components/
 
 /**
  * Intuition:  https://youtu.be/V8qIqJxCioo
@@ -81,8 +81,8 @@ public class KosaRajuAlgorithm {
         // That's why Topological sorting for BFS can't be used here (Kahn's algo for topological sort
         // using BFS is not possible for Directed Cyclic graphs)
         // * Stack will store the vertices in the order of their finishing time/order,
-        // * First element in stack will be finished first (its out-degree will be minimum & in-degree will be maximum)
-        // * Last element in stack will be finished at last (its out-degree will be maximum & in-degree will be minimum)
+        // * Bottom element in stack will be finished first (its out-degree will be minimum & in-degree will be maximum)
+        // * Top element in stack will be finished at last (its out-degree will be maximum & in-degree will be minimum)
         // Recall it is same as topological sort
         Stack<Integer> topologicalSort = new Stack<>();
 

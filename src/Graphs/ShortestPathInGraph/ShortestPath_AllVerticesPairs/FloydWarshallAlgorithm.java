@@ -26,10 +26,10 @@ import java.util.ArrayList;
 
  * For Directed Graphs:
         * With Negative Edges:
-            * Can't be used as it will be a negative edge weight cycle, but it can detect a negative edge
-                weight cycle
+            * Can't be used with a negative edge weight cycle, but it can detect a negative edge
+                weight cycle. In case of graph without negative edge weight cycle, this algo is a good choice.
             * This algorithm will take V^3 time. But another algorithm "Bellman Ford" Algorithm will
-                "V * (V*E)" time for all the V vertices. It can slo detect a cycle.
+                "V * (V*E)" time for all the V vertices. It can also detect a cycle.
                 Though Bellman ford algorithm is not a good choice as Number of edges can be atmost
                 V*(V-1)/2. Making Time complexity in worst case to be O(V^4)
         * With Positive Edges:
