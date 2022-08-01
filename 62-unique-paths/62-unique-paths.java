@@ -1,11 +1,13 @@
 class Solution {
     public int uniquePaths(int m, int n) {
         /*
-        // Memoization Solution
+        // Memoization Solution ***********************************************
         Integer[][] dp = new Integer[m][n];
         return findTotalPaths(m - 1, n - 1, dp);
         */
         
+        /*
+        // Tabulation Solution ****************************************************************
         int[][] dp = new int[m][n];
         dp[0][0] = 1;
         
@@ -20,6 +22,26 @@ class Solution {
             }
         }
         return dp[m - 1][n - 1];
+        */
+        
+        
+        // Tabulation SOllutio
+        int[] dp = new int[n];
+        dp[0] = 1;
+        
+        for (int i = 0; i < m; i++){
+            for (int j = 0; j < n; j++){
+                if (i == 0 && j == 0) continue;
+                
+                int moveUp = 0;
+                int moveLeft = 0;
+                
+                if (i > 0) moveUp = dp[j];
+                if (j > 0) moveLeft = dp[j - 1];
+                dp[j] = moveUp + moveLeft;
+            }
+        }
+        return dp[n - 1];
         
     }
     
