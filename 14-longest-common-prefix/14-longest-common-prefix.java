@@ -3,12 +3,12 @@ class Solution {
         String prefix = str[0];
         
         for (int i = 1; i < str.length; i++){
-            String newPrefix = "";
+            StringBuilder newPrefix = new StringBuilder();
             
             for (int j = 0; j < prefix.length() && j < str[i].length() && prefix.charAt(j) == str[i].charAt(j); j++)
-                newPrefix += str[i].charAt(j);
+                newPrefix.append(prefix.charAt(j));
             
-            prefix = newPrefix;
+            prefix = newPrefix.toString();
         }
         return prefix;
     }
