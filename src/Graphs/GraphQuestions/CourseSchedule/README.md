@@ -33,4 +33,3 @@ To take course 1 you should have finished course 0, and to take course 0 you sho
 	<li><code>0 &lt;= a<sub>i</sub>, b<sub>i</sub> &lt; numCourses</code></li>
 	<li>All the pairs prerequisites[i] are <strong>unique</strong>.</li>
 </ul>
-</div>
