@@ -1,5 +1,46 @@
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
+        int n = matrix.length;
+        
+        int low = matrix[0][0];
+        int high = matrix[n - 1][n - 1];
+        int kthSmallestElement = -1;
+        
+        while (low <= high){
+            int mid = low + (high - low)/2;
+            
+            int countLessThanOrEqual = 0;
+            for (int i = 0; i < n; i++)
+                countLessThanOrEqual += countLessThanOrEqualToMid(matrix[i], n, mid);
+            
+            if (countLessThanOrEqual < k)
+                low = mid + 1;
+            else if (countLessThanOrEqual >= k){
+                kthSmallestElement = mid;
+                high = mid - 1;
+            }
+        }
+        return kthSmallestElement;
+    }
+    
+    public int countLessThanOrEqualToMid(int[] arr, int n, int value){
+        int countLessThanOrEqual = 0;
+        int low = 0, high = n - 1;
+        
+        while (low <= high){
+            int mid = low + (high - low)/2;
+            
+            if (arr[mid] <= value){
+                countLessThanOrEqual = mid + 1;
+                low = mid + 1;
+            }
+            else if (arr[mid] > value)
+                high = mid - 1;
+        }
+        return countLessThanOrEqual;
+    }
+    
+    public int kthSmallest_maxHeap(int[][] matrix, int k) {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> (b - a));
         int count = 0;
         
@@ -9,7 +50,7 @@ class Solution {
                     maxHeap.add(num);
                     count++;
                 }
-                else if (num < maxHeap.peek()){
+                else if (count >= k  &&  num < maxHeap.peek()){
                     maxHeap.remove();
                     maxHeap.add(num);
                 }
@@ -18,6 +59,7 @@ class Solution {
                 
         return maxHeap.peek();
     }
+    
     
     public int kthSmallest_MinHeap(int[][] matrix, int k) {
         PriorityQueue<Integer> minHeap = new PriorityQueue();
