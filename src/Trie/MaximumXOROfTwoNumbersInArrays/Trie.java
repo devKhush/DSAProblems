@@ -1,38 +1,16 @@
-class Solution {
-    public int findMaximumXOR(int[] arr) {
-        Trie trie = new Trie();
-        
-        for (int number : arr)
-            trie.insert(number);
-        
-        int max_XOR = 0;
-        
-        for (int number : arr){
-            int XOR = trie.maximumXORWithNumber(number);
-            max_XOR = Math.max(max_XOR, XOR);
-        }
-        return max_XOR;
-    }
-    
-    
-    public int findMaximumXOR_BruteForce(int[] nums) {
-        int XOR = 0;
-        
-        for (int a : nums)
-            for (int b : nums)
-                XOR = Math.max(XOR, a ^ b);
-        return XOR;
-    }
-}
+package Trie.MaximumXOROfTwoNumbersInArrays;
 
-
-class Trie {
+public class Trie {
+    // Root of the Trie Data structure
     private final TrieNode root;
 
     public Trie() {
         this.root = new TrieNode();
     }
 
+    // Insert a number (in the form of 32-bit representation) into the trie
+    // While inserting the number into the trie, we consider the binary format (Integer – 32bit)
+    // and treat it as a string and insert the value.
     public void insert(int num){
         TrieNode node = root;
 
@@ -46,18 +24,25 @@ class Trie {
         }
     }
 
-    
-    public int maximumXORWithNumber(int num){
+
+    // Find Maximum value of XOR of number "x" with all the numbers present in the Trie
+    // i.e, max(arr[i] ^ x)
+    public int getMaximumXORWithNumber(int num){
         TrieNode node = root;
         int XOR = 0;
 
         for (int i = 31; i >= 0; i--){
             int bit = (num >> i) & 1;
 
+            // For every ith bit find its opposite bit
+            // If found, then the XOR output will have the bit at 'ith' position to be set to '1'
+            // Also, move to the opposite bit
             if (node.containsBit(1 - bit)){
                 XOR = (1 << i) | XOR;
                 node = node.get(1 - bit);
             }
+            // If not found, then we are bound to take that bit (there is no option)
+            // Here we won't update the XOR output as the bits are same & XOR of same bits is always '0'
             else
                 node = node.get(bit);
         }
@@ -65,7 +50,7 @@ class Trie {
     }
 
 
-
+    // *************************** TrieNode for Trie Data Structure *********************
     public static class TrieNode {
         private final TrieNode[] bitNodes;
 
