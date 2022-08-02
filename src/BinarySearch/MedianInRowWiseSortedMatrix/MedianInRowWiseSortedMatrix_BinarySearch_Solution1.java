@@ -77,8 +77,8 @@ public class MedianInRowWiseSortedMatrix_BinarySearch_Solution1 {
     // This function calculates the Count of numbers lesser than or equal to the no. 'num' in the array
     // Using Binary Search Algorithm
     private int countOfNumberLessThanOrEqualTo(int[] arr, int num, int n){
-        int low = 0, high = n - 1;
         int countOfLessThanOrEqualTo = 0;
+        int low = 0, high = n - 1;
 
         while (low <= high){
             int mid = low + (high - low)/2;

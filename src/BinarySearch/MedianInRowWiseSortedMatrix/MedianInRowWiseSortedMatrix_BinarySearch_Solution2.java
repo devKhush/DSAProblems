@@ -67,7 +67,7 @@ public class MedianInRowWiseSortedMatrix_BinarySearch_Solution2 {
 
     // This function calculates the Count of numbers lesser than or equal to the no. 'num' in the array
     // This another version of previous Same code as in Solution-1
-    // Problem is REDUCED to "Finding the first element greater than 'num' in the sorted array"
+    // Problem is REDUCED to "Finding the index of first element greater than 'num' in the sorted array"
     // Using Binary Search Algorithm
     private int countOfNumberLessThanOrEqualTo(int[] arr, int num, int n){
         int low = 0, high = n - 1;
