@@ -33,4 +33,3 @@ myCalendar.book(20, 30); // return True, The event can be booked, as the first e
 	<li><code>0 &lt;= start &lt; end &lt;= 10<sup>9</sup></code></li>
 	<li>At most <code>1000</code> calls will be made to <code>book</code>.</li>
 </ul>
-</div>
