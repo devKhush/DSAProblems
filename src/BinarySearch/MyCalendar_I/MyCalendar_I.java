@@ -12,13 +12,18 @@ import java.util.ArrayList;
  * If the booking to insert is overlapping, we can't insert it & return false
 
  * 'n' -> current size of Booking list
- * Time Complexity: O(log(n)) + O(n)
+ * Time Complexity: O(log(n)) + O(n) =  Amortized O(log(n))  = O(log(n))    🔥🔥
     * O(log(n)) to find the insert position for the current booking using Binary Search
     * O(n) because of adding the current Booking into the All-Bookings list at the insert position
-        given by binary search
+        given by binary search. This will happen only in worst case. This is due to internal
+        implementation of ArrayList which is Amortized O(1)
+    * So, Time Complexity is O(log(n))    🔥🔥🔥🔥🔥  96% Faster solution 🔥🔥🔥🔥🔥
+
  * Space Complexity: O(2 * n) = O(n)
     We are storing pairs of (start, end) inside the All-Bookings list of size 'n'
  */
+
+// PS: Don't Forget to check out Solution using "Segment Trees"
 
 class MyCalendar_I {
     // ArrayList to store all the bookings
@@ -80,7 +85,8 @@ class MyCalendar_I {
             return false;
         if (end > nextBooking[0])
             return false;
-        
+
+        // Time Complexity of this method is amortized O(1)
         bookings.add(insertPosition, new int[]{start, end});
         return true;
     }
@@ -94,6 +100,7 @@ class MyCalendar_I {
         if (end > nextBooking[0])
             return false;
 
+        // Time Complexity of this method is O(1), addition into front (0th index)
         bookings.add(0, new int[]{start, end});
         return true;
     }
@@ -106,7 +113,8 @@ class MyCalendar_I {
         
         if (start < previousBooking[1])
             return false;
-        
+
+        // Time Complexity of this method is O(1)
         bookings.add(new int[]{start, end});
         return true;
     }
