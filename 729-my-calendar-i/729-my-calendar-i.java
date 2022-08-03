@@ -8,7 +8,29 @@ class MyCalendar {
             root = new TreeNode(start, end);
             return true;
         }
-        return insertBooking(start, end, root);
+        // return insertBooking(start, end, root);
+        TreeNode node = root;
+        
+        while (true){
+            if (end <= node.start){
+                if (node.left == null){
+                    node.left = new TreeNode(start, end);
+                    return true;
+                }
+                else
+                    node = node.left;
+            }
+            else if (node.end <= start){
+                if (node.right == null){
+                    node.right = new TreeNode(start, end);
+                    return true;
+                }
+                else
+                    node = node.right;
+            }
+            else
+                return false;
+        }
     }
     
     public boolean insertBooking(int start, int end, TreeNode root){
