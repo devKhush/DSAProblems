@@ -1,7 +1,52 @@
-class MyCalendar {
+class MyCalendar {    
+    private TreeNode root;
+    public MyCalendar() {
+    }
+    
+    public boolean book(int start, int end) {
+        if (root == null){
+            root = new TreeNode(start, end);
+            return true;
+        }
+        return insertBooking(start, end, root);
+    }
+    
+    public boolean insertBooking(int start, int end, TreeNode root){
+        if (end <= root.start){
+            if (root.left == null){
+                root.left = new TreeNode(start, end);
+                return true;
+            }
+            else
+                return insertBooking(start, end, root.left);
+        }
+        else if (root.end <= start){
+            if (root.right == null){
+                root.right = new TreeNode(start, end);
+                return true;
+            }
+            else
+                return insertBooking(start, end, root.right);
+        }
+        return false;
+    }
+    
+    private static class TreeNode{
+        int start, end;
+        TreeNode left, right;
+
+        public TreeNode(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+    }
+}
+
+// Brute Force ********************************************************************************
+class MyCalendar_Brute {
     private ArrayList<int[]> bookings;
     
-    public MyCalendar() {
+    public MyCalendar_Brute() {
         this.bookings = new ArrayList<>();
     }
     
