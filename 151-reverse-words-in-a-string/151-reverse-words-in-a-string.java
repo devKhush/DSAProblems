@@ -1,5 +1,29 @@
 class Solution {
     public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        int i = s.length() - 1;
+
+        while (i >= 0){
+            if (s.charAt(i) != ' '){
+                if (!sb.isEmpty())
+                    sb.append(" ");
+
+                int j = i;
+
+                while (j >= 0  &&  s.charAt(j) != ' ')
+                    j--;
+
+                sb.append(s.substring(j + 1, i + 1));
+                i = j;
+            }
+            else
+                i--;
+        }
+        return sb.toString();
+    }
+    
+
+    public String reverseWords_Efficient(String s) {
         s = s.trim() + " ";
         int n = s.length();
 
@@ -18,7 +42,7 @@ class Solution {
                 if (answer != null)
                     answer.insert(0, currWord + " ");
                 else
-                    answer = new StringBuilder(currWord.toString());
+                    answer = new StringBuilder(currWord.toString( ));
 
                 currWord = new StringBuilder();
             }
