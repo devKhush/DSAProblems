@@ -1,52 +1,67 @@
 package Strings.AddBInaryStrings;
 
 public class AddBinaryStrings {
+    /************************************ Solution 1 *********************************************
+     * Intuition: Idea is same as that of "Addition of two numbers given as LinkedList"
+     * We are just doing simple "Addition of Binary Numbers"
+     * String concatenation is very slower.
 
-    public long power(long a, long n){
-        if (n==0)
-            return 1;
-        long powerHalf = power(a,n/2);
-        if (n%2 == 0)
-            return powerHalf * powerHalf;
-        else
-            return a * powerHalf * powerHalf;
-    }
-
-
-    public String addBinary(String A, String B) {
-        long a_length = A.length();
-        long b_length = B.length();
-        long a=0 ,b=0;
-
-        for (int i = 0; i < a_length; i++) {
-            a += power(2,a_length-i-1) * Integer.parseInt(A.substring(i,i+1));
-        }
-        for (int i = 0; i < b_length; i++) {
-            b += power(2,b_length-i-1) * Integer.parseInt(B.substring(i,i+1));
-        }
-//
-//        System.out.prlongln(a);
-//        System.out.prlongln(b);
-
-        long sum = a+b;
-        String binarySumReversed = "";
-        long remainder;
-        while (sum>0){
-            remainder = sum%2;
-            binarySumReversed += remainder;
-            sum = sum/2;
-        }
-
+     * Length of String a = n
+       Length of String b = m
+     * Time Complexity: O(max(n, m))
+     * Space Complexity: O(1)
+     */
+    public String addBinary_Brute(String a, String b) {
         String binarySum = "";
-        for (int i = binarySumReversed.length()-1; i >=0 ; i--) {
-            binarySum += binarySumReversed.charAt(i);
+
+        int n = a.length(), m = b.length();
+        int i = n - 1, j = m - 1;
+        int carry = 0;
+
+        while (i >= 0 || j >= 0 || carry == 1){
+            int sum = 0;
+            sum += carry;
+
+            if (i >= 0)
+                sum += a.charAt(i--) - '0';
+            if (j >= 0)
+                sum += b.charAt(j--) - '0';
+
+            binarySum = (sum % 2) + binarySum;
+            carry = sum / 2;
         }
         return binarySum;
     }
 
-    public static void main(String[] args) {
 
-        System.out.println(new AddBinaryStrings().addBinary("100","11"));
+    /************************************ Solution 2 *********************************************
+     * Intuition: Idea is same as that of "Addition of two numbers given as LinkedList"
+     * We are just doing simple "Addition of Binary Numbers"
+     * We will use a StringBuilder() here
 
+     * Length of String a = n
+       Length of String b = m
+     * Time Complexity: O(max(n, m))
+     * Space Complexity: O(1)
+     */
+    public String addBinary(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+
+        int i = a.length() - 1, j = b.length() - 1;
+        int carry = 0;
+
+        while (i >= 0 || j >= 0 || carry == 1){
+            int sum = 0;
+            sum += carry;
+
+            if (i >= 0)
+                sum += a.charAt(i--) - '0';
+            if (j >= 0)
+                sum += b.charAt(j--) - '0';
+
+            sb.append(sum % 2);
+            carry = sum / 2;
+        }
+        return sb.reverse().toString();
     }
 }
