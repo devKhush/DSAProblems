@@ -1,7 +1,9 @@
 package Strings.AddBInaryStrings;
 
+// https://leetcode.com/problems/add-binary/discuss/1679423/Well-Detailed-Explaination-Java-C%2B%2B-Python-oror-Easy-for-mind-to-Accept-it
+
 public class AddBinaryStrings {
-    /************************************ Solution 1 *********************************************
+    /********************************* Solution 1: Two Pointers *****************************************
      * Intuition: Idea is same as that of "Addition of two numbers given as LinkedList"
      * We are just doing simple "Addition of Binary Numbers"
      * String concatenation is very slower.
@@ -34,7 +36,7 @@ public class AddBinaryStrings {
     }
 
 
-    /************************************ Solution 2 *********************************************
+    /********************************* Solution 2: Two Pointers ****************************************
      * Intuition: Idea is same as that of "Addition of two numbers given as LinkedList"
      * We are just doing simple "Addition of Binary Numbers"
      * We will use a StringBuilder() here
