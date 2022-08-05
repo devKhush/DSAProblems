@@ -36,4 +36,3 @@ countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
 <ul>
 	<li><code>1 &lt;= n &lt;= 30</code></li>
 </ul>
-</div>
