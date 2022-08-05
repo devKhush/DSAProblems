@@ -17,7 +17,6 @@ public class LongestPalindromeSubstring_Best {
      * Time complexity : O(n^2)
      * Space complexity : O(1)      If we ignore char array & output string
      */
-
     public String longestPalindrome(String string) {
         char[] s = string.toCharArray();
 
@@ -42,6 +41,8 @@ public class LongestPalindromeSubstring_Best {
             }
         }
         return string.substring(palindromeStartIndex, palindromeEndIndex + 1);
+        // This would also work, we explicitly don't need ending index of palindrome
+        // return string.substring(palindromeStartIndex, longestPalindromeLength);
     }
 
 

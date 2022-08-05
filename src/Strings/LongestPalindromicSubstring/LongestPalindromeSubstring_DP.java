@@ -6,9 +6,15 @@ package Strings.LongestPalindromicSubstring;
 public class LongestPalindromeSubstring_DP {
     /*
         ************************************ Efficient DP Solution ******************************
+        * This DP Solution is Optimization of Previous BruteForce Approach.
+        * Instead of calling isPalindrome() for each substring, we can just use the answer of sub-problems
+            to determine whether the current string is substring or not. To achieve this, we must fill
+            DP in bottom up manner.
+        * Instead of asking each substring with indices (i, j) whether you are palindrome or not,
+          we can ask just next characters in the substrings (i+1, j-1) are you palindrome or not?
         * Approach: The time complexity can be reduced by storing results of sub-problems.
         * Maintain a boolean dp[n][n] that is filled in bottom up manner.
-        * The value of dp[i][j] is true, if the substring is palindrome, otherwise false.
+        * The value of dp[i][j] is true, if the substring from "i to j" is palindrome, otherwise false.
         * To calculate dp[i][j], check the value of dp[i+1][j-1], if the value is true and str[i] is same as str[j],
           then we make dp[i][j] true.
         * Otherwise, the value of dp[i][j] is made false.
@@ -52,25 +58,23 @@ public class LongestPalindromeSubstring_DP {
         * SC -> O(n^2) + O(n)  DP array + char array (Ignoring output/answer substring)
      */
     public String longestPalindrome_DP2(String str) {
-        int n = str.length();
-        int maxPalindromeLength = 0;
-        int palindromeStartIndex = 0, palindromeEndIndex = 0;
         char[] s = str.toCharArray();
+        int n = s.length;
 
         boolean[][] dp = new boolean[n][n];
+        int longestPalindromeLength = 0;
+        int start = 0;
 
-        for (int i = n-1; i >= 0; i--){
+        for (int i = n - 1; i >= 0; i--){
             for (int j = i; j < n; j++){
+                dp[i][j] = (s[i] == s[j])  &&  (j - i + 1 <= 2  ||  dp[i + 1][j - 1]);
 
-                dp[i][j] =  (s[i] == s[j])  &&  (j - i + 1 <= 2 || dp[i+1][j-1]);
-
-                if (dp[i][j]  &&  j - i + 1 > maxPalindromeLength){
-                    maxPalindromeLength = j - i + 1;
-                    palindromeStartIndex = i;
-                    palindromeEndIndex = j;
+                if (dp[i][j]  &&  (j - i + 1) > longestPalindromeLength){
+                    longestPalindromeLength = j - i + 1;
+                    start = i;
                 }
             }
         }
-        return str.substring(palindromeStartIndex, palindromeEndIndex + 1);
+        return str.substring(start, start + longestPalindromeLength);
     }
 }
