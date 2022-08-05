@@ -4,6 +4,35 @@ class Solution {
         int v2 = version2.length();
         int i = 0, j = 0;
 
+        for (; i < v1 || j < v2; i++, j++){
+            int v1_revision = 0, v2_revision = 0;
+
+            if (i < v1) {
+                while (i < v1 && version1.charAt(i) != '.') {
+                    int digit = version1.charAt(i++) - '0';
+                    v1_revision = 10 * v1_revision + digit;
+                }
+            }
+            if (j < v2) {
+                while (j < v2 && version2.charAt(j) != '.') {
+                    int digit = version2.charAt(j++) - '0';
+                    v2_revision = 10 * v2_revision + digit;
+                }
+            }
+
+            if (v1_revision > v2_revision)
+                return 1;
+            if (v2_revision > v1_revision)
+                return -1;
+        }
+        return 0;
+    }
+    
+    public int compareVersion_V1(String version1, String version2) {
+        int v1 = version1.length();
+        int v2 = version2.length();
+        int i = 0, j = 0;
+
         for (; i < v1 && j < v2; i++, j++){
             int v1_revision = 0, v2_revision = 0;
 
