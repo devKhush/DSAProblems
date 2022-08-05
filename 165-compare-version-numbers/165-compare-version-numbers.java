@@ -37,7 +37,7 @@ class Solution {
             int v1_revision = Integer.parseInt(version1.substring(i, temp_i));
             i = temp_i;
             
-            if (v1_revision > 0) 
+            if (v1_revision != 0) 
                 return 1;
             i++;
         }
@@ -50,7 +50,7 @@ class Solution {
             int v2_revision = Integer.parseInt(version2.substring(j, temp_j));
             j = temp_j;
          
-            if (v2_revision > 0) 
+            if (v2_revision != 0) 
                 return -1;
             j++;
         }
