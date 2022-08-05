@@ -7,21 +7,17 @@ class Solution {
         int len = subProblem.length();
         
         StringBuilder result = new StringBuilder();
+        int repetition = 0;
         
-        int repetition = 1;
-        char previousChar = subProblem.charAt(0);
-        
-        for (int i = 1; i < len; i++){
+        for (int i = 0; i < len; i++){
             char ch = subProblem.charAt(i);
             
-            if (previousChar != ch){
+            if (i != 0  &&  subProblem.charAt(i - 1) != ch){
                 result.append(repetition);
                 result.append(subProblem.charAt(i - 1));
-                previousChar = ch;
-                repetition = 1; 
+                repetition = 0; 
             }
-            else
-                repetition++;
+            repetition++;
         }
         result.append(repetition);
         result.append(subProblem.charAt(len - 1));
