@@ -3,20 +3,20 @@ class Solution {
         int n = a.length();
         int m = b.length();
         
-        String repeat = "";
+        StringBuilder repeat = new StringBuilder();
         int minCount = 0;
         
         while (repeat.length() < m){
-            repeat += a;
+            repeat.append(a);
             minCount++;
         }
-        if (repeat.contains(b))
+        if (repeat.toString().contains(b))
             return minCount;
         
-        repeat += a;
+        repeat.append(a);
         minCount++;
         
-        if (repeat.contains(b))
+        if (repeat.toString().contains(b))
             return minCount;
         
         return -1;
