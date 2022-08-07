@@ -36,7 +36,7 @@ public class ImplementStrStr_KMP {
                 else
                     i++;
             }
-            // Instead of returning true, we have to return starting index. Since, both when j reaches m
+            // Instead of returning true, we have to return starting index. Since, when j reaches m
             // (j == m), both text & pattern matched fully, so, "i - m" will be the starting index of
             // pattern
             if (j == m)
