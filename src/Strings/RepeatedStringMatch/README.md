@@ -23,4 +23,3 @@
 	<li><code>1 &lt;= a.length, b.length &lt;= 10<sup>4</sup></code></li>
 	<li><code>a</code> and <code>b</code> consist of lowercase English letters.</li>
 </ul>
-</div>
