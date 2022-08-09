@@ -2,6 +2,33 @@ class Solution {
     public boolean repeatedSubstringPattern(String s) {
         int n = s.length();
         
+        for (int i = n/2; i >= 1; i--){
+            if (n % i == 0  &&  canRepeatToFormWholeString(s, i))
+                return true;
+        }
+        return false;
+    }
+    
+    private boolean canRepeatToFormWholeString(String s, int start){
+        int n = s.length();
+        int j = 0;
+        
+        for (int i = start; i < n; i++){
+            if (s.charAt(i) != s.charAt(j))
+                return false;
+            
+            j++;
+            if (j == start)
+                j = 0;
+        }
+        return true;
+    }
+    
+    
+    // Brute Force: Time Complexity: O(n^2)
+    public boolean repeatedSubstringPattern_Brute(String s) {
+        int n = s.length();
+        
         // for (int i = 1; i <= n/2; i++){
         for (int i = n/2; i >= 1; i--){
             if (n % i == 0){
@@ -13,13 +40,12 @@ class Solution {
                 for (int j = 0; j < repeatTimes; j++)
                     sb.append(subString);
                 
-                if (equals(s, sb.toString()))
+                if (s.equals(sb.toString()))
                     return true;
             }
         }
         return false;
     }
-    
     
     private boolean equals(String s1, String s2){
         int n = s1.length();
