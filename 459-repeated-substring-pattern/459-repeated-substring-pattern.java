@@ -1,6 +1,7 @@
 class Solution {
-    public boolean repeatedSubstringPattern(String s) {
-        int n = s.length();
+    public boolean repeatedSubstringPattern(String str) {
+        char[] s = str.toCharArray();
+        int n = s.length;
         
         for (int i = n/2; i >= 1; i--){
             if (n % i == 0  &&  canRepeatToFormWholeString(s, i))
@@ -9,12 +10,12 @@ class Solution {
         return false;
     }
     
-    private boolean canRepeatToFormWholeString(String s, int start){
-        int n = s.length();
+    private boolean canRepeatToFormWholeString(char[] s, int start){
+        int n = s.length;
         int j = 0;
         
         for (int i = start; i < n; i++){
-            if (s.charAt(i) != s.charAt(j))
+            if (s[i] != s[j])
                 return false;
             
             j++;
