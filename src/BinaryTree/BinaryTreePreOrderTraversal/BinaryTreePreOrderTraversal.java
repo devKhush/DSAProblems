@@ -2,34 +2,36 @@ package BinaryTree.BinaryTreePreOrderTraversal;
 import java.util.ArrayList;
 import java.util.List;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// https://youtu.be/RlUu72JrOCQ
+// https://takeuforward.org/data-structure/preorder-traversal-of-binary-tree/
 
 public class BinaryTreePreOrderTraversal {
-    List<Integer> preOrderTraversal = new ArrayList<Integer>();
+    /*********************************** Recursive Pre-Order Traversal *********************************
+     * Time Complexity: O(n)
+        * n is number of nodes
+     * Space Complexity: O(Height of the tree)
+        * Recursion Depth/Call stack will be of height O(Tree's height)
+     */
+    public List<Integer> preorderTraversal_Recursive(TreeNode root) {
+        List<Integer> preOrderTraversal = new ArrayList<>();
 
-    
-    public void preOrder(TreeNode root) {
+        preOrder(root, preOrderTraversal);
+        return preOrderTraversal;
+    }
+
+    public void preOrder(TreeNode root, List<Integer> preOrderTraversal) {
         if (root!=null){
             preOrderTraversal.add(root.val);
-            preOrder(root.left);
-            preOrder(root.right);
+            preOrder(root.left, preOrderTraversal);
+            preOrder(root.right, preOrderTraversal);
         }
     }
-    
 
-    public List<Integer> preorderTraversal(TreeNode root) {
-        preOrder(root);
-        return preOrderTraversal;
+
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val) { this.val = val; }
     }
 }
