@@ -1,28 +1,35 @@
 class Solution {
-    public boolean repeatedSubstringPattern(String str) {
-        char[] s = str.toCharArray();
-        int n = s.length;
+    public boolean repeatedSubstringPattern(String s) {
+        int n = s.length();
+        int[] LPS = getLPSArray(s, n);
         
-        for (int i = n/2; i >= 1; i--){
-            if (n % i == 0  &&  canRepeatToFormWholeString(s, i))
-                return true;
-        }
-        return false;
+        if (LPS[n - 1] == 0)
+            return false;
+        
+        int longestPrefix = LPS[n - 1];
+        
+        return longestPrefix % (n - longestPrefix) == 0;
     }
     
-    private boolean canRepeatToFormWholeString(char[] s, int start){
-        int n = s.length;
-        int j = 0;
+    private int[] getLPSArray(String s, int n){
+        int[] LPS = new int[n];
+        int prev_LPS_Length = 0;
+        int i = 1;
         
-        for (int i = start; i < n; i++){
-            if (s[i] != s[j])
-                return false;
-            
-            j++;
-            if (j == start)
-                j = 0;
+        while (i < n){
+            if (s.charAt(i) == s.charAt(prev_LPS_Length)){
+                prev_LPS_Length++;
+                LPS[i] = prev_LPS_Length;
+                i++;
+            }
+            else if (prev_LPS_Length == 0){
+                LPS[i] = 0;
+                i++;
+            }
+            else
+                prev_LPS_Length = LPS[prev_LPS_Length - 1];
         }
-        return true;
+        return LPS;
     }
     
     
