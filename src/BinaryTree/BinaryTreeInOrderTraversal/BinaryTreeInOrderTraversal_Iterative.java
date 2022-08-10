@@ -11,7 +11,7 @@ public class BinaryTreeInOrderTraversal_Iterative {
      * Time Complexity: O(n)
         * n is number of nodes
      * Space Complexity: O(Height of the tree)
-        * Recursion Depth/Call stack will be of height O(Tree's height)
+        * Max size of Stack will be of max. height of Tree, i.e, O(Tree's height)
      */
     public List<Integer> inorderTraversal(TreeNode root) {
         // Output List for In order Traversal

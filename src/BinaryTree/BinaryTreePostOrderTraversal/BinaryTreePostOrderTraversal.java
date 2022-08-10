@@ -1,33 +1,37 @@
 package BinaryTree.BinaryTreePostOrderTraversal;
-
 import java.util.ArrayList;
 import java.util.List;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// https://youtu.be/COQOU6klsBg
+// https://takeuforward.org/data-structure/post-order-traversal-of-binary-tree/
 
 public class BinaryTreePostOrderTraversal {
-    public List<Integer> post = new ArrayList<Integer>();
-    
-    public void postOrder(TreeNode root){
+    /*********************************** Recursive Post-Order Traversal *********************************
+     * Time Complexity: O(n)
+        * n is number of nodes
+     * Space Complexity: O(Height of the tree)
+        * Recursion Depth/Call stack will be of height O(Tree's height)
+     */
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> postOrderTraversal = new ArrayList<>();
+
+        postOrder(root, postOrderTraversal);
+        return postOrderTraversal;
+    }
+
+    public void postOrder(TreeNode root, List<Integer> postOrderTraversal){
         if (root!=null){
-            postOrder(root.left);
-            postOrder(root.right);
-            post.add(root.val);
+            postOrder(root.left, postOrderTraversal);
+            postOrder(root.right, postOrderTraversal);
+            postOrderTraversal.add(root.val);
         }
     }
-    public List<Integer> postorderTraversal(TreeNode root) {
-        postOrder(root);
-        return post;
+
+
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val) { this.val = val; }
     }
 }
