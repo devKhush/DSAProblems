@@ -1,35 +1,36 @@
 package BinaryTree.BinaryTreeInOrderTraversal;
-
 import java.util.ArrayList;
 import java.util.List;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// https://youtu.be/Z_NEgBgbRVI
+// https://takeuforward.org/data-structure/inorder-traversal-of-binary-tree/
 
 public class BinaryTreeInOrderTraversal {
-    
-    List<Integer> inOrderTraversal = new ArrayList<Integer>();
-    
-    public void inOrder(TreeNode root) {
+    /*********************************** Recursive In-Order Traversal *********************************
+     * Time Complexity: O(n)
+        * n is number of nodes
+     * Space Complexity: O(Height of the tree)
+        * Recursion Depth/Call stack will be of height O(Tree's height)
+     */
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> inOrderTraversal = new ArrayList<Integer>();
+
+        inOrder(root, inOrderTraversal);
+        return inOrderTraversal;
+    }
+
+    public void inOrder(TreeNode root, List<Integer> inOrderTraversal) {
         if (root!=null){
-            inOrder(root.left);
+            inOrder(root.left, inOrderTraversal);
             inOrderTraversal.add(root.val);
-            inOrder(root.right);
+            inOrder(root.right, inOrderTraversal);
         }    
     }
-    
-    public List<Integer> inorderTraversal(TreeNode root) {
-        inOrder(root);
-        return inOrderTraversal;                
+
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val) { this.val = val; }
     }
 }

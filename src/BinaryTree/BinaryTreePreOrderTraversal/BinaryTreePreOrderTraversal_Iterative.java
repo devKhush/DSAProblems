@@ -77,7 +77,7 @@ public class BinaryTreePreOrderTraversal_Iterative {
             node = stack.pop();
 
             // If the right subtree of node is not null, then push all the left nodes of the Right sub-tree
-            // into the stack
+            // into the stack. We are following only "Root Left Right"
             if (node.right != null) {
                 node = node.right;
                 while (node != null) {
