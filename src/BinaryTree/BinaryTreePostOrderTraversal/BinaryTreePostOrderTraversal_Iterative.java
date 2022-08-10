@@ -81,23 +81,23 @@ public class BinaryTreePostOrderTraversal_Iterative {
             return postOrderTraversal;
 
         // We will use Two stacks for this purpose. Push the root node
-        Stack<TreeNode> s1 = new Stack<>();
-        s1.push(root);
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
 
         // Visit every node while Stack 1 is not empty
-        while (!s1.isEmpty()){
+        while (!stack.isEmpty()){
             // Pop the node & add it at the first index (0th) in Post-Order Traversal list
-            TreeNode node = s1.pop();
+            TreeNode node = stack.pop();
             postOrderTraversal.add(0, node.val);
 
             // Because we are constructing the Post Order Traversal in Reverse Order "Root Right Left"
             // So, Add the left child first
             if (node.left != null)
-                s1.push(node.left);
+                stack.push(node.left);
 
             // Add the right child later
             if (node.right != null)
-                s1.push(node.right);
+                stack.push(node.right);
         }
         return postOrderTraversal;
     }
