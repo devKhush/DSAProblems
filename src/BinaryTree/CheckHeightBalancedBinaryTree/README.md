@@ -32,4 +32,3 @@
 	<li>The number of nodes in the tree is in the range <code>[0, 5000]</code>.</li>
 	<li><code>-10<sup>4</sup> &lt;= Node.val &lt;= 10<sup>4</sup></code></li>
 </ul>
-</div>
