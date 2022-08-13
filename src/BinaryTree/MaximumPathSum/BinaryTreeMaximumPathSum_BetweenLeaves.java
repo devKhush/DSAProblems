@@ -1,4 +1,4 @@
-package BinaryTree.BinaryTreeMaximumPathSum;
+package BinaryTree.MaximumPathSum;
 
 // It is the Slight Modification of Above Problem
 // In this, we have to output "Maximum Sum of Paths between any two leaves of Binary Tree"

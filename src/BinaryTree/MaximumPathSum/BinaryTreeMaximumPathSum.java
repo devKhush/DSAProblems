@@ -1,4 +1,4 @@
-package BinaryTree.BinaryTreeMaximumPathSum;
+package BinaryTree.MaximumPathSum;
 
 // PRE-REQUISITE: "HEIGHT OF BINARY TREE" & "DIAMETER OF BINARY TREE"
 // https://youtu.be/WszrfSwMz58
