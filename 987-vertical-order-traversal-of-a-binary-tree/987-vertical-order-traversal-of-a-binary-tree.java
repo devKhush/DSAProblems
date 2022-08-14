@@ -20,34 +20,33 @@ class Solution {
             return verticalOrderTraversal;
 
         PriorityQueue<Node> minHeap = new PriorityQueue<>();
-
-        Queue<Node> bfsQueue = new ArrayDeque<>();
-        bfsQueue.add(new Node(root, 0, 0));
-
-        while (!bfsQueue.isEmpty()){
-            Node node = bfsQueue.remove();
-            minHeap.add(node);
-
-            if (node.treeNode.left != null)
-                bfsQueue.add(new Node(node.treeNode.left, node.row + 1, node.column - 1));
-
-            if (node.treeNode.right != null)
-                bfsQueue.add(new Node(node.treeNode.right, node.row + 1, node.column + 1));
-        }
+        dfsPreOrder(root, 0, 0, minHeap);
 
         while (!minHeap.isEmpty()) {
             List<Integer> currVerticalColumn = new ArrayList<>();
             verticalOrderTraversal.add(currVerticalColumn);
-            
-            int leastColumn = minHeap.peek().column;
-            
-            while (!minHeap.isEmpty()  &&  minHeap.peek().column == leastColumn){
+
+            int nextLeastColumn = minHeap.peek().column;
+
+            while (!minHeap.isEmpty()  &&  minHeap.peek().column == nextLeastColumn){
                 Node node = minHeap.remove();
                 currVerticalColumn.add(node.treeNode.val);
             }
         }
         return verticalOrderTraversal;
     }
+    
+    
+     public void dfsPreOrder(TreeNode root, int row, int column, PriorityQueue<Node> minHeap){
+        if (root == null)
+            return;
+
+        minHeap.add(new Node(root, row, column));
+        
+        dfsPreOrder(root.left, row + 1, column - 1, minHeap);
+        dfsPreOrder(root.right, row + 1, column + 1, minHeap);
+    }
+
     
     
     // Another class to hold the TreeNodes with their locations (with row & columns)
