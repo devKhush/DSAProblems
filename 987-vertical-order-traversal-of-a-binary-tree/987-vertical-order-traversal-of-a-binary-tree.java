@@ -40,9 +40,7 @@ class Solution {
      public void dfsPreOrder(TreeNode root, int row, int column, PriorityQueue<Node> minHeap){
         if (root == null)
             return;
-
         minHeap.add(new Node(root, row, column));
-        
         dfsPreOrder(root.left, row + 1, column - 1, minHeap);
         dfsPreOrder(root.right, row + 1, column + 1, minHeap);
     }
