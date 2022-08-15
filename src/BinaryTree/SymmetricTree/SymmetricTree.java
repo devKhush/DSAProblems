@@ -3,10 +3,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // PRE_REQUISITE : "Check Same Tree"
+// https://youtu.be/nKggNAiEpBE
+// https://takeuforward.org/data-structure/check-for-symmetrical-binary-tree/
 
 public class SymmetricTree {
     /************************************ DFS Solution **********************************************
      * Approach: Idea is to use a DFS (Pre-Order Traversal)
+     * Mirror Property: Left Looks like Right, Right looks like Left
 
      * Time Complexity: O(n)
         * We will traverse all the Nodes only Once
@@ -38,6 +41,7 @@ public class SymmetricTree {
 
     /************************************ BFS Solution **********************************************
      * Approach: Idea is to use a BFS
+     * Mirror Property: Left Looks like Right, Right looks like Left
 
      * Time Complexity: O(n)
         * We will traverse all the Nodes only Once
