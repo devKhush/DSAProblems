@@ -47,4 +47,3 @@ Note that the solution remains the same since 5 and 6 are in the same location a
 	<li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>
 	<li><code>0 &lt;= Node.val &lt;= 1000</code></li>
 </ul>
-</div>
