@@ -14,8 +14,28 @@
  * }
  */
 class Solution {
-    // BFS Solution 1 *************************************************************************
+    // DFS Soltution *************************************************************************
     public List<Integer> rightSideView(TreeNode root) {
+        ArrayList<Integer> rightSideView = new ArrayList<>();
+
+        dfs_RightSideView(root, 0, rightSideView);        
+        return rightSideView;
+    }
+
+    public void dfs_RightSideView(TreeNode node, int level, ArrayList<Integer> rightSideView){
+        if (node == null)
+            return;
+
+        if (level == rightSideView.size())
+            rightSideView.add(node.val);
+        
+        dfs_RightSideView(node.right, level + 1, rightSideView);
+        dfs_RightSideView(node.left, level + 1, rightSideView);
+    }
+    
+    
+    // BFS Solution *************************************************************************
+    public List<Integer> rightSideView_BFS(TreeNode root) {
         ArrayList<Integer> rightSideView = new ArrayList<>();
         if (root == null)
             return rightSideView;
