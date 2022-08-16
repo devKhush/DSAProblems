@@ -20,71 +20,24 @@ class Solution {
         if (root == null)
             return rightSideView;
 
-        HashMap<Integer, Integer> rightSideMap = new HashMap<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
 
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(new Node(root, 0));
-
-        while (!queue.isEmpty()){
-            Node node = queue.remove();
-
-            if (!rightSideMap.containsKey(node.level))
-                rightSideMap.put(node.level, node.treeNode.val);
-
-            if (node.treeNode.right != null)
-                queue.add(new Node(node.treeNode.right, node.level + 1));
-
-            if (node.treeNode.left != null)
-                queue.add(new Node(node.treeNode.left, node.level + 1));
-        }
-
-        int level = 0;
-        while (rightSideMap.containsKey(level)){
-            rightSideView.add(rightSideMap.get(level));
-            level++;
+        while (!queue.isEmpty()){            
+            int size = queue.size();
+            
+            for (int i = 1; i <= size; i++){
+                TreeNode node = queue.remove();
+                
+                if (i == size)
+                    rightSideView.add(node.val);
+                
+                if (node.left != null)
+                    queue.add(node.left);
+                if (node.right != null)
+                    queue.add(node.right);
+            }
         }
         return rightSideView;
-    }
-    
-    
-    // BFS Solution 2 *************************************************************************
-    public List<Integer> rightSideView_BFS1(TreeNode root) {
-        ArrayList<Integer> rightSideView = new ArrayList<>();
-        if (root == null)
-            return rightSideView;
-        
-        HashMap<Integer, Integer> rightSideMap = new HashMap<>();
-        
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(new Node(root, 0));
-        
-        while (!queue.isEmpty()){
-            Node node = queue.remove();
-    
-            rightSideMap.put(node.level, node.treeNode.val);
-            
-            if (node.treeNode.left != null)
-                queue.add(new Node(node.treeNode.left, node.level + 1));
-            
-            if (node.treeNode.right != null)
-                queue.add(new Node(node.treeNode.right, node.level + 1));
-        }
-        
-        int level = 0;
-        while (rightSideMap.containsKey(level)){
-            rightSideView.add(rightSideMap.get(level));
-            level++;
-        }
-        return rightSideView;
-    }
-    
-    
-    private static class Node{
-        TreeNode treeNode;
-        int level;
-        public Node(TreeNode treeNode, int level){
-            this.treeNode = treeNode;
-            this.level = level;
-        } 
-    }
+    }   
 }
