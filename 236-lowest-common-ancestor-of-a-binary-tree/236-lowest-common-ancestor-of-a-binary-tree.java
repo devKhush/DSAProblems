@@ -8,7 +8,28 @@
  * }
  */
 class Solution {
+    // Efficient Solution **********************************************************
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null)
+            return null;
+        
+        if (root == p || root == q)
+            return root;
+        
+        TreeNode leftResult = lowestCommonAncestor(root.left, p, q);
+        TreeNode rightResult = lowestCommonAncestor(root.right, p, q);
+        
+        if (leftResult == null)
+            return rightResult;
+        else if (rightResult == null)
+            return leftResult;
+        else
+            return root;
+    }
+    
+    
+    // Brute Force Solution ****************************************************************
+    public TreeNode lowestCommonAncestor_(TreeNode root, TreeNode p, TreeNode q) {
         ArrayList<TreeNode> pathToNodeP = new ArrayList<>();
         ArrayList<TreeNode> pathToNodeQ = new ArrayList<>();
 
@@ -42,25 +63,5 @@ class Solution {
 
         path.remove(path.size() - 1);
         return false;
-    }
-    
-    
-    
-    public TreeNode lowestCommonAncestor_(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null)
-            return null;
-        
-        if (root == p || root == q)
-            return root;
-        
-        TreeNode leftResult = lowestCommonAncestor_(root.left, p, q);
-        TreeNode rightResult = lowestCommonAncestor_(root.right, p, q);
-        
-        if (leftResult == null)
-            return rightResult;
-        else if (rightResult == null)
-            return leftResult;
-        else
-            return root;
     }
 }
