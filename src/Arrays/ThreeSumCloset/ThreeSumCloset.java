@@ -1,4 +1,11 @@
-class Solution {
+package Arrays.ThreeSumCloset;
+import java.util.Arrays;
+
+// PRE_REQUISITE: "THREE SUM"
+
+class ThreeSumCloset {
+    // Time Complexity : O(n*log(n)) + O(n^2)  ~  O(n^2)
+    // Space Complexity : O(1)
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
         int absDifference = Integer.MAX_VALUE;

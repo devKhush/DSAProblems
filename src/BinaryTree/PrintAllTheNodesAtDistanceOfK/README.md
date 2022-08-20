@@ -26,4 +26,3 @@ Explanation: The nodes that are a distance 2 from the target node (with value 5)
 	<li><code>target</code> is the value of one of the nodes in the tree.</li>
 	<li><code>0 &lt;= k &lt;= 1000</code></li>
 </ul>
-</div>
