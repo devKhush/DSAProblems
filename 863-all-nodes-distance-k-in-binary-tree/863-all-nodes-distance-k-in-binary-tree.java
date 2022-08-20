@@ -7,8 +7,57 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
 class Solution {
+    // DFS Solution *******************************************************************************88
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+        ArrayList<Integer> distanceK = new ArrayList<>();
+        if (root == null)
+            return distanceK;
+
+        HashMap<TreeNode, TreeNode> parents = new HashMap<>();
+        markParentNodes_dfs(root, null, parents);
+
+        HashSet<TreeNode> visited = new HashSet<>();
+
+        findDistantKNodes_dfs(target, 0, k, visited, parents, distanceK);
+
+        return distanceK;
+    }
+
+    private void findDistantKNodes_dfs(TreeNode node, int distance, int k, HashSet<TreeNode> visited,
+                                       HashMap<TreeNode, TreeNode> parents, ArrayList<Integer> distanceK){
+        if (node == null)
+            return;
+
+        if (distance == k){
+            distanceK.add(node.val);
+            return;
+        }
+        visited.add(node);
+
+        if (node.left != null  &&  !visited.contains(node.left))
+            findDistantKNodes_dfs(node.left, distance + 1, k, visited, parents, distanceK);
+
+        if (node.right != null  &&  !visited.contains(node.right))
+            findDistantKNodes_dfs(node.right, distance + 1, k, visited, parents, distanceK);
+
+        if (parents.get(node) != null  &&  !visited.contains(parents.get(node)))
+            findDistantKNodes_dfs(parents.get(node), distance + 1, k, visited, parents, distanceK);
+    }
+
+    private void markParentNodes_dfs(TreeNode node, TreeNode parent, HashMap<TreeNode, TreeNode> parents){
+        if (node == null) return;
+
+        parents.put(node, parent);
+
+        markParentNodes_dfs(node.left, node, parents);
+        markParentNodes_dfs(node.right, node, parents);
+    }
+    
+    
+    // BFS Solution *******************************************************************************88
+    public List<Integer> distanceK_BFS(TreeNode root, TreeNode target, int k) {
         ArrayList<Integer> distanceK = new ArrayList<>();
         if (root == null)
             return distanceK;
