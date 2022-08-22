@@ -16,7 +16,25 @@
 class Solution {
     public boolean isUnivalTree(TreeNode root) {
         if (root == null)
+            return true;
+    
+        return isUnivalTree_DFS(root, root.val);
+    }
+    
+    public boolean isUnivalTree_DFS(TreeNode node, int value) {
+        if (node == null)
+            return true;
+        
+        if (node.val != value)
             return false;
+        
+        return isUnivalTree_DFS(node.left, value) && isUnivalTree_DFS(node.right, value);
+    }
+    
+    
+    public boolean isUnivalTree_BFS(TreeNode root) {
+        if (root == null)
+            return true;
         
         int value = root.val;
         
