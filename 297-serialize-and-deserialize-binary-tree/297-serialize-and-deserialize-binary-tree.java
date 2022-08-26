@@ -8,59 +8,58 @@
  * }
  */
 public class Codec {
-    // Encodes a tree to a single string.
+    // Serialize **************************************************************************
     public String serialize(TreeNode root) {
+        if (root == null)
+            return "";
         StringBuilder sb = new StringBuilder();
 
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        preorder(root, sb);
 
-        while (!queue.isEmpty()){
-            TreeNode node = queue.remove();
-
-            if (node != null){
-                sb.append(node.val + ",");
-                queue.add(node.left);
-                queue.add(node.right);
-            }
-            else
-                sb.append(null + ",");
-        }
         return sb.toString();
     }
 
-    // Decodes your encoded data to tree.
-    public TreeNode deserialize(String data) {
-        String[] treeLevelOrder = data.split(",");
+    private void preorder(TreeNode node, StringBuilder sb) {
+        if (node == null){
+            sb.append("null,");
+            return;
+        }
+        sb.append(node.val + ",");
+        preorder(node.left, sb);                // Recursion for Left Subtree
+        preorder(node.right, sb);               // Recursion for Right Subtree
+    }
 
-        if (treeLevelOrder[0].equals("null"))
+
+    // Deserialize **************************************************************************
+    public TreeNode deserialize(String data) {
+        if (data.equals(""))        // Edge case
+            return null;
+        String[] preOrder = data.split(",");
+
+        Queue<Integer> queue = new LinkedList<>();
+        for (String node : preOrder){
+            if (node.equals("null"))
+                queue.add(null);
+            else
+                queue.add(Integer.parseInt(node));
+        }
+
+        TreeNode root = preOrder(queue);
+        return root;
+    }
+
+    private TreeNode preOrder(Queue<Integer> preOrderQueue){
+        Integer value = preOrderQueue.remove();
+        if (value == null)
             return null;
 
-        TreeNode root = new TreeNode(Integer.parseInt(treeLevelOrder[0]));
+        TreeNode node = new TreeNode(value);
 
-        Queue<TreeNode> queue = new ArrayDeque<>();
-        queue.add(root);
-        int i = 1;
+        node.left = preOrder(preOrderQueue);
+        node.right = preOrder(preOrderQueue);
+        return node;
+    }
 
-        while (!queue.isEmpty()){
-            TreeNode node = queue.remove();
-
-            if (!treeLevelOrder[i].equals("null")){
-                TreeNode leftChild = new TreeNode(Integer.parseInt(treeLevelOrder[i]));
-                node.left = leftChild;
-                queue.add(leftChild);
-            }
-            i++;
-            
-            if (!treeLevelOrder[i].equals("null")){
-                TreeNode rightChild = new TreeNode(Integer.parseInt(treeLevelOrder[i]));
-                node.right = rightChild;
-                queue.add(rightChild);
-            }
-            i++;
-        }
-        return root;
-    } 
 }
 
 // Your Codec object will be instantiated and called as such:
