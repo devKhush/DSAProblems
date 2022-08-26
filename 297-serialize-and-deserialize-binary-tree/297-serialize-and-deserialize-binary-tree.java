@@ -26,7 +26,7 @@ public class Codec {
             else
                 sb.append(null + ",");
         }
-        return sb.substring(0, sb.length() - 1);
+        return sb.toString();
     }
 
     // Decodes your encoded data to tree.
@@ -60,7 +60,7 @@ public class Codec {
             i++;
         }
         return root;
-    }
+    } 
 }
 
 // Your Codec object will be instantiated and called as such:
