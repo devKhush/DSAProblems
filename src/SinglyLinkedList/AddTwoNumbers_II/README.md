@@ -32,4 +32,3 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong>&nbsp;Could you solve it without reversing the input lists?</p>
-</div>

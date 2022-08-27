@@ -1,4 +1,4 @@
-package SinglyLinkedList.AddTwoNumbersLinkedList;
+package SinglyLinkedList.AddTwoNumbers;
 
 // https://youtu.be/LBVsXSMOIk4
 // https://takeuforward.org/data-structure/add-two-numbers-represented-as-linked-lists/
