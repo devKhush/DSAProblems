@@ -9,7 +9,43 @@
  * }
  */
 class Solution {
+    private ListNode reverse(ListNode head){
+        ListNode curr = head, prev = null, next;
+        while (curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
     public ListNode addTwoNumbers(ListNode head1, ListNode head2) {
+        ListNode h1 = reverse(head1);
+        ListNode h2 = reverse(head2);
+
+        ListNode head = null;
+        int carry = 0;
+
+        while (h1 != null || h2 != null || carry != 0){
+            int sum = 0;
+            sum += h1 != null ? h1.val : 0;
+            sum += h2 != null ? h2.val : 0;
+            sum += carry;
+
+            ListNode node =  new ListNode(sum % 10);
+            node.next = head;
+            head = node;
+
+            carry = sum / 10;
+
+            h1 = h1 != null ? h1.next : null;
+            h2 = h2 != null ? h2.next : null;
+        }
+        return head;
+    }
+    
+    // Stack Solution **************************************************************************
+    public ListNode addTwoNumbers_stacks(ListNode head1, ListNode head2) {
           Stack<ListNode> s1 = new Stack<>();
         Stack<ListNode> s2 = new Stack<>();
 
