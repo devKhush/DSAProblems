@@ -14,7 +14,24 @@
  * }
  */
 class Solution {
+     public void flatten(TreeNode node, TreeNode[] head){
+        if (node == null)
+            return;
+        flatten(node.right, head);
+        flatten(node.left, head);
+
+        node.right = head[0];
+        node.left = null;
+        head[0] = node;
+    }
+
     public void flatten(TreeNode root){
+        TreeNode[] headOfLinkedList = {null};
+        flatten(root, headOfLinkedList);
+    }
+    
+    // Iterative Preorder *************************************************************************
+    public void flatten_Iterative(TreeNode root){
         if (root == null) return;
 
         Stack<TreeNode> stack = new Stack<>();
@@ -36,7 +53,7 @@ class Solution {
     }
     
     
-    // Recurive Brute Force
+    // **************************** Recurive Brute Force *******************************************
     public void preOrder(TreeNode root, ArrayList<TreeNode> preorder){
         if (root!=null){
             preorder.add(root);
