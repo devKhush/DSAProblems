@@ -14,6 +14,26 @@
  * }
  */
 class Solution {
+    // Morris Solution **********************************************************************************
+    public void flatten(TreeNode root){
+        TreeNode curr = root;
+
+        while (curr != null){
+            if (curr.left != null){
+                TreeNode prev = curr.left;
+
+                while (prev.right != null)
+                    prev = prev.right;
+
+                prev.right = curr.right;
+                curr.right = curr.left;
+                curr.left = null;
+            }
+            curr = curr.right;
+        }
+    }
+    
+    // **************************** Recurive Reverse Preorder *******************************************
      public void flatten(TreeNode node, TreeNode[] head){
         if (node == null)
             return;
@@ -25,10 +45,11 @@ class Solution {
         head[0] = node;
     }
 
-    public void flatten(TreeNode root){
+    public void flatten_Recursive(TreeNode root){
         TreeNode[] headOfLinkedList = {null};
         flatten(root, headOfLinkedList);
     }
+    
     
     // Iterative Preorder *************************************************************************
     public void flatten_Iterative(TreeNode root){
