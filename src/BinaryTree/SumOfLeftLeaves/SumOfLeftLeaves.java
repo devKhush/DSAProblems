@@ -3,9 +3,11 @@ package BinaryTree.SumOfLeftLeaves;
 // https://leetcode.com/problems/sum-of-left-leaves/
 // https://www.geeksforgeeks.org/find-sum-left-leaves-given-binary-tree/
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 class SumOfLeftLeaves {
-    /*
-    ****************************** Efficient Solution *********************************
+    /******************************* Efficient DFS Solution *********************************
     * For every node in the tree, we need to keep track of whether the "Tree Node" is the left child
       or Right child of its "Parent Tree Node"
     * So, for each node we can add another parameter, whether it is the left child or right child of
@@ -19,50 +21,75 @@ class SumOfLeftLeaves {
      */
 
     public int sumOfLeftLeaves(TreeNode root) {
+        return dfs(root, false);
+    }
+
+    public int dfs(TreeNode root, boolean isLeftChild){
         if (root == null)
             return 0;
 
-        // return getLeftLeafNodeSum(root.left, root) + getLeftLeafNodeSum(root.right, root);
-        return getLeftLeafNodeSum_(root.left, true) + getLeftLeafNodeSum_(root.right, false);
-    }
-    
-    private int getLeftLeafNodeSum_(TreeNode root, boolean isLeftChild){
-        if (root == null)
-            return 0;
-        
-        if (root.left == null  && root.right == null){
-            if (isLeftChild)
-                return root.val;
-            else
-                return 0;
-        }
-        return getLeftLeafNodeSum_(root.left, true) + getLeftLeafNodeSum_(root.right, false);
-    }
-    
-    
-    private int getLeftLeafNodeSum(TreeNode root, TreeNode parent){
-        if (root == null)
-            return 0;
-        
-        if (root.left == null  && root.right == null){
-            if (root == parent.left)
-                return root.val;
-            else
-                return 0;
-        }
-        return getLeftLeafNodeSum(root.left, root) + getLeftLeafNodeSum(root.right, root);
+        // If thr node is Left Leaf node return its value
+        if (root.left == null  &&  root.right == null  &&  isLeftChild)
+            return root.val;
+
+        return dfs(root.left, true) + dfs(root.right, false);
     }
 
+
+    /******************************* Efficient BFS Solution *********************************
+     * For every node in the tree, we need to keep track of whether the "Tree Node" is the left child
+        or Right child of its "Parent Tree Node"
+     * So, for each node we can add another property, whether it is the left child or right child of
+        its parent. This can be done either by maintaining a boolean variable
+
+     * Time Complexity:  O(n)
+        * We will travel every node in the Binary Tree to reach the leaf node.
+     * Space Complexity:  O(n/2)  =  O(n)
+        * Size of BFS Queue
+     */
+    public int sumOfLeftLeaves_BFS(TreeNode root) {
+        if (root == null)
+            return 0;
+
+        // Sum of Left leaf nodes
+        int sum = 0;
+
+        Queue<Pair> queue = new ArrayDeque<>();
+        queue.add(new Pair(root, false));
+
+        while (!queue.isEmpty()){
+            Pair pair = queue.remove();
+
+            // Add left child
+            if (pair.node.left != null)
+                queue.add(new Pair(pair.node.left, true));
+
+            // Add right child
+            if (pair.node.right != null)
+                queue.add(new Pair(pair.node.right, false));
+
+            // If thr node is Left Leaf node, add its value
+            if (pair.node.left == null  && pair.node.right == null  && pair.isLeftChild)
+                sum += pair.node.val;
+        }
+        return sum;
+    }
+
+
+    // Pair class for Tree Node and Boolean for "is Left Child"
+    static private class Pair{
+        TreeNode node;
+        boolean isLeftChild;
+        public Pair(TreeNode node, boolean isLeftChild){
+            this.node = node;
+            this.isLeftChild = isLeftChild;
+        }
+    }
+
+    // Tree Node
     public static class TreeNode {
         int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode() {}
+        TreeNode left, right;
         TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 }
