@@ -6,33 +6,28 @@ class PathSum {
     // Space Complexity: O(log(n))  Recursion stack space of Height of the Tree
 
     public boolean hasPathSum(TreeNode root, int targetSum) {
-        return this.pathSum(root, targetSum, 0);
-    }
-
-    private boolean pathSum(TreeNode root, int targetSum, int sum){
+        // Base case
         if (root == null)
             return false;
 
+        // Check for Leaf Node
         if (root.left == null && root.right == null)
-            return root.val + sum == targetSum;
+            return targetSum == root.val;
 
-        boolean pathSumFoundOnLeft = pathSum(root.left, targetSum, sum + root.val);
-        boolean pathSumFoundOnRight = pathSum(root.right, targetSum, sum + root.val);
-        return pathSumFoundOnLeft || pathSumFoundOnRight;
+        // Decrease target by current node value
+        targetSum -= root.val;
+
+        // Explore Path in Left & Right SubTree
+        return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum);
     }
 
 
-    // ******************************* Tree Node for Tree Data Structure ********************************
+    // ******************************* Tree Node for Tree Data Structure ******************************
     private static class TreeNode {
         int val;
         TreeNode left, right;
         TreeNode(int val) {
             this.val = val;
-        }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
         }
     }
 }
