@@ -5,7 +5,7 @@ package BinarySearchTree.SearchInBST;
 public class SearchInBST {
     /********************************** Recursive Solution ********************************************
      * Binary Search Solution
-     * Time Complexity: O(log(n))
+     * Time Complexity: O(Tree's Height)
      * Space Complexity: O(Tree's Height)
      */
     public TreeNode searchBST(TreeNode root, int target) {

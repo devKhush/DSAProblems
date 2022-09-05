@@ -8,7 +8,7 @@ public class CeilInBST {
      * Recall Ceil function in Math
      * Binary Search Solution
 
-     * Time Complexity: O(log(n))
+     * Time Complexity: O(Tree's Height)
      * Space Complexity: O(1)
      */
     public static int findCeil(TreeNode root, int x) {
