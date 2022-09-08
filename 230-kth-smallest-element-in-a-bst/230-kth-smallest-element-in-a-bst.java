@@ -13,7 +13,43 @@
  *     }
  * }
  */
-class Solution {
+class Solution {    
+    public int kthSmallest(TreeNode root, int K) {
+        // TreeNode kthSmallestNode = inOrder(root, new int[]{K});        
+        // return kthSmallestNode.val;
+
+        int count = 0;
+        TreeNode curr = root;
+        
+        while (curr != null){
+            if (curr.left == null){
+                count++;
+                if (count == K)
+                    return curr.val;
+                curr = curr.right;
+            }
+            else{
+                TreeNode prev = curr.left;
+                
+                while (prev.right != null  &&  prev.right != curr)
+                    prev = prev.right;
+                
+                if (prev.right == null){
+                    prev.right = curr;
+                    curr = curr.left;
+                }
+                else{
+                    prev.right = null;
+                    count++;
+                    if (count == K)
+                        return curr.val;
+                    curr = curr.right;
+                }
+            }
+        }
+        return -1;
+    }
+    
     public TreeNode inOrder(TreeNode node, int[] k){
         if (node == null)
             return null;
@@ -23,7 +59,6 @@ class Solution {
             return left;
         
         k[0]--;
-        
         if (k[0] == 0)
             return node;
         
@@ -32,12 +67,5 @@ class Solution {
             return right;
         
         return null;
-    }
-    
-    public int kthSmallest(TreeNode root, int K) {
-        int[] k = {K};
-
-        TreeNode kthSmallestNode = inOrder(root, k);        
-        return kthSmallestNode.val;
     }
 }
