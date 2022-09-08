@@ -14,29 +14,30 @@
  * }
  */
 class Solution {
-    public boolean inOrder(TreeNode node, int[] answer){
+    public TreeNode inOrder(TreeNode node, int[] k){
         if (node == null)
-            return false;
+            return null;
         
-        if (inOrder(node.left, answer))
-            return true;
+        TreeNode left = inOrder(node.left, k);
+        if (left != null)
+            return left;
         
-        answer[0]--;
-        if (answer[0] == 0){
-            answer[1] = node.val;
-            return true;
-        }
+        k[0]--;
         
-        if (inOrder(node.right, answer))
-            return true;
+        if (k[0] == 0)
+            return node;
         
-        return false;
+        TreeNode right = inOrder(node.right, k);
+        if (right != null)
+            return right;
+        
+        return null;
     }
     
-    public int kthSmallest(TreeNode root, int k) {
-        int[] kSmallest = {k, 0};
+    public int kthSmallest(TreeNode root, int K) {
+        int[] k = {K};
 
-        inOrder(root, kSmallest);        
-        return kSmallest[1];
+        TreeNode kthSmallestNode = inOrder(root, k);        
+        return kthSmallestNode.val;
     }
 }
