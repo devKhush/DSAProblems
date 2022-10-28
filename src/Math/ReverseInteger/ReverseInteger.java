@@ -1,4 +1,7 @@
-class Solution {
+package Math.ReverseInteger;
+
+class ReverseInteger {
+    // 'int' Data type Solution
     public int reverse_int_version(int x) {
         int reverse = 0;
         while (x != 0){
@@ -14,7 +17,9 @@ class Solution {
         }
         return reverse;
     }
-    
+
+
+    // 'long' Data type Solution
     public int reverse(int x) {
         long reverse = 0;
         while (x != 0){
