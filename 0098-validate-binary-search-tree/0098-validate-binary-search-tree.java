@@ -14,8 +14,23 @@
  * }
  */
 class Solution {
+    // Efficient *********************************************************
+    public boolean validateBST(TreeNode root, long low , long high){
+        if (root == null)
+            return true;
+        
+        if (low >= root.val  ||  root.val >= high)
+            return false;
+        return validateBST(root.left, low, root.val) && validateBST(root.right, root.val, high);
+    }
+    
+    public boolean isValidBST(TreeNode root){
+        return validateBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    
+    
     // Morris ************************************************************
-     public boolean isValidBST(TreeNode root){
+     public boolean isValidBST_Morris(TreeNode root){
         long value = Long.MIN_VALUE;
         TreeNode node = root;
 
