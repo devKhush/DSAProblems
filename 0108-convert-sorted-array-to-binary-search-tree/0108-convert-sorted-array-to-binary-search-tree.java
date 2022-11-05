@@ -15,10 +15,10 @@
  */
 class Solution {
     public TreeNode sortedArrayToBST(int[] inorder) {
-        return constructBST(inorder, 0, inorder.length);
+        return constructBST(inorder, 0, inorder.length - 1);
     }
     private TreeNode constructBST(int[] inorder, int low, int high){
-        if (low > high || low == inorder.length)
+        if (low > high)
             return null;
         
         int mid = low + (high - low)/2;
