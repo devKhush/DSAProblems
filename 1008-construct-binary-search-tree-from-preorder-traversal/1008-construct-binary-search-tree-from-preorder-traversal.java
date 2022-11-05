@@ -14,8 +14,24 @@
  * }
  */
 class Solution {
+    // Efficient Solution -> O(n)
+    public TreeNode bstFromPreorder(int[] preorder){
+        return constructBST(preorder, Integer.MAX_VALUE, new int[]{0});
+    }
+    private TreeNode constructBST(int[] preorder, int upperBound, int[] index){
+        if (index[0] == preorder.length  ||  preorder[index[0]] >= upperBound)
+            return null;
+
+        TreeNode root = new TreeNode(preorder[index[0]++]);
+
+        root.left = constructBST(preorder, root.val, index);
+        root.right = constructBST(preorder, upperBound, index);
+        return root;
+    }
     
-     public TreeNode bstFromPreorder(int[] preorder){
+    
+    // Construct tree from Inorder & Preorder Traversal ***********************************************
+    public TreeNode bstFromPreorder_Inorder(int[] preorder){
         int[] inorder = new int[preorder.length];
         System.arraycopy(preorder, 0, inorder, 0, preorder.length);
         Arrays.sort(inorder);
@@ -33,7 +49,6 @@ class Solution {
                                    HashMap<Integer, Integer> inorderMap){
         if (preEnd < preStart)
             return null;
-
         TreeNode root = new TreeNode(preorder[preStart]);
         int rootIndex = inorderMap.get(preorder[preStart]);
 
