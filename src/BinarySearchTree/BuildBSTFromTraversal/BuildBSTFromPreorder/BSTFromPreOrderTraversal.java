@@ -1,4 +1,4 @@
-package BinarySearchTree.BuildBSTFromTraversal;
+package BinarySearchTree.BuildBSTFromTraversal.BuildBSTFromPreorder;
 import java.util.Arrays;
 import java.util.HashMap;
 
