@@ -5,6 +5,7 @@ import java.util.Stack;
 
 public class BSTIterator {
     /******************************* Efficient Solution ***********************************
+     * Intuition: Idea is same as Iterative Inorder traversal using Stack.
      * Time Complexity: On average O(1) for each next() call & hasNext() call
      * Space Complexity: O(Tree's Height) ~ O(log(n))
         * Height of the Stack will be same as the Tree

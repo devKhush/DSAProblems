@@ -22,4 +22,3 @@
 	<li><code>root</code> is guaranteed to be a <strong>valid</strong> binary search tree.</li>
 	<li><code>-10<sup>5</sup>&nbsp;&lt;= k &lt;= 10<sup>5</sup></code></li>
 </ul>
-</div>
