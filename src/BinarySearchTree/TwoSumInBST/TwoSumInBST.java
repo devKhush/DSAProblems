@@ -1,5 +1,6 @@
 package BinarySearchTree.TwoSumInBST;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 // https://youtu.be/ssL3sHwPeb4
 
@@ -22,7 +23,7 @@ public class TwoSumInBST {
         inorderTraversal(root.right, inorder);
     }
 
-    public boolean twoSumBST_BruteForce(TreeNode root, int k) {
+    public boolean twoSumBST_BruteForce1(TreeNode root, int k) {
         ArrayList<Integer> inorder = new ArrayList<>();
         inorderTraversal(root, inorder);
 
@@ -36,6 +37,36 @@ public class TwoSumInBST {
             else
                 low++;
         }
+        return false;
+    }
+
+
+    /********************************** Brute Force 1 ********************************************
+     * Intuition:
+        * Same logic as two sum in an array (Two Sum - I)
+        * Carry a set
+
+     * Time Complexity: O(n)
+        * O(n) for inorder traversal
+     * Space Complexity: O(n)
+        * Array required for storing inorder traversal
+     */
+    public boolean twoSumBST(TreeNode root, int k, HashSet<Integer> set) {
+        if (root == null)
+            return false;
+
+        // Inorder for left
+        if (twoSumBST(root.left, k, set))
+            return true;
+
+        // Check for current node
+        if (set.contains(k - root.val))
+            return true;
+        set.add(root.val);
+
+        // Inorder for right
+        if (twoSumBST(root.right, k, set))
+            return true;
         return false;
     }
 
