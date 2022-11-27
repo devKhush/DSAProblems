@@ -1,7 +1,6 @@
 package BinarySearchTree.MaximumBSTSumInBinaryTree;
 
 // PRE_REQUISITE: Largest BST in BT
-// https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/
 // https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/discuss/2678525/JAVA-oror-TC-O(N)-oror-SC-O(1)-oror-Post-order-Traversal-oror-EASY-EXPLAINATION-oror
 // https://youtu.be/X0oXMdtUDwo
 
