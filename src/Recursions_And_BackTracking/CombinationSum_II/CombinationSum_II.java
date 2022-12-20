@@ -89,5 +89,30 @@ class CombinationSum_II {
         for (int a = low; a <= high; a++)
             arr[a] = temp[a];
     }
-  
 }
+
+/*
+    // ANOTHER SOLUTION
+
+    public List<List<Integer>> combinationSum2(int[] arr, int target) {
+        List<List<Integer>> list = new ArrayList<>();
+        Arrays.sort(arr);
+        solve(0, arr, list, new ArrayList<>(), target);
+        return list;
+    }
+    public void solve(int index, int[] arr, List<List<Integer>> list, ArrayList<Integer> ls, int target){
+        if (target == 0)
+            list.add(new ArrayList<>(ls));
+
+        for (int i = index; i < arr.length; i++){
+            if (i != index && arr[i] == arr[i-1])
+                continue;
+            if (target < arr[i])
+                break;
+
+            ls.add(arr[i]);
+            solve(i + 1, arr, list, ls, target - arr[i]);
+            ls.remove(ls.size() - 1);
+        }
+    }
+ */
