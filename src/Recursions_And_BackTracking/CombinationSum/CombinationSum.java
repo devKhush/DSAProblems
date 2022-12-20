@@ -66,3 +66,29 @@ public class CombinationSum {
         return allCombinations;
     }
 }
+
+
+/*
+    // **************************** ANOTHER BETTER SOLUTION ****************************
+
+    public void solve(int i, int[] arr, int sum, int k, List<List<Integer>> list, ArrayList<Integer> lst){
+        if (i == arr.length || sum > k){
+            if (sum == k){
+                list.add(new ArrayList<>(lst));
+            }
+            return;
+        }
+
+        lst.add(arr[i]);
+        solve(i, arr, sum + arr[i], k, list, lst);
+        lst.remove(lst.size()-1);
+
+        solve(i + 1, arr, sum, k, list, lst);
+    }
+
+    public List<List<Integer>> combinationSum(int[] arr, int k) {
+        List<List<Integer>> list = new ArrayList<>();
+        solve(0, arr, 0, k, list, new ArrayList<>());
+        return list;
+    }
+ */
