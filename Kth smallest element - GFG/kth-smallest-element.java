@@ -35,12 +35,17 @@ class GFG {
 
 class Solution{
     public static int kthSmallest(int[] arr, int l, int r, int k){ 
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>((a,b)->(a-b));
-        for (int val : arr)
-            minHeap.add(val);
-        int cnt = 1;
-        while (cnt++ < k)
-        minHeap.remove();
-        return minHeap.peek();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> (b - a));
+        int i = 0;
+        for (i = 0; i < k; i++)
+            maxHeap.add(arr[i]);
+        while (i < arr.length){
+            if (arr[i] < maxHeap.peek()){
+                maxHeap.remove();
+                maxHeap.add(arr[i]);
+            }
+            i++;
+        }
+        return maxHeap.remove();
     }
 }
