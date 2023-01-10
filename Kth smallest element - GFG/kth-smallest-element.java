@@ -34,9 +34,13 @@ class GFG {
 //User function Template for Java
 
 class Solution{
-    public static int kthSmallest(int[] arr, int l, int r, int k) 
-    { 
-        Arrays.sort(arr);
-        return arr[k-1];
-    } 
+    public static int kthSmallest(int[] arr, int l, int r, int k){ 
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>((a,b)->(a-b));
+        for (int val : arr)
+            minHeap.add(val);
+        int cnt = 1;
+        while (cnt++ < k)
+        minHeap.remove();
+        return minHeap.peek();
+    }
 }
