@@ -56,8 +56,8 @@ class ContainsSubsetSumEqualToK_DP{
             dp[i][0] = true;
 
         // Base case when index == 0
-        for (int target = 0; target <= targetSum; target++)
-            dp[0][target] = (arr[0] == target);
+        // for (int target = 0; target <= targetSum; target++)
+        //    dp[0][target] = (arr[0] == target);
         // Shorthand base case for index == 0, it means on index 0 can we format a target arr[0]
         if (arr[0] <= targetSum)
             dp[0][arr[0]] = true;
