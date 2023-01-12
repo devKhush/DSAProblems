@@ -72,18 +72,14 @@ public class TriangularGridMinimumPathSum_Tabulation {
 
         // i = n-1 is handled by case
         for (int i = n-2; i >= 0; i--){
-            for (int j = i; j >= 0; j--){
-
+            for (int j = 0; j <= i; j++){
                 // Minimum path by moving down
-                int minPathByMovingDown = dp[i+1][j] + triangle.get(i).get(j);
-
+                int minPathByMovingDown = dp[i+1][j];
                 // Minimum path by moving down & bottom (diagonally)
-                int minPathByMovingDownBottom = dp[i+1][j+1] + triangle.get(i).get(j);
-
-                dp[i][j] = Math.min(minPathByMovingDown, minPathByMovingDownBottom);
+                int minPathByMovingDownBottom = dp[i+1][j+1];
+                dp[i][j] = Math.min(minPathByMovingDown, minPathByMovingDownBottom) + triangle.get(i).get(j);
             }
         }
-
         // Answer for going from (0,0) to bottom is stored in dp[0][0]
         return dp[0][0];
     }

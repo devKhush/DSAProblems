@@ -20,30 +20,25 @@ public class GridUniquePaths_SpaceOptimized {
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-
                 if (i==0 && j==0)
                     continue;
-                int totalWaysByMovingUp = 0, totalWaysByMovingLeft = 0;
 
                 // We only need two values: dp[i-1][j] & dp[i][j-1]
                 // Think logically what is happening, see lecture notes
-
                 // This is (moving left) equivalent to moving right in the grid
                 // We store it in the previous element of the DP array
-                if (j > 0)
-                    totalWaysByMovingLeft = dp[j-1];
+                int left = j > 0 ? dp[j - 1] : 0;
 
                 // This is (moving up) equivalent to moving down in the grid
                 // We store it in the current element of the DP array
                 // so that it can be used as the previous left (total ways from left/right)
                 // of the next element in the same row (but next column, j+1)
-                if (i > 0)
-                    totalWaysByMovingUp = dp[j];
+                int up = i > 0 ? dp[j] : 0;
 
                 // we update the total no. of unique path for current (i,j) in DP array
                 // so that it can be used as the previous top (total ways from top/bottom)
                 // of the next row element (in same column)
-                dp[j] = totalWaysByMovingLeft + totalWaysByMovingUp;
+                dp[j] = up + left;
             }
         }
         // we get the total no. of unique path for last (i,j) = (m-1,n-1) in DP array
@@ -51,44 +46,24 @@ public class GridUniquePaths_SpaceOptimized {
     }
 
 
-    // Another approach by Striver (same solution, but he does this task by 2 arary)
+    // Another approach by Striver (same solution, but he does this task by 2 array)
     public static int spaceOptimized_V2(int m, int n){
-        // we only just need a one column of grid to further optimized this solution
-        int[] dp_totalWaysByMovingUp = new int[n];
-        int[] dp_totalWaysByMovingLeft ;
+        int[] dp = new int[n];
 
         for (int i = 0; i < m; i++) {
-            dp_totalWaysByMovingLeft =  new int[n];
-
+            int[] temp = new int[n];
             for (int j = 0; j < n; j++) {
-
-                if (i==0 && j==0) {
-                    // Base case
-                    dp_totalWaysByMovingLeft[0] = 1;
+                if (i==0 && j==0){      // this is in current row
+                    temp[0] = 1;
                     continue;
                 }
-                int totalWaysByMovingUp = 0, totalWaysByMovingLeft = 0;
-
-                // We only need two values: dp[i-1][j] & dp[i][j-1]
-                // Think logically what is happening, see lecture notes
-
-                // This is (moving left) equivalent to moving right in the grid
-                if (j > 0)
-                    totalWaysByMovingLeft = dp_totalWaysByMovingLeft[j-1];
-
-                // This is (moving up) equivalent to moving down in the grid
-                if (i > 0)
-                    totalWaysByMovingUp = dp_totalWaysByMovingUp[j];
-
-                dp_totalWaysByMovingLeft[j] = totalWaysByMovingLeft + totalWaysByMovingUp;
+                int up = i > 0 ? dp[j] : 0;
+                int left = j > 0 ? temp[j-1] : 0;
+                temp[j] = up + left;
             }
-
-            // current dp_totalWaysByMovingUp will become dp_totalWaysByMovingLeft as
-            // we move down, in this outer loop
-            dp_totalWaysByMovingUp = dp_totalWaysByMovingLeft;
+            dp = temp;
         }
-
-        return dp_totalWaysByMovingUp[n-1];
+        return dp[n-1];
     }
 
 }

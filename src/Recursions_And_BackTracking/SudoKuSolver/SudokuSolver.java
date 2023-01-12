@@ -77,6 +77,26 @@ public class SudokuSolver {
         return true;
     }
 
+    /*
+    // ANOTHER CODE FOR CHECK FUNCTION
+    private boolean isValidPositionForNumber(char ch, int i, int j, char[][] board){
+        for (int J = 0; J < 9; J++)
+            if (board[i][J] == ch)
+                return false;
+
+        for (int I = 0; I < 9; I++)
+            if (board[I][j] == ch)
+                return false;
+
+        for (int I = 0; I < 3; I++){
+            for (int J = 0; J < 3; J++){
+                if (board[3*(i/3) + I][3*(j/3) + J] == ch)
+                    return false;
+            }
+        }
+        return true;
+    }
+     */
 
     public static void main(String[] args) {
         char[][] board = new char[9][9];

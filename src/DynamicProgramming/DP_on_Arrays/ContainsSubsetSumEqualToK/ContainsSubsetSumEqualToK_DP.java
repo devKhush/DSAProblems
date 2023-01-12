@@ -1,93 +1,46 @@
 package DynamicProgramming.DP_on_Arrays.ContainsSubsetSumEqualToK;
-import java.util.Arrays;
 
 // https://youtu.be/fWX9xDmIzRI
 // https://takeuforward.org/data-structure/subset-sum-equal-to-target-dp-14/
+// https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
 
 class ContainsSubsetSumEqualToK_DP{
-
     // ********************************** Memoization Solution **********************************
     // Time Complexity: O(N*K)
     // Reason: There are N*K states therefore at max ‘N*K’ new problems will be solved.
-
     // Space Complexity: O(N*K) + O(N)
     // Reason: We are using a recursion stack space(O(N)) and a 2D array (O(N*K)).
-
     // 'Top' to ' Down' Approach
     // Total no. of unique states/sub-problems = no. of changing parameters (target * n here)
     // Total no. of unique states/sub-problems = Size of DP array
-
-    private Boolean isSubsetSum(int n, int[] arr, int targetSum){
-        int[][] dp = new int[n][targetSum + 1];
-
-        for (int[] row : dp)
-            Arrays.fill(row, -1);
-
-        return containsSubsetSumEqualsK_Memoization(n-1, targetSum, arr, dp);
+    public static boolean subsetSumToK(int n, int targetSum, int[] arr) {
+        Boolean[][] dp = new Boolean[n][targetSum + 1];
+        return f(n - 1, targetSum, arr, dp);
     }
 
-    private boolean containsSubsetSumEqualsK_Memoization(int index, int target, int[] arr, int[][] dp){
+    private static boolean f(int i, int target, int[] arr, Boolean[][] dp) {
         if (target == 0)
             return true;
-
-        if (index == 0)
+        if (i == 0)
             return arr[0] == target;
 
         // dp[index][targetSum] means whether at index 'index' the subset whose sum is 'targetSum' is
         // possible or not
-        if (dp[index][target] != -1)
-            return dp[index][target] == 1 ? true : false;
+        if (dp[i][target] != null)
+            return dp[i][target];
 
-        boolean foundByPickingElement = false;
-        if (arr[index] <= target)
-            foundByPickingElement = containsSubsetSumEqualsK_Memoization(index-1, target - arr[index], arr, dp);
+        boolean foundByTake = arr[i] <= target ? f(i - 1, target - arr[i], arr, dp) : false;
+        boolean foundByNotTake = f(i - 1, target, arr, dp);
 
-        if (foundByPickingElement){
-            dp[index][target] = 1;
-            return true;
-        }
-
-        boolean foundByNotPickingElement = containsSubsetSumEqualsK_Memoization(index-1, target, arr, dp);
-
-        dp[index][target] = foundByNotPickingElement ? 1 : 0;
-
-        return foundByNotPickingElement;
-    }
-
-
-    // ***************************** Another version of Memoization *****************************
-    private boolean containsSubsetSumEqualsK_Memoization_(int index, int target, int[] arr, int[][] dp){
-        if (target == 0)
-            return true;
-
-        if (index == 0)
-            return arr[0] == target;
-
-        // dp[index][targetSum] means whether at index 'index' the subset whose sum is 'targetSum' is
-        // possible or not
-        if (dp[index][target] != -1)
-            return dp[index][target] == 1 ? true : false;
-
-        boolean foundByPickingElement = false;
-        if (arr[index] <= target)
-            foundByPickingElement = containsSubsetSumEqualsK_Memoization(index-1, target - arr[index], arr, dp);
-
-        boolean foundByNotPickingElement = containsSubsetSumEqualsK_Memoization(index-1, target, arr, dp);
-
-        dp[index][target] = foundByNotPickingElement || foundByPickingElement ? 1 : 0;
-
-        return foundByNotPickingElement || foundByPickingElement;
+        return dp[i][target] = foundByTake || foundByNotTake;
     }
 
 
 
     // ********************************** Tabulation Solution **********************************
-
     // 'Bottom' to 'Up' Approach
-
     // Time Complexity: O(N*K)      Reason: There are two nested loops
     //Space Complexity: O(N*K)      Reason: We are using an external array of size ‘N*K’. Stack Space is eliminated.
-
     // Total no. of unique states/sub-problems = no. of changing parameters (target * n here)
     // Total no. of unique states/sub-problems = Size of DP array = No. of 'for loops' for iteration
 
@@ -99,8 +52,8 @@ class ContainsSubsetSumEqualToK_DP{
         boolean[][] dp = new boolean[n][targetSum + 1];
 
         // Base case when target == 0
-        for (int index = 0; index < n; index++)
-            dp[index][0] = true;
+        for (int i = 0; i < n; i++)
+            dp[i][0] = true;
 
         // Base case when index == 0
         for (int target = 0; target <= targetSum; target++)
@@ -112,20 +65,15 @@ class ContainsSubsetSumEqualToK_DP{
 
         // Other cases
         // At each index 'index' we determine whether we can obtain a 'target' subset sum.
-        for (int index = 1; index < n; index++) {
-            for (int target = 1; target <= targetSum; target++) {
+        for (int i = 1; i < n; i++) {
+            for (int target = 0; target <= targetSum; target++) {
+                boolean foundByTake = arr[i] <= target ? dp[i - 1][target - arr[i]] : false;
+                boolean foundByNotTake = dp[i - 1][target];
 
-                boolean subsetMadeByPickingCurrElement = false;
-                if (arr[index] <= target)
-                    subsetMadeByPickingCurrElement = dp[index - 1][target - arr[index]];
-
-                boolean subsetMadeByNotPickingCurrElement = dp[index-1][target];
-
-                dp[index][target] = subsetMadeByNotPickingCurrElement || subsetMadeByPickingCurrElement;
+                dp[i][target] = foundByTake || foundByNotTake;
             }
         }
-
-        return dp[n-1][targetSum];
+        return dp[n - 1][targetSum];
     }
 
 }

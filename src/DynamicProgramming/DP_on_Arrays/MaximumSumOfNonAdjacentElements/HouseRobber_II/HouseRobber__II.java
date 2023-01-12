@@ -1,47 +1,43 @@
 package DynamicProgramming.DP_on_Arrays.MaximumSumOfNonAdjacentElements.HouseRobber_II;
 
-import java.util.ArrayList;
-
 class HouseRobber__II {
-    public int rob(ArrayList<Integer> arr) {
-        
-        int maxSumPrevTwoIndex = 0;  
-        int maxSumPrevOneIndex = arr.get(0);
-        
-        for (int i = 1; i < arr.size(); i++){
-            int maxSumByPicking = arr.get(i) + maxSumPrevTwoIndex;
-            int maxSumByNotPicking = 0 + maxSumPrevOneIndex;
-            
-            int maxSumAt_IthIndex = Math.max(maxSumByNotPicking, maxSumByPicking);
-            
-            maxSumPrevTwoIndex = maxSumPrevOneIndex;
-            maxSumPrevOneIndex = maxSumAt_IthIndex;
-        }
-        
-        return maxSumPrevOneIndex;
+    // Tabulation Code
+    // TC -> O(2*n) = O(n)
+    // SC -> O(n)
+    public static long houseRobber(int[] valueInHouse) {
+        if (valueInHouse.length == 1)
+            return valueInHouse[0];
+        return Math.max(solve(0, valueInHouse), solve(1, valueInHouse));
     }
-    
-    
-    public int rob(int[] nums) {
-        int n = nums.length;
-        if (n == 1)
-            return nums[0];
 
-        ArrayList<Integer> arr1 = new ArrayList<>();       
-        ArrayList<Integer> arr2 = new ArrayList<>();
-                
-        for (int i = 0; i < n; i++){
-            if (i != 0)
-                arr2.add(nums[i]);
-            
-            if (i != n-1)
-                arr1.add(nums[i]);
+    private static long solve(int ind, int[] arr) {
+        long[] dp = new long[arr.length];
+        dp[ind] = arr[ind];
+
+        for (int i = ind + 1; i < arr.length - 1 + ind; i++) {
+            long take = dp[i - 1];
+            long notTake = i > 1 ? arr[i] + dp[i - 2] : arr[i];
+            dp[i] = Math.max(take, notTake);
         }
-        
-        int maxSum_From_0_to_Nminus2 = rob(arr1);    
-        int maxSum_From_1_to_Nminus1 = rob(arr2);
-        
-        return Math.max(maxSum_From_0_to_Nminus2, maxSum_From_1_to_Nminus1);
+        return dp[arr.length - 1 + ind - 1];
+    }
 
+
+    // Space Optimization
+    // TC -> O(2n) = O(n)
+    // SC -> O(n)
+    private static long solveSpaceOptimized(int ind, int[] arr) {
+        long prev = arr[ind];
+        long prev2 = 0;
+
+        for (int i = ind + 1; i < arr.length - 1 + ind; i++) {
+            long take = prev;
+            long notTake = i > 1 ? arr[i] + prev2 : arr[i];
+            long curr = Math.max(take, notTake);
+
+            prev2 = prev;
+            prev = curr;
+        }
+        return prev;
     }
 }

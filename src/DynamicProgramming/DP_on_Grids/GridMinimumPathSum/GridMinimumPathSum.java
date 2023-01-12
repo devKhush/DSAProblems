@@ -37,7 +37,7 @@ public class GridMinimumPathSum {
 
         // if we become out of boundary, we will never take that path, so we assume it to be infinite long path
         if (i<0 || j<0)
-            return Integer.MAX_VALUE/2;
+            return Integer.MAX_VALUE;
 
         // Return min path for (i,j) if it has been solved previously
         if (dp[i][j] != -1)
@@ -45,11 +45,11 @@ public class GridMinimumPathSum {
 
         // We consider current element into the path (to find min. path) & go to find/get
         // min. path for upper path & left path
-        int minPathByMovingUp = memoizationSolution(i-1, j, grid, dp) + grid[i][j];
-        int minPathByMovingLeft = memoizationSolution(i, j-1, grid, dp) + grid[i][j];
+        int minPathByMovingUp = memoizationSolution(i-1, j, grid, dp);
+        int minPathByMovingLeft = memoizationSolution(i, j-1, grid, dp);
 
         // Minimum path for (i,j) will be min. of Upper path and Left path
-        return dp[i][j] = Math.min(minPathByMovingUp, minPathByMovingLeft);
+        return dp[i][j] = Math.min(minPathByMovingUp, minPathByMovingLeft) + grid[i][j];
     }
 
     private int minPathSum(int[][] grid){
@@ -73,30 +73,23 @@ public class GridMinimumPathSum {
         int m = grid.length;
         int n = grid[0].length;
         int[][] dp = new int[m][n];
+        dp[0][0] = grid[0][0];
 
-        for (int i=0; i<m; i++){
-            for (int j=0; j<n; j++){
-
-                // Base case
-                if (i==0 && j==0){
-                    dp[0][0] = grid[0][0];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 && j == 0)
                     continue;
-                }
-
                 // We consider current element into the path (to find min. path) & go to find/get
                 // min. path for upper path & left path, only if we can go below or left
                 // Else if we reach out of boundary, we take infinite path
-
-                int minPathByMovingUp = i > 0 ? dp[i-1][j] + grid[i][j] : Integer.MAX_VALUE/2;
-
-                int minPathByMovingLeft = j > 0 ? dp[i][j-1] + grid[i][j] : Integer.MAX_VALUE/2;
-
+                int up = i > 0 ? dp[i - 1][j] : Integer.MAX_VALUE;
+                int left = j > 0 ? dp[i][j - 1] : Integer.MAX_VALUE;
                 // Minimum path for (i,j) will be min. of Upper path and Left path
-                dp[i][j] = Math.min(minPathByMovingUp, minPathByMovingLeft);
+                dp[i][j] = Math.min(up, left) + grid[i][j];
             }
         }
         // Min. path for (m-1,n-1) will be stored in dp[m-1][n-1]
-        return dp[m-1][n-1];
+        return dp[m - 1][n - 1];
     }
 
 
@@ -105,31 +98,20 @@ public class GridMinimumPathSum {
     // T.C -> O(mn)     (teo for loops, one iteration to find min path for every element in grid)
     // S.C --> O(one column) = O(n)
     public int spaceOptimizedSolution(int[][] grid){
-        int m = grid.length;
-        int n = grid[0].length;
+        int m = grid.length, n = grid[0].length;
         int[] dp = new int[n];
+        dp[0] = grid[0][0];
 
-        for (int i=0; i<m; i++){
-            for (int j=0; j<n; j++){
-
-                // Base case
-                if (i==0 && j==0){
-                    dp[0] = grid[0][0];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 && j == 0)
                     continue;
-                }
 
-                // We consider current element into the path (to find min. path) & go to find/get
-                // min. path for upper path & left path, only if we can go below or left
-                // Else if we reach out of boundary, we take infinite path
-
-                int minPathByMovingUp = i > 0 ? dp[j] + grid[i][j] : Integer.MAX_VALUE/2;
-                int minPathByMovingLeft = j > 0 ? dp[j-1] + grid[i][j] : Integer.MAX_VALUE/2;
-
-                // Minimum path for (i,j) will be min. of Upper path and Left path
-                dp[j] = Math.min(minPathByMovingLeft, minPathByMovingUp);
+                int up = i > 0 ? dp[j] : Integer.MAX_VALUE;
+                int down = j > 0 ? dp[j - 1] : Integer.MAX_VALUE;
+                dp[j] = Math.min(up, down) + grid[i][j];
             }
         }
-        // Min. path for (m-1,n-1) will be stored in dp[n-1]
-        return dp[n-1];
+        return dp[n - 1];
     }
 }

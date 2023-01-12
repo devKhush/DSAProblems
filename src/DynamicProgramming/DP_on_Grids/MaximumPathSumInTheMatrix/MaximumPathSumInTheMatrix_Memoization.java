@@ -22,7 +22,6 @@ public class MaximumPathSumInTheMatrix_Memoization {
         int m = matrix.length;
         int n = matrix[0].length;
         int[][] dp = new int[m][n];
-
         for (int[] row : dp)
             Arrays.fill(row, -1);
 
@@ -30,76 +29,24 @@ public class MaximumPathSumInTheMatrix_Memoization {
 
         for (int j=0; j<n; j++){
             // current Path Sum from jth element in lastRow to any element in firstRow
-            int currPathSum = memoizationSolution_1(m-1, j, matrix, dp, m, n);
+            int currPathSum = f(m-1, j,  m, n, matrix, dp);
             maxPathSum = Math.max(maxPathSum, currPathSum);
         }
-
         return maxPathSum;
     }
 
-    public int memoizationSolution_1(int i, int j, int[][] arr, int[][] dp, int m, int n){
+    private static int f(int i, int j, int m, int n, int[][] matrix, int[][] dp) {
         if (j < 0 || j >= n)
-            return Integer.MIN_VALUE/2;
-
+            return Integer.MIN_VALUE;
         if (i == 0)
-            return arr[0][j];
-
+            return matrix[i][j];
         if (dp[i][j] != -1)
             return dp[i][j];
 
-        int maxPathSumByMovingUp = arr[i][j] + memoizationSolution_1(i-1, j, arr, dp, m, n);
-        int maxPathSumByMovingUpLeft = arr[i][j] + memoizationSolution_1(i-1, j-1, arr, dp, m, n);
-        int maxPathSumByMovingUpRight = arr[i][j] + memoizationSolution_1(i-1, j+1, arr, dp, m, n);
+        int up = f(i - 1, j, m, n, matrix, dp);
+        int upLeft = f(i - 1, j - 1, m, n, matrix, dp);
+        int upRight = f(i - 1, j + 1, m, n, matrix, dp);
 
-        return dp[i][j] = Math.max(maxPathSumByMovingUp, Math.max(maxPathSumByMovingUpLeft, maxPathSumByMovingUpRight));
-
-    }
-
-
-    // ***************************** Approach 2: Memoization ************************************
-    // Note there can be one more approach in which we iterate over each element in the 1st row
-    // of matrix and find the maximum path sum in going from the jth element of the first row
-    // to the last row and take maximum of each of these paths
-
-    // There will be only one call for one unique element in the matrix. Overlapping problems stored
-    // & solved in DP array yield in O(1) time complexity
-    // T.C ==>  O(m*n)
-    // S.C ==> O(Path length from last row to first row) + O(DP array) = O(n) + O(mn) = O(mn)
-
-    public int getMaxPathSum(int[][] matrix) {
-        int m = matrix.length;
-        int n = matrix[0].length;
-        int[][] dp = new int[m][n];
-
-        for (int[] row : dp)
-            Arrays.fill(row, -1);
-
-        int maxPathSum = Integer.MIN_VALUE;
-
-        for (int j=0; j<n; j++){
-            // current Path Sum from jth element in lastRow to any element in firstRow
-            int currPathSum = memoizationSolution_2(0, j, matrix, dp, m, n);
-            maxPathSum = Math.max(maxPathSum, currPathSum);
-        }
-
-        return maxPathSum;
-    }
-
-    public int memoizationSolution_2(int i, int j, int[][] arr, int[][] dp, int m, int n){
-        if (j < 0 || j >= n)
-            return Integer.MIN_VALUE/2;
-
-        if (i == m-1)
-            return arr[i][j];
-
-        if (dp[i][j] != -1)
-            return dp[i][j];
-
-        int maxPathSumByMovingDown = arr[i][j] + memoizationSolution_2(i+1, j, arr, dp, m, n);
-        int maxPathSumByMovingDownLeft = arr[i][j] + memoizationSolution_2(i+1, j-1, arr, dp, m, n);
-        int maxPathSumByMovingDownRight = arr[i][j] + memoizationSolution_2(i+1, j+1, arr, dp, m, n);
-
-        return dp[i][j] = Math.max(maxPathSumByMovingDown, Math.max(maxPathSumByMovingDownLeft, maxPathSumByMovingDownRight));
-
+        return dp[i][j] = Math.max(up, Math.max(upLeft, upRight)) + matrix[i][j];
     }
 }

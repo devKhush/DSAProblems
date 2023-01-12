@@ -59,9 +59,7 @@ public class NinjaTraining_DP {
             }
         }
 
-        if (lastTaskDone != 3)
-            dp[day][lastTaskDone] = maximumPointsEarned;
-
+        if (lastTaskDone != 3) dp[day][lastTaskDone] = maximumPointsEarned;
         return maximumPointsEarned;
     }
 
@@ -80,53 +78,41 @@ public class NinjaTraining_DP {
     // T.C ==> O(N*3*3) = O(N)      Three Nested loops
     // S.C ==> O(N*3) = O(N)
 
-    public static int tabulationApproach(int[][] arr){
-        int day = arr.length;
-        int[][] dp = new int[day][3];
+    public static int tabulationApproach(int[][] points){
+        int n = points.length;
+        int[][] dp = new int[n][3];
 
         // Base case as in case of memoization
-        dp[0][0] = Math.max(arr[0][1], arr[0][2]);
-        dp[0][1] = Math.max(arr[0][0], arr[0][2]);
-        dp[0][2] = Math.max(arr[0][0], arr[0][1]);
+        dp[0][0] = Math.max(points[0][1], points[0][2]);
+        dp[0][1] = Math.max(points[0][0], points[0][2]);
+        dp[0][2] = Math.max(points[0][0], points[0][1]);
 
         /*
         // For loop which handles base case is:
-        for (int prevTask = 0; prevTask <= 2; prevTask++){
-            for (int currTask = 0; currTask <= 2; currTask++) {
-                if (prevTask != currTask)
-                    dp[0][prevTask] = Math.max(dp[0][prevTask], arr[0][currTask]);
+        for (int lastDayTask = 0; lastDayTask <= 2; lastDayTask++){
+            for (int task = 0; task <= 2; task++) {
+                if (lastDayTask != task)
+                    dp[0][lastDayTask] = Math.max(dp[0][lastDayTask], points[0][task]);
             }
         }
-         */
-        // just a dummy variable to assign lastDay result, it ranges form [0, 2]
-        int var = 0;
+        */
 
-        for (int dayNumber = 1; dayNumber < day; dayNumber++) {
-
-            for (int lastTaskDone = 0; lastTaskDone <= 2; lastTaskDone++) {
-                if (dayNumber == day-1)
-                    lastTaskDone = 3;
-
-                int maximumPointsEarned = 0;
-
-                for (int task = 0; task <= 2; task++) {
-                    if (task != lastTaskDone) {
-                        int pointsEarned = dp[dayNumber-1][task] + arr[dayNumber][task];
-                        maximumPointsEarned = Math.max(pointsEarned, maximumPointsEarned);
+        // Previously f(n-1, 3) was being returned as final answer in memoization solution
+        // Now, we are returning max of f(n-1,0), f(n-1,1) & f(n-1,2) in tabulation solution.
+        // This will ensure correct answer is returned. Think...
+        for (int day = 1; day < n; day++) {
+            for (int lastDayTask = 0; lastDayTask < 3; lastDayTask++) {
+                int max = 0;
+                for (int task = 0; task < 3; task++) {
+                    if (task != lastDayTask) {
+                        int dayPoint = points[day][task] + dp[day - 1][task];
+                        max = Math.max(max, dayPoint);
                     }
                 }
-
-                if (lastTaskDone != 3)
-                    dp[dayNumber][lastTaskDone] = maximumPointsEarned;
-                else
-                    dp[dayNumber][var++] = maximumPointsEarned;
+                dp[day][lastDayTask] = max;
             }
         }
-
-        int maxPoints1 = dp[day-1][0];
-        int maxPoints2 = dp[day-1][1];
-        int maxPoints3 = dp[day-1][2];
-        return Math.max(maxPoints1, Math.max(maxPoints2, maxPoints3));
+        return Math.max(dp[n - 1][0], Math.max(dp[n - 1][1], dp[n - 1][2]));
     }
 
 
@@ -136,64 +122,45 @@ public class NinjaTraining_DP {
     // T.C ==> O(N*3*3) = O(N)      Three Nested loops
     // S.C ==> O(3) = O(1)
 
-    private static int constantSpaceSolution(int[][] arr){
-        int totalDays = arr.length;
-
-        // dp array of constant size
-        int[] prevMaxPoints = new int[3];
+    private static int constantSpaceSolution(int[][] points){
+        int n = points.length;
+        int[] dp = new int[3];
 
         // Base cases
-        prevMaxPoints[0] = Math.max(arr[0][1], arr[0][2]);
-        prevMaxPoints[1] = Math.max(arr[0][0], arr[0][2]);
-        prevMaxPoints[2] = Math.max(arr[0][0], arr[0][1]);
+        dp[0] = Math.max(points[0][1], points[0][2]);
+        dp[1] = Math.max(points[0][0], points[0][2]);
+        dp[2] = Math.max(points[0][0], points[0][1]);
+        /* // Base case code for space optimization
+        for (int lastDayTask = 0; lastDayTask < 3; lastDayTask++) {
+            int max = 0;
+            for (int task = 0; task < 3; task++) {
+                if (task != lastDayTask) {
+                    max = Math.max(max, points[0][task]);
+                }
+            }
+            dp[lastDayTask] = max;
+        }
+         */
 
-        // just a dummy variable to assign lastDay result, it ranges form [0, 2]
-        int var = 0;
 
-        for (int day = 1; day < totalDays; day++){
-            int[] dp = new int[3];      // temp array
+        // Previously f(n-1, 3) was being returned as final answer in memoization solution
+        // Now, we are returning max of f(n-1,0), f(n-1,1) & f(n-1,2) in tabulation solution.
+        // This will ensure correct answer is returned. Think...
+        for (int day = 1; day < n; day++) {
+            int[] dp2 = new int[3];
 
-            for (int lastTask = 0; lastTask < 3; lastTask++) {
-                if (day == totalDays-1)
-                    lastTask = 3;
-
-                int maximumPointsEarned = 0;
-
+            for (int lastDayTask = 0; lastDayTask < 3; lastDayTask++) {
+                int max = 0;
                 for (int task = 0; task < 3; task++) {
-                    if (task != lastTask) {
-                        int pointsEarned = arr[day][task] + prevMaxPoints[task];
-                        maximumPointsEarned = Math.max(pointsEarned, maximumPointsEarned);
+                    if (task != lastDayTask) {
+                        int dayPoint = points[day][task] + dp[task];
+                        max = Math.max(max, dayPoint);
                     }
                 }
-
-                if (lastTask != 3)
-                    dp[lastTask] = maximumPointsEarned;
-                else
-                    dp[var++] = maximumPointsEarned;
+                dp2[lastDayTask] = max;
             }
-            prevMaxPoints = dp;
+            dp = dp2;
         }
-
-        return Math.max(prevMaxPoints[0], Math.max(prevMaxPoints[1], prevMaxPoints[2]));
-    }
-
-
-
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t  = sc.nextInt();
-
-        for (int i = 0; i < t; i++) {
-            int n = sc.nextInt();
-            int[][] arr = new int[n][3];
-
-            for (int j = 0; j < n; j++) {
-                for (int k = 0; k < 3; k++) {
-                    arr[j][k] = sc.nextInt();
-                }
-            }
-            System.out.println(tabulationApproach(arr));
-        }
+        return Math.max(dp[0], Math.max(dp[1], dp[2]));
     }
 }

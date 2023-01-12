@@ -25,22 +25,20 @@ public class MaximumPathSumInTheMatrix_SpaceOptimization {
         int[] dp = matrix[0];
 
         for (int i = 1; i < m; i++) {
-            int[] tempDP = new int[n];
-
+            int[] temp = new int[n];
             for (int j = 0; j < n; j++) {
+                int up = dp[j];
+                int upLeft = j > 0 ? dp[j - 1] : Integer.MIN_VALUE;
+                int upRight = j != n - 1 ? dp[j + 1] : Integer.MIN_VALUE;
 
-                int maxPathSumByMovingUp = dp[j] + matrix[i][j];
-                int maxPathSumByMovingUpLeft = (j-1 >= 0) ? dp[j-1] + matrix[i][j] : Integer.MIN_VALUE/2;
-                int maxPathSumByMovingUpRight = (j+1 < n) ? dp[j+1] + matrix[i][j] : Integer.MIN_VALUE/2;
-
-                tempDP[j] = Math.max(maxPathSumByMovingUp, Math.max(maxPathSumByMovingUpRight, maxPathSumByMovingUpLeft));
+                temp[j] = Math.max(up, Math.max(upLeft, upRight)) + matrix[i][j];
             }
-            dp = tempDP;
+            dp = temp;
         }
 
         int maxPathSum = Integer.MIN_VALUE;
-        for (int currentPathSumInLastRow : dp)
-            maxPathSum = Math.max(maxPathSum, currentPathSumInLastRow);
+        for (int j = 0; j < n; j++)
+            maxPathSum = Math.max(maxPathSum, dp[j]);
         return maxPathSum;
     }
 

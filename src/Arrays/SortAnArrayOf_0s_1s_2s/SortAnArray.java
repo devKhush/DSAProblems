@@ -23,17 +23,25 @@ class SortAnArray{
         }
 
         int i = 0;
-
         while (i < count0)  a[i++] = 0;
-
         while (i < count0  + count1)    a[i++] = 1;
-
         // We don't need a variable that stores count of 2, as array contains
         // only 0s, 1s & 2s (counts of 0s & 1s are already stored)
-        // while (i < count0  + count1  + count2)
-        //     a[i++] = 2;
-
+        // while (i < count0  + count1  + count2) a[i++] = 2;
         while (i < n)   a[i++] = 2;
+
+        /*
+        int cnt0 = 0, cnt1 = 0, cnt2 = 0;
+        for (int i = 0; i < n; i++){
+            if (arr[i] == 0) cnt0++;
+            else if (arr[i] == 1) cnt1++;
+            else if (arr[i] == 2) cnt2++;
+        }
+        int i = 0;
+        while (cnt0-- > 0) arr[i++] = 0;
+        while (cnt1-- > 0) arr[i++] = 1;
+        while (cnt2-- > 0) arr[i++] = 2;
+         */
     }
 
 

@@ -14,43 +14,29 @@ public class CherryPickUp_Recursion {
 
     // Time complexity --> O(3^m * 3^m) = O(9^m) = exponential T.C.
     // Space complexity --> O(m) Recursion stack space, at most m calls (equal to m row)
-
     public int cherryPickup(int[][] grid) {
-        // m is no. of rows
         int m = grid.length;
-
-        // n is no. of columns
         int n = grid[0].length;
 
-        return recursiveSolution(0, 0, n-1, grid, m, n);
+        return f(0, 0, n-1, m, n, grid);
     }
 
-    public int recursiveSolution(int i, int j1, int j2, int[][] arr, int m, int n){
-        if (j1 < 0 || j1 >= n || j2 < 0 || j2 >= n)
+    public int f(int i, int j1, int j2, int m, int n, int[][] grid){
+        if (j1 < 0 || j2 < 0 || j1 >= n || j2 >= n)
             return Integer.MIN_VALUE;
 
-        if (i == m-1){
-            if (j1 == j2)
-                return arr[i][j1];
-            else
-                return arr[i][j1] + arr[i][j2];
-        }
+        if (i == m - 1)
+            return j1 != j2 ? grid[i][j1] + grid[i][j2] : grid[i][j1];
 
-        int maxCherryPicked = Integer.MIN_VALUE;
+        int maxCherry = Integer.MIN_VALUE;
+        for (int dj1 = -1; dj1 <= 1; dj1++) {
+            for (int dj2 = -1; dj2 <= 1; dj2++) {
 
-        for (int deltaJ1 = -1; deltaJ1 <= 1; deltaJ1++){
-            for (int deltaJ2 = -1; deltaJ2 <= 1; deltaJ2++){
-                int currCherryPicked;
-
-                if (j1 == j2)
-                    currCherryPicked = arr[i][j1] +  recursiveSolution(i + 1, j1 + deltaJ1, j2 + deltaJ2, arr, m, n);
-                else
-                    currCherryPicked = arr[i][j1] + arr[i][j2] + recursiveSolution(i + 1, j1 + deltaJ1, j2 + deltaJ2, arr, m, n);
-
-                maxCherryPicked  = Math.max(maxCherryPicked, currCherryPicked);
+                int currCherry = j1 != j2 ? grid[i][j1] + grid[i][j2] : grid[i][j1];
+                int nextCherries = f(i + 1, j1 + dj1, j2 + dj2, m, n, grid);
+                maxCherry = Math.max(maxCherry, nextCherries + currCherry);
             }
         }
-
-        return maxCherryPicked;
+        return maxCherry;
     }
 }

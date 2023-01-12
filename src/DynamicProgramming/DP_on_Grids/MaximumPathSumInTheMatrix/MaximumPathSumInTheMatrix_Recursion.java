@@ -6,8 +6,8 @@ import java.util.Scanner;
 // try to explore all the starting/ending points
 
 // https://youtu.be/N_aJ5qQbYA0
-// https://takeuforward.org/data-structure/minimum-maximum-falling-path-sum-dp-12/
-// https://www.codingninjas.com/codestudio/problems/maximum-path-sum-in-the-matrix_797998?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos&leftPanelTab=0
+// https://takeuforward.org/data-structure/minimum-maximum-falling-path-su-12/
+// https://www.codingninjas.com/codestudio/problems/maximum-path-sum-in-the-matrix_797998?source=youtube&campaign=strive_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=strive_videos&leftPanelTab=0
 
 public class MaximumPathSumInTheMatrix_Recursion {
 
@@ -24,30 +24,28 @@ public class MaximumPathSumInTheMatrix_Recursion {
      public int getMaxPathSum(int[][] matrix) {
          int m = matrix.length;
          int n = matrix[0].length;
-
-         int maxPathSum = Integer.MIN_VALUE/2;
+         int maxPathSum = Integer.MIN_VALUE;
 
          for (int j = 0; j < n; j++){
              // current Path Sum from jth element in lastRow to any element in firstRow
-             int currentPathSum = recursionSolution(m-1, j, matrix, m, n);
+             int currentPathSum = f(m-1, j, m, n, matrix);
              maxPathSum = Math.max(maxPathSum, currentPathSum);
          }
 
          return maxPathSum;
      }
 
-    private int recursionSolution(int i, int j, int[][] matrix, int m ,int n){
+    private static int f(int i, int j, int m, int n, int[][] matrix) {
         if (j < 0 || j >= n)
-            return Integer.MIN_VALUE/2;
-
+            return Integer.MIN_VALUE;
         if (i == 0)
-            return matrix[0][j];
+            return matrix[i][j];
 
-        int maxSumByMovingUp = recursionSolution(i-1, j, matrix, m, n) + matrix[i][j];
-        int maxSumByMovingUpLeft = recursionSolution(i-1, j-1, matrix, m, n) + matrix[i][j];
-        int maxSumByMovingUpRight = recursionSolution(i-1, j+1, matrix, m, n) + matrix[i][j];
+        int up = f(i - 1, j, m, n, matrix);
+        int upLeft = f(i - 1, j - 1, m, n, matrix);
+        int upRight = f(i - 1, j + 1, m, n, matrix);
 
-        return Math.max(maxSumByMovingUp, Math.max(maxSumByMovingUpLeft, maxSumByMovingUpRight));
+        return Math.max(up, Math.max(upLeft, upRight)) + matrix[i][j];
     }
 
 
@@ -88,22 +86,4 @@ public class MaximumPathSumInTheMatrix_Recursion {
         return Math.max(maxSumByMovingDown, Math.max(maxSumByMovingDownLeft, maxSumByMovingDownRight));
     }
 
-
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-
-        for (int k = 0; k < t; k++) {
-            int m = sc.nextInt();
-            int n = sc.nextInt();
-            int[][] arr = new int[m][n];
-
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++)
-                    arr[i][j] = sc.nextInt();
-            }
-            System.out.println(new MaximumPathSumInTheMatrix_Recursion().getMaxPathSum(arr));
-        }
-    }
 }

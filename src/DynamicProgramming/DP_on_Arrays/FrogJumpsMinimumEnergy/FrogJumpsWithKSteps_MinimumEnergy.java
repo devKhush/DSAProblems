@@ -48,17 +48,17 @@ public class FrogJumpsWithKSteps_MinimumEnergy {
         dp[0] = 0;
 
         for (int index = 1; index < n; index++) {
-
             int minEnergyFromToIndex = Integer.MAX_VALUE;
-            for (int i = index-k; i < index; i++){
-                if (i >= 0) {
-                    int energyFromIthStepToIndex = dp[i] + Math.abs(arr[index] - arr[i]);
+
+            for (int j = 1; j <= k; j++) {
+                if (index - j >= 0) {
+                    int energyFromIthStepToIndex = dp[index - j] + Math.abs(arr[index] - arr[index - j]);
                     minEnergyFromToIndex = Math.min(minEnergyFromToIndex, energyFromIthStepToIndex);
                 }
             }
             dp[index] = minEnergyFromToIndex;
         }
-        return dp[n-1];
+        return dp[n - 1];
     }
 
 

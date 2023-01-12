@@ -5,7 +5,6 @@ import java.util.List;
 // https://takeuforward.org/data-structure/minimum-path-sum-in-triangular-grid-dp-11/
 
 public class TriangularGridMinimumPathSum_SpaceOptimization {
-
     // ********************************** Space Optimized solution **********************************
     // T.C --> O(n*n)
     // S.C --> O(n)     (only one size DP array)
@@ -60,22 +59,33 @@ public class TriangularGridMinimumPathSum_SpaceOptimization {
         // One DP array will not work here, as then how will we store the min path of current row
         // We use one DP array 'dp' to get these required next values.
         // And store the min path of current row values in another dp array 'tempDP'
-
         for (int j = 0; j < n; j++)
             dp[j] = triangle.get(n-1).get(j);
 
         for (int i= n-2; i >= 0; i--){
             int[] tempDP = new int[n];
 
-            for (int j = i; j >= 0; j--) {
-                int minPathByMovingDown = dp[j] + triangle.get(i).get(j);
-                int minPathByMovingDownRight = dp[j+1] + triangle.get(i).get(j);
-
-                tempDP[j] = Math.min(minPathByMovingDownRight, minPathByMovingDown);
+            for (int j = 0; j <= i; j++) {
+                int minPathByMovingDown = dp[j];
+                int minPathByMovingDownRight = dp[j+1];
+                tempDP[j] = Math.min(minPathByMovingDownRight, minPathByMovingDown) + triangle.get(i).get(j);
             }
             dp = tempDP;
         }
-
         return dp[0];
+        /*
+        int[] dp = new int[n];
+        for (int j = 0; j < n; j++)
+            dp[j] = triangle[n - 1][j];
+
+        for (int i = n - 2; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                int downPath = dp[j];
+                int downRightPath = dp[j + 1];
+                dp[j] = Math.min(downPath, downRightPath) + triangle[i][j];
+            }
+        }
+        return dp[0];
+         */
     }
 }

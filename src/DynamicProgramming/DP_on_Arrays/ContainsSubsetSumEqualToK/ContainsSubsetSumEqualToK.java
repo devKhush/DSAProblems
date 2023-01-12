@@ -2,34 +2,26 @@ package DynamicProgramming.DP_on_Arrays.ContainsSubsetSumEqualToK;
 
 // https://youtu.be/fWX9xDmIzRI
 // https://takeuforward.org/data-structure/subset-sum-equal-to-target-dp-14/
+// https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
 
 public class ContainsSubsetSumEqualToK {
 
     // ************************************** Recursion  **************************************
-
     // T.C --> O(2^N)       In worst case, we may find last subsequences as the required one
     // S.C --> O(N)         Recursion Stack space
-
-    private Boolean subSetSumEqualK(int[] arr, int K){
-        return containsSubsetSumEqualK(arr.length -1 , K, arr);
+    public static boolean subsetSumToK(int n, int targetSum, int[] arr) {
+        return f(n - 1, targetSum, arr);
     }
 
-    private boolean containsSubsetSumEqualK(int index, int target, int[] arr){
+    private static boolean f(int i, int target, int[] arr) {
         if (target == 0)
             return true;
-
-        if (index == 0)
+        if (i == 0)
             return arr[0] == target;
 
-        boolean foundByPickingCurrElement = false;
-        if (arr[index] <= target)
-            foundByPickingCurrElement = containsSubsetSumEqualK(index-1, target - arr[index], arr);
+        boolean foundByTake = arr[i] <= target ? f(i - 1, target - arr[i], arr) : false;
+        boolean foundByNotTake = f(i - 1, target, arr);
 
-        if (foundByPickingCurrElement)
-            return true;
-
-        boolean foundByNotPickingCurrElement = containsSubsetSumEqualK(index-1, target, arr);
-
-        return foundByNotPickingCurrElement;
+        return foundByTake || foundByNotTake;
     }
 }
