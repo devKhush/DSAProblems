@@ -1,4 +1,4 @@
-package DynamicProgramming.DP_on_Arrays.PartitionEqualSubsetSum;
+package DynamicProgramming.DP_on_Arrays.PartitionTwoEqualSubsetSum;
 
 // PRE_REQUISITE: 'Contains subset sum equal to K'
 // https://www.geeksforgeeks.org/partition-problem-dp-18/
@@ -6,7 +6,7 @@ package DynamicProgramming.DP_on_Arrays.PartitionEqualSubsetSum;
 // https://youtu.be/7win3dcgo3k
 // https://leetcode.com/problems/partition-equal-subset-sum/description/
 
-public class PartitionEqualSubsetSum {
+public class PartitionTwoEqualSubsetSum {
     /*********************************** Solution *****************************
      * Time Complexity: O(n * sum/2) + O(n)  =  O(n * sum) + O(n)
         * n -> size of array
@@ -15,6 +15,7 @@ public class PartitionEqualSubsetSum {
         * O(n) to find sum of all values
 
      * Space Complexity: O(n * sum/2) = O(n * sum)
+     * We can space optimized this solution too.
      */
     public boolean canPartition(int[] arr) {
         int n = arr.length;
