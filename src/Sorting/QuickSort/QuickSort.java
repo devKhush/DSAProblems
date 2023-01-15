@@ -4,7 +4,7 @@ public class QuickSort {
     // Quick Sort
     public int partition(int[] arr, int low, int high){
         int pivot = arr[low];
-        int i=low, j=high;
+        int i = low + 1, j = high;
 
         int temp;
         while(i <= j){

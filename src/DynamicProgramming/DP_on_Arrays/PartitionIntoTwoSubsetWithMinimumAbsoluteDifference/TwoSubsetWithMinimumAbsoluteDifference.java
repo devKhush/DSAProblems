@@ -13,7 +13,7 @@ public class TwoSubsetWithMinimumAbsoluteDifference {
      * sum -> sum of values in array
      * O(n * sum) for finding subset sum equal to sum
      * O(n) to find sum of all values
-     * O(sum/2) to find all subset valwes at the last index of array
+     * O(sum/2) to find all subset values at the last index of array
 
      * Space Complexity: O(n * sum)
      * We can space optimized this solution too.
@@ -33,7 +33,7 @@ public class TwoSubsetWithMinimumAbsoluteDifference {
             dp[0][arr[0]] = true;
 
         for (int i = 1; i < n; i++) {           // Recursion states
-            for (int target = 1; target <= totalSum; target++) {
+            for (int target = 0; target <= totalSum; target++) {
                 boolean take = arr[i] <= target ? dp[i - 1][target - arr[i]] : false;
                 boolean notTake = dp[i - 1][target];
                 dp[i][target] = take || notTake;
