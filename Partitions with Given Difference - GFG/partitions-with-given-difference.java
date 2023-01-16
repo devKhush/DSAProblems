@@ -34,18 +34,45 @@ class GFG{
 class Solution{
 
     public int countPartitions(int n, int D, int arr[]){
+        /*
+         int totalSum = 0;
+         for (int val : arr)
+             totalSum += val;
+         if (totalSum - D < 0 || (totalSum - D)%2 != 0)
+             return 0;
+         int[][] dp = new int[n][totalSum +1];
+         for (int[] row : dp)
+             Arrays.fill(row, -1);
+         return f(n - 1, (totalSum - D)/2, arr, dp);
+        */
+        
         int totalSum = 0;
         for (int val : arr)
             totalSum += val;
+
+        // Two condition for problem
         if (totalSum - D < 0 || (totalSum - D)%2 != 0)
             return 0;
+        
+        int[][] dp = new int[n][totalSum + 1];
 
-        int[][] dp = new int[n][totalSum +1];
-        for (int[] row : dp)
-            Arrays.fill(row, -1);
+        // Not-Take base case at 0th index
+        dp[0][0] = 1;
+        // Take base case at 0th index
+        if (arr[0] <= totalSum)
+            dp[0][arr[0]] += 1;
 
-        return f(n - 1, (totalSum - D)/2, arr, dp);
+        for (int i = 1; i < n; i++){
+            for (int target = 0; target <= totalSum; target++){
+                int take = arr[i] <= target ? dp[i-1][target - arr[i]] : 0;
+                int notTake = dp[i-1][target];
+                dp[i][target] = (take + notTake) % (int)(1e9+7);
+            }
+        }
+        // We search for target sum "(totalSum - D)/2"
+        return dp[n-1][(totalSum - D)/2];
     }
+    
     private static int f(int i, int target, int[] arr, int[][] dp){
         if (i < 0)
             return target == 0 ? 1 : 0;
