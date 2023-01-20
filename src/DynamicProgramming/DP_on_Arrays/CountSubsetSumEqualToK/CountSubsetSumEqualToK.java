@@ -27,6 +27,13 @@ public class CountSubsetSumEqualToK {
         // New base case, previous base case will not work when there are 0's in the array. Think...
         if (i < 0)
             return  target == 0 ? 1 : 0;
+        /* // Another way for base case
+        if (i == 0){
+            if (target == 0 && arr[0] == 0) return 2;
+            if (target == 0 || arr[i] == target) return 1;
+            return 0;
+        }
+         */
 
         if (dp[i][target] != -1)
             return dp[i][target];
@@ -40,7 +47,7 @@ public class CountSubsetSumEqualToK {
     /********************************* Tabulation Solution ****************************************
      * Time Complexity: O(n * K)
         * number of states is n*K
-     * Space Complexity: O(K)
+     * Space Complexity: O(n*K)
         * Dp array
      */
     public static int findWays(int[] arr, int K) {
