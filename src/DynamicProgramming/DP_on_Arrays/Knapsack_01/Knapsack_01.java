@@ -126,6 +126,7 @@ public class Knapsack_01 {
         }
 
         // Remaining states/problems
+        // Start the weight loop from end, bcoz current weight needs only lesser wights of previous row
         for (int i = 1; i < n; i++) {
             for (int wt = maxWeight; wt >= 0; wt--) {
                 int notTakeIntoBag = dp[wt];
