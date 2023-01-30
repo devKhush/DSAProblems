@@ -1,4 +1,4 @@
-package DynamicProgramming.DP_on_Arrays.MinimumCoins;
+package DynamicProgramming.DP_on_Arrays.CoinChange_I;
 import java.util.Arrays;
 
 // Pre-requisite: "Combination Sum-II" AND "Knapsack"
@@ -68,6 +68,7 @@ public class MinimumCoins {
         int[][] dp = new int[n][amount + 1];
 
         // base case
+        dp[0][0] = 0;
         for (int target = 0; target <= amount; target++)
             dp[0][target] = (target % coins[0] == 0) ? target / coins[0] : (int)1e9;
 
@@ -94,6 +95,7 @@ public class MinimumCoins {
         int[] dp = new int[amount + 1];
 
         // base case
+        dp[0] = 0;
         for (int target = 0; target <= amount; target++)
             dp[target] = (target % coins[0] == 0) ? target / coins[0] : (int)1e9;
 
