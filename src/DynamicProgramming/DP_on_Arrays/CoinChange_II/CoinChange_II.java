@@ -1,5 +1,9 @@
 package DynamicProgramming.DP_on_Arrays.CoinChange_II;
 
+// https://youtu.be/HgyouUi11zk
+// https://www.geeksforgeeks.org/coin-change-dp-7/
+// https://takeuforward.org/data-structure/coin-change-2-dp-22/
+
 public class CoinChange_II {
     /************************************** Memoization ***************************************
      * Time Complexity: O(n * Target)
@@ -73,7 +77,6 @@ public class CoinChange_II {
         // Remaining cases
         for (int i = 1; i < n; i++) {
             int[] tempDP = new int[amount + 1];
-            tempDP[0] = 1;
             for (int target_amt = 0; target_amt <= amount; target_amt++) {
                 int takeCoin = target_amt >= coins[i] ? tempDP[target_amt - coins[i]] : 0;
                 int notTakeCoin = dp[target_amt];
@@ -83,5 +86,4 @@ public class CoinChange_II {
         }
         return dp[amount];
     }
-
 }
