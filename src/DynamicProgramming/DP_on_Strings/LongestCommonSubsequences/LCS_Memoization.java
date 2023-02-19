@@ -5,7 +5,6 @@ import java.util.Arrays;
 // https://takeuforward.org/data-structure/longest-common-subsequence-dp-25/
 
 public class LCS_Memoization {
-
     // *********************************** Memoization Solution **************************************
     /*
     Time Complexity: O(N*M)
@@ -16,7 +15,6 @@ public class LCS_Memoization {
     (see the recursive tree, in the worst case, we will go till N+M calls at a time)
     and a 2D array of DP O(N*M).
      */
-
     public int longestCommonSubsequence_V1(String s1, String s2){
         int m = s1.length();
         int n = s2.length();
@@ -42,12 +40,10 @@ public class LCS_Memoization {
         if (s1.charAt(i) == s2.charAt(j))
             return  dp[i][j] = 1 + LCS_Memoization(i-1, j-1, s1, s2, dp);
 
-
         // When the characters of current indices in both the string are not equal
         // Then return the maximum of length of LCS found by decreasing both the indices one by one
         return  dp[i][j] = Math.max(LCS_Memoization(i, j-1, s1, s2, dp), LCS_Memoization(i-1, j, s1, s2, dp));
     }
-
 
 
 
@@ -61,7 +57,6 @@ public class LCS_Memoization {
     (see the recursive tree, in the worst case, we will go till N+M calls at a time)
     and a 2D array of DP O((n+1) * (m+1)).
      */
-
     private int longestCommonSubsequence_V2(String s1, String s2){
         int m = s1.length();
         int n = s2.length();
@@ -90,7 +85,7 @@ public class LCS_Memoization {
 
         // When the characters of current indices in both the string are not equal
         // Then return the maximum of length of LCS found by decreasing both the indices one by one
-        return dp[i][j] = 0 + Math.max(LCS_Memoization(i-1, j, dp, s1, s2), LCS_Memoization(i, j-1, dp, s1, s2));
+        return dp[i][j] = Math.max(LCS_Memoization(i - 1, j, dp, s1, s2), LCS_Memoization(i, j - 1, dp, s1, s2));
     }
 
 }
