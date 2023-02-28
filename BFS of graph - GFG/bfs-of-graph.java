@@ -53,13 +53,17 @@ class Solution {
         vis[node] = true;
         
         while (!queue.isEmpty()){
-            int n = queue.remove();
-            bfs.add(n);
+            int nn = queue.size();
             
-            for (int neighbour : adj.get(n)){
-                if (!vis[neighbour]){
-                    queue.add(neighbour);
-                    vis[neighbour] = true;
+            for (int i = 0; i < nn; i++){
+                int n = queue.remove();
+                bfs.add(n);
+                
+                for (int neighbour : adj.get(n)){
+                    if (!vis[neighbour]){
+                        queue.add(neighbour);
+                        vis[neighbour] = true;
+                    }
                 }
             }
         }
