@@ -22,8 +22,8 @@ public class FloodFill_V2 {
             }
         }
 
-        int di[] = {-1, 0, +1, 0};
-        int dj[] = {0, +1, 0, -1};
+        int[] di = {-1, 0, +1, 0};
+        int[] dj = {0, +1, 0, -1};
         int initColor = image[sr][sc];
 
         dfs(sr, sc, m, n, new_img, image, newColor, di, dj, initColor);
