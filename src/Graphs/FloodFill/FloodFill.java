@@ -9,7 +9,7 @@ import java.util.Queue;
 
 public class FloodFill {
     /*********************************** DFS Solution **************************************8
-     * Time Complexity: O(mn)
+     * Time Complexity: O(4*mn)
         * O(mn) in worst case, if all pixels need to be colored
      * Space Complexity: O(mn)
         * O(mn) recursive stack space in worst case
@@ -36,7 +36,7 @@ public class FloodFill {
 
 
     /************************************** BFS Solution ************************************
-     * Time Complexity: O(mn)
+     * Time Complexity: O(4*mn)
         * O(mn) in worst case, if all pixels need to be colored
      * Space Complexity: O(mn)
         * O(mn) bfs queue size in worst case

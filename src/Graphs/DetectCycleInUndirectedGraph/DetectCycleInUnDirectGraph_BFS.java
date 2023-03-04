@@ -70,4 +70,41 @@ public class DetectCycleInUnDirectGraph_BFS {
             this.parentVertex = parentVertex;
         }
     }
+
+
+    /************************************* Solution 2 ************************************
+     * Time Complexity: O(V + E)
+     * Space Complexity: O(V) + O(V) + O(V)  ~  O(V)
+     */
+    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+        boolean[] visited = new boolean[V];
+        int[] parent = new int[V];
+
+        for (int node = 0; node < V; node++) {
+            if (!visited[node]) {
+
+                // Run BFS for current component of graph
+                Queue<Integer> queue = new ArrayDeque<>();
+                queue.add(node);
+                visited[node] = true;
+                parent[node] = -1;
+
+                while (!queue.isEmpty()) {
+                    int gnode = queue.remove();
+                    for (int neighbour : adj.get(gnode)) {
+                        if (!visited[neighbour]) {
+                            visited[neighbour] = true;
+                            parent[neighbour] = gnode;
+                            queue.add(neighbour);
+                        }
+                        else if (parent[gnode] != neighbour) {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+        }
+        return false;
+    }
 }

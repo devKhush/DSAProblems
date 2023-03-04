@@ -4,7 +4,7 @@ import java.util.Queue;
 
 public class RottenOranges_V2 {
     /*********************************** BFS Solution *********************************************
-     * Time Complexity: O(mn) + O(mn)  ~  O(mn)
+     * Time Complexity: O(4*mn) + O(mn)  ~  O(mn)
      * Space Complexity: O(mn)
         * Queue size in worst case
      */
