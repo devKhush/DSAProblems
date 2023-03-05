@@ -20,7 +20,7 @@ public class DetectCycleInUnDirectGraph_DFS {
       is a cycle in the graph. If we don’t find such an adjacent for any vertex, we say that there
       is no cycle.
 
-     * Time Complexity : O(V + E)   Same as DFS for Graph with adjacency list
+     * Time Complexity : O(V + 2E)   Same as DFS for Graph with adjacency list
             * The program does a simple DFS Traversal of the graph which is represented using adjacency
               list. So the time complexity is O(V+E).
      * Space Complexity: O(V)       Same as DFS for Graph with adjacency list

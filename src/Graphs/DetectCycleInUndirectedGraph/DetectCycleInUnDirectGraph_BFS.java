@@ -19,7 +19,7 @@ public class DetectCycleInUnDirectGraph_BFS {
       adjacent vertex ‘u’ such that 'u' is already visited and 'v' is not a parent of 'u', then there
       is a cycle in the graph. If we don’t find such an adjacent for any vertex, we say that there
       is no cycle.
-    * Time Complexity: O(V + E)     Same as BFS for Graph with adjacency list
+    * Time Complexity: O(V + 2E)     Same as BFS for Graph with adjacency list
     * Space Complexity: O(V)        Same as BFS for Graph with adjacency list
      */
     public boolean cycleCheck_BFS(int vertex, int V, ArrayList<ArrayList<Integer>> adjList, boolean[] visited){
@@ -73,7 +73,7 @@ public class DetectCycleInUnDirectGraph_BFS {
 
 
     /************************************* Solution 2 ************************************
-     * Time Complexity: O(V + E)
+     * Time Complexity: O(V + 2E) ~ O(V + E)
      * Space Complexity: O(V) + O(V) + O(V)  ~  O(V)
      */
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
