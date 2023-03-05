@@ -8,6 +8,7 @@ import java.util.ArrayList;
 // But it is not possible to color a cycle graph with an odd cycle using two colors.
 
 // https://youtu.be/uC884ske2uQ
+// https://youtu.be/KG5YFfR0j8A
 // https://takeuforward.org/data-structure/bipartite-check-using-dfs-if-graph-is-bipartite/
 // https://www.geeksforgeeks.org/bipartite-graph/
 // https://www.geeksforgeeks.org/check-if-a-given-graph-is-bipartite-using-dfs/
@@ -15,44 +16,33 @@ import java.util.ArrayList;
 
 public class BipartiteGraph_DFS {
     /*
-     * Time Complexity: O(V + E)     Same as DFS for Graph with adjacency list
+     * Time Complexity: O(V + 2E)     Same as DFS for Graph with adjacency list
      * Space Complexity: O(V)        Same as DFS for Graph with adjacency list
      */
     public boolean isBipartite(ArrayList<Integer>[] adjList) {
-        // Denoting two colors as color '1' & color '2'
-        // Color '0'  means vertex has not been colored/visited yet
         int V = adjList.length;
-
-        // Create a color array to store colors assigned to all vertices.
-        // Color array basically has 3 states. It tells whether the node has been colored, if colored
-        // then whether it is the 1st color or 2nd one.  color == 0 implies not colored/visited yet
         int[] color = new int[V];
 
-        // If the current vertex is not colored before, then color it and call DFS on it
-        for (int vertex = 0; vertex < V; vertex++)
+        for (int vertex = 0; vertex < V; vertex++) {
             if (color[vertex] == 0) {
-                color[vertex] = 1;
-
-                if (!canDoTwoColoring_DFS(vertex, adjList, color, V))
+                if (!dfs(vertex, 1, adjList, color))
                     return false;
             }
+        }
         return true;
     }
 
 
-    public boolean canDoTwoColoring_DFS(int vertex, ArrayList<Integer>[] adjList, int[] color, int V){
-        for (int adjacentVertex : adjList[vertex]){
+    public boolean dfs(int vertex, int colorWith, ArrayList<Integer>[] adjList, int[] color){
+        color[vertex] = colorWith;
 
-            // If vertex u is not explored before, Mark its color opposite to the adjacent node
-            if (color[adjacentVertex] == 0){
-                color[adjacentVertex] = color[vertex] == 1 ? 2 : 1;
-
-                // call DFS again on the adjacent vertex to check for Bipartite graph
-                if (!canDoTwoColoring_DFS(adjacentVertex, adjList, color, V))
+        for (int neighbour : adjList[vertex]){
+            if (color[neighbour] == 0){
+                int neighbourColor = color[vertex] == 1 ? 2 : 1;
+                if (!dfs(neighbour, neighbourColor, adjList, color))
                     return false;
             }
-            // If two adjacent vertex are colored with same color then the graph is not bipartite
-            else if (color[vertex] == color[adjacentVertex])
+            else if (color[vertex] == color[neighbour])
                 return false;
         }
         return true;

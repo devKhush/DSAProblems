@@ -10,6 +10,7 @@ import java.util.Queue;
 // But it is not possible to color a cycle graph with an odd cycle using two colors.
 
 // https://youtu.be/nbgaEu-pvkU
+// https://youtu.be/-vu34sct1g8
 // https://takeuforward.org/data-structure/bipartite-check-using-dfs-if-graph-is-bipartite/
 // https://www.geeksforgeeks.org/bipartite-graph/
 // https://www.geeksforgeeks.org/check-if-a-given-graph-is-bipartite-using-dfs/
@@ -17,7 +18,7 @@ import java.util.Queue;
 
 public class BipartiteGraph_BFS {
     /*
-     * Time Complexity: O(V + E)     Same as BFS for Graph with adjacency list
+     * Time Complexity: O(V + 2E)     Same as BFS for Graph with adjacency list
      * Space Complexity: O(V)        Same as BFS for Graph with adjacency list
     */
     public boolean isBipartite(ArrayList<Integer>[] adjList) {
@@ -30,11 +31,12 @@ public class BipartiteGraph_BFS {
         // then whether it is the 1st color or 2nd one.  color == 0 implies not colored/visited yet
         int[] color = new int[V];
 
-        for (int vertex = 0; vertex < V; vertex++)
-            if (color[vertex] == 0)
+        for (int vertex = 0; vertex < V; vertex++) {
+            if (color[vertex] == 0) {
                 if (!canDoTwoColoring_BFS(vertex, color, adjList))
                     return false;
-
+            }
+        }
         return true;
     }
 
@@ -67,3 +69,32 @@ public class BipartiteGraph_BFS {
         return true;
     }
 }
+
+
+/*
+public boolean isBipartite(int V, ArrayList<ArrayList<Integer>>adj){
+        int[] color = new int[V];
+        Arrays.fill(color, -1);
+
+        for (int node = 0; node < V; node++){
+            if (color[node] == -1){
+                Queue<Integer> queue = new ArrayDeque<>();
+                queue.add(node);
+                color[node] = 0;
+
+                while (!queue.isEmpty()){
+                    int vertex = queue.remove();
+                    for (int neighbour : adj.get(vertex)){
+                        if (color[neighbour] == -1){
+                            queue.add(neighbour);
+                            color[neighbour] = 1 - color[vertex];
+                        }
+                        else if (color[neighbour] == color[vertex])
+                            return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+ */
