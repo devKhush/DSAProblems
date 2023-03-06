@@ -4,6 +4,8 @@ import java.util.Stack;
 
 // Note: Topological Sort is defined only for DAG (Directed Acyclic Graph)
 // https://youtu.be/Yh6EFazXipA
+// https://youtu.be/5lZ0iJMrUMk
+// https://takeuforward.org/data-structure/topological-sort-algorithm-dfs-g-21/
 // https://takeuforward.org/data-structure/topological-sort-using-dfs/
 // https://www.geeksforgeeks.org/topological-sorting/
 
@@ -34,15 +36,15 @@ public class TopologicalSort_DFS {
      * Time Complexity : O(V + E)               Same as DFS for Graph with adjacency list
      * Space Complexity: O(3 * V) = O(V)
      */
-    private void topologicalSort_DFS(int vertex, ArrayList<ArrayList<Integer>> adjList, Stack<Integer> topologicalSortedStack, boolean[] visited){
+    private void topoSort_DFS(int vertex, ArrayList<ArrayList<Integer>> adjList, Stack<Integer> topologicalSortedStack, boolean[] visited){
         // Mark the current node as visited
         visited[vertex] = true;
 
         // Iterate for all the adjacent nodes of 'v'. If any adjacent node to 'v' is not visited,
         // call topologicalSort function on it.
-        for (int adjacentVertex : adjList.get(vertex)){
-            if (!visited[adjacentVertex])
-                topologicalSort_DFS(adjacentVertex, adjList, topologicalSortedStack, visited);
+        for (int neighbour : adjList.get(vertex)){
+            if (!visited[neighbour])
+                topoSort_DFS(neighbour, adjList, topologicalSortedStack, visited);
         }
 
         // Pushing current vertex to stack (only after when all of its adjacent vertices and their
@@ -54,16 +56,17 @@ public class TopologicalSort_DFS {
         boolean[] visited = new boolean[V];
 
         // Topological Sorted stack (from top to bottom)
-        Stack<Integer> topologicalSortedStack = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
 
-        for (int vertex = 0; vertex < V; vertex++)
+        for (int vertex = 0; vertex < V; vertex++) {
             if (!visited[vertex])
-                topologicalSort_DFS(vertex, adjList, topologicalSortedStack, visited);
+                topoSort_DFS(vertex, adjList, stack, visited);
+        }
 
         // Converting topological sorted stack into an array
-        int[] topologicalSort = new int[topologicalSortedStack.size()];
-        for (int i = 0; i < topologicalSort.length; i++)
-            topologicalSort[i] = topologicalSortedStack.pop();
+        int[] topologicalSort = new int[V];
+        for (int i = 0; i < V; i++)
+            topologicalSort[i] = stack.pop();
 
         return topologicalSort;
     }

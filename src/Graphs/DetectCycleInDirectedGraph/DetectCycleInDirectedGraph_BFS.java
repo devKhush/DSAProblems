@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Queue;
 
 // https://youtu.be/V6GxfKDyLBM
+// https://youtu.be/iTBaI90lpDQ
+// https://takeuforward.org/data-structure/detect-a-cycle-in-directed-graph-topological-sort-kahns-algorithm-g-23/
 // https://www.geeksforgeeks.org/topological-sorting-indegree-based-solution/
+// https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
 // PRE_REQUISITE: TOPOLOGICAL SORT / KAHN'S ALGORITHM
 
 public class DetectCycleInDirectedGraph_BFS {
@@ -58,7 +61,6 @@ public class DetectCycleInDirectedGraph_BFS {
 
         // Maintaining the count of vertices traversed in topological sort
         int countOfVisitedVertices = 0;
-
 
         while (!bfsQueue.isEmpty()){
             //  Pop out the front vertex from the Queue, this will be candidate for topological sorted array

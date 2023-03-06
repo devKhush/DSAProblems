@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Queue;
 
 // https://youtu.be/rZv_jHZva34
+// https://youtu.be/73sneFXuTEg
 // https://takeuforward.org/data-structure/topological-sort-bfs/
+// https://takeuforward.org/data-structure/kahns-algorithm-topological-sort-algorithm-bfs-g-22/
 // https://www.geeksforgeeks.org/topological-sorting-indegree-based-solution/
 
 public class TopologicalSort_BFS {
@@ -26,9 +28,6 @@ public class TopologicalSort_BFS {
      * Space Complexity: O(2 * V) = O(V)         Same as BFS for Graph with adjacency list
      */
     public int[] topologicalSort(int V, ArrayList<ArrayList<Integer>> adjList){
-        // output array for topologically sorted vertices
-        int[] topologicalSort = new int[V];
-
         // maintain the In-degree of every vertex
         int[] inDegree = new int[V];
 
@@ -45,6 +44,8 @@ public class TopologicalSort_BFS {
             if (inDegree[vertex] == 0)
                 bfsQueue.add(vertex);
 
+        // output array for topologically sorted vertices
+        int[] topologicalSort = new int[V];
         int index = 0;
 
         while (!bfsQueue.isEmpty()){
