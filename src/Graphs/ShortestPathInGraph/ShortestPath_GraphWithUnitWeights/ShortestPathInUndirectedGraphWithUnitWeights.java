@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Queue;
 
 // https://youtu.be/hwCWi7-bRfI
+// https://youtu.be/C4gxoTaI71U (new)
+// https://takeuforward.org/data-structure/shortest-path-in-undirected-graph-with-unit-distance-g-28/
+// https://practice.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1
 
 public class ShortestPathInUndirectedGraphWithUnitWeights {
     /* ********************************** Efficient BFS Solution ***********************************
@@ -14,76 +17,78 @@ public class ShortestPathInUndirectedGraphWithUnitWeights {
      * Approach: Instead of visited array, we take a Distance array to store the shortest path
        from the source to any node. This distance array is initialized with infinity, for Disconnected
        components n the graphs, the shortest path remains infinity only.
-
      * The Intuition is to use the BFS algorithm.
 
-     * Time Complexity : O(V + E)                Same as BFS for Graph with adjacency list
-     * Space Complexity: O(2 * V) = O(V)         Same as BFS for Graph with adjacency list
+     * Updating the distance of the neighboring nodes is more appropriate for weighted graphs.
+     * For unweighted graphs, the first time when we reach the target node, that should be the
+       shortest distance, because BFS goes level wise.
+
+     * Time Complexity : O(V + 2E)         Same as BFS for Graph with adjacency list
+     * Space Complexity: O(V)              BFS Queue
+        * Here, we eliminated the need of visited array
      */
     public int[] shortestPathToEveryNode_BFS(int V, ArrayList<ArrayList<Integer>> adjList, int source){
+        Queue<Integer> bfsQueue = new ArrayDeque<>();
+        bfsQueue.add(source);
+
         // Array to store "Shortest path from source to the nodes", initialized with Infinity
         int[] shortestPath = new int[V];
         Arrays.fill(shortestPath, Integer.MAX_VALUE);
-
-        Queue<Integer> bfsQueue = new ArrayDeque<>();
-
-        // For source, the shortest path to itself will be 0
         shortestPath[source] = 0;
-        bfsQueue.add(source);
 
         while (!bfsQueue.isEmpty()){
-            int currVertex = bfsQueue.remove();
+            int node = bfsQueue.remove();
 
             // Traverse every adjacent vertex of current vertex
-            for (int adjacentVertex : adjList.get(currVertex)){
-
-                // If the "Distance from source to 'currVertex' plus 1" is smaller than "Distance from source to adjacentVertex"
-                // Then we found a shorter path to the 'adjacentVertex' from the source, add adjacent vertex to the queue (as in BFS)
-                if (shortestPath[currVertex] + 1 < shortestPath[adjacentVertex]){
-                    shortestPath[adjacentVertex] = shortestPath[currVertex] + 1;
-                    bfsQueue.add(adjacentVertex);
+            for (int neighbour : adjList.get(node)){
+                // If the "Distance from source to 'node' plus 1" is smaller than "Distance from source to neighbour"
+                // Then we found a shorter path to the 'neighbour' from the source, add adjacent vertex to the queue (as in BFS)
+                if (shortestPath[node] + 1 < shortestPath[neighbour]){
+                    shortestPath[neighbour] = shortestPath[node] + 1;
+                    bfsQueue.add(neighbour);
                 }
             }
         }
-
         return shortestPath;
     }
 
 
-    /* ********************************** Un-Efficient DFS Solution ***********************************
-     * In DFS Solution, there will be lots of unnecessary DFS calls because it assigns the shortest path,
-       depth wise and not breadth wise. Think harder...
-     * Approach: Instead of visited array, we take a Distance array to store the shortest path
-       from the source to any node. This distance array is initialized with infinity, for Disconnected
-       components n the graphs, the shortest path remains infinity only.
-
-     * The Intuition is to use the DFS algorithm.
-
-     * Time Complexity : O(V + E)                Same as DFS for Graph with adjacency list
-     * Space Complexity: O(2 * V) = O(V)         Same as DFS for Graph with adjacency list
+    /****************************** Another Efficient BFS Solution **************************************
+     * Intuition: BFS follows level/distance wise traversal, neighbour nodes with equal distance
+            will be reached at the same time.
+     * Time Complexity:   O(V + 2E)
+        * Standard BFS Time
+     * Space Complexity:  O(V) + O(V)  ~  O(V)
      */
-    public int[] shortestPathToEveryNode_DFS(int V, ArrayList<ArrayList<Integer>> adjList, int source) {
-        // Array to store "Shortest path from source to the nodes", initialized with Infinity
+    public int[] shortestPath(int V, ArrayList<Integer>[] adj, int src) {
+        // Distance array
         int[] shortestPath = new int[V];
-        Arrays.fill(shortestPath, Integer.MAX_VALUE);
+        Arrays.fill(shortestPath, -1);
+        shortestPath[src] = 0;
 
-        // For source, the shortest path to itself will be 0
-        shortestPath[source] = 0;
+        // Visited array
+        boolean[] visited = new boolean[V];
 
-        shortestPath_DFS(source, adjList, shortestPath);
-        return shortestPath;
-    }
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.add(src);
+        visited[src] = true;
+        int distance = 1;
 
-    private void shortestPath_DFS(int vertex,  ArrayList<ArrayList<Integer>> adjList, int[] shortestPath){
-        // Traverse every adjacent vertex of current vertex
-        for (int adjacentVertex : adjList.get(vertex)){
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            while (size-- > 0){
+                int node = queue.remove();
 
-            // If the "Distance from source to 'currVertex' plus 1" is smaller than "Distance from source to adjacentVertex"
-            // Then we found a shorter path to the 'adjacentVertex' from the source, add adjacent vertex to the queue (as in BFS)
-            if (shortestPath[adjacentVertex] > shortestPath[vertex] + 1){
-                shortestPath[adjacentVertex] = shortestPath[vertex] + 1;
-                shortestPath_DFS(adjacentVertex, adjList, shortestPath);
+                for (int neighbour : adj[node]){
+                    if (!visited[neighbour]){
+                        shortestPath[neighbour] = distance;
+                        visited[neighbour] = true;
+                        queue.add(neighbour);
+                    }
+                }
             }
+            distance++;
         }
+        return shortestPath;
     }
 }
