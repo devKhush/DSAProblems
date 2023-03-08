@@ -1,11 +1,9 @@
 package Graphs.ShortestPathInGraph.ShortestPath_DirectedAcyclicGraph;
 import java.util.*;
 
-// PRE-REQUISITE: DIJKSTRA ALGORITHM
-// BFS Solution: https://youtu.be/jbhuqIASjoM
-
 // DAG's always have a topological sort Solution
 // Topological Sort Solution:
+// https://youtu.be/ZUFQfFaU-8U  (new) VERY OP INTUITION
 // https://youtu.be/CrxG4WJotgg
 // https://www.geeksforgeeks.org/shortest-path-for-directed-acyclic-graphs/
 // https://www.scaler.com/topics/data-structures/shortest-path-in-directed-acyclic-graph/
@@ -13,47 +11,12 @@ import java.util.*;
 // INTUITION: https://www.codingninjas.com/codestudio/library/shortest-path-in-a-directed-acyclic-graph
 
 public class ShortestPathInDirectedAcyclicGraph {
-    /* ************************************* BFS Solution *****************************************
-    * Solution is same as the "Shortest path in Undirected Graphs with Unit Weights" except that past cost is
-      taken into consideration.
-    * Dijkstra Algorithm can be used here, as Dijkstra Algorithm works for both directed and undirected, positively weighted graphs
-
-    * The Intuition is to use the BFS algorithm.
-    * Time Complexity : O(V*log(V) + E)                Same as Dijkstra Algorithm
-    * Space Complexity: O(2 * V) = O(V)                Same as Dijkstra Algorithm
-    */
-    public int[] shortestPathsInDAG_BFS(int V, ArrayList<ArrayList<int[]>> adjList, int source){
-        int[] shortestPath = new int[V];
-
-        Arrays.fill(shortestPath, Integer.MAX_VALUE);
-        shortestPath[source] = 0;
-
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> (a[1] - b[1]));
-        minHeap.add(new int[]{source, 0});
-
-        while (!minHeap.isEmpty()){
-            int currVertex  = minHeap.remove()[0];
-
-            for (int[] neighbour : adjList.get(currVertex)){
-                int adjacentVertex = neighbour[0];
-                int pathCost = neighbour[1];
-
-                if (shortestPath[adjacentVertex] > shortestPath[currVertex] + pathCost){
-                    shortestPath[adjacentVertex] = shortestPath[currVertex] + pathCost;
-                    minHeap.add(new int[]{adjacentVertex, shortestPath[adjacentVertex]});
-                }
-            }
-        }
-        return shortestPath;
-    }
-
-
     /* ************************************ Efficient Topological Sort Solution **************************************
      * In this solution, fewer comparisons are made as compared to BFS/DFS solution.
      * PRE_REQUISITE: "Topological Sort"
      * The Intuition is to use the Topological Sort Algorithm.
      *
-     * Time Complexity: O(V + E)
+     * Time Complexity: O(V+E) + O(V) + O(V+E)  ~  O(V+E)
        For a graph G=(V,E) time taken to find the topological ordering is O(V+E). After that, for
        every vertex V we run a loop to its adjacent vertices.
        So time taken in this step is also O(V + E). Hence, the overall time complexity is O(V+E)
@@ -61,25 +24,14 @@ public class ShortestPathInDirectedAcyclicGraph {
      *
      * Conclusion: In the case of the Directed Acyclic Graphs (DAG), finding the topological ordering
        of the vertices can help us find the single source shortest paths in O(V+E) time.
-       Unlike the Bellman Ford algorithm which takes O(V\times E)O(V×E) time to calculate the same.
+       Unlike the Bellman Ford algorithm which takes O(V×E) time to calculate the same.
      */
     public int[] shortestPathsInDAG_TopologicalSort(int source, int V, ArrayList<ArrayList<int[]>> adjList){
-        // Visited array for Topological Sort
-        boolean[] visited = new boolean[V];
-
-        // Topological Sorted stack (from top to bottom)
-        Stack<Integer> topoSortStack = new Stack<>();
-
-        // Finding Topological Sort of given graph
-        for (int vertex = 0; vertex < V; vertex++)
-            if (!visited[vertex])
-                topologicalSort_DFS(vertex, adjList, topoSortStack, visited);
-
+        // Topological Sort in a stack
+        Stack<Integer> topoSort = getTopologicalSort(V, adjList);
 
         // Array to store "Shortest path from source to the nodes"
         int[] shortestPath = new int[V];
-
-        // Initialize distances to all vertices as infinite and distance to source as 0
         Arrays.fill(shortestPath, Integer.MAX_VALUE);
         shortestPath[source] = 0;
 
@@ -88,19 +40,19 @@ public class ShortestPathInDirectedAcyclicGraph {
         // of the current vertex from start.
         // If there are some vertices in the ordering before the ‘src’ vertex, they are not reachable from the
         // ‘src’ node, hence no need to update their distances from the ‘src’ node.
-        while (!topoSortStack.isEmpty()){
+        while (!topoSort.isEmpty()){
             // Get the next vertex from topological order
-            int currVertex = topoSortStack.pop();
+            int node = topoSort.pop();
 
             // Update distances of all adjacent vertices if those vertices have been previously visited
             // We will check if shortestPath[from source to vertex] != INF, which means if vertex is reachable from source
-            if (shortestPath[currVertex] != Integer.MAX_VALUE){
-                for (int[] neighbour : adjList.get(currVertex)){
-                    int adjacentVertex = neighbour[0];
-                    int pathCost = neighbour[1];
+            if (shortestPath[node] != Integer.MAX_VALUE){
+                for (int[] adjacent : adjList.get(node)){
+                    int neighbour = adjacent[0];
+                    int pathCost = adjacent[1];
 
-                    if (shortestPath[adjacentVertex] > shortestPath[currVertex] + pathCost)
-                        shortestPath[adjacentVertex] = shortestPath[currVertex] + pathCost;
+                    if (shortestPath[neighbour] > shortestPath[node] + pathCost)
+                        shortestPath[neighbour] = shortestPath[node] + pathCost;
                 }
             }
         }
@@ -108,20 +60,42 @@ public class ShortestPathInDirectedAcyclicGraph {
     }
 
     // DFS Algorithm for Topological Sort for DAGs
-    public void topologicalSort_DFS(int vertex, ArrayList<ArrayList<int[]>> adjList, Stack<Integer> stack, boolean[] visited){
-        visited[vertex] = true;
+    private Stack<Integer> getTopologicalSort(int V, ArrayList<ArrayList<int[]>> adj){
+        Stack<Integer> topoSort = new Stack<>();
 
-        for (int[] adjacentVertex : adjList.get(vertex)){
-            if (!visited[adjacentVertex[0]])
-                topologicalSort_DFS(adjacentVertex[0], adjList, stack, visited);
+        boolean[] visited = new boolean[V];
+        for (int node = 0; node < V; node++){
+            if (!visited[node]){
+                dfs(node, adj, topoSort, visited);
+            }
         }
-        stack.push(vertex);
+        return topoSort;
+    }
+
+    public void dfs(int node, ArrayList<ArrayList<int[]>> adj, Stack<Integer> topoSort,
+                    boolean[] visited){
+        visited[node] = true;
+
+        for (int[] neighbour : adj.get(node)){
+            if (!visited[neighbour[0]]) {
+                dfs(neighbour[0], adj, topoSort, visited);
+            }
+        }
+        topoSort.push(node);
     }
 }
 
 /******************************** INTUITION BEHIND TOPOLOGICAL SORT SOLUTION ******************************
  * 1) Finding the shortest path to a vertex is easy if you already know the shortest paths to all the
-      vertices that can precede it. Finding the longest path to a vertex in DAG is easy if you already
+      vertices that can precede it.
+      OR SAY
+      In topo-sort, say the order is 'a b c d', if we follow the topo-sort order for source 'a':
+            Suppose a and b are connected to d, when we reach at 'd', we know that 'a' and 'b' have
+            relaxed the distance to 'd' (or distance of a and b have been computed), and we can reach
+            'd' only via 'a' and 'b', because they come earlier in topo-sort.
+            Refer to NEW VIDEO of STRIVER.
+
+      Finding the longest path to a vertex in DAG is easy if you already
       know the longest path to all the vertices that can precede it.
       Processing the vertices in topological order ensures that by the time you get to a vertex,
       you've already processed all the vertices that can precede it.
@@ -146,5 +120,5 @@ public class ShortestPathInDirectedAcyclicGraph {
       This will find the shortest distance from the ‘src’ node to all nodes.
       The ordering which we have been using in this discussion is the Topological sorted ordering
       of a graph.
-
+ * 3) We moved according to the reachability, this results in minimization of computations.
  */
