@@ -13,7 +13,7 @@ public class PrintShortestPaths_Compact {
         * O(E * log(E)) for Dijkstra algorithm.
         * O(V) for tracing the path
      * Space Complexity: O(V + E)
-        * O(V) for Shortest path array
+        * O(V) for Shortest_path_array and Parent_array
         * O(E) for MinHeap PQ
      */
     public static List<Integer> shortestPath(int V, int E, ArrayList<ArrayList<int[]>> adj) {

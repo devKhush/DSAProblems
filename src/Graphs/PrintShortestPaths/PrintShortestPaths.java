@@ -2,7 +2,10 @@ package Graphs.PrintShortestPaths;
 import java.util.*;
 
 // PRE_REQUISITE: "Word Ladder II"
-// Similar approach as Word Ladder problem has been used
+// Similar approach as Word Ladder problem has been used.
+/*
+* Both the solutions have Same Time Complexity and Space Complexity
+ */
 
 // To print all the shortest path from a given source to given destination,
 // below BFS + DFS method has to be followed (same as My Solution):
@@ -10,9 +13,9 @@ import java.util.*;
 
 public class PrintShortestPaths {
     /************************************* BFS + DFS Solution  **************************************
-     * Time Complexity: O(E * log(E)) + O(V + E)
+     * Time Complexity: O(E * log(E)) + O(V)
         * O(E * log(E))  to find the shortest path from source to all vertices by Dijkstra Algo
-        * O(V + E) to find the path from source to destination
+        * O(V) to find the path from source to destination
      * Space Complexity:  O(V) + O(E)
         * O(V) for Shortest_path_array and Recursion_stack_space_in_DFS
         * O(E) for MinHeap in Dijkstra algo
