@@ -2,10 +2,9 @@ package Graphs.WordLadder_II;
 import java.util.*;
 
 // PRE_REQUISITE: "Word Ladder - I"
-// https://youtu.be/AD4SFl7tu7I
+// https://youtu.be/AD4SFl7tu7I (Great VIDEO)
 // https://takeuforward.org/graph/word-ladder-ii-optimised-approach-g-31/
 // https://leetcode.com/problems/word-ladder-ii/description/
-// https://www.geeksforgeeks.org/word-ladder-set-2-bi-directional-bfs/
 
 public class WordLadder_II {
     /**************************************** Efficient Solution ***********************************

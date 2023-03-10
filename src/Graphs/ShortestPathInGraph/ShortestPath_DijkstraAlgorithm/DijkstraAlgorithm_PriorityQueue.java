@@ -4,12 +4,14 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 // https://youtu.be/jbhuqIASjoM
+// https://youtu.be/V6H1qAeB-l4 (new)
 // https://takeuforward.org/data-structure/dijkstras-algorithm-shortest-distance/
+// https://takeuforward.org/data-structure/dijkstras-algorithm-using-priority-queue-g-32/
 // https://www.geeksforgeeks.org/dijkstras-algorithm-for-adjacency-list-representation-greedy-algo-8/
 
 // IMP: Dijkstra Algorithm works for both directed and undirected, with positively weighted graphs only
 
-public class ShortestPathInUndirectedGraphs_Dijkstra {
+public class DijkstraAlgorithm_PriorityQueue {
     /** *********************************** Dijkstra Algorithm ******************************************
      * Idea is to use BFS Algorithm for finding the shortest path and instead of normal queue, we will use
        Priority Queue (Min-Heap).
@@ -24,9 +26,11 @@ public class ShortestPathInUndirectedGraphs_Dijkstra {
      * The algorithm is purely based on greedy approach and thus finds the optimal choice at each step
        of the algorithm.
 
-     * Time Complexity: O((V + E) * logV)  ~  O(V * log(V) + E)
-        BFS algorithm takes O(V + E) time, and we are also adding V vertices in MinHeap. So, add() and
-        extractMin() will cost O(log(V)) time for every vertex. So, time complexity is O((V + E) * logV) ~ O(V*log(V) + E)
+     * Time Complexity: O((V + E) * log(E))  ~  O(E * log(E))   when E >> V
+        BFS algorithm takes O(V + E) time, and we are also at max the size of PriorityQueue will be O(E)
+        Maximum size of minHeap will be "E".
+        So, add() and extractMin() will cost O(log(E)) time for every vertex.
+        So, time complexity is O((V + E) * log(E)) ~ O(E * log(E))
      * Space Complexity: O(2 * V) = O(V)
         O(V) for Priority Queue
         Another O(V) for storing int[] array inside Priority queue
@@ -48,17 +52,17 @@ public class ShortestPathInUndirectedGraphs_Dijkstra {
         // While Min Heap is not empty, do the following
         while (!minHeap.isEmpty()){
             // Extract the vertex with minimum distance value node from Min Heap. Let the extracted vertex be u.
-            int currVertex  = minHeap.remove()[0];
+            int node  = minHeap.remove()[0];
 
             // For every adjacent vertex v of u. If the distance of "v from source" is more than the
             // weight of u-v plus the distance of "u from source", then update the distance value of v
-            for (int[] neighbour : adjList.get(currVertex)){
-                int adjacentVertex = neighbour[0];
-                int pathCost = neighbour[1];
+            for (int[] adjacent : adjList.get(node)){
+                int neighbour = adjacent[0];
+                int edgeWt = adjacent[1];
 
-                if (shortestPath[adjacentVertex] > shortestPath[currVertex] + pathCost){
-                    shortestPath[adjacentVertex] = shortestPath[currVertex] + pathCost;
-                    minHeap.add(new int[]{adjacentVertex, shortestPath[adjacentVertex]});
+                if (shortestPath[neighbour] > shortestPath[node] + edgeWt){
+                    shortestPath[neighbour] = shortestPath[node] + edgeWt;
+                    minHeap.add(new int[]{neighbour, shortestPath[neighbour]});
                 }
             }
         }
@@ -70,15 +74,16 @@ public class ShortestPathInUndirectedGraphs_Dijkstra {
      * We don't need to store the int[] inside MinHeap (to arrange vertices in increasing distance from the source)
      * We can modify the MinHeap using lambda function to do the same
      *
-     * Time Complexity: O((V + E) * logV)  ~  O(V * log(V) + E)
-        BFS algorithm takes O(V + E) time, and we are also adding V vertices in MinHeap. So, add() and
-        extractMin() will cost O(log(V)) time for every vertex. So, time complexity is O((V + E) * logV) ~ O(V*log(V) + E)
+     * Time Complexity: O((V + E) * log(E))  ~  O(E * log(E))   when E >> V
+            BFS algorithm takes O(V + E) time, and at max the size of PriorityQueue will be O(E).
+            Maximum size of minHeap will be "E".
+            So, add() and extractMin() will cost O(log(E)) time for every vertex.
+            So, time complexity is O((V + E) * log(E)) ~ O(E * log(E))
      * Space Complexity: O(V)
-        O(V) for Priority Queue. We don't need to store int[] array
+            O(V) for Priority Queue. We don't need to store int[] array
      */
     public int[] shortestPath_Dijkstra_V2(int V, int source, ArrayList<ArrayList<int[]>> adjList){
         int[] shortestPath = new int[V];
-
         Arrays.fill(shortestPath, Integer.MAX_VALUE);
         shortestPath[source] = 0;
 
@@ -86,15 +91,14 @@ public class ShortestPathInUndirectedGraphs_Dijkstra {
         minHeap.add(source);
 
         while (!minHeap.isEmpty()){
-            int currVertex  = minHeap.remove();
+            int node  = minHeap.remove();
 
-            for (int[] neighbour : adjList.get(currVertex)){
-                int adjacentVertex = neighbour[0];
-                int pathCost = neighbour[1];
-
-                if (shortestPath[adjacentVertex] > shortestPath[currVertex] + pathCost){
-                    shortestPath[adjacentVertex] = shortestPath[currVertex] + pathCost;
-                    minHeap.add(adjacentVertex);
+            for (int[] adjacent : adjList.get(node)){
+                int neighbour = adjacent[0];
+                int pathCost = adjacent[1];
+                if (shortestPath[neighbour] > shortestPath[node] + pathCost){
+                    shortestPath[neighbour] = shortestPath[node] + pathCost;
+                    minHeap.add(neighbour);
                 }
             }
         }
