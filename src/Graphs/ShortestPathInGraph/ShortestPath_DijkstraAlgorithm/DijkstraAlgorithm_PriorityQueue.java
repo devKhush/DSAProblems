@@ -9,6 +9,12 @@ import java.util.PriorityQueue;
 // https://takeuforward.org/data-structure/dijkstras-algorithm-using-priority-queue-g-32/
 // https://www.geeksforgeeks.org/dijkstras-algorithm-for-adjacency-list-representation-greedy-algo-8/
 
+// Time Complexity:
+// https://youtu.be/3dINsjyfooY
+// Time Complexity Derivation, TC is -> O(E*log(E)) for PQ method
+// Time Complexity Derivation, TC is -> O(E*log(V)) for Set method
+// https://takeuforward.org/data-structure/g-34-dijkstras-algorithm-intuition-and-time-complexity-derivation/
+
 // IMP: Dijkstra Algorithm works for both directed and undirected, with positively weighted graphs only
 
 public class DijkstraAlgorithm_PriorityQueue {
@@ -26,14 +32,14 @@ public class DijkstraAlgorithm_PriorityQueue {
      * The algorithm is purely based on greedy approach and thus finds the optimal choice at each step
        of the algorithm.
 
-     * Time Complexity: O((V + E) * log(E))  ~  O(E * log(E))   when E >> V
+     * Time Complexity: O((V + E) * log(E))  ~  O(E * log(E))   when E >> V for Dense graphs
         BFS algorithm takes O(V + E) time, and we are also at max the size of PriorityQueue will be O(E)
         Maximum size of minHeap will be "E".
         So, add() and extractMin() will cost O(log(E)) time for every vertex.
         So, time complexity is O((V + E) * log(E)) ~ O(E * log(E))
-     * Space Complexity: O(2 * V) = O(V)
-        O(V) for Priority Queue
-        Another O(V) for storing int[] array inside Priority queue
+     * Space Complexity: O(2*E) = O(E)
+        O(E) for Priority Queue
+        Another O(E) for storing int[] array inside Priority queue
      */
     public int[] shortestPath_Dijkstra_V1(int V, int source, ArrayList<ArrayList<int[]>> adjList){
         // Shortest Path array to store shortest distance from source to every other node
@@ -74,13 +80,13 @@ public class DijkstraAlgorithm_PriorityQueue {
      * We don't need to store the int[] inside MinHeap (to arrange vertices in increasing distance from the source)
      * We can modify the MinHeap using lambda function to do the same
      *
-     * Time Complexity: O((V + E) * log(E))  ~  O(E * log(E))   when E >> V
+     * Time Complexity: O((V + E) * log(E))  ~  O(E * log(E))   when E >> V for Dense graphs
             BFS algorithm takes O(V + E) time, and at max the size of PriorityQueue will be O(E).
             Maximum size of minHeap will be "E".
             So, add() and extractMin() will cost O(log(E)) time for every vertex.
             So, time complexity is O((V + E) * log(E)) ~ O(E * log(E))
-     * Space Complexity: O(V)
-            O(V) for Priority Queue. We don't need to store int[] array
+     * Space Complexity: O(E)
+            O(E) for Priority Queue. We don't need to store int[] array
      */
     public int[] shortestPath_Dijkstra_V2(int V, int source, ArrayList<ArrayList<int[]>> adjList){
         int[] shortestPath = new int[V];
