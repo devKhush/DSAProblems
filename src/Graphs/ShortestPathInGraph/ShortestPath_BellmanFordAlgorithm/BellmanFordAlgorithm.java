@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 // https://youtu.be/75yC1vbS8S8
+// https://youtu.be/0vVofAhAYjc (new)
+// https://takeuforward.org/data-structure/bellman-ford-algorithm-g-41/
 // Must Read: https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/
 // Must Read: https://www.scaler.com/topics/data-structures/bellman-ford-algorithm/
 
@@ -53,6 +55,7 @@ public class BellmanFordAlgorithm {
         // source for current destination vertex
         // We would do this N-1 times.
         // Each iteration guarantees to give all shortest paths which are at most 'i' edge long
+        // Try drawing a graph with more than V-1 edges for any path, it is not possible
         for (int i = 1; i <= V -1; i++){
             for (Edge edge : edges){
                 if (shortestPath[edge.endVertex] > shortestPath[edge.startVertex] + edge.weight)

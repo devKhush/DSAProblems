@@ -17,6 +17,8 @@ public class MinimumMultiplicationsToReachEnd {
         * Problem now becomes "Minimum distance required to reach from start node to dest node",
             the neighbours of a node are determined by multiplication of array elements.
 
+     * About DFS: DFS can't be applied here, because we don't know till what depth we need to go.
+
      * Time Complexity: O(100000 * n)
         * Very hypothetical time complexity
         * Can't be exactly determined

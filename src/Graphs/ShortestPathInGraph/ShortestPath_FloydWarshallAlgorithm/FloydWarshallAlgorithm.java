@@ -1,7 +1,9 @@
-package Graphs.ShortestPathInGraph.ShortestPath_AllVerticesPairs;
+package Graphs.ShortestPathInGraph.ShortestPath_FloydWarshallAlgorithm;
 import java.util.ArrayList;
 
 // https://youtu.be/nV_wOZnhbog
+// https://youtu.be/YbY8cVwWAvw (new)
+// https://takeuforward.org/data-structure/floyd-warshall-algorithm-g-42/
 // https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
 // https://www.quora.com/Whats-the-logic-behind-the-Floyd-Warshall-algorithm-especially-in-regards-to-the-2D-matrix
 // https://www.scaler.com/topics/data-structures/floyd-warshall-algorithm/
