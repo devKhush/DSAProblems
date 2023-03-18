@@ -33,6 +33,7 @@ public class KruskalAlgorithm {
 
         // Sort all the Edges in increasing order of weights (uses Comparable.compareTo() function)
         Collections.sort(edges);
+        // Collections.sort(edges, (a, b) -> a.edgeWeight - b.edgeWeight);   // this also works
 
         // Disjoint Set Data structure to avoid cycle in the MST construction
         DisjointSet disjointSet = new DisjointSet(V);
@@ -48,7 +49,7 @@ public class KruskalAlgorithm {
         // becomes (V - 1). This can be done via a counter & "for loop" for "edges ArrayList"
         // for (int i = 0; i < edges.size() && edgeCount < V; i++){}
         for (Edge edge: edges){
-            if (!disjointSet.belongsToMST(edge.startVertex, edge.endVertex)){
+            if (!disjointSet.areNotDisjoint(edge.startVertex, edge.endVertex)){
                 MST_ConstructionCost += edge.edgeWeight;
                 MST_Edges.add(edge);
                 disjointSet.union(edge.startVertex, edge.endVertex);
@@ -156,7 +157,7 @@ public class KruskalAlgorithm {
             }
         }
 
-        public boolean belongsToMST(int u, int v){
+        public boolean areNotDisjoint(int u, int v){
             return parentOf(u) == parentOf(v);
         }
     }
