@@ -1,8 +1,10 @@
-package Graphs.DisjointSet;
+package Graphs.DisjointSet.UnionByRank;
 
 // Topic :  Disjoint Set || Union By Rank and Path Compression
 // https://youtu.be/3gbO7FDYNFQ
-// Great Reading: https://www.geeksforgeeks.org/disjoint-set-data-structures/
+// https://youtu.be/aBxjDBC4M1U (new for in-depth intuition)
+// https://takeuforward.org/data-structure/disjoint-set-union-by-rank-union-by-size-path-compression-g-46/
+// Great Reading (MUST): https://www.geeksforgeeks.org/disjoint-set-data-structures/
 
 /**
  * Time Complexity  : O(4*a) = O(4) = O(1)    Amortized O(1) time complexity
@@ -76,5 +78,4 @@ public class DisjointSet {
     public boolean belongsToSameSet(int u, int v){
         return parentOf(u) == parentOf(v);
     }
-
 }
