@@ -69,9 +69,9 @@ public class PrimsAlgorithm {
             // Update Edge weight b/w adjacent vertices & its parent vertex (which is picked vertex).
             // Consider only those vertices which are not yet included in MST
             for (Vertex neighbour : adjList.get(minEdgeWeightVertex)){
-                if (!MST_Included[neighbour.vertex]  &&  MST_EdgeWeightFromParent[neighbour.vertex] > neighbour.edgeWeight){
-                    MST_EdgeWeightFromParent[neighbour.vertex] = neighbour.edgeWeight;
-                    MST_Parent[neighbour.vertex] = minEdgeWeightVertex;
+                if (!MST_Included[neighbour.node]  &&  MST_EdgeWeightFromParent[neighbour.node] > neighbour.edgeWt){
+                    MST_EdgeWeightFromParent[neighbour.node] = neighbour.edgeWt;
+                    MST_Parent[neighbour.node] = minEdgeWeightVertex;
                 }
             }
         }
@@ -101,9 +101,9 @@ public class PrimsAlgorithm {
         // Starting vertex of MST can be chosen any vertex in range [0, V-1]
         int startVertex = new Random().nextInt(0, V);
 
-        // "MST_EdgeWeightFromParent" array holds the weight/cost of the MST between the vertex & its parent vertex (given by MST_Parent[])
+        // "MST_EdgeWtFromParent" array holds the weight/cost of the MST between the vertex & its parent vertex (given by MST_Parent[])
         // (initialized to INT_MAX, except the index 0 which is set with value of zero)
-        int[] MST_EdgeWeightFromParent = new int[V];
+        int[] MST_EdgeWtFromParent = new int[V];
 
         // Boolean array which indicates whether a vertex is already included in MST or not, initialized to false
         boolean[] MST_Included = new boolean[V];
@@ -116,40 +116,40 @@ public class PrimsAlgorithm {
         // Initializations
         for (int vertex = 0; vertex < V; vertex++){
             MST_Parent[vertex] = -1;
-            MST_EdgeWeightFromParent[vertex] = Integer.MAX_VALUE;
+            MST_EdgeWtFromParent[vertex] = Integer.MAX_VALUE;
         }
         // Always include first start vertex in MST. Make edge weight 0 so that this vertex is picked as
         // first vertex
-        MST_EdgeWeightFromParent[startVertex] = 0;
+        MST_EdgeWtFromParent[startVertex] = 0;
 
 
         // IMP: Min-Heap will store the Vertices that will be part of our MST & not graph
         // We can do better by storing the Vertices that are not included in our MST yet inside a MinHeap
         // As we are just finding the vertex with minimum edge from parent
-        PriorityQueue<Vertex> minHeap = new PriorityQueue<>((a, b) -> a.edgeWeight - b.edgeWeight);
-        minHeap.add(new Vertex(startVertex, MST_EdgeWeightFromParent[startVertex]));
-        // minHeap.add(new Vertex(0, MST_EdgeWeightFromParent[0]));     // if starting from vertex 0
+        PriorityQueue<Vertex> minHeap = new PriorityQueue<>((a, b) -> a.edgeWt - b.edgeWt);
+        minHeap.add(new Vertex(startVertex, MST_EdgeWtFromParent[startVertex]));
+        // minHeap.add(new Vertex(0, MST_EdgeWtFromParent[0]));     // if starting from vertex 0
 
         while (!minHeap.isEmpty()){
             // Extract the vertex from MinHeap with "Minimum Edge Weight from its parent", from all the
             // vertices that are not yet included in MST
-            int minEdgeWeightVertex = minHeap.remove().vertex;
+            int minEdgeWtNode = minHeap.remove().node;
 
             // Add the picked vertex to the MST Set
-            MST_Included[minEdgeWeightVertex] = true;
+            MST_Included[minEdgeWtNode] = true;
 
             // Update Edge weight b/w adjacent vertices & its parent vertex (which is picked vertex).
             // Consider only those vertices which are not yet included in MST
-            for (Vertex neighbour : adjList.get(minEdgeWeightVertex)){
-                if (!MST_Included[neighbour.vertex]  &&  MST_EdgeWeightFromParent[neighbour.vertex] > neighbour.edgeWeight){
-                    MST_Parent[neighbour.vertex] = minEdgeWeightVertex;
-                    MST_EdgeWeightFromParent[neighbour.vertex] = neighbour.edgeWeight;
-                    minHeap.add(new Vertex(neighbour.vertex, MST_EdgeWeightFromParent[neighbour.vertex]));
+            for (Vertex neighbour : adjList.get(minEdgeWtNode)){
+                if (!MST_Included[neighbour.node]  &&  MST_EdgeWtFromParent[neighbour.node] > neighbour.edgeWt){
+                    MST_Parent[neighbour.node] = minEdgeWtNode;
+                    MST_EdgeWtFromParent[neighbour.node] = neighbour.edgeWt;
+                    minHeap.add(new Vertex(neighbour.node, MST_EdgeWtFromParent[neighbour.node]));
                 }
             }
         }
 
-        // Sum of all Edge weights in MST_EdgeWeightFromParent[] will be the Cost of construction of MST
+        // Sum of all Edge weights in MST_EdgeWtFromParent[] will be the Cost of construction of MST
         int MST_ConstructionCost = 0;
 
         // Print the constructed MST stored in MST_parent[], this will store all the edges in our MST
@@ -158,18 +158,17 @@ public class PrimsAlgorithm {
             if (vertex != startVertex)
                 System.out.println(vertex + " <---> " + MST_Parent[vertex]);
 
-            MST_ConstructionCost += MST_EdgeWeightFromParent[vertex];
+            MST_ConstructionCost += MST_EdgeWtFromParent[vertex];
         }
         return MST_ConstructionCost;
     }
 
-
     static class Vertex{
-        int vertex;         // Stores destination vertex in adjacency list
-        int edgeWeight;     // Stores weight of  "vertex <--> destination_vertex" in the adjacency list
-        public Vertex(int vertex, int edgeWeight) {
-            this.vertex = vertex;
-            this.edgeWeight = edgeWeight;
+        int node;         // Stores destination vertex in adjacency list
+        int edgeWt;     // Stores weight of  "vertex <--> destination_vertex" in the adjacency list
+        public Vertex(int node, int edgeWt) {
+            this.node = node;
+            this.edgeWt = edgeWt;
         }
     }
 }
