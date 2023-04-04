@@ -3,70 +3,65 @@ package Arrays.NextPermutation;
 // All the permutations of the (sorted) array in lexicographically greater (dictionary) order can
 // be made by boolean visited array approach, that approach makes all the permutation of sorted array
 // in lexicographically greater order
-
+// Mountain Shape
 // For intuition watch VIDEO
 // https://youtu.be/LuLCLgMElus
 // https://takeuforward.org/data-structure/next_permutation-find-next-lexicographically-greater-permutation/
 // Question of Striver SDE sheet
+// https://youtu.be/JDOXKqF60RQ (NEW)
 
 
 public class NextPermutation {
-
+    /*********************************** Solution 1 **************************************
+     * TC -> O(n)
+     * SC -> O(1)
+     */
     public void nextPermutation(int[] arr) {
         int n = arr.length;
 
-        // Element in array with breakdown index
-        // Linearly traverse array from backward such that ith index value of the array is less than (i+1)th index value
-        // 'i' is the index which is the start of the increasing sequence in backward direction.
-        int breakPointIndex = -1;
+        // Element at index 'i' in array will be breakdown index
+        int i = n - 2;
+        while (i >= 0 && arr[i] >= arr[i + 1])
+            i--;
 
-        for (int i = n-2; i >= 0; i--)
-            if (arr[i] < arr[i+1]){
-                breakPointIndex = i;
-                break;
-            }
-
-        if (breakPointIndex == -1){
-            reverse(0, n-1, arr);
+        // Special case of last permutation
+        if (i == -1){
+            reverse(0, n - 1, arr);
             return;
         }
 
-        // Element in array just greater than element at the breakdown index
-        int justGreaterThanBreakDownIndex = -1;
-
-        for (int i = n-1; i >= 0; i--)
-            if (arr[i] > arr[breakPointIndex]){
-                justGreaterThanBreakDownIndex = i;
+        // Swapping the element at breakdown index 'i' with the element just greater than it
+        for (int j = n - 1; j >= 0; j--){
+            if (arr[i] < arr[j]){
+                swap(i, j, arr);
                 break;
             }
-
-        // Swapping & reversing
-        this.swap(justGreaterThanBreakDownIndex, breakPointIndex, arr);
-
-        this.reverse(breakPointIndex + 1, n - 1, arr);
+        }
+        // Reversing the remaining array
+        reverse(i + 1, n - 1, arr);
     }
 
 
     // ******************************** Another Code *************************************
+    /*********************************** Solution 2 **************************************
+     * TC -> O(n)
+     * SC -> O(1)
+     */
     public void nextPermutation_(int[] arr) {
-
-        // Element in array with breakdown index 'i'
-        int i = arr.length - 2;
-
-        // Linearly traverse array from backward such that ith index value of the array is less than (i+1)th index value
+        // Element at index 'i' in array will be breakdown index
         // 'i' is the index which is the start of the increasing sequence in backward direction.
+        int i = arr.length - 2;
         while(i >= 0 && arr[i] >= arr[i + 1])
             i--;
 
         if(i >= 0) {
-
-            // Find an index that has a value greater than the breakpoint index 'i'
+            // Find an element that has a value greater than the element at breakpoint index 'i'
             int j = arr.length - 1;
-            while(arr[j] <= arr[i]) j--;
+            while(arr[i] >= arr[j])
+                j--;
 
             swap(i, j, arr);
         }
-
         reverse(i + 1, arr.length - 1, arr);
     }
 
