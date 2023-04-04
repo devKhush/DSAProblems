@@ -33,7 +33,7 @@ import java.util.Arrays;
  * Time Complexity  : O(V + E)
     * The above function is DFS with additional arrays. So time complexity is same as DFS
       which is O(V+E) for adjacency list representation of graph.
- * Space Complexity : O(3 * V) = O(V)    We require 3 arrays
+ * Space Complexity : O(V + E) + O(3 * V) = O(V)    We require 3 arrays
  */
 
 public class BridgesInGraph_CutEdge {
@@ -51,9 +51,11 @@ public class BridgesInGraph_CutEdge {
         // insertionTime[] or inTime[] --> Stores discovery/insertion time of visited vertices
         int[] inTime = new int[V];
 
-        // The value lowestInsertionTime[v] indicates earliest visited vertex reachable from subtree rooted with v.
+        // The value lowestInsertionTime[v] indicates earliest visited vertex reachable from subtree rooted
+        // with v, apart from parent
         // We store the information of the vertex with the lowest discovery time that we can access from a particular
         // vertex using a single back-edge
+        // "It has info. of the minimum lowest time of insertion among all adjacent nodes apart from parent."
         int[] lowInTime = new int[V];
 
         // visited[] --> keeps track of visited vertices
@@ -104,7 +106,7 @@ public class BridgesInGraph_CutEdge {
             // Else if neighbour is visited, this means that we found an ancestor
             // update the value of lowInTime[vertex] to earliest visited vertex reachable from that vertex
             // Simply, finds the ancestor vertex with the least insertion time
-            // The child_node in this case will be an already visited node. Thus it is a back-edge.
+            // The child_node in this case will be an already visited node. Thus, it is a back-edge.
             else{
                 lowInTime[node] = Math.min(lowInTime[node], lowInTime[neighbour]);
             }
