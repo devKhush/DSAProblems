@@ -53,26 +53,18 @@ public class RepeatAndMissingNumber {
 
     public static int[] missingAndRepeating(int[] arr) {
         int n = arr.length;
-
-        // Count array
         int[] counts = new int[n + 1];
 
-        // Increasing counts of numbers in array
         for (int num : arr)
             counts[num]++;
 
         int missingNumber = 0, repeatingNumber = 0;
-
         for (int number = 1; number <= n;  number++){
-            int countOfNumber = counts[number];
-
-            if (countOfNumber == 0)
+            if (counts[number] == 0)
                 missingNumber = number;
-
-            if (countOfNumber == 2)
+            if (counts[number] == 2)
                 repeatingNumber = number;
         }
-
         return new int[]{missingNumber, repeatingNumber};
     }
 
@@ -102,7 +94,6 @@ public class RepeatAndMissingNumber {
         // Suppose missing number to be X & repeating number to be Y, then  (try doing this using example)
         //   X - Y    =  sumOfNumberFrom1ToN - sumOfNumberInArray
         // X*X - Y*Y  =  sumOfSquareOfNumberFrom1ToN  -  sumOfSquareOfNumberInArray = (X+Y)(X-Y)
-
         int X_minus_Y  =  (int) (sumOfNumberFrom1ToN - sumOfNumberInArray);
         int X_sq_minus_Y_sq  =  (int) (sumOfSquareOfNumberFrom1ToN - sumOfSquareOfNumberInArray);
 
@@ -112,13 +103,11 @@ public class RepeatAndMissingNumber {
         // X - Y = a
         // X + Y = b
         // X = (a + b)/2
-
         int X = (X_minus_Y + X_plus_Y) / 2;
         int Y = X_plus_Y - X;
 
         int missingNumber = X;
         int repeatingNumber = Y;
-
         return new int[]{missingNumber, repeatingNumber};
     }
 }

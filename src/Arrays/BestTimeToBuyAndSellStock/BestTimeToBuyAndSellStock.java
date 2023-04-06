@@ -47,15 +47,26 @@ public class BestTimeToBuyAndSellStock {
         int maxProfit = 0;
 
         for (int i = 0; i < prices.length; i++){
-            int profit = prices[i] - minBuyPriceSoFar;
-
-            maxProfit = Math.max(maxProfit, profit);
-
+            maxProfit = Math.max(maxProfit, prices[i] - minBuyPriceSoFar);
             minBuyPriceSoFar = Math.min(minBuyPriceSoFar, prices[i]);
         }
-
         return maxProfit;
     }
+
+
+    // Buy and sell from last day
+    public int maxProfit(int[] prices) {
+        int n = prices.length;
+        int maxSellPrice = prices[n - 1];
+        int profit = 0;
+
+        for (int i = n - 1; i >= 0; i--){
+            profit = Math.max(profit, maxSellPrice - prices[i]);
+            maxSellPrice = Math.max(maxSellPrice, prices[i]);
+        }
+        return profit;
+    }
+
 
     public static void main(String[] args) {
         int[] stocks = new int[]{7,1,5,3,6,8};

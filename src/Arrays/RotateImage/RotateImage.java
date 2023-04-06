@@ -34,16 +34,19 @@ class RotateImage {
         int n =  matrix.length;
 
         /// Transposing the matrix
-        for (int i = 0; i < n; i++)
-            for (int j = i; j < n; j++)
+        for (int i = 0; i < n; i++){
+            for (int j = i; j < n; j++){
                 swap(i, j, j, i, matrix);
+            }
+        }
 
         // Swapping starting column with ending column in every row
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n/2; j++)
-                swap(i, j, i, n - 1 -j, matrix);
+        for (int col = 0; col < n/2; col++){
+            for (int row = 0; row < n; row++){
+                swap(row, col, row, n - 1 - col, matrix);
+            }
+        }
     }
-
 
     private void swap(int i1, int j1, int i2, int j2, int[][] arr){
         int temp = arr[i1][j1];
