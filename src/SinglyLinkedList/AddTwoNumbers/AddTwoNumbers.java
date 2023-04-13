@@ -65,41 +65,24 @@ public class AddTwoNumbers {
     // TC -> O(max(m,n))
     // SC -> O(max(m,n) + 1) = O(max(m,n))      +1 due to Node for storing carry
 
-    public ListNode addTwoNumbers_V2(ListNode head1, ListNode head2) {
+    public ListNode addTwoNumbers_V2(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(-1);
-        ListNode ptr1 = head1, ptr2 = head2, ptr = dummy;
+        ListNode ptr = dummy;
         int carry = 0;
 
-        while (ptr1 != null  ||  ptr2 != null){
-            int sum = 0;
-
-            if (ptr1 != null){
-                sum += ptr1.val;
-                ptr1 = ptr1.next;
-            }
-            if (ptr2 != null){
-                sum += ptr2.val;
-                ptr2 = ptr2.next;
-            }
-            sum += carry;
-
-            // We can even do this too..
-            // int ptr1Val = ptr1 != null ? ptr1.val : 0;
-            // int ptr2Val = ptr2 != null ? ptr2.val : 0;
-            // sum += (ptr1Val + ptr2Val + carry);
-
-            carry = sum / 10;
-
+        while (l1 != null || l2 != null){
+            int val1 = l1 != null ? l1.val : 0;
+            int val2 = l2 != null ? l2.val : 0;
+            int sum = val1 + val2 + carry;
             ptr.next = new ListNode(sum % 10);
+            carry = sum / 10;
             ptr = ptr.next;
 
-            // We can even do this too...
-            // ptr1 = ptr1 == null ? null : ptr1.next;
-            // ptr2 = ptr2 == null ? null : ptr2.next;
-
+            l1 = l1 != null ? l1.next : null;
+            l2 = l2 != null ? l2.next : null;
         }
         if (carry == 1)
-            ptr.next = new ListNode(carry);
+            ptr.next = new ListNode(1);
 
         return dummy.next;
     }

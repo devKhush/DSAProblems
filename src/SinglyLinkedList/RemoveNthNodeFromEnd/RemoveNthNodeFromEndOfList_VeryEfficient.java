@@ -4,7 +4,6 @@ package SinglyLinkedList.RemoveNthNodeFromEnd;
 // https://takeuforward.org/data-structure/remove-n-th-node-from-the-end-of-a-linked-list/
 
 public class RemoveNthNodeFromEndOfList_VeryEfficient {
-
     // ************************ Very Intuitive & Effective Solution ************************
     // TC -> O(n) only one iteration
     // SC -> O(1) one dummy node
@@ -60,6 +59,36 @@ public class RemoveNthNodeFromEndOfList_VeryEfficient {
         nodeToDelete.next = null;
 
         // return same head
+        return head;
+    }
+
+
+    /***************************** Most Efficient Solution *****************************************
+     * Without using additional new node
+     * TC -> O(n)
+     * SC -> O(1)
+     */
+    public ListNode removeNthFromEnd_MostEfficient(ListNode head, int n) {
+        if (head == null)
+            return null;
+
+        ListNode ptr = head;
+        int i = 0;
+        while (ptr != null  &&  i <= n){
+            ptr = ptr.next;
+            i++;
+        }
+        if (i == n)
+            return head.next;
+
+        ListNode p = head;
+        while (ptr != null){
+            ptr = ptr.next;
+            p = p.next;
+        }
+        ListNode toDel = p.next;
+        p.next = p.next.next;
+        toDel.next = null;
         return head;
     }
 

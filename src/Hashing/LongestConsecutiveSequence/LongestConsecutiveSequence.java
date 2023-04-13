@@ -69,17 +69,15 @@ public class LongestConsecutiveSequence {
 
          */
 
-        for (int value : set){
-
-            if (!set.contains(value - 1)){
-                int currentValue = value;
-                int currentStreak = 1;
-
-                while (set.contains(currentValue + 1)){
-                    currentStreak++;
-                    currentValue++;
+        for (int val : set){
+            if (!set.contains(val - 1)){
+                int ele = val;
+                int currStreak = 0;
+                while (set.contains(ele)){
+                    currStreak++;
+                    ele++;
                 }
-                longestStreak = Math.max(longestStreak, currentStreak);
+                longestStreak = Math.max(longestStreak, currStreak);
             }
         }
         return longestStreak;

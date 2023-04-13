@@ -11,9 +11,7 @@ public class IntersectionOfTwoLinkedLists {
     // current node is equal or not. If they are equal (same address), then intersection point exists.
     // TC -> O(m*n)             m & n are size of two linked-list
     // SC -> O(1)
-
     public ListNode getIntersectionNode_BruteForce(ListNode headA, ListNode headB) {
-
         while (headA != null){
             ListNode ptrB = headB;
 
@@ -40,17 +38,18 @@ public class IntersectionOfTwoLinkedLists {
     public ListNode getIntersectionNode_Hashing(ListNode headA, ListNode headB) {
         HashSet<ListNode> set = new HashSet<>();
 
-        while (headA != null){
-            set.add(headA);
-            headA = headA.next;
+        ListNode ptr = headA;
+        while (ptr != null){
+            set.add(ptr);
+            ptr = ptr.next;
         }
 
-        while (headB != null){
-            if (set.contains(headB))
-                return headB;
-            headB = headB.next;
+        ptr = headB;
+        while (ptr != null){
+            if (set.contains(ptr))
+                return ptr;
+            ptr = ptr.next;
         }
-
         // unable to find any point of intersection
         return null;
     }
