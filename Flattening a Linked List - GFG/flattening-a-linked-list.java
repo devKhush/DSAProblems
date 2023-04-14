@@ -119,14 +119,26 @@ class Node
     the flattened linked list. */
 class GfG{
     public Node flatten(Node root) {
-        Node head = root;
-        Node ptr = root.next;
+        ArrayList<Node> lst = new ArrayList<>();
+        Node ptr = root;
 
         while (ptr != null){
-            head = mergeSortedLists(head, ptr);
+            lst.add(ptr);
             ptr = ptr.next;
         }
-        return head;
+        return merge_DnC(0, lst.size() - 1, lst);
+    }
+    
+    private Node merge_DnC(int low, int high, ArrayList<Node> arr){
+        if (low > high)
+            return null;
+        if (low == high)
+            return arr.get(low);
+        
+        int mid = low + (high - low)/2;
+        Node p1 = merge_DnC(low, mid, arr);
+        Node p2 = merge_DnC(mid + 1, high, arr);
+        return mergeSortedLists(p1, p2);
     }
 
     private Node mergeSortedLists(Node h1, Node h2){
