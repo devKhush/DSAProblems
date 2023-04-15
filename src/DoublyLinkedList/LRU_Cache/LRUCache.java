@@ -5,87 +5,84 @@ import java.util.HashMap;
 // https://youtu.be/Xc4sICC8m4M
 // https://takeuforward.org/data-structure/implement-lru-cache/
 // https://medium.com/swlh/how-to-implement-lru-cache-using-doubly-linked-list-and-a-hashcacheMap-5ff0ff218f77
+// https://leetcode.com/problems/lru-cache/description/
 
 class LRUCache {
-    private final Node head;
-    private final Node tail;
-    private final HashMap<Integer, Node> cacheMap;
-    private int size;
-    private final int capacity;
+    DoublyLinkedList dll;
+    int size;
+    int capacity;
+    HashMap<Integer, DDLNode> cacheMap;
 
     public LRUCache(int capacity) {
-        this.head = new Node(0, 0);
-        this.tail = new Node(0, 0);
-        this.cacheMap = new HashMap<>();
-        this.size = 0;
         this.capacity = capacity;
+        this.size = 0;
+        this.dll = new DoublyLinkedList();
+        this.cacheMap = new HashMap<>();
+    }
+
+    public int get(int key) {
+        DDLNode node = cacheMap.get(key);
+        if (node == null)
+            return -1;
+        dll.remove(node);
+        dll.addToFront(node);
+        return node.value;
+    }
+
+    public void put(int key, int value) {
+        DDLNode node = cacheMap.get(key);
+
+        if (node != null){
+            node.value = value;
+            dll.remove(node);
+            dll.addToFront(node);
+        }
+        else{
+            node = new DDLNode(key, value);
+            if (size == capacity){
+                cacheMap.remove(dll.tail.prev.key);
+                dll.remove(dll.tail.prev);
+                size--;
+            }
+            cacheMap.put(key, node);
+            dll.addToFront(node);
+            size++;
+        }
+    }
+}
+
+
+class DoublyLinkedList{
+    DDLNode head, tail;
+    public DoublyLinkedList(){
+        head = new DDLNode(-1, -1);
+        tail = new DDLNode(-1, -1);
         head.next = tail;
         tail.prev = head;
     }
 
-    public int get(int key) {
-        if (!cacheMap.containsKey(key))
-            return -1;
-
-        Node node = cacheMap.get(key);
-        remove(node);
-        addInFront(node);
-        return node.data;
+    public void addToFront(DDLNode node){
+        DDLNode temp = head.next;
+        head.next = node;
+        node.prev = head;
+        node.next = temp;
+        temp.prev = node;
     }
 
-    public void put(int key, int value) {
-        Node node = cacheMap.get(key);
-
-        if (node != null){
-            node.data = value;
-            remove(node);
-            addInFront(node);
-        }
-        else{
-            if (size == capacity){
-                Node toRemove = tail.prev;
-                remove(toRemove);
-                cacheMap.remove(toRemove.key);
-
-                Node nodeToAdd = new Node(key, value);
-                addInFront(nodeToAdd);
-                cacheMap.put(key, nodeToAdd);
-            }
-            else if (size < capacity){
-                Node nodeToAdd = new Node(key, value);
-                addInFront(nodeToAdd);
-                cacheMap.put(key, nodeToAdd);
-                size++;
-            }
-        }
-    }
-
-    private void remove(Node node){
-        Node beforeNode = node.prev;
-        Node afterNode = node.next;
-
-        beforeNode.next = afterNode;
-        afterNode.prev = beforeNode;
+    public void remove(DDLNode node){
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
         node.next = null;
         node.prev = null;
     }
+}
 
-    private void addInFront(Node node){
-        Node nextToHead = head.next;
-        head.next = node;
-        node.next = nextToHead;
-
-        nextToHead.prev = node;
-        node.prev = head;
-    }
-
-    static class Node{
-        int key, data;
-        Node prev, next;
-        public Node(int key, int data){
-            this.key = key;
-            this.data = data;
-        }
+class DDLNode{
+    int key, value;
+    DDLNode next, prev;
+    public DDLNode(int key, int value){
+        this.key = key;
+        this.value = value;
     }
 }
 
