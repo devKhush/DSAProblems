@@ -44,7 +44,8 @@ class GfG {
 
 class Solution{
     int[] JobScheduling(Job arr[], int n){
-        Arrays.sort(arr, (a,b)-> (a.profit != b.profit ? b.profit - a.profit : b.deadline - a.deadline));
+        // Arrays.sort(arr, (a,b)-> (a.profit != b.profit ? b.profit - a.profit : b.deadline - a.deadlineint[] JobScheduling(Job arr[], int n){
+        Arrays.sort(arr, (a,b)-> (b.profit - a.profit));
         
         int[] deadlines = new int[n + 1];
         for (Job job : arr){
