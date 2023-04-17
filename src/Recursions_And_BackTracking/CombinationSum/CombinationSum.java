@@ -65,30 +65,30 @@ public class CombinationSum {
 
         return allCombinations;
     }
-}
 
 
-/*
-    // **************************** ANOTHER BETTER SOLUTION ****************************
+    /************************************* ANOTHER BETTER SOLUTION ****************************
+     */
+    public List<List<Integer>> combinationSum_(int[] arr, int target) {
+        List<List<Integer>> subsets = new ArrayList<>();
 
-    public void solve(int i, int[] arr, int sum, int k, List<List<Integer>> list, ArrayList<Integer> lst){
-        if (i == arr.length || sum > k){
-            if (sum == k){
-                list.add(new ArrayList<>(lst));
-            }
+        f(arr.length - 1, target, arr, subsets, new ArrayList<>());
+        return subsets;
+    }
+
+    private void f(int i, int target, int[] arr, List<List<Integer>> subsets, ArrayList<Integer> lst){
+        if (i < 0)
+            return;
+        if (target == 0){
+            subsets.add(new ArrayList<>(lst));
             return;
         }
 
-        lst.add(arr[i]);
-        solve(i, arr, sum + arr[i], k, list, lst);
-        lst.remove(lst.size()-1);
-
-        solve(i + 1, arr, sum, k, list, lst);
+        if (target >= arr[i]){
+            lst.add(arr[i]);
+            f(i, target - arr[i], arr, subsets, lst);
+            lst.remove(lst.size() - 1);
+        }
+        f(i - 1, target, arr, subsets, lst);
     }
-
-    public List<List<Integer>> combinationSum(int[] arr, int k) {
-        List<List<Integer>> list = new ArrayList<>();
-        solve(0, arr, 0, k, list, new ArrayList<>());
-        return list;
-    }
- */
+}

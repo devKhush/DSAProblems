@@ -7,7 +7,6 @@ import java.util.Comparator;
 // https://www.geeksforgeeks.org/fractional-knapsack-problem/
 
 public class FractionalKnapsack_GFG {
-
     /*
       INTUITION:
     * An efficient solution is to use the Greedy approach.
@@ -35,7 +34,7 @@ public class FractionalKnapsack_GFG {
     * Space Complexity: O(1), no additional data structure has been used.
     */
 
-    private double fractionalKnapsack(int knapsackWeight, Item[] allItems, int n) {
+    private double fractionalKnapsack_v1(int knapsackWeight, Item[] allItems, int n) {
         // Sort all the items by VALUES PER WEIGHT in DECREASING ORDER
         Arrays.sort(allItems, new ItemComparator());
 
@@ -43,7 +42,6 @@ public class FractionalKnapsack_GFG {
         double totalWeight = 0.0;
 
         for (int i = 0; i < allItems.length; i++){
-
             // Pick up items with weight lesser than or equal to the current capacity of the knapsack
             // and also add the weight & value of items into the knapsack taken into account
             if (allItems[i].weight + totalWeight <= knapsackWeight){
@@ -65,6 +63,28 @@ public class FractionalKnapsack_GFG {
                 break;
         }
         return totalValue;
+    }
+
+
+    /**************************************** Compact Solution ****************************************
+     * TC -> O(n * log(n))
+     * SC -> O(1)
+     */
+    double fractionalKnapsack_v2(int W, Item[] items, int n){
+        Arrays.sort(items, (a,b) -> Double.compare(b.value/(double)b.weight, a.value/(double)a.weight));
+
+        double maxValues = 0;
+        for (int i = 0; i < n; i++){
+            if (W >= items[i].weight){
+                maxValues += items[i].value;
+                W -= items[i].weight;
+            }
+            else{
+                maxValues += W * (items[i].value / (double)items[i].weight);
+                break;
+            }
+        }
+        return maxValues;
     }
 
 

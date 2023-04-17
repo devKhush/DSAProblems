@@ -1,6 +1,7 @@
 package Recursions_And_BackTracking.CombinationSum_II;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 // https://youtu.be/G1fRTGRxXU8
 // https://takeuforward.org/data-structure/combination-sum-ii-find-all-unique-combinations/
@@ -22,7 +23,7 @@ class CombinationSum_II {
         int n = candidates.length;
         // Sorting makes easier to generate all subsequence with given sum, as repeating element
         // can be easily ignored
-        mergeSort(candidates, 0, n-1, new int[n]);
+        Arrays.sort(candidates);
                 
         List<List<Integer>> allCombinations = new ArrayList<>();
         
@@ -31,10 +32,8 @@ class CombinationSum_II {
     }
     
     private void getCombinationSum(int index, int targetSum, int currentSum, int[] arr, List<List<Integer>> answer, List<Integer> list){
-        
         if (targetSum == currentSum){
             answer.add(new ArrayList<>(list));
-
             // Can stop the further recursion as current Sum will become greater than target Sum
             // No need of this here as this is handled by for loop's 2nd condition
             return;
@@ -58,49 +57,18 @@ class CombinationSum_II {
             list.remove(list.size() -1);
         }
     }
-    
 
-    // Sorting the array
-    private void mergeSort(int[] arr, int low, int high, int[] temp){
-        if (low < high){
-            int mid = (low + high)/2;
-            mergeSort(arr, low, mid, temp);
-            mergeSort(arr, mid + 1, high, temp);
-            merge(arr, temp, low, high, mid);
-        }
-    }
-    
-    private void merge(int[] arr, int[] temp, int low, int high, int mid){
-        int i = low, j = mid + 1, k = low;
-        
-        while (i <= mid && j <= high){
-            if (arr[i] < arr[j])
-                temp[k++] = arr[i++];
-            else
-                temp[k++] = arr[j++];
-        }
-        
-        while (i <= mid)
-            temp[k++] = arr[i++];
-        
-        while (j <= high)
-            temp[k++] = arr[j++];
-        
-        for (int a = low; a <= high; a++)
-            arr[a] = temp[a];
-    }
-}
 
-/*
-    // ANOTHER SOLUTION
-
-    public List<List<Integer>> combinationSum2(int[] arr, int target) {
+    /******************************* ANOTHER SOLUTION *****************************************
+     */
+    public List<List<Integer>> combinationSum2_(int[] arr, int target) {
         List<List<Integer>> list = new ArrayList<>();
         Arrays.sort(arr);
-        solve(0, arr, list, new ArrayList<>(), target);
+
+        f(0, arr, list, new ArrayList<>(), target);
         return list;
     }
-    public void solve(int index, int[] arr, List<List<Integer>> list, ArrayList<Integer> ls, int target){
+    public void f(int index, int[] arr, List<List<Integer>> list, ArrayList<Integer> ls, int target){
         if (target == 0)
             list.add(new ArrayList<>(ls));
 
@@ -111,8 +79,9 @@ class CombinationSum_II {
                 break;
 
             ls.add(arr[i]);
-            solve(i + 1, arr, list, ls, target - arr[i]);
+            f(i + 1, arr, list, ls, target - arr[i]);
             ls.remove(ls.size() - 1);
         }
     }
- */
+
+}
