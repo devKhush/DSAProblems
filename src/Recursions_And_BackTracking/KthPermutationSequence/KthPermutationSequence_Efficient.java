@@ -28,12 +28,12 @@ public class KthPermutationSequence_Efficient {
 
         // Decreasing 'k' for 0-based indexing
         k--;
-        String kthPermutation = "";
+        StringBuilder kthPermutation = new StringBuilder();
 
         // Now 'n' will store the size of ArrayList
         while (true){
             // determine which number to be put in kth permutation depending upon the logic
-            kthPermutation += number.get(k / previousFactorial);
+            kthPermutation.append(number.get(k / previousFactorial));
             number.remove(k / previousFactorial);
             n--;
 
@@ -42,7 +42,7 @@ public class KthPermutationSequence_Efficient {
             k = k % previousFactorial;
             previousFactorial = previousFactorial / n;
         }
-        return kthPermutation.toString();
+        return kthPermutation.toString().toString();
     }
 
 
