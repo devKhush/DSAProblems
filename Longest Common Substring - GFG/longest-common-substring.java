@@ -43,7 +43,6 @@ class Solution{
                     tempDP[j] = 1 + dp[j - 1];
                     longestSubstring = Math.max(tempDP[j], longestSubstring);
                 }
-                else tempDP[j] = 0;
             }
             dp = tempDP;
         }
