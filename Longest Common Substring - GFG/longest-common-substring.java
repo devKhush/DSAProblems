@@ -31,6 +31,26 @@ class GFG
 
 class Solution{
     int longestCommonSubstr(String s1, String s2, int m, int n){
+        
+        int[] dp = new int[n + 1];
+        int longestSubstring = 0;
+
+        for (int i = 1; i <= m; i++) {
+            int[] tempDP = new int[n + 1];
+
+            for (int j = 1; j <= n; j++) {
+                if (s1.charAt(i - 1) == s2.charAt(j - 1)){
+                    tempDP[j] = 1 + dp[j - 1];
+                    longestSubstring = Math.max(tempDP[j], longestSubstring);
+                }
+                else tempDP[j] = 0;
+            }
+            dp = tempDP;
+        }
+        return longestSubstring;
+        
+        // Tabulation
+        /*
         int[][] dp = new int[m + 1][n + 1];
         int longestSubstring = 0;
 
@@ -45,5 +65,6 @@ class Solution{
             }
         }
         return longestSubstring;
+        */
     }
 }
