@@ -24,12 +24,12 @@ public class LCS_Memoization {
             Arrays.fill(row, -1);
 
         // LCS_Memoization(m-1, n-1) means the longest common subsequence of string1[0:m-1] and string[0:n-1]
-        return LCS_Memoization(m-1, n-1, s1, s2, dp);
+        return lcs(m-1, n-1, s1, s2, dp);
     }
 
     // LCS_Memoization(i, j) means the longest common subsequence of string1[0:i] and string[0:j]
     // both lower & upper bound included
-    private int LCS_Memoization(int i, int j, String s1, String s2, int[][] dp){
+    private int lcs(int i, int j, String s1, String s2, int[][] dp){
         if (i < 0 || j < 0)
             return 0;
 
@@ -38,11 +38,11 @@ public class LCS_Memoization {
 
         // Case When the characters of current indices in both the string are equal
         if (s1.charAt(i) == s2.charAt(j))
-            return  dp[i][j] = 1 + LCS_Memoization(i-1, j-1, s1, s2, dp);
+            return  dp[i][j] = 1 + lcs(i-1, j-1, s1, s2, dp);
 
         // When the characters of current indices in both the string are not equal
         // Then return the maximum of length of LCS found by decreasing both the indices one by one
-        return  dp[i][j] = Math.max(LCS_Memoization(i, j-1, s1, s2, dp), LCS_Memoization(i-1, j, s1, s2, dp));
+        return  dp[i][j] = Math.max(lcs(i, j-1, s1, s2, dp), lcs(i-1, j, s1, s2, dp));
     }
 
 
@@ -67,12 +67,12 @@ public class LCS_Memoization {
 
         // LCS_Memoization(m, n) means the longest common subsequence of string1[0:m] and string[0:n]
         // upper bound not included (just like in string indexing)
-        return LCS_Memoization(m, n, dp, s1, s2);
+        return lcs(m, n, dp, s1, s2);
     }
 
     // LCS_Recursion_V2(i, j) means the longest common subsequence of string1[0:i] and string[0:j]
     // upper bound not included (just like in string indexing)
-    private  int LCS_Memoization(int i, int j, int[][] dp, String s1, String s2){
+    private  int lcs(int i, int j, int[][] dp, String s1, String s2){
         if (i == 0  || j == 0)
             return 0;
 
@@ -81,11 +81,11 @@ public class LCS_Memoization {
 
         // Case When the characters of current indices in both the string are equal
         if (s1.charAt(i-1) == s2.charAt(j-1))
-            return dp[i][j] = 1 + LCS_Memoization(i-1, j-1, dp, s1, s2);
+            return dp[i][j] = 1 + lcs(i-1, j-1, dp, s1, s2);
 
         // When the characters of current indices in both the string are not equal
         // Then return the maximum of length of LCS found by decreasing both the indices one by one
-        return dp[i][j] = Math.max(LCS_Memoization(i - 1, j, dp, s1, s2), LCS_Memoization(i, j - 1, dp, s1, s2));
+        return dp[i][j] = Math.max(lcs(i - 1, j, dp, s1, s2), lcs(i, j - 1, dp, s1, s2));
     }
 
 }

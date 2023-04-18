@@ -1,4 +1,5 @@
 package DynamicProgramming.DP_on_Strings.WordBreak_I;
+import java.util.HashSet;
 import java.util.List;
 
 // Pre-Requisite: WORD BREAK-II  & PALINDROME PARTITIONING (Recursion & BackTracking)
@@ -22,6 +23,7 @@ public class WordBreak {
     public boolean wordBreak(String s, List<String> wordDict) {
         return canBreakWord(0, s, s.length(), wordDict);
     }
+
     private boolean canBreakWord(int index, String s, int n, List<String> wordDict){
         if (index == n)
             return true;
@@ -57,16 +59,17 @@ public class WordBreak {
      */
     public boolean wordBreak_Memoization(String s, List<String> wordDict){
         int n = s.length();
+        HashSet<String> set = new HashSet<>(wordDict);
 
         // DP array: dp[i] will store whether the String starting from the index 'i' (till the length) can be
         // partitioned into the words of dictionary or not.
         Boolean[] dp = new Boolean[n];
 
-        canBreakWord(0, n, s, wordDict, dp);
+        canBreakWord(0, n, s, set, dp);
         // return canBreakWord(0, n, s, wordDict, dp);
         return dp[0];
     }
-    public boolean canBreakWord(int index, int n, String s, List<String> dictionary, Boolean[] dp){
+    public boolean canBreakWord(int index, int n, String s, HashSet<String> dictionary, Boolean[] dp){
         if (index == n)
             return true;
         // If this sub-problem has been solved previously, then return it
@@ -110,19 +113,21 @@ public class WordBreak {
      */
     public boolean wordBreak_Tabulation(String s, List<String> wordDict){
         int n = s.length();
-        boolean[] dp = new boolean[n + 1];
+        HashSet<String> set = new HashSet<>(wordDict);
 
         // Base case when "i == n"
+        boolean[] dp = new boolean[n + 1];
         dp[n] = true;
 
         // Solving problem in reverse way/direction to that of memoization (from n-1 to 0 in tabulation)
         // In memoization we solved in index 0 -> n-1
         for (int index = n-1; index >= 0; index--){
-            // Same Code as Memoization
+
+            // Same Code as Memoization [No need for return false at last bcoz by default boolean array are false]
             for (int i = index; i < n; i++){
                 String subString = s.substring(index, i + 1);
 
-                if (wordDict.contains(subString)  &&  dp[i + 1]) {
+                if (set.contains(subString)  &&  dp[i + 1]) {
                     dp[index] = true;
                     break;
                 }

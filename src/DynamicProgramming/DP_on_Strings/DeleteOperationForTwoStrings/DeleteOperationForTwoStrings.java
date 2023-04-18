@@ -3,7 +3,12 @@ package DynamicProgramming.DP_on_Strings.DeleteOperationForTwoStrings;
 // Pre requisite : Longest Common Subsequence
 
 class DeleteOperationForTwoStrings {
-
+    /****************************************** Efficient Solution ***********************************
+     * TC -> O(m*n)
+        * Finding LCS
+     * SC -> O(m*n)
+        * DP Array
+     */
     public int minDistance(String str1, String str2) {
         int m = str1.length();
         int n = str2.length();
