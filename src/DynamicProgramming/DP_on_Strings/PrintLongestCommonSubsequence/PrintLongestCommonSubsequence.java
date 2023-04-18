@@ -65,10 +65,12 @@ public class PrintLongestCommonSubsequence {
 
 
     /************************************** Best Solution *****************************************
-     * Time Complexity: O(m * n)
+     * Time Complexity: O((m+1) * (n+1)) + O(m + n)  ~  O(m*n)
+        * O(m*n) due to finding LCS
+        * O(m+n) for backtracking to print LCS
      * Space Complexity: O((m+1) * (n+1)) + min(len(s1),len(s2)))
         * DP Array
-        * SPace of "min(len(s1),len(s2)))" due to LCS string array
+        * Space of "min(len(s1),len(s2)))" due to LCS string array
      */
     private static String printLCS(String s1, String s2){
         int m = s1.length();
