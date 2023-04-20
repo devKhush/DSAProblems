@@ -36,9 +36,9 @@ public class MaximumWidthOfBinaryTree {
         int maxWidth = 0;
 
         // BFS Queue (Using some Generics 👀)
-        Queue<NodePair<TreeNode, Integer>> queue = new ArrayDeque<>();
+        Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque<>();
         // We store the nodes as well its index
-        queue.add(new NodePair<>(root, 0));
+        queue.add(new Pair<>(root, 0));
 
         while (!queue.isEmpty()){
             // Size of current level
@@ -49,7 +49,7 @@ public class MaximumWidthOfBinaryTree {
 
             // Traverse the entire level
             for (int i = 0; i < size; i++){
-                NodePair<TreeNode, Integer> node = queue.remove();
+                Pair<TreeNode, Integer> node = queue.remove();
 
                 // Get the index of first node in that level
                 if (i == 0)
@@ -60,11 +60,11 @@ public class MaximumWidthOfBinaryTree {
 
                 // Add left child of node, its index will be "2 * i + 1"
                 if (node.treeNode.left != null)
-                    queue.add(new NodePair<>(node.treeNode.left, 2 * node.index + 1));
+                    queue.add(new Pair<>(node.treeNode.left, 2 * node.index + 1));
 
                 // Add right child of node, its index will be "2 * i + 2"
                 if (node.treeNode.right != null)
-                    queue.add(new NodePair<>(node.treeNode.right, 2 * node.index + 2));
+                    queue.add(new Pair<>(node.treeNode.right, 2 * node.index + 2));
             }
             // Once we know the leftMost and rightMost nodes, width can be defined as
             // "rightMostIndex- leftMostIndex + 1"
@@ -110,9 +110,9 @@ public class MaximumWidthOfBinaryTree {
         int maxWidth = 0;
 
         // BFS Queue (Using some Generics 👀)
-        Queue<NodePair<TreeNode, Integer>> queue = new ArrayDeque<>();
+        Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque<>();
         // We store the nodes as well its index
-        queue.add(new NodePair<>(root, 0));
+        queue.add(new Pair<>(root, 0));
 
         while (!queue.isEmpty()){
             // Size of current level
@@ -121,12 +121,9 @@ public class MaximumWidthOfBinaryTree {
             // Index of first & last node in tha level
             int firstIndex = 0, lastIndex = 0;
 
-            // We will store the index of first node (left most node) in that level
-            int minIndex = queue.peek().index;
-
             // Index of first & last node in tha level
             for (int i = 0; i < size; i++){
-                NodePair<TreeNode, Integer> node = queue.remove();
+                Pair<TreeNode, Integer> node = queue.remove();
 
                 // Get the index of first node in that level
                 if (i == 0)
@@ -137,14 +134,14 @@ public class MaximumWidthOfBinaryTree {
                     lastIndex = node.index;
 
                 // Now whenever we assign the index for its children, we take the parent node
-                // index as (i - minIndex) rather than 'i', to avoid overflow.
-                // Add left child of node, its index will be "2 * (i-minIndex) + 1"
+                // index as (i - firstIndex) rather than 'i', to avoid overflow.
+                // Add left child of node, its index will be "2 * (i-firstIndex) + 1"
                 if (node.treeNode.left != null)
-                    queue.add(new NodePair<>(node.treeNode.left, 2 * (node.index - minIndex) + 1));
+                    queue.add(new Pair<>(node.treeNode.left, 2 * (node.index - firstIndex) + 1));
 
-                // Add right child of node, its index will be "2 * (i-minIndex) + 2"
+                // Add right child of node, its index will be "2 * (i-firstIndex) + 2"
                 if (node.treeNode.right != null)
-                    queue.add(new NodePair<>(node.treeNode.right, 2 * (node.index - minIndex) + 2));
+                    queue.add(new Pair<>(node.treeNode.right, 2 * (node.index - firstIndex) + 2));
             }
             maxWidth = Math.max(maxWidth, lastIndex - firstIndex + 1);
         }
@@ -152,10 +149,10 @@ public class MaximumWidthOfBinaryTree {
     }
 
     // Node Pair class (Generics used)
-    private static class NodePair<A, B>{
+    private static class Pair<A, B>{
         A treeNode;
         B index;
-        public NodePair(A treeNode, B index){
+        public Pair(A treeNode, B index){
             this.treeNode = treeNode;
             this.index = index;
         }
