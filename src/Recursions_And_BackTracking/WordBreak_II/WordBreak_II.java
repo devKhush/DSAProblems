@@ -1,5 +1,6 @@
 package Recursions_And_BackTracking.WordBreak_II;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 // MUST READ: https://www.geeksforgeeks.org/word-break-problem-using-backtracking/
@@ -64,17 +65,24 @@ public class WordBreak_II {
         // ArrayList to store all the word-broken partition substrings of a string
         ArrayList<String> allBrokenWords = new ArrayList<>();
 
-        breakWord(0, s, s.length(), wordDict, new ArrayList<>(), allBrokenWords);
+        breakWord(0, s, s.length(), new HashSet<>(wordDict), new ArrayList<>(), allBrokenWords);
         return allBrokenWords;
     }
 
-    private void breakWord(int index, String s, int n, List<String> dictionary, ArrayList<String> currentBrokenWord, ArrayList<String> allBrokenWords){
+    private void breakWord(int index, String s, int n, HashSet<String> dictionary, ArrayList<String> currentBrokenWord, ArrayList<String> allBrokenWords){
         // If index == n, this means all the left substring have been partitioned, and they are present
         // in the dictionary.
         // So, include the current partitioned list of substring sequence into answer list
         if (index == n){
-            // This two functions are joining elements of list with space in between
-            // allBrokenWords.add(convertListIntoString(" ", currentBrokenWord));
+            /*
+            StringBuilder sb = new StringBuilder();
+            for (String a : currentBrokenWord) {
+                sb.append(a);
+                sb.append(" ");
+            }
+            String t = sb.toString();
+            allBrokenWords.add(t.substring(0, t.length() - 1));
+             */
             // Inbuilt method "String.join()" is very much faster
             allBrokenWords.add(String.join(" ", currentBrokenWord));
             return;

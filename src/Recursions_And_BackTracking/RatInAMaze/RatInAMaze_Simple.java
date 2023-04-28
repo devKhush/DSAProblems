@@ -34,7 +34,7 @@ public class RatInAMaze_Simple {
             allPaths.add(path);
             return;
         }
-
+        visited[i][j] = true;
 
         // Moving Down, Left, Right & Up one by one in a for loop
         // Marks current cell as visited, add the current direction into the 'path' String
@@ -45,10 +45,41 @@ public class RatInAMaze_Simple {
             String directionToMove = directions[index];
 
             if (nextI < n  && nextI >= 0  &&  nextJ >= 0  && nextJ < n  && !visited[nextI][nextJ]  && maze[nextI][nextJ] == 1){
-                visited[i][j] = true;
                 findAllPathsToDestination(nextI, nextJ, maze, visited, n, path + directionToMove, allPaths, directions, di, dj);
-                visited[i][j] = false;
             }
         }
+        visited[i][j] = false;
+    }
+
+    /******************************************* Another Solution **************************************
+     * TC -> O(9^(mn))
+     * SC -> O(mn)
+        * Recursion Stack Space
+     */
+    public static ArrayList<String> findPath(int[][] mat, int n) {
+        // Paths from src to destination
+        ArrayList<String> paths = new ArrayList<>();
+
+        // Visited array
+        boolean[][] visited = new boolean[mat.length][mat[0].length];
+
+        dfs(0, 0, mat, visited, "", paths);
+        return paths;
+    }
+
+    private static void dfs(int i, int j, int[][] mat, boolean[][] visited, String path, ArrayList<String> paths) {
+        if (i < 0 || j < 0 || i >= mat.length || j >= mat[0].length || mat[i][j] == 0 || visited[i][j])
+            return;
+
+        if (i == mat.length-1 && j == mat[0].length-1) {
+            paths.add(path);
+            return;
+        }
+        visited[i][j] = true;
+        dfs(i + 1, j, mat, visited, path + "D", paths);
+        dfs(i, j - 1, mat, visited, path + "L", paths);
+        dfs(i, j + 1, mat, visited, path + "R", paths);
+        dfs(i - 1, j, mat, visited, path + "U", paths);
+        visited[i][j] = false;
     }
 }
