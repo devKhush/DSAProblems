@@ -1,4 +1,4 @@
-package DynamicProgramming.DP_on_Stocks;
+package DynamicProgramming.DP_on_Stocks.BestTimeToBuyAndSellStock;
 
 // https://youtu.be/excAOvwF_Wk
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
