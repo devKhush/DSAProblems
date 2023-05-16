@@ -11,7 +11,9 @@ public class LongestIncreasingSubSequence_Tabulation {
      * dp[i] -> indicates the length of LIS, by including nums[i] into the sub-sequence
 
      * Time Complexity: O(n*n)
-     * Space Complexity: O(1)
+        * Two loops
+     * Space Complexity: O(n)
+        * One DP Array
      */
     public int longestLIS(int[] nums, int n){
         // dp[i] -> indicates the length of LIS, by including nums[i] into the sub-sequence
@@ -41,7 +43,7 @@ public class LongestIncreasingSubSequence_Tabulation {
      * indexLIS[i] -> stores the index of previous element to nums[i] in LIS (coming before nums[i])
 
      * Time Complexity: O(n*n)
-     * Space Complexity: O(1)
+     * Space Complexity: O(2*n)
      */
     public int[] printLongestLIS(int[] nums, int n){
         int[] dp = new int[n];
