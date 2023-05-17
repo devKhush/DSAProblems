@@ -1,64 +1,64 @@
 package SinglyLinkedList.MaximumTwinSumOfALinkedList;
 
-import java.util.Scanner;
+// https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/description/
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
+import java.util.Stack;
 
 class MaximumTwinSumOfALinkedList {
+    /************************************* Solution using Stack **********************************
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
+     */
+    public int pairSum_Stack(ListNode head) {
+        Stack<ListNode> stack = new Stack<>();
 
-    public ListNode reverseList(ListNode head) {
-        ListNode next, prev = null, curr = head;
-        while (curr != null) {
+        ListNode fast = head, slow = head;
+        while (fast != null){
+            stack.push(slow);
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        int maxTwinSum = Integer.MIN_VALUE;
+        while (slow != null){
+            maxTwinSum = Math.max(maxTwinSum, slow.val + stack.pop().val);
+            slow = slow.next;
+        }
+        return maxTwinSum;
+    }
+
+    /************************************** Solution using reversing list *******************************
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
+    public int pairSum(ListNode head) {
+        ListNode fast = head, slow = head;
+        while (fast != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode revHalf = reverse(slow);
+        slow = head;
+        int maxTwinSum = Integer.MIN_VALUE;
+        while (revHalf != null){
+            maxTwinSum = Math.max(maxTwinSum, slow.val + revHalf.val);
+            slow = slow.next;
+            revHalf = revHalf.next;
+        }
+        return maxTwinSum;
+    }
+    private ListNode reverse(ListNode head){
+        ListNode curr = head, prev = null, next;
+        while (curr != null){
             next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
-
         }
         return prev;
     }
 
-    public int pairSum(ListNode head) {
-        ListNode fast = head, slow = head;
-        while (fast.next != null && fast.next.next != null) {
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-        ListNode ptr = head, reversedHalf = reverseList(slow.next);
-        int sum = 0;
-        while (reversedHalf != null) {
-            sum = Integer.max(sum, ptr.val + reversedHalf.val);
-            ptr = ptr.next;
-            reversedHalf = reversedHalf.next;
-        }
-        return sum;
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ListNode head = new ListNode();
-
-        int n = sc.nextInt();
-        ListNode ptr = head;
-        for (int i = 0; i < n; i++) {
-            ptr.next = new ListNode(sc.nextInt());
-            ptr = ptr.next;
-        }
-        System.out.println(new MaximumTwinSumOfALinkedList().pairSum(head.next));
+    static class ListNode {
+        int val;
+        ListNode next;
     }
 }
