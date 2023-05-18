@@ -60,8 +60,9 @@ public class LongestBitonicSequence {
         * For Intuition watch DP-43 (LIS using Binary Search) video and see blog.
 
      * Time Complexity: O(2*n*log(n)) + O(n)  ~  O(n*log(n))
-     * Space Complexity: O(n)
-         * Two temp arrays for LIS and LDS using binary search
+     * Space Complexity: O(3*n)
+        * Two arrays for LIS and LDS using binary search
+        * One temp for calculation of length of LIS and LDS
      */
     public int longestBitonicSequence_bs(int[] nums){
         int n = nums.length;
