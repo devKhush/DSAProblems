@@ -32,7 +32,7 @@ public class LongestIncreasingSubsequence_BinarySearch {
     }
 
     private int lower_bound(ArrayList<Integer> list, int n, int val){
-        int low = 0, high = list.size();
+        int low = 0, high = n - 1;
 
         while (low <= high){
             int mid = low + ((high - low)>>1);
