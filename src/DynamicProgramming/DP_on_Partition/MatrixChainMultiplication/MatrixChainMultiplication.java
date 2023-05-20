@@ -1,4 +1,4 @@
-package DynamicProgramming.DP_on_Partition;
+package DynamicProgramming.DP_on_Partition.MatrixChainMultiplication;
 
 // https://practice.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1
 // https://takeuforward.org/dynamic-programming/matrix-chain-multiplication-dp-48/
@@ -31,7 +31,7 @@ public class MatrixChainMultiplication {
             int multiplications = arr[i-1]*arr[k]*arr[j] + f(i , k, arr) + f(k + 1, j, arr);
             min = Math.min(min, multiplications);
         }
-        // Run the best possible answer of the two partitions
+        // Return the best possible answer of the two partitions
         return min;
     }
 
@@ -65,7 +65,7 @@ public class MatrixChainMultiplication {
             int multiplications = arr[i-1]*arr[k]*arr[j] + f(i , k, arr, dp) + f(k + 1, j, arr, dp);
             min = Math.min(min, multiplications);
         }
-        // Run the best possible answer of the two partitions
+        // Return the best possible answer of the two partitions
         return dp[i][j] = min;
     }
 
@@ -75,8 +75,8 @@ public class MatrixChainMultiplication {
      * Tricky part here is to determine the direction of for loop.
      * We call for function f(1,n-1) in memoization
      * 'i' starts from 1 in function. So, 'i' goes from n-1 to 1 in tabulation.
-     * 'j' starts from n-1 in function. But since, in each partition 'i' is always greater than or equal
-        to 'j'. State 'j' varies from i+1 to n-1.
+     * 'j' starts from n-1 in function. But since, in each partition 'j' is always greater than or equal
+        to 'i'. State 'j' varies from i+1 to n-1.
      * Else Copy the code from memoization.
 
      * Time Complexity: O(n*n*n)
