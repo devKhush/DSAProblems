@@ -85,7 +85,7 @@ public class PalindromePartitioning_II {
             int minCuts = (int)1e9;
             for (int j = i; j < n; j++){
                 if (isPalindrome(i, j, s)){
-                    int cuts = 1 + dp[j+1];
+                    int cuts = 1 + dp[j + 1];
                     minCuts = Math.min(minCuts, cuts);
                 }
             }
