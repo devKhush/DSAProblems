@@ -27,11 +27,14 @@ public class RotateALinkedList {
         }
 
         k = k % length;
+        if (k == 0)
+            return head;
+
         ListNode ptr = head;
-        int cnt = length - k;
-        while (cnt > 1){
+        int cnt = 1;
+        while (cnt < length - k){
             ptr = ptr.next;
-            cnt--;
+            cnt++;
         }
         lastNode.next = head;
         ListNode newHead = ptr.next;

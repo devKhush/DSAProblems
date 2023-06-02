@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.PriorityQueue;
 
-public class KMaxSumCombinations {
+public class KMaxSumCombinations_Bruute {
     /*
     ************************************* BRUTE FORCE Solution *************************************
     * We use ArrayList here, we add all n^2 Sum combinations into that ArrayList, then sort it in

@@ -75,11 +75,33 @@ public class MergeKSortedArrays_Efficient {
             this.arrayNumber = arrayNumber;
             this.indexInArray = i;
         }
-
         @Override
         public int compareTo(ArrayElement a){
             return this.value - a.value;
         }
+    }
+
+
+    /************************************ Same Solution Short Code ******************************
+     */
+    public static ArrayList<Integer> mergeKSortedArrays_Compact(ArrayList<ArrayList<Integer>> kArrays, int k){
+        ArrayList<Integer> arr = new ArrayList<>();
+
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a,b)->a[2]-b[2]);
+        for (int i = 0; i < k; i++){
+            minHeap.add(new int[]{i, 0, kArrays.get(i).get(0)});
+        }
+        while (!minHeap.isEmpty()){
+            int i = minHeap.peek()[0];
+            int j = minHeap.peek()[1];
+            int value = minHeap.remove()[2];
+            arr.add(value);
+
+            if (j + 1 < kArrays.get(i).size()){
+                minHeap.add(new int[]{i, j + 1, kArrays.get(i).get(j+1)});
+            }
+        }
+        return arr;
     }
 }
 /*

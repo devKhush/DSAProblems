@@ -92,4 +92,43 @@ public class MedianFinder {
 
         return -1;
     }
+
+
+    /* ********************************* Same Solution V2 *************************************8
+     */
+    static class Solution {
+        PriorityQueue<Integer> minHeap;
+        PriorityQueue<Integer> maxHeap;
+        public Solution() {
+            minHeap = new PriorityQueue<>((a,b) -> a-b);
+            maxHeap = new PriorityQueue<>((a,b) -> b-a);
+        }
+
+        public void addNum(int num) {
+            if (maxHeap.size() == minHeap.size()){
+                if (!minHeap.isEmpty() && minHeap.peek() < num){
+                    maxHeap.add(minHeap.remove());
+                    minHeap.add(num);
+                }
+                else
+                    maxHeap.add(num);
+            }
+            else if (maxHeap.size() == minHeap.size() + 1){
+                if (maxHeap.peek() > num){
+                    minHeap.add(maxHeap.remove());
+                    maxHeap.add(num);
+                }
+                else
+                    minHeap.add(num);
+            }
+        }
+
+        public double findMedian() {
+            if (maxHeap.size() == minHeap.size())
+                return (maxHeap.peek() + minHeap.peek())/2.0;
+            else
+                return maxHeap.peek();
+        }
+    }
+
 }

@@ -69,20 +69,17 @@ public class RemoveNthNodeFromEndOfList_VeryEfficient {
      * SC -> O(1)
      */
     public ListNode removeNthFromEnd_MostEfficient(ListNode head, int n) {
-        if (head == null)
-            return null;
-
         ListNode ptr = head;
-        int i = 0;
-        while (ptr != null  &&  i <= n){
+        int cnt = 0;
+        while (cnt < n){
             ptr = ptr.next;
-            i++;
+            cnt++;
         }
-        if (i == n)
+        if (ptr == null)
             return head.next;
 
         ListNode p = head;
-        while (ptr != null){
+        while (ptr.next != null){
             ptr = ptr.next;
             p = p.next;
         }

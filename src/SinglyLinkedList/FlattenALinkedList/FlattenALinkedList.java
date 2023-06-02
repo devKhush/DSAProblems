@@ -70,8 +70,6 @@ public class FlattenALinkedList {
     }
 
     private Node merge_DnC(int low, int high, ArrayList<Node> arr){
-        if (low > high)
-            return null;
         if (low == high)
             return arr.get(low);
 
