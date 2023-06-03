@@ -47,9 +47,9 @@ public class ReverseAStack {
     * So we need a function that inserts at the bottom of a stack using the basic stack function.
 
      */
-    public Stack<Integer> reverseStack(Stack<Integer> stack){
+    public void reverseStack(Stack<Integer> stack){
         if (stack.isEmpty())
-            return stack;
+            return;
 
         // Hold all items in Recursion Stack Space until we reach end of the stack
         int top = stack.pop();
@@ -59,25 +59,23 @@ public class ReverseAStack {
         // Insert all the values held in Function Call Stack one by one into the bottom
         // Every item is inserted at the bottom
         insertAtBottomOfStack(stack, top);
-
-        return stack;
     }
 
     // Below is a recursive function that inserts an element at the bottom of a stack.
     private void insertAtBottomOfStack(Stack<Integer> stack, int bottomElement){
-        if (stack.isEmpty())
+        if (stack.isEmpty()) {
             stack.push(bottomElement);
-        else {
-            // All items are held in Function Call Stack until we reach end of the stack.
-            // When the stack becomes empty, the st.size() becomes 0, the
-            // above if part is executed and the item is inserted at the bottom
-            int top = stack.pop();
-
-            insertAtBottomOfStack(stack, bottomElement);
-
-            // push the top 'element' held in Function Call Stack, once the "bottomElement" is inserted
-            // at the bottom
-            stack.push(top);
+            return;
         }
+        // All items are held in Function Call Stack until we reach end of the stack.
+        // When the stack becomes empty, the st.size() becomes 0, the
+        // above if part is executed and the item is inserted at the bottom
+        int top = stack.pop();
+
+        insertAtBottomOfStack(stack, bottomElement);
+
+        // push the top 'element' held in Function Call Stack, once the "bottomElement" is inserted
+        // at the bottom
+        stack.push(top);
     }
 }

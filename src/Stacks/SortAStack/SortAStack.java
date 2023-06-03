@@ -48,6 +48,7 @@ public class SortAStack {
         // If stack is empty, simply return
         if (stack.isEmpty())
             return;
+
         // Remove the top item
         int top = stack.pop();
 
@@ -68,6 +69,7 @@ public class SortAStack {
         // Else If top of stack is greater, remove the top item and call same function (recursion)
         // to insert the 'currentElement' into the stack
         int top = stack.pop();
+
         insertInTopOfSortedStack(stack, currentElement);
 
         // Put back the top element of stack item removed earlier

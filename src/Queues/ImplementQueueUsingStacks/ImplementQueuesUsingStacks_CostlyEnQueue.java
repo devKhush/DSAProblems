@@ -55,11 +55,11 @@ public class ImplementQueuesUsingStacks_CostlyEnQueue {
     }
 
     public int deQueue() {
-        return !stack1.isEmpty() ? stack1.pop() : -1;
+        return stack1.pop();
     }
 
     public int peek() {
-        return !stack1.isEmpty() ? stack1.peek() : -1;
+        return stack1.peek();
     }
 
     public boolean isEmpty() {

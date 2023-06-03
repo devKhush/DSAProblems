@@ -43,43 +43,36 @@ import java.util.Stack;
  */
 
 public class ImplementQueuesUsingStacks_CostlyDeQueue {
-    private Stack<Integer> stack1;
-    private Stack<Integer> stack2;
-    private int frontOfQueue = -1;
-
+    Stack<Integer> s1;
+    Stack<Integer> s2;
     public ImplementQueuesUsingStacks_CostlyDeQueue() {
-        stack1 = new Stack<>();
-        stack2 = new Stack<>();
+        s1 = new Stack<>();
+        s2 = new Stack<>();
     }
 
-    void enQueue(int val) {
-        if (stack1.isEmpty())
-            frontOfQueue = val;
-
-        stack1.push(val);
+    public void push(int x) {
+        s1.push(x);
     }
 
-    int deQueue() {
-        if (stack1.isEmpty())
-            return -1;
-
-        while (!stack1.isEmpty())
-            stack2.push(stack1.pop());
-
-        int front = stack2.pop();
-        this.frontOfQueue = !stack2.isEmpty() ? stack2.peek() : -1;
-
-        while (!stack2.isEmpty())
-            stack1.push(stack2.pop());
-
+    public int pop() {
+        while (!s1.isEmpty())
+            s2.push(s1.pop());
+        int front = s2.pop();
+        while (!s2.isEmpty())
+            s1.push(s2.pop());
         return front;
     }
 
-    int peek() {
-        return frontOfQueue;
+    public int peek() {
+        while (!s1.isEmpty())
+            s2.push(s1.pop());
+        int front = s2.peek();
+        while (!s2.isEmpty())
+            s1.push(s2.pop());
+        return front;
     }
 
-    boolean isEmpty() {
-        return stack1.isEmpty();
+    public boolean empty() {
+        return s1.isEmpty();
     }
 }
