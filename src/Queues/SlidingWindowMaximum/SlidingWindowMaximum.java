@@ -55,23 +55,21 @@ public class SlidingWindowMaximum {
         * At any point of time, Deque will have O(K) elements because size of sliding window is 'k'
           and we are removing out of bound indices for every sliding window.
      */
-    public int[] maxSlidingWindow(int[] arr, int k) {
-        int n = arr.length;
-
-        Deque<Integer> deque = new ArrayDeque<>();
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length;
         int[] maxSlidingWindow = new int[n - k + 1];
-        int index = 0;
+        Deque<Integer> deque = new ArrayDeque<>();
 
         for (int i = 0; i < n; i++){
             // Every time before entering a new element, we check whether the element
             // present at the front is out of bounds of our present window size, i.e, beyond [i-k+1, i]
-            if (!deque.isEmpty()  &&  deque.peekFirst() == i - k)
+            if (!deque.isEmpty()  &&  i - deque.peekFirst() == k)
                 deque.removeFirst();
 
             // we check from the rear that the element present in deque is smaller than the incoming element.
             // If yes, there’s no point storing them (because we want maximum) and hence we pop them out.
             // remove smaller numbers in k range as they are useless
-            while (!deque.isEmpty()  &&  arr[i] >= arr[deque.peekLast()])
+            while (!deque.isEmpty()  &&  nums[i] >= nums[deque.peekLast()])
                 deque.removeLast();
 
             // Insert the index of current element at the back of the deque.
@@ -79,8 +77,8 @@ public class SlidingWindowMaximum {
 
             // Finally, the element present at the front would be our largest element.
             // Get the maximum of the current window i.e. maximum of subarray [i-k+1, i].
-            if (i >= k - 1)
-                maxSlidingWindow[index++] = arr[deque.peekFirst()];
+            if (i + 1 - k>= 0)
+                maxSlidingWindow[i + 1 - k] = nums[deque.peekFirst()];
         }
         return maxSlidingWindow;
     }

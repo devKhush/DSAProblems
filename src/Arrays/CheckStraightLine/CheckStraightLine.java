@@ -32,24 +32,14 @@ class CheckStraightLine {
     }
 
 
-    private boolean checkStraightLine2(int[][] coordinates) {
-        int x0 = coordinates[0][0];
-        int x1 = coordinates[1][0];
-        int y0 = coordinates[0][1];
-        int y1 = coordinates[1][1];
+    public boolean checkStraightLine_Compact(int[][] coordinates) {
+        int n = coordinates.length;
 
-        // Slope will be dy/dx, though not calculating it bcoz, it will give Division by 0 error in case dx = 0
-        int dy = y1 - y0;
-        int dx = x1 - x0;
-
-        for (int i = 1; i < coordinates.length; i++){
-            x1 = coordinates[i][0];
-            y1 = coordinates[i][1];
-
-            // Calculate slope between every current point & starting point
-            // Not directly calculating (dy/dx = (y1-y0)/(x1-x0)) bcoz, it might give Division by 0 error
-            // in case dx = 0   or  (x1-x0) = 0
-            if (dy * (x1 - x0) != (y1 - y0) * dx)
+        for (int i = 1; i < n-1; i++){
+            int x1 = coordinates[i-1][0] , y1 = coordinates[i-1][1];
+            int x2 = coordinates[i][0] , y2 = coordinates[i][1];
+            int x3 = coordinates[i+1][0] , y3 = coordinates[i+1][1];
+            if ((y2 - y1)*(x3 - x2) != (y3 - y2)*(x2 - x1))
                 return false;
         }
         return true;

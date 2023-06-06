@@ -44,15 +44,35 @@ public class MaximumOfMinimumForEveryWindowSize {
      */
     public int[] maxMinWindow(int[] arr) {
         int n = arr.length;
-        int[] maximumOfMinimumSlidingWindows = new int[n];
 
         // Consider all windows of different sizes from size '1' to 'N'
-        for (int slidingWindowSize = 1; slidingWindowSize <= n; slidingWindowSize++){
-            int maximumOfCurrentWindowSize = maximumOfMinimumSlidingWindow(arr, slidingWindowSize, n);
-
-            maximumOfMinimumSlidingWindows[slidingWindowSize - 1] = maximumOfCurrentWindowSize;
+        int[] maxOfWindows = new int[n];
+        for (int windowSize = 1; windowSize <= n; windowSize++){
+            maxOfWindows[windowSize-1] = maximumOfMinimumSlidingWindow(arr, n, windowSize);
         }
-        return maximumOfMinimumSlidingWindows;
+        return maxOfWindows;
+    }
+
+
+    // ******************* Efficient Approach for finding "Minimum Sliding Window" *******************
+    // Same as Efficient Solution for "MAXIMUM SLIDING WINDOW" using "Deque"
+    // Deque will store the array elements in increasing order since we want "Minimum Sliding Window"
+    public int maximumOfMinimumSlidingWindow(int[] arr, int windowSize, int n){
+        int maximumOfAllSlidingWindows = Integer.MIN_VALUE;
+        Deque<Integer> deque = new ArrayDeque<>();
+
+        for (int i = 0; i < arr.length; i++){
+            if (!deque.isEmpty()  &&  deque.peekFirst() == i - windowSize)
+                deque.removeFirst();
+
+            while (!deque.isEmpty()  &&  arr[deque.peekLast()] >= arr[i])
+                deque.removeLast();
+            deque.addLast(i);
+            if (i + 1 >= windowSize) {
+                maximumOfAllSlidingWindows = Math.max(maximumOfAllSlidingWindows, arr[deque.peekFirst()]);
+            }
+        }
+        return maximumOfAllSlidingWindows;
     }
 
 
@@ -74,31 +94,5 @@ public class MaximumOfMinimumForEveryWindowSize {
             maximumOfAllSlidingWindow = Math.max(currMinSlidingWindow, maximumOfAllSlidingWindow);
         }
         return maximumOfAllSlidingWindow;
-    }
-
-
-    // ******************* Efficient Approach for finding "Minimum Sliding Window" *******************
-    // Same as Efficient Solution for "MAXIMUM SLIDING WINDOW" using "Deque"
-    // Deque will store the array elements in increasing order since we want "Minimum Sliding Window"
-    public int maximumOfMinimumSlidingWindow(int[] arr, int windowSize, int n){
-        int maximumOfAllSlidingWindows = Integer.MIN_VALUE;
-
-        Deque<Integer> deque = new ArrayDeque<>();
-
-        for (int i = 0; i < arr.length; i++){
-            if (!deque.isEmpty()  &&  deque.peekFirst() == i - windowSize)
-              deque.removeFirst();
-
-            while (!deque.isEmpty()  &&  arr[deque.peekLast()] >= arr[i])
-                deque.removeLast();
-
-            deque.addLast(i);
-
-            if (i >= windowSize - 1) {
-                int currMinimumSlidingWindow = arr[deque.peekFirst()];
-                maximumOfAllSlidingWindows = Math.max(currMinimumSlidingWindow, maximumOfAllSlidingWindows);
-            }
-        }
-        return maximumOfAllSlidingWindows;
     }
 }

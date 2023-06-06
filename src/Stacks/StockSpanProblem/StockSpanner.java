@@ -49,4 +49,26 @@ public class StockSpanner {
             this.day = day;
         }
     }
+
+
+    /************************************* Same solution Compact code *****************************************
+     */
+    class StockSpanner_ {
+        Stack<int[]> stack;
+        int day;
+        public StockSpanner_() {
+            stack = new Stack<>();
+            day = -1;
+        }
+
+        public int next(int price) {
+            day++;
+            while (!stack.isEmpty() &&  stack.peek()[0] <= price)
+                stack.pop();
+
+            int ans = !stack.isEmpty() ? day - stack.peek()[1] : day + 1;
+            stack.push(new int[]{price, day});
+            return ans;
+        }
+    }
 }

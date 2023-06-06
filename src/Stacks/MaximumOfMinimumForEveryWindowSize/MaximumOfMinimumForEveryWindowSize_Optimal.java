@@ -5,11 +5,37 @@ import java.util.Stack;
 
 // PRE-REQUISITE: "NEXT SMALLER ELEMENT", "PREVIOUS SMALLER ELEMENT", "LARGEST AREA IN A HISTOGRAM"
 // https://youtu.be/CK8PIAF-m2E
+// https://youtu.be/3tAB663q-nk (good)
 // https://www.geeksforgeeks.org/find-the-maximum-of-minimums-for-every-window-size-in-a-given-array/
 
 public class MaximumOfMinimumForEveryWindowSize_Optimal {
-    /*
-    * Time Complexity: O(n)
+    /************************************* Brute Force Solution ***************************************
+     * Another Brute Force Solution
+     * Intuition for the Optimal solution comes from this brute force solution
+
+     * Time Complexity: O(n^2)
+     * Time Complexity: O(1)
+     */
+    public static int[] maxMinWindow(int[] arr, int n) {
+        int[] maxOfWindows = new int[n];
+        Arrays.fill(maxOfWindows, Integer.MIN_VALUE);
+
+        for (int i = 0; i < n; i++){
+            int minimumOfWindow = Integer.MAX_VALUE;
+            for (int j = i; j < n; j++){
+                minimumOfWindow = Math.min(minimumOfWindow, arr[j]);
+                int length = j - i + 1;
+                maxOfWindows[length - 1] = Math.max(maxOfWindows[length - 1], minimumOfWindow);
+            }
+        }
+        return maxOfWindows;
+    }
+
+    /***************************************** Optimal Solution V1 ***********************************
+    * Time Complexity: O(6*n) ~ O(n)
+        * O(2n) for Next Previous element
+        * O(2n) for Next Smaller element
+        * O(2n) for two loops
     * Space Complexity: O(n)
      */
     public int[] maxMinWindow(int[] arr) {
@@ -68,6 +94,49 @@ public class MaximumOfMinimumForEveryWindowSize_Optimal {
             stack.push(i);
         }
         return PSE;
+    }
+
+
+    /***************************************** Optimal Solution V2 ***********************************
+     * Same Solution but instead of separately calculating NSE and PSE, we can do that at once.
+     * As done in "Maximum Area of Rectangle in a Histogram"
+     * For more intuition watch the video
+
+     * Time Complexity: O(4*n) ~ O(n)
+        * O(2n) for Width calculation
+        * O(2n) for two loops
+     * Space Complexity: O(n)
+     */
+    public static int[] maxMinWindow_(int[] arr, int n) {
+        // Max. of Min. of Window size
+        int[] maxWindow = new int[n];
+        Arrays.fill(maxWindow, Integer.MIN_VALUE);
+
+        // Stack for width calculation. Calculate the width b/w Previous-Smaller & Next-Smaller element
+        Stack<Integer> stack = new Stack<>();
+
+        // FInd the maximum of windows using width b/w Previous-Smaller & Next-Smaller element
+        for (int i = 0; i <= n; i++){
+            while(!stack.isEmpty() && (i == n ||arr[stack.peek()] > arr[i])){
+                int height = arr[stack.pop()];
+                int start = !stack.isEmpty() ? stack.peek() : -1;
+                int end = i;
+                int width = end - start - 1;
+                maxWindow[width - 1] = Math.max(maxWindow[width - 1], height);
+            }
+            stack.push(i);
+        }
+        // Some window size might remain to be updated
+        // Max. of min. of window size 'w' is always greater than or equal to
+        // Max. of min. of window size 'w+1', 'w+2', and so on... (Think)
+        // So we need to make sure "window" size is has equal or greater maximum than next "window+1" size
+        // Consider example "3 10 20 7 20 10 2" for window size 4 and 5 centered at value 7
+        // In this example, window size 4 will be missed in above stack for loops, although
+        // the max. of min. of window size 5 is equal to the max. of min. of window size 4
+        for (int width = n-2; width >= 0; width--){
+            maxWindow[width] = Math.max(maxWindow[width], maxWindow[width + 1]);
+        }
+        return maxWindow;
     }
 }
 
