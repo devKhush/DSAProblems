@@ -40,45 +40,14 @@ public class ReverseWords {
     }
 
 
-    /******************************** Efficient Solution Without Stack *****************************
-     * Idea is to traverse the String linearly and insert each words (in the String) at the front
-     * Time Complexity: O(n)
-     * Space Complexity: O(n)
-     */
-    public String reverseWords_Efficient(String s) {
-        s = s.trim() + " ";
-        int n = s.length();
-
-        StringBuilder answer = null;
-        StringBuilder currWord = new StringBuilder();
-
-        for (int i = 0; i < n; i++){
-            char ch = s.charAt(i);
-
-            if (ch != ' ')
-                currWord.append(ch);
-            else{
-                if (currWord.toString().equals(""))
-                    continue;
-                if (answer != null)
-                    answer.insert(0, currWord.toString() + " ");
-                else
-                    answer = new StringBuilder(currWord.toString());
-
-                currWord = new StringBuilder();
-            }
-        }
-        return answer.toString();
-    }
-
-
     /******************************** Efficient Solution: Without Extra Space *****************************
      * Two Pointer Approach
 
-     * Time Complexity: O(n)
+     * Time Complexity: O(2*n)
+        * At most traversal by two pointers
      * Space Complexity: O(1)
      */
-    public String reverseWords(String s) {
+    public String reverseWords_(String s) {
         StringBuilder sb = new StringBuilder();
 
         // Initialize a pointer to the end of the string and run a while loop until the pointer
@@ -108,5 +77,30 @@ public class ReverseWords {
             }
         }
         return sb.toString();
+    }
+
+
+    /*********************************** Another Same Compact Solution *******************************
+     * Two Pointer Approach
+     * Time Complexity: O(2*n)
+        * At most traversal by two pointers
+     * Space Complexity: O(1)
+     */
+    public String reverseWords(String s) {
+        int n = s.length();
+        int j = n - 1, i = n - 1;
+        StringBuilder sb = new StringBuilder();
+
+        while (i >= 0){
+            while (i >= 0  && s.charAt(i) != ' ')
+                i--;
+            if (i < j){
+                sb.append(s.substring(i + 1, j + 1));
+                sb.append(" ");
+            }
+            i--;
+            j = i;
+        }
+        return sb.substring(0, sb.length() - 1);
     }
 }

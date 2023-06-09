@@ -9,17 +9,18 @@ public class LongestCommonPrefix {
      * Space Complexity: O(1)
         * Neglecting output Space
      */
-    public String longestCommonPrefix_V1(String[] str) {
-        String prefix = str[0];
+    public String longestCommonPrefix_V1(String[] strs) {
+        String prefix = strs[0];
 
-        for (int i = 1; i < str.length; i++){
-            StringBuilder newPrefix = new StringBuilder();
-            int minLength = Math.min(prefix.length(), str[i].length());
-
-            for (int j = 0; j < minLength  &&  prefix.charAt(j) == str[i].charAt(j); j++)
-                newPrefix.append(prefix.charAt(j));
-
-            prefix = newPrefix.toString();
+        for (int i = 1; i < strs.length; i++){
+            int n = Math.min(prefix.length(), strs[i].length());
+            int j = 0;
+            while (j < n){
+                if (prefix.charAt(j) != strs[i].charAt(j))
+                    break;
+                j++;
+            }
+            prefix = prefix.substring(0, j);
         }
         return prefix;
     }
@@ -33,13 +34,22 @@ public class LongestCommonPrefix {
      * Space Complexity: O(1)
         * Neglecting output Space
      */
-    public String longestCommonPrefix_V2(String[] str){
-        String prefix = str[0];
-
-        for (int i = 1; i < str.length; i++){
-            while (str[i].indexOf(prefix) != 0)
-                prefix = prefix.substring(0, prefix.length() - 1);
+    public String longestCommonPrefix_V2(String[] strs){
+        int min_length = Integer.MAX_VALUE;
+        for (String str : strs) {
+            min_length = Math.min(min_length, str.length());
         }
-        return prefix;
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < min_length; i++){
+            char ch = strs[0].charAt(i);
+
+            for (int j = 0; j < strs.length; j++){
+                if (strs[j].charAt(i) != ch)
+                    return sb.toString();
+            }
+            sb.append(ch);
+        }
+        return "";
     }
 }

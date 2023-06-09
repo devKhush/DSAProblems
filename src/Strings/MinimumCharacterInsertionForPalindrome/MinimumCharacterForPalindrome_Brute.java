@@ -31,39 +31,23 @@ public class MinimumCharacterForPalindrome_Brute {
      */
     public int minCharInsertionForPalindrome(String s) {
         int n = s.length();
-
-        // Minimum character required to insert at front to make the string palindrome
-        int minCharRequired = 0;
-
         // Exclude the last characters from the string, until the string becomes a palindrome
         for (int i = n - 1; i >= 0; i--){
-
-            // Once the string becomes a palindrome, subtract the current length of string (from 0 to i)
-            // with the actual length of the string (from 0 to n-1) OR maintain a count of removed characters
-            if (isPalindrome(s, 0, i)) {
-                return minCharRequired;
-
-                // This can also be done
-                // return (n - 1) - i;
-            }
-            else{
-                minCharRequired++;
-            }
+            // Once the string becomes a palindrome, character to be inserted is str[i+1,n-1]
+            if (isPalindrome(s, 0, i))
+                 return (n - 1) - i;
         }
-        return 999;  // Garbage stuff
+        return -1;
     }
 
 
-    // Checking whether a string (from index "low" to index "high") is palindrome or not
+    // Checking whether a string (from index "i" to index "j") is palindrome or not
     // Time Complexity: O(n)
-    private boolean isPalindrome(String s, int low, int high){
-        int i = low, j = high;
-
+    private boolean isPalindrome(String s, int i, int j){
         while (i < j) {
             if (s.charAt(i) != s.charAt(j))
                 return false;
-            i++;
-            j--;
+            i++; j--;
         }
         return true;
     }

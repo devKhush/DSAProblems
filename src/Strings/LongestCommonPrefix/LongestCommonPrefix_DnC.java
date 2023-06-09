@@ -17,55 +17,30 @@ package Strings.LongestCommonPrefix;
 
 public class LongestCommonPrefix_DnC {
     /****************************** Another Solution using Divide and Conquer ****************************
+     * Time Complexity: O(x * log(n))
+     * Space Complexity: O(n)
      */
-    public String longestCommonPrefix(String[] arr, int n) {
-        // A variable to store longest common prefix for the range from 0 to n-1.
-        String longestPrefix = commonPrefix_DivideAndConquer(arr, 0, n - 1);
-
-        return longestPrefix;
+    public String longestCommonPrefix(String[] strs){
+        return dnc(0, strs.length - 1, strs);
     }
 
-    // Function to find the Common Prefix in Two Strings
+    public String dnc(int low, int high, String[] strs){
+        if (low == high)
+            return strs[low];
+        int mid = low + (high - low)/2;
+        return commonPrefix(dnc(low, mid, strs), dnc(mid + 1, high, strs));
+    }
+
     public String commonPrefix(String str1, String str2) {
-        // Storing the minimum length
-        int minLength = Math.min(str1.length(), str2.length());
+        int n = Math.min(str1.length(), str2.length());
+        StringBuilder sb = new StringBuilder();
 
-        // A string to store the longest common prefix
-        String ans = "";
-
-        // Find the common prefix in two Strings
-        for (int idx = 0; idx < minLength; ++idx) {
-            if (str1.charAt(idx) == str2.charAt(idx)) {
-                ans += str1.charAt(idx);
-            } else {
-                break;
-            }
+        for (int i = 0; i < n; i++){
+            if (str1.charAt(i) == str2.charAt(i))
+                sb.append(str1.charAt(i));
+            else break;
         }
-        return ans;
+        return sb.toString();
     }
 
-
-    // In this approach, we will divide the array of strings into halves, and we will find
-    // the common prefix for both parts separately.
-    // Then, we will find the common prefix of these obtained strings.
-    public String commonPrefix_DivideAndConquer(String[] arr, int start, int end) {
-        // If range contains only one string, return that string.
-        if (start == end) {
-            return arr[start];
-        }
-
-        // mid value
-        int mid = (start + end) / 2;
-
-        // The string left to store the longest common prefix for the left half of the range.
-        String left = commonPrefix_DivideAndConquer(arr, start, mid);
-
-        // The string right to store the longest common prefix for the right half of the range.
-        String right = commonPrefix_DivideAndConquer(arr, mid + 1, end);
-
-        // The variable "ans" to store the longest common prefix for the range from start to end.
-        String ans = commonPrefix(left, right);
-
-        return ans;
-    }
 }

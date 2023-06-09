@@ -17,46 +17,36 @@ public class LongestPalindromeSubstring_Best {
      * Time complexity : O(n^2)
      * Space complexity : O(1)      If we ignore char array & output string
      */
-    public String longestPalindrome(String string) {
-        char[] s = string.toCharArray();
+    public String longestPalindrome(String s) {
+        int n = s.length();
+        int palindromeLength = 0;
+        int start = 0;
 
-        int longestPalindromeLength = 0;
-        int palindromeStartIndex = 0, palindromeEndIndex = 0;
-
-        for (int i = 0; i < s.length; i++){
+        for (int i = 0; i < n; i++) {
             // checks for odd length palindrome substrings
-            int len1 = expandFromMiddle(s, i, i);
+            int palinLen1 = expandPalindrome(i, i, s, n);
 
             // checks for even length palindrome substrings
-            int len2 = expandFromMiddle(s, i, i + 1);
+            int palinLen2 = expandPalindrome(i, i + 1, s, n);
 
-            // Take maximum of both these substrings length
-            int currPalindromeExpandedLength = Math.max(len1, len2);
-
-            // update the max. length, start index & end inddex
-            if (currPalindromeExpandedLength > longestPalindromeLength){
-                longestPalindromeLength = currPalindromeExpandedLength;
-                palindromeStartIndex = i - (currPalindromeExpandedLength - 1)/2;
-                palindromeEndIndex = i + currPalindromeExpandedLength/2;
+            if (palinLen1 > palindromeLength) {
+                palindromeLength = palinLen1;
+                start = i - (palinLen1 / 2);
+            }
+            if (palinLen2 > palindromeLength) {
+                palindromeLength = palinLen2;
+                start = i - (palinLen2 / 2 - 1);
             }
         }
-        return string.substring(palindromeStartIndex, palindromeEndIndex + 1);
-        // This would also work, we explicitly don't need ending index of palindrome
-        // return string.substring(palindromeStartIndex, longestPalindromeLength);
+        return s.substring(start, start + palindromeLength);
     }
 
-
-    private int expandFromMiddle(char[] str, int index1, int index2){
-        int left = index1, right = index2;
-
+    private int expandPalindrome(int low, int high, String s, int n) {
         // Expand the current palindrome, till its characters at left & right pointers are equal
-        while (left >= 0  &&  right < str.length  &&  str[left] == str[right]){
-            left--;
-            right++;
+        while (low >= 0 && high < n && s.charAt(low) == s.charAt(high)) {
+            low--;
+            high++;
         }
-        // we need to return the length of Expanded palindrome, so length will be "right-left+1"
-        // coz if last previous two characters were equal & next ones are not, then also left-- & right++
-        // will occur
-        return right - left - 1;
+        return high - low - 1;
     }
 }

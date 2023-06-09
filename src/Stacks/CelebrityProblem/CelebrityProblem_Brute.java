@@ -4,7 +4,7 @@ package Stacks.CelebrityProblem;
 // https://youtu.be/9u2BJfmWNEg
 
 public class CelebrityProblem_Brute {
-    /*  **************************** BRUTE FORCE ********************************************
+    /***************************** BRUTE FORCE ********************************************
     * Brute force approach is "Checking each person whether he is celebrity or not"
 
     * Time Complexity:  O(N*N)     where ‘N’ is the number of people at the party.
@@ -42,4 +42,26 @@ public class CelebrityProblem_Brute {
         // We were unable to find any celebrity out of 'n' people. So, no celebrity exits on party
         return -1;
     }
+
+
+    /************************************** Another Solution ************************************
+     * TC -> O(n^2)
+     * SC -> O(1)
+     */
+    public static int findCelebrity_(int n, boolean[][] knows) {
+        // Write your code here.
+        celebrityLoop:
+        for (int celerity = 0; celerity < n; celerity++){
+            int knownBy = 0;
+            for (int person = 0; person < n; person++){
+                if (knows[person][celerity])
+                    knownBy++;
+                if (knows[celerity][person])
+                    continue celebrityLoop;
+            }
+            if (knownBy == n-1) return celerity;
+        }
+        return -1;
+    }
 }
+

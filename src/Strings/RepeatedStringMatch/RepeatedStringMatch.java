@@ -50,9 +50,7 @@ public class RepeatedStringMatch {
         // Check for presence of "b" in Repeated string of "a" using Pattern Searching Algorithm (KMP)
         if (containsPattern_KMP(repeatedString.toString(), b))
             return repetitionCount;
-        // This can also be used, but this string.contains() has a time complexity of O(m*n)
-        // if (repeatedString.toString().contains(b))
-        //    return repetitionCount;
+        // string.contains() can also be used, but it has a time complexity of O(m*n)
 
         // If not found, then we repeat string "a" once more (for cases like eg, a = "abcd", b = "cdabcdab").
         repeatedString.append(a);
@@ -61,24 +59,38 @@ public class RepeatedStringMatch {
         // Again check for presence of "b" in Repeated string of "a" using Pattern Searching Algorithm (KMP)
         if (containsPattern_KMP(repeatedString.toString(), b))
             return repetitionCount;
-        // if (repeatedString.toString().contains(b))
-        //   return repetitionCount;
 
         // If still "b" is not present in Repeated string of "a" (after repeating "a" once more).
         // Then it is not possible to do so.
         return -1;
     }
 
+    /************************************ Same Solution: Compact Code *********************************
+     */
+    public int repeatedStringMatch_compact(String a, String b) {
+        int n = a.length(), m = b.length();
+        int repetitions = (int)Math.ceil(m / (double)n);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < repetitions; i++)
+            sb.append(a);
+
+        if (containsPattern_KMP(sb.toString(), b))
+            return repetitions;
+
+        sb.append(a);
+        if (containsPattern_KMP(sb.toString(), b))
+            return repetitions + 1;
+        return -1;
+    }
 
     // This code is same as Searching of the "Pattern String" in a "Text String" using KMP Algorithm
     // Searching of the "Pattern String" in "Text String" can also be done using Rabin Karp Algorithm
     public boolean containsPattern_KMP(String text, String pattern){
         int n = text.length();
         int m = pattern.length();
-
         int[] lpsArray = getLPSArray(pattern, m);
         int i = 0, j = 0;
-
         while (i < n){
             if (text.charAt(i) == pattern.charAt(j)){
                 i++;
@@ -98,20 +110,18 @@ public class RepeatedStringMatch {
 
     public int[] getLPSArray(String pattern, int m){
         int[] LPS = new int[m];
-        int prev_LPS_Length = 0, i = 1;
+        int length = 0, i = 1;
 
         while (i < m){
-            if (pattern.charAt(i) == pattern.charAt(prev_LPS_Length)){
-                prev_LPS_Length++;
-                LPS[i++] = prev_LPS_Length;
+            if (pattern.charAt(i) == pattern.charAt(length)){
+                length++;
+                LPS[i++] = length;
             }
             else{
-                if (prev_LPS_Length == 0){
-                    LPS[i] = 0;
+                if (length == 0)
                     i++;
-                }
                 else
-                    prev_LPS_Length = LPS[prev_LPS_Length - 1];
+                    length = LPS[length - 1];
             }
         }
         return LPS;

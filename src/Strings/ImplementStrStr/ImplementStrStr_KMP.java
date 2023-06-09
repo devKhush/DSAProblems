@@ -15,7 +15,10 @@ public class ImplementStrStr_KMP {
     /******************************* KMP Pattern Matching Algorithm **********************************
      * For more details see KMP Algorithm
      * Time Complexity: O(m + n)
-     * Space Complexity: O(1)
+        * LPS array takes O(m) time
+        * Searching takes O(n) time
+     * Space Complexity: O(m)
+        * LPS array for pattern
      */
     // KMP Algorithm
     public int strStr(String text, String pattern) {
@@ -31,41 +34,40 @@ public class ImplementStrStr_KMP {
                 j++;
             }
             else{
-                if (j != 0)
-                    j = lps[j - 1];
-                else
+                if (j == 0)
                     i++;
+                else
+                    j = lps[j - 1];
             }
-            // Instead of returning true, we have to return starting index. Since, when j reaches m
-            // (j == m), both text & pattern matched fully, so, "i - m" will be the starting index of
-            // pattern
-            if (j == m)
+            if (j == m)         // return the starting index of pattern
                 return i - m;
         }
         return -1;
     }
 
     // Find the LPS Array (The Longest Prefix Suffix) of the String
+    // We use the same concept that we used in string matching in text and pattern to compute the lps array
     public int[] get_LPS_Array(String pattern, int m){
-        int[] LPS_Array = new int[m];
-        int prev_LPS_Length = 0, i = 1;
+        int[] lps = new int[m];
+        int length = 0, i = 1;
 
         while (i < m){
-            if (pattern.charAt(i) == pattern.charAt(prev_LPS_Length)){
-                prev_LPS_Length++;
-                LPS_Array[i] = prev_LPS_Length;
+            if (pattern.charAt(i) == pattern.charAt(length)){
+                length++;
+                lps[i] = length;
                 i++;
             }
             else{
-                if (prev_LPS_Length == 0){
-                    LPS_Array[i] = 0;
+                if (length == 0)
                     i++;
-                }
-                else{
-                    prev_LPS_Length = LPS_Array[prev_LPS_Length - 1];
-                }
+                else
+                    length = lps[length - 1];
             }
         }
-        return LPS_Array;
+        return lps;
     }
+    /**
+    * Notice carefully code to find the LPS array and string matching are exactly same.
+     * Difference is that we are doing computation on two strings (while matching) and one string (lps finding).
+     */
 }
