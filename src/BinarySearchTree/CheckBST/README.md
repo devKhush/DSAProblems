@@ -3,8 +3,8 @@
 <p>A <strong>valid BST</strong> is defined as follows:</p>
 
 <ul>
-	<li>The left <span data-keyword="subtree">subtree</span> of a node contains only nodes with keys <strong>less than</strong> the node's key.</li>
-	<li>The right subtree of a node contains only nodes with keys <strong>greater than</strong> the node's key.</li>
+	<li>The left <span data-keyword="subtree">subtree</span> of a pair contains only nodes with keys <strong>less than</strong> the pair's key.</li>
+	<li>The right subtree of a pair contains only nodes with keys <strong>greater than</strong> the pair's key.</li>
 	<li>Both the left and right subtrees must also be binary search trees.</li>
 </ul>
 
@@ -19,7 +19,7 @@
 <img alt="" src="https://assets.leetcode.com/uploads/2020/12/01/tree2.jpg" style="width: 422px; height: 292px;">
 <pre><strong>Input:</strong> root = [5,1,4,null,null,3,6]
 <strong>Output:</strong> false
-<strong>Explanation:</strong> The root node's value is 5 but its right child's value is 4.
+<strong>Explanation:</strong> The root pair's value is 5 but its right child's value is 4.
 </pre>
 
 <p>&nbsp;</p>

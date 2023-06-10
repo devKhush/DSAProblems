@@ -1,9 +1,9 @@
 # Flattening a Linked List
 ## Medium 
 <div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given a Linked List of size N, where every node represents a sub-linked-list and contains two pointers:<br>
-(i) a<strong> next </strong>pointer to the next node,<br>
-(ii) a<strong>&nbsp;bottom</strong>&nbsp;pointer&nbsp;to a linked list where this node is head.<br>
+                <p></p><p><span style="font-size:18px">Given a Linked List of size N, where every pair represents a sub-linked-list and contains two pointers:<br>
+(i) a<strong> next </strong>pointer to the next pair,<br>
+(ii) a<strong>&nbsp;bottom</strong>&nbsp;pointer&nbsp;to a linked list where this pair is head.<br>
 Each of the&nbsp;sub-linked-list is in sorted order.<br>
 Flatten the Link List such that all the nodes appear in a single level while maintaining the sorted order.&nbsp;</span><br>
 <span style="font-size:18px"><strong>Note:</strong> The flattened list will be printed using the bottom pointer instead of next pointer.</span></p>
@@ -24,7 +24,7 @@ Output: </strong>&nbsp;5-&gt; 7-&gt; 8- &gt; 10 -&gt; 19-&gt; 20-&gt;
 22-&gt; 28-&gt; 30-&gt; 35-&gt; 40-&gt; 45-&gt; 50.
 <strong>Explanation</strong>:
 The resultant linked lists has every 
-node in a single level.<strong>
+pair in a single level.<strong>
 </strong>(<strong>Note: </strong>| represents the bottom pointer.)</span>
 </pre>
 
@@ -43,7 +43,7 @@ node in a single level.<strong>
 <strong>Output:</strong> 5-&gt;7-&gt;8-&gt;10-&gt;19-&gt;22-&gt;28-&gt;30-&gt;50
 <strong>Explanation:</strong>
 The resultant linked lists has every
-node in a single level.
+pair in a single level.
 
 (<strong>Note: </strong>| represents the bottom pointer.)</span></pre>
 

@@ -28,9 +28,6 @@ public class DiameterOfBinaryTree_V2 {
      * Space Complexity: O(Height of Tree)
      */
     public int diameterOfBinaryTree(TreeNode root) {
-        if (root == null)
-            return 0;
-
         // Instead of having a global variable, we can have an array with reference & update it whenever
         // required
         int[] diameter = {0};

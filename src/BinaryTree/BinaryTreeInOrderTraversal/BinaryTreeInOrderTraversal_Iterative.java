@@ -30,17 +30,16 @@ public class BinaryTreeInOrderTraversal_Iterative {
 
         while (!stack.isEmpty()){
             // One by one pop all nodes from the stack AND also add their values into the list
-            TreeNode treeNode = stack.pop();
-            inOrderTraversal.add(treeNode.val);
+            node = stack.pop();
+            inOrderTraversal.add(node.val);
 
             // If the right subtree of node is not null, then push all the left nodes of the Right
             // SubTree into the stack. We are following only "Left Root Right"
-            if (treeNode.right != null){
-                treeNode = treeNode.right;
-
-                while (treeNode != null){
-                    stack.push(treeNode);
-                    treeNode = treeNode.left;
+            if (node.right != null){
+                TreeNode ptr = node.right;
+                while (ptr != null){
+                    stack.push(ptr);
+                    ptr = ptr.left;
                 }
             }
         }

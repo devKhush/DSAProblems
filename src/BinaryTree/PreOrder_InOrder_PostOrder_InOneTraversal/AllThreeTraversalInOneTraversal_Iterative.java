@@ -29,7 +29,7 @@ public class AllThreeTraversalInOneTraversal_Iterative {
         * Stack can have all the nodes in worst case
         * Each Element of stack will be a Pair (an Object). This will take another O(n) Space
      */
-    public void getAllTraversal(BinaryTreeNode<Integer> root, ArrayList<Integer> preOrder,
+    public void getAllTraversal(Node<Integer> root, ArrayList<Integer> preOrder,
                                 ArrayList<Integer> inOrder, ArrayList<Integer> postOrder){
 
         // Take a stack data structure and push a Pair<root, 1> to it
@@ -89,12 +89,12 @@ public class AllThreeTraversalInOneTraversal_Iterative {
     // Pair Class for storing the Node and the count of times that node has been seen till now
     private static class Pair{
         // Store a Node in Binary Tree in the Pair
-        BinaryTreeNode<Integer> node;
+        Node<Integer> node;
 
         // Count of times that node has been seen till now
         int timesSeen;
 
-        public Pair(BinaryTreeNode<Integer> node, int timesSeen) {
+        public Pair(Node<Integer> node, int timesSeen) {
             this.node = node;
             this.timesSeen = timesSeen;
         }
@@ -102,12 +102,12 @@ public class AllThreeTraversalInOneTraversal_Iterative {
 
 
     // Binary Tree Node
-    private static class BinaryTreeNode<T> {
+    private static class Node<T> {
         public T data;
-        BinaryTreeNode<T> left;
-        BinaryTreeNode<T> right;
+        Node<T> left;
+        Node<T> right;
 
-        public BinaryTreeNode(T data) {
+        public Node(T data) {
             this.data = data;
         }
     }

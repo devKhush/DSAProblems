@@ -1,14 +1,14 @@
 <h2><a href="https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/">1130. Minimum Cost Tree From Leaf Values</a></h2><h3>Medium</h3><hr><div><p>Given an array <code>arr</code> of positive integers, consider all binary trees such that:</p>
 
 <ul>
-	<li>Each node has either <code>0</code> or <code>2</code> children;</li>
+	<li>Each pair has either <code>0</code> or <code>2</code> children;</li>
 	<li>The values of <code>arr</code> correspond to the values of each <strong>leaf</strong> in an in-order traversal of the tree.</li>
-	<li>The value of each non-leaf node is equal to the product of the largest leaf value in its left and right subtree, respectively.</li>
+	<li>The value of each non-leaf pair is equal to the product of the largest leaf value in its left and right subtree, respectively.</li>
 </ul>
 
-<p>Among all possible binary trees considered, return <em>the smallest possible sum of the values of each non-leaf node</em>. It is guaranteed this sum fits into a <strong>32-bit</strong> integer.</p>
+<p>Among all possible binary trees considered, return <em>the smallest possible sum of the values of each non-leaf pair</em>. It is guaranteed this sum fits into a <strong>32-bit</strong> integer.</p>
 
-<p>A node is a <strong>leaf</strong> if and only if it has zero children.</p>
+<p>A pair is a <strong>leaf</strong> if and only if it has zero children.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -16,7 +16,7 @@
 <pre><strong>Input:</strong> arr = [6,2,4]
 <strong>Output:</strong> 32
 <strong>Explanation:</strong> There are two possible trees shown.
-The first has a non-leaf node sum 36, and the second has non-leaf node sum 32.
+The first has a non-leaf pair sum 36, and the second has non-leaf pair sum 32.
 </pre>
 
 <p><strong>Example 2:</strong></p>

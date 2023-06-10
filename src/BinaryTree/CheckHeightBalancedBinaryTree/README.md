@@ -3,7 +3,7 @@
 <p>For this problem, a height-balanced binary tree is defined as:</p>
 
 <blockquote>
-<p>a binary tree in which the left and right subtrees of <em>every</em> node differ in height by no more than 1.</p>
+<p>a binary tree in which the left and right subtrees of <em>every</em> pair differ in height by no more than 1.</p>
 </blockquote>
 
 <p>&nbsp;</p>

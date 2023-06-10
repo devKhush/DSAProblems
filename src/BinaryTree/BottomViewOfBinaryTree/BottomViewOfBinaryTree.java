@@ -51,12 +51,12 @@ public class BottomViewOfBinaryTree {
         TreeMap<Integer, BinaryTreeNode> bottomViewMap = new TreeMap<>();
 
         // Queue of pair which have Tree Nodes and their respective Vertical numbers
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(new Node(root, 0));
+        Queue<Pair> queue = new ArrayDeque<>();
+        queue.add(new Pair(root, 0));
 
         // Do a BFS
         while (!queue.isEmpty()){
-            Node node = queue.remove();
+            Pair node = queue.remove();
 
             // If the current Node's Vertical number doesn't contain any Last node (Bottom node) yet.
             // Then, mark the current node as Last node (Bottom Node) of that Vertical number
@@ -72,10 +72,10 @@ public class BottomViewOfBinaryTree {
             // For Left child, Vertical no. -> node's_vertical_number - 1
             // For Right child, Vertical no. -> node's_vertical_number + 1
             if (node.treeNode.left != null)
-                queue.add(new Node(node.treeNode.left, node.vertical  -1));
+                queue.add(new Pair(node.treeNode.left, node.vertical  -1));
 
             if (node.treeNode.right != null)
-                queue.add(new Node(node.treeNode.right, node.vertical + 1));
+                queue.add(new Pair(node.treeNode.right, node.vertical + 1));
         }
 
         // Extract all the Vertical number from the TreeMap one by one in sorted order.
@@ -128,12 +128,12 @@ public class BottomViewOfBinaryTree {
         HashMap<Integer, BinaryTreeNode> bottomViewMap = new HashMap<>();
 
         // Queue of pair which have Tree Nodes and their respective Vertical numbers
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(new Node(root, 0));     // Add root node and its Vertical number (which is 0) to Queue
+        Queue<Pair> queue = new ArrayDeque<>();
+        queue.add(new Pair(root, 0));     // Add root node and its Vertical number (which is 0) to Queue
 
         // Do a BFS
         while (!queue.isEmpty()){
-            Node node = queue.remove();
+            Pair pair = queue.remove();
 
             // If the current Node's Vertical number doesn't contain any Last node (Bottom node) yet.
             // Then, mark the current node as Last node (Bottom Node) of that Vertical number
@@ -143,19 +143,19 @@ public class BottomViewOfBinaryTree {
             // 2) Else if current Vertical no. is  present in HashMap, then previous node in that vertical
             //    is not the Bottom-most node, because we are already travelling Level wise (BFS) & we
             //    encountered a new node in the same Vertical. So, it must be the Bottom node & not the previous one.
-            bottomViewMap.put(node.vertical, node.treeNode);
+            bottomViewMap.put(pair.vertical, pair.treeNode);
 
             // Update the least Vertical number
-            leastVertical = Math.min(leastVertical, node.vertical);
+            leastVertical = Math.min(leastVertical, pair.vertical);
 
             // Add the Left & Right child node to Queue along with their respective Vertical number
             // For Left child, Vertical no. -> node's_vertical_number - 1
             // For Right child, Vertical no. -> node's_vertical_number + 1
-            if (node.treeNode.left != null)
-                queue.add(new Node(node.treeNode.left, node.vertical  -1));
+            if (pair.treeNode.left != null)
+                queue.add(new Pair(pair.treeNode.left, pair.vertical  -1));
 
-            if (node.treeNode.right != null)
-                queue.add(new Node(node.treeNode.right, node.vertical + 1));
+            if (pair.treeNode.right != null)
+                queue.add(new Pair(pair.treeNode.right, pair.vertical + 1));
         }
 
         // Starting from the Least Vertical number, add the Bottom node (Last node) of all
@@ -170,11 +170,11 @@ public class BottomViewOfBinaryTree {
 
     // ***************************** Pair Class for Binary Tree Node ************************************
     // To store the TreeNode and its Vertical column (in which that node lies) together
-    private static class Node{
+    private static class Pair {
         BinaryTreeNode treeNode;
         int vertical;
 
-        public Node(BinaryTreeNode treeNode, int vertical) {
+        public Pair(BinaryTreeNode treeNode, int vertical) {
             this.treeNode = treeNode;
             this.vertical = vertical;
         }

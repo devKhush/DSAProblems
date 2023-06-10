@@ -44,28 +44,28 @@ public class TopViewOfBinaryTree {
         TreeMap<Integer, BinaryTreeNode> topViewMap = new TreeMap<>();
 
         // Queue of pair which have Tree Nodes and their respective Vertical numbers
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(new Node(root, 0));       // Add root node and its Vertical number (which is 0) to Queue
+        Queue<Pair> queue = new ArrayDeque<>();
+        queue.add(new Pair(root, 0));       // Add root node and its Vertical number (which is 0) to Queue
 
         // Do a BFS
         while (!queue.isEmpty()){
-            Node node = queue.remove();
+            Pair pair = queue.remove();
 
             // If the current Node's Vertical number doesn't contain any first node (top node) yet.
             // Then, mark the current node as first node (top node) of that Vertical number
             // Check if that Vertical line is present in the TreeMap or not
             // If not present then store that Vertical line and the node->value to the map
-            if (!topViewMap.containsKey(node.vertical))
-                topViewMap.put(node.vertical, node.treeNode);
+            if (!topViewMap.containsKey(pair.vertical))
+                topViewMap.put(pair.vertical, pair.node);
 
             // Add the Left & Right child node to Queue along with their respective Vertical number
             // For Left child, Vertical no. -> node's_vertical_number - 1
             // For Right child, Vertical no. -> node's_vertical_number + 1
-            if (node.treeNode.left != null)
-                queue.add(new Node(node.treeNode.left, node.vertical - 1));
+            if (pair.node.left != null)
+                queue.add(new Pair(pair.node.left, pair.vertical - 1));
 
-            if (node.treeNode.right != null)
-                queue.add(new Node(node.treeNode.right, node.vertical + 1));
+            if (pair.node.right != null)
+                queue.add(new Pair(pair.node.right, pair.vertical + 1));
         }
 
         // Extract all the Vertical number from the TreeMap one by one in sorted order.
@@ -118,31 +118,32 @@ public class TopViewOfBinaryTree {
         int leastVertical = Integer.MAX_VALUE;
 
         // Queue of pair which have Tree Nodes and their respective Vertical numbers
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(new Node(root, 0));     // Add root node and its Vertical number (which is 0) to Queue
+        Queue<Pair> queue = new ArrayDeque<>();
+        queue.add(new Pair(root, 0));     // Add root node and its Vertical number (which is 0) to Queue
 
         // Do a BFS
         while (!queue.isEmpty()){
-            Node node = queue.remove();
+            BinaryTreeNode node = queue.peek().node;
+            int vertical = queue.remove().vertical;
 
             // If the current Node's Vertical number doesn't contain any first node (top node) yet.
             // Then, mark the current node as first node (top node) of that Vertical number.
             // Check if that Vertical line is present in the HashMap or not?
             // If not present then store that Vertical line and the node->value to the map
-            if (!topViewMap.containsKey(node.vertical))
-                topViewMap.put(node.vertical, node.treeNode);
+            if (!topViewMap.containsKey(vertical))
+                topViewMap.put(vertical, node);
 
             // Update the least Vertical number
-            leastVertical = Math.min(leastVertical, node.vertical);
+            leastVertical = Math.min(leastVertical, vertical);
 
             // Add the Left & Right child node to Queue along with their respective Vertical number
             // For Left child, Vertical no. -> node's_vertical_number - 1
             // For Right child, Vertical no. -> node's_vertical_number + 1
-            if (node.treeNode.left != null)
-                queue.add(new Node(node.treeNode.left, node.vertical - 1));
+            if (node.left != null)
+                queue.add(new Pair(node.left, vertical - 1));
 
-            if (node.treeNode.right != null)
-                queue.add(new Node(node.treeNode.right, node.vertical + 1));
+            if (node.right != null)
+                queue.add(new Pair(node.right, vertical + 1));
         }
 
         // Starting from the Least Vertical number, add the Top node (first node) of all
@@ -152,19 +153,18 @@ public class TopViewOfBinaryTree {
             topView.add(topViewMap.get(vertical).val);
             vertical++;
         }
-
         return topView;
     }
 
 
     // ***************************** Pair Class for Binary Tree Node ************************************
     // To store the TreeNode and its Vertical column (in which that node lies) together
-    private static class Node{
-        BinaryTreeNode treeNode;
+    private static class Pair {
+        BinaryTreeNode node;
         int vertical;
 
-        public Node(BinaryTreeNode treeNode, int vertical) {
-            this.treeNode = treeNode;
+        public Pair(BinaryTreeNode node, int vertical) {
+            this.node = node;
             this.vertical = vertical;
         }
     }
@@ -173,11 +173,9 @@ public class TopViewOfBinaryTree {
     private static class BinaryTreeNode {
         int val;
         BinaryTreeNode left, right;
-
         BinaryTreeNode(int val) {
             this.val = val;
-            this.left = null;
-            this.right = null;
+            this.left = this.right = null;
         }
     }
 }

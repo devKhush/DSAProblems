@@ -57,6 +57,22 @@ public class CheckBalancedBinaryTree {
     }
 
 
+    /****************************************** Another Compact Solution *****************************
+     * TC -> O(n)
+     * SC -> O(n)
+     */
+    public int height_(TreeNode root){
+        if (root == null)
+            return 0;
+
+        int lh = height_(root.left);
+        int rh = height_(root.right);
+        if (lh == -1 || rh == -1 || Math.abs(lh - rh) > 1)
+            return -1;
+        return 1 + Math.max(lh, rh);
+    }
+
+
     // Binary Tree Node
     private static class TreeNode {
         int val;

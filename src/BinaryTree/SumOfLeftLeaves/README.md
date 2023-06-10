@@ -29,7 +29,7 @@ Output: </strong>2
 </pre>
 
 <p><span style="font-size:18px"><strong>Your Task:</strong><br>
-You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>leftLeavesSum()</strong>&nbsp;which takes the root node of the tree as input and returns the sum of all the left leaf nodes present in the given binary tree.</span></p>
+You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>leftLeavesSum()</strong>&nbsp;which takes the root pair of the tree as input and returns the sum of all the left leaf nodes present in the given binary tree.</span></p>
 
 <p><span style="font-size:18px"><strong>Expected Time Complexity:&nbsp;</strong>O(N).<br>
 <strong>Expected Auxiliary Space:&nbsp;</strong>O(Height of the Tree).</span></p>

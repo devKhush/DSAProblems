@@ -3,8 +3,8 @@
 <p>Assume a BST is defined as follows:</p>
 
 <ul>
-	<li>The left subtree of a node contains only nodes with keys <strong>less than</strong> the node's key.</li>
-	<li>The right subtree of a node contains only nodes with keys <strong>greater than</strong> the node's key.</li>
+	<li>The left subtree of a pair contains only nodes with keys <strong>less than</strong> the pair's key.</li>
+	<li>The right subtree of a pair contains only nodes with keys <strong>greater than</strong> the pair's key.</li>
 	<li>Both the left and right subtrees must also be binary search trees.</li>
 </ul>
 
@@ -15,7 +15,7 @@
 
 <pre><strong>Input:</strong> root = [1,4,3,2,4,2,5,null,null,null,null,null,null,4,6]
 <strong>Output:</strong> 20
-<strong>Explanation:</strong> Maximum sum in a valid Binary search tree is obtained in root node with key equal to 3.
+<strong>Explanation:</strong> Maximum sum in a valid Binary search tree is obtained in root pair with key equal to 3.
 </pre>
 
 <p><strong class="example">Example 2:</strong></p>
@@ -24,7 +24,7 @@
 
 <pre><strong>Input:</strong> root = [4,3,null,1,2]
 <strong>Output:</strong> 2
-<strong>Explanation:</strong> Maximum sum in a valid Binary search tree is obtained in a single root node with key equal to 2.
+<strong>Explanation:</strong> Maximum sum in a valid Binary search tree is obtained in a single root pair with key equal to 2.
 </pre>
 
 <p><strong class="example">Example 3:</strong></p>

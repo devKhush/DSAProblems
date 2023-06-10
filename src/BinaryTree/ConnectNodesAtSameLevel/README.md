@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/">116. Populating Next Right Pointers in Each Node</a></h2><h3>Medium</h3><hr><div><p>You are given a <strong>perfect binary tree</strong> where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:</p>
+<h2><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-pair/">116. Populating Next Right Pointers in Each Node</a></h2><h3>Medium</h3><hr><div><p>You are given a <strong>perfect binary tree</strong> where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:</p>
 
 <pre>struct Node {
   int val;
@@ -8,7 +8,7 @@
 }
 </pre>
 
-<p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to <code>NULL</code>.</p>
+<p>Populate each next pointer to point to its next right pair. If there is no next right pair, the next pointer should be set to <code>NULL</code>.</p>
 
 <p>Initially, all next pointers are set to <code>NULL</code>.</p>
 
@@ -17,7 +17,7 @@
 <img alt="" src="https://assets.leetcode.com/uploads/2019/02/14/116_sample.png" style="width: 500px; height: 171px;">
 <pre><strong>Input:</strong> root = [1,2,3,4,5,6,7]
 <strong>Output:</strong> [1,#,2,3,#,4,5,6,7,#]
-<strong>Explanation: </strong>Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
+<strong>Explanation: </strong>Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right pair, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
 </pre>
 
 <p><strong>Example 2:</strong></p>

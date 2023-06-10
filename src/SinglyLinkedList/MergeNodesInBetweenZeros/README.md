@@ -1,6 +1,6 @@
 <h2><a href="https://leetcode.com/problems/merge-nodes-in-between-zeros/">2181. Merge Nodes in Between Zeros</a></h2><h3>Medium</h3><hr><div><p>You are given the <code>head</code> of a linked list, which contains a series of integers <strong>separated</strong> by <code>0</code>'s. The <strong>beginning</strong> and <strong>end</strong> of the linked list will have <code>Node.val == 0</code>.</p>
 
-<p>For <strong>every </strong>two consecutive <code>0</code>'s, <strong>merge</strong> all the nodes lying in between them into a single node whose value is the <strong>sum</strong> of all the merged nodes. The modified list should not contain any <code>0</code>'s.</p>
+<p>For <strong>every </strong>two consecutive <code>0</code>'s, <strong>merge</strong> all the nodes lying in between them into a single pair whose value is the <strong>sum</strong> of all the merged nodes. The modified list should not contain any <code>0</code>'s.</p>
 
 <p>Return <em>the</em> <code>head</code> <em>of the modified linked list</em>.</p>
 

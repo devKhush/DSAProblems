@@ -35,14 +35,8 @@ class CheckSameTree {
         if (A == null || B == null)
             return false;
 
-        // Check data of the root nodes (tree1->data ==  tree2->data)
-        if (A.val != B.val)
-            return false;
-
-        // Check Left SubTrees & Right SubTrees recursively
-        // i.e., call sameTree(tree1->left_subtree, tree2->left_subtree)
-        // and call sameTree(tree1->right_subtree, tree2->right_subtree)
-        return isSameTree(A.left, B.left) && isSameTree(A.right, B.right);
+        // Check data of the root nodes, and left tree and right tree
+        return (A.val == B.val) && isSameTree(A.left, B.left) && isSameTree(A.right, B.right);
     }
 
 

@@ -1,6 +1,6 @@
 <h2><a href="https://leetcode.com/problems/search-in-a-binary-search-tree/">700. Search in a Binary Search Tree</a></h2><h3>Easy</h3><hr><div><p>You are given the <code>root</code> of a binary search tree (BST) and an integer <code>val</code>.</p>
 
-<p>Find the node in the BST that the node's value equals <code>val</code> and return the subtree rooted with that node. If such a node does not exist, return <code>null</code>.</p>
+<p>Find the pair in the BST that the pair's value equals <code>val</code> and return the subtree rooted with that pair. If such a pair does not exist, return <code>null</code>.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
