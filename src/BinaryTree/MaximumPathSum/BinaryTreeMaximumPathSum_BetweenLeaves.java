@@ -8,10 +8,11 @@ package BinaryTree.MaximumPathSum;
 public class BinaryTreeMaximumPathSum_BetweenLeaves {
     /************************************** Efficient Solution *****************************************
      * Idea is same as before, but we need to find "Maximum Sum of Paths between any two leaves"
+     * This solution works because all tree values are positive, ans we don't need max(0, leftSum), etc in this case.
      * So, in this case we will update the "Maximum Path Sum variable" only when there exists a
         Left Sub-Tree as well as Right Sub-Tree.
      * If either of Left Sub-Tree or Right Sub-Tree is null, the definition of "Maximum Path Sum" is
-        not possible. SO, we don;t calculate it
+        not possible. So, we don't calculate it
 
      * Time Complexity: O(N)
         * We are doing a Single Post-Order tree traversal
@@ -22,7 +23,7 @@ public class BinaryTreeMaximumPathSum_BetweenLeaves {
     public int maxPathSum(TreeNode root) {
         // Initialize a variable to store the "Max Path Sum" to change its value by reference
         // Global variable can also be used
-        int[] maxPathSum = {Integer.MIN_VALUE};
+        int[] maxPathSum = {-1};
 
         // Call the Find Max Path Sum Function
         findMaxPathSum(root, maxPathSum);
@@ -30,7 +31,7 @@ public class BinaryTreeMaximumPathSum_BetweenLeaves {
         // If the Maximum Path Sum remained "-Inf", then there were less than two leaf nodes in Tree.
         // Because, if there was atleast two leaf nodes, we must have calculated 'Max Path Sum'.
         // So, return -1 in case of one leaf node
-        return maxPathSum[0] != Integer.MIN_VALUE ? maxPathSum[0] : -1;
+        return maxPathSum[0];
     }
 
 
@@ -42,8 +43,8 @@ public class BinaryTreeMaximumPathSum_BetweenLeaves {
         // At each node, find recursively its "Left Max Path Sum" and its "Right Max Path Sum"
         // If any of these Path sum are -ve, then don't consider that path, so their contribution in
         // calculation of "Max Path Sum" is 0.
-        int leftMaxPathSum = Math.max(0, findMaxPathSum(node.left, maxPathSum));
-        int rightMaxPathSum = Math.max(0, findMaxPathSum(node.right, maxPathSum));
+        int leftMaxPathSum = findMaxPathSum(node.left, maxPathSum);
+        int rightMaxPathSum = findMaxPathSum(node.right, maxPathSum);
 
         // Calculate the "Max Path Sum" through the current node only when there exists leaf node on
         // both left subtree and right subtree.
