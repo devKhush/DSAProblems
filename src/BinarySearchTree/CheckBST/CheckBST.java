@@ -8,24 +8,24 @@ public class CheckBST {
      * Time Complexity: O(n)
      * Space Complexity: O(Tree's Height): Recursion Stack Space
      */
-    public boolean checkSorted_inorder(TreeNode root, long[] value){
+    public boolean inorder(TreeNode root, long[] value){
         if (root == null)
             return true;
 
-        if (!checkSorted_inorder(root.left, value))
+        if (!inorder(root.left, value))
             return false;
 
         if (value[0] >= root.val)
             return false;
         value[0] = root.val;
 
-        if (!checkSorted_inorder(root.right, value))
+        if (!inorder(root.right, value))
             return false;
         return true;
     }
 
     public boolean isValidBST_Recursive(TreeNode root) {
-        return checkSorted_inorder(root, new long[]{Long.MIN_VALUE});
+        return inorder(root, new long[]{Integer.MIN_VALUE - 1L});
     }
 
 

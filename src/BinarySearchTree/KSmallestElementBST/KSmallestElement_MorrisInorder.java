@@ -14,34 +14,30 @@ public class KSmallestElement_MorrisInorder {
      * Time Complexity: O(k)
      * Space Complexity: O(1)
      */
-    public int kthSmallest(TreeNode root, int K) {
-        // counter for 'k'
-        int count = 0;
-        TreeNode curr = root;
-
-        while (curr != null){
-            if (curr.left == null){
-                count++;
-                if (count == K)
-                    return curr.val;
-                curr = curr.right;
+    public int kthSmallest(TreeNode root, int k) {
+        TreeNode node = root;
+        while (node != null){
+            if (node.left == null){
+                k--;
+                if (k == 0)
+                    return node.val;
+                node = node.right;
             }
-
             else{
-                TreeNode prev = curr.left;
-                while (prev.right != null  &&  prev.right != curr)
-                    prev = prev.right;
+                TreeNode ptr = node.left;
+                while (ptr.right != null && ptr.right != node)
+                    ptr = ptr.right;
 
-                if (prev.right == null){
-                    prev.right = curr;
-                    curr = curr.left;
+                if (ptr.right == null){
+                    ptr.right = node;
+                    node = node.left;
                 }
                 else{
-                    prev.right = null;
-                    count++;
-                    if (count == K)
-                        return curr.val;
-                    curr = curr.right;
+                    k--;
+                    if (k == 0)
+                        return node.val;
+                    ptr.right = null;
+                    node = node.right;
                 }
             }
         }

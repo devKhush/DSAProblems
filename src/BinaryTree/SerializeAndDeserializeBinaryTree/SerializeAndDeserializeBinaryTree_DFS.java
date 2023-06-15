@@ -1,4 +1,5 @@
 package BinaryTree.SerializeAndDeserializeBinaryTree;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,28 +12,24 @@ public class SerializeAndDeserializeBinaryTree_DFS {
      * Space Complexity: O(Tree's Height)      Recursion Stack Space
      */
     public String serialize(TreeNode root) {
-        if (root == null)
-            return "";
-        StringBuilder sb = new StringBuilder();
+        ArrayList<String> list = new ArrayList<>();
 
         // Pre-order Traversal from root to convert all the Nodes to a String
-        preorder(root, sb);
+        preorder(root, list);
 
-        return sb.toString();
+        // Join the preorder traversal
+        return String.join(",", list);
     }
 
-    private void preorder(TreeNode node, StringBuilder sb) {
-        if (node == null){
-            // To recover the Tree entirely, we will also add the 'null' nodes in Pre-order Traversal
-            sb.append("null,");
+    private void preorder(TreeNode root, ArrayList<String> list){
+        if (root == null){
+            list.add("null");  // To recover the Tree entirely, we will also add the 'null' nodes in Pre-order Traversal
             return;
         }
-        // Add the node value
-        sb.append(node.val + ",");
-        preorder(node.left, sb);                // Recursion for Left Subtree
-        preorder(node.right, sb);               // Recursion for Right Subtree
+        list.add(Integer.toString(root.val));
+        preorder(root.left, list);
+        preorder(root.right, list);
     }
-
 
     /************************************* Deserialize ********************************************
      * Technique used: Pre-Order DFS Traversal
@@ -43,40 +40,24 @@ public class SerializeAndDeserializeBinaryTree_DFS {
      * Space Complexity: O(Tree's Height)      Recursion Stack Space
      */
     public TreeNode deserialize(String data) {
-        if (data.equals(""))        // Edge case
-            return null;
+        // Preorder traversal
+        String[] preorderTraversal = data.split(",");
 
-        // Pre-order traversal
-        String[] preOrder = data.split(",");
-
-        // Queue for Retrieving the next element in Pre-order traversal ony by one
-        Queue<Integer> queue = new LinkedList<>();
-        // Adding Pre-order traversal to "Pre_Order_Queue"
-        for (String node : preOrder){
-            if (node.equals("null"))
-                queue.add(null);
-            else
-                queue.add(Integer.parseInt(node));
-        }
-
-        // We will Traverse the given Pre-order Traversal, in the Pre-order Traversal itself to
-        // create the new Binary Tree
-        TreeNode root = preOrder(queue);
-        return root;
+        // We will Traverse the given Pre-order Traversal, to create the new Binary Tree
+        return preorder(preorderTraversal, new int[]{0});
     }
-
-    private TreeNode preOrder(Queue<Integer> preOrderQueue){
-        Integer value = preOrderQueue.remove();
-
-        if (value == null)
+    private TreeNode preorder(String[] traversal, int[] ind){
+        if (traversal[ind[0]].equals("null")){
+            ind[0]++;
             return null;
-
+        }
         // Initialise the current node in the order of Pre-order traversal
-        TreeNode node = new TreeNode(value);
+        TreeNode root = new TreeNode(Integer.parseInt(traversal[ind[0]]));
+        ind[0]++;
 
-        node.left = preOrder(preOrderQueue);            // Get the Left Child
-        node.right = preOrder(preOrderQueue);           // Get the Right Child
-        return node;
+        root.left = preorder(traversal, ind);
+        root.right = preorder(traversal, ind);
+        return root;
     }
 
 

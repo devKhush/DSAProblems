@@ -1,5 +1,6 @@
 package BinaryTree.SerializeAndDeserializeBinaryTree;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -16,9 +17,8 @@ public class SerializeAndDeserializeBinaryTree_BFS {
      */
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        StringBuilder sb = new StringBuilder();
+        ArrayList<String> list = new ArrayList<>();
 
-        // BFS Queue
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
@@ -28,16 +28,15 @@ public class SerializeAndDeserializeBinaryTree_BFS {
         // to Binary Tree easily
         while (!queue.isEmpty()){
             TreeNode node = queue.remove();
-
-            if (node != null){
-                sb.append(node.val + ",");
+            if (node == null)
+                list.add("null");
+            else{
+                list.add(Integer.toString(node.val));
                 queue.add(node.left);
                 queue.add(node.right);
             }
-            else
-                sb.append("null,");
         }
-        return sb.toString();
+        return String.join(",", list);
     }
 
 
@@ -51,47 +50,34 @@ public class SerializeAndDeserializeBinaryTree_BFS {
      */
     // Decodes your Encoded String data to a new Binary Tree.
     public TreeNode deserialize(String data) {
-        // Level Order Traversal of the Tree
-        String[] levelOrder = data.split(",");
-
-        // Base case of "Null" tree, return null
-        if (levelOrder[0].equals("null"))
+        String[] bfsTraversal = data.split(",");
+        if (bfsTraversal[0].equals("null"))
             return null;
 
-        // Root of tree is first node in Level Order Traversal
-        TreeNode root = new TreeNode(Integer.parseInt(levelOrder[0]));
+        // Index to traverse in Level Order Traversal
+        int index = 0;
+        TreeNode root = new TreeNode(Integer.parseInt(bfsTraversal[0]));
 
-        // BFS Queue
+        // BFS: Traverse all the Nodes one by one in Level Order Traversal array
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
-
-        // Index to traverse in Level Order Traversal
-        int i = 1;
-
-        // BFS
-        // We will traverse all the Nodes one by one in Level Order Traversal array
         while (!queue.isEmpty()){
             TreeNode node = queue.remove();
 
             // Current node will be the Left Child of node
             // Add the Left Child for current node
-            if (!levelOrder[i].equals("null")){
-                TreeNode leftChild = new TreeNode(Integer.parseInt(levelOrder[i]));
-                node.left = leftChild;
-                queue.add(leftChild);
+            index++;
+            if (!bfsTraversal[index].equals("null")){
+                node.left = new TreeNode(Integer.parseInt(bfsTraversal[index]));
+                queue.add(node.left);
             }
-            // Next node will be the Right Child of node
-            i++;
-
+            // Current node will be the Right Child of node
             // Add the Right Child for current node
-            if (!levelOrder[i].equals("null")){
-                TreeNode rightChild = new TreeNode(Integer.parseInt(levelOrder[i]));
-                node.right = rightChild;
-                queue.add(rightChild);
+            index++;
+            if (!bfsTraversal[index].equals("null")){
+                node.right = new TreeNode(Integer.parseInt(bfsTraversal[index]));
+                queue.add(node.right);
             }
-            // Next node will be the Left Child of next node in the Queue, i.e, left child of adjacent
-            // node to current node (in level order traversal)
-            i++;
         }
         return root;
     }

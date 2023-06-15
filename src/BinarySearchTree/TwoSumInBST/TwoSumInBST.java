@@ -41,7 +41,7 @@ public class TwoSumInBST {
     }
 
 
-    /********************************** Brute Force 1 ********************************************
+    /********************************** DFS Solution ********************************************
      * Intuition:
         * Same logic as two sum in an array (Two Sum - I)
         * Carry a set
@@ -70,6 +70,47 @@ public class TwoSumInBST {
         return false;
     }
 
+    /********************************** Morris Traversal Solution **************************************
+     * Intuition:
+        * Same logic as two sum in an array (Two Sum - I)
+        * Carry a set
+
+     * Time Complexity: O(n)
+        * O(n) for Morris inorder traversal
+     * Space Complexity: O(n)
+        * Set required for storing hashed values
+     */
+    public boolean findTarget_morris(TreeNode root, int k) {
+        TreeNode node = root;
+        HashSet<Integer> set = new HashSet<>();
+        while (node != null){
+            if (node.left == null){
+                if (set.contains(k - node.val))
+                    return true;
+                set.add(node.val);
+                node = node.right;
+            }
+            else{
+                TreeNode ptr = node.left;
+                while (ptr.right != null && ptr.right != node)
+                    ptr = ptr.right;
+
+                if (ptr.right == null){
+                    ptr.right = node;
+                    node = node.left;
+                }
+                else{
+                    if (set.contains(k - node.val))
+                        return true;
+                    set.add(node.val);
+                    ptr.right = null;
+                    node = node.right;
+                }
+            }
+        }
+        return false;
+    }
+
 
     /***************************************** Efficient Solution **********************************
      * Intuition:
@@ -85,28 +126,17 @@ public class TwoSumInBST {
      * Space Complexity: 2 * O(Tree's height)   ~  2 * O(log(h))
         * Two stacks in BST iterators, each of height O(log(h)).
      */
-    public boolean twoSumBST(TreeNode root, int k) {
-        if (root == null)
-            return false;
+    public boolean twoSumInBST(TreeNode root, int k) {
+        BSTIterator leftIterator = new BSTIterator(root, false);
+        BSTIterator rightIterator = new BSTIterator(root, true);
 
-        // Forward BST Iterator (gives next)
-        BSTIterator forward = new BSTIterator(root, false);
-
-        // Backward BST Iterator (gives before)
-        BSTIterator backward = new BSTIterator(root, true);
-
-        // Same logic as "Two Sum in sorted array"
-        int left = forward.next();
-        int right = backward.next();
-
-        while (left < right){
-            if (left + right == k)
+        while (leftIterator.peek() < rightIterator.peek()){
+            if (leftIterator.peek() + rightIterator.peek() == k)
                 return true;
-
-            if (left + right > k)
-                right = backward.next();
+            else if (leftIterator.peek() + rightIterator.peek() > k)
+                rightIterator.pop();
             else
-                left = forward.next();
+                leftIterator.pop();
         }
         return false;
     }

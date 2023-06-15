@@ -29,29 +29,29 @@ public class MaximumBSTSumInBinaryTree {
         return maxBSTSum;
     }
 
-    public NodeValue findMaximumSumBST(TreeNode root) {
+    public Pair findMaximumSumBST(TreeNode root) {
         // An empty tree is a BST of sum 0
         if (root == null)
-            return new NodeValue(0, Integer.MAX_VALUE, Integer.MIN_VALUE);
+            return new Pair(0, Integer.MAX_VALUE, Integer.MIN_VALUE);
 
         // Get values from left and right subtree of current tree.
-        NodeValue left = findMaximumSumBST(root.left);
-        NodeValue right = findMaximumSumBST(root.right);
+        Pair left = findMaximumSumBST(root.left);
+        Pair right = findMaximumSumBST(root.right);
 
         // Current node is greater than max in left AND smaller than min in right, it is a BST.
         if (left.maxNode < root.val && root.val < right.minNode){
             maxBSTSum = Math.max(maxBSTSum, left.sum + right.sum + root.val);
-            return new NodeValue(left.sum + right.sum + root.val, Math.min(left.minNode, root.val), Math.max(right.maxNode, root.val));
+            return new Pair(left.sum + right.sum + root.val, Math.min(left.minNode, root.val), Math.max(right.maxNode, root.val));
         }
 
         // Otherwise, act smart and return [-inf, inf] so that parent can't be valid BST
-        return new NodeValue(Math.max(left.sum, right.sum), Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return new Pair(Math.max(left.sum, right.sum), Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    private static class NodeValue{
+    private static class Pair {
         int sum;
         int maxNode, minNode;
-        public NodeValue(int sum, int min, int max){
+        public Pair(int sum, int min, int max){
             this.sum = sum;
             this.minNode = min;
             this.maxNode = max;

@@ -21,7 +21,9 @@ public class KLargestElementInBST {
         if (count[0] == 0) return root;
 
         TreeNode left = reverseInorder(root.left, count);
-        return left;
+        if (left != null)
+            return left;
+        return null;
     }
 
     public int KthLargestNumber(TreeNode root, int k) {

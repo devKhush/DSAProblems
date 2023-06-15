@@ -17,12 +17,12 @@ public class KLargestElementInBST_MorrisInorder {
         while (node != null){
             if (node.right == null){
                 k--;
-                if (k == 0) return node.val;
+                if (k == 0)
+                    return node.val;
                 node = node.left;
             }
             else{
                 TreeNode ptr = node.right;
-
                 while (ptr.left != null && ptr.left != node)
                     ptr = ptr.left;
 
@@ -31,9 +31,10 @@ public class KLargestElementInBST_MorrisInorder {
                     node = node.right;
                 }
                 else {
-                    ptr.left = null;
                     k--;
-                    if (k == 0) return node.val;
+                    if (k == 0)
+                        return node.val;
+                    ptr.left = null;
                     node = node.left;
                 }
             }

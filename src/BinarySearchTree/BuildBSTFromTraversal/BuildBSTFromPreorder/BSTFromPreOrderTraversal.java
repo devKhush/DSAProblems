@@ -1,6 +1,7 @@
 package BinarySearchTree.BuildBSTFromTraversal.BuildBSTFromPreorder;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Stack;
 
 // https://youtu.be/UmJT3j26t1I
 
@@ -75,7 +76,7 @@ public class BSTFromPreOrderTraversal {
     }
 
 
-    /************************************ Efficient Solution ************************************
+    /************************************ Efficient Solution 1 ************************************
      * Intuition:
         * Preorder traversal -> root left right
         * At each node of preorder traversal, there can exist a Left subtree and Right subtree.
@@ -104,6 +105,51 @@ public class BSTFromPreOrderTraversal {
 
         root.left = constructBST(preorder, root.val, index);
         root.right = constructBST(preorder, upperBound, index);
+        return root;
+    }
+
+    /************************************ Efficient Solution 2 ************************************
+     * Intuition:
+     * Preorder traversal -> root left right
+     * At each node of preorder traversal, there can exist a Left subtree and Right subtree.
+     * We don't know the exact no. of nodes in Left & Right subtree. But we can identify whether
+        that node falls under left subtree or right subtree based on BST property.
+     * Since after a node, comes left subtree (all less values than node) and  right subtree (all
+        greater values than node)
+     * So, we can use Next Greater Element concept to find the index where
+        left subtree and right subtree starts
+
+     * Time complexity: O(3n)  ~  O(n)
+        * NGE takes O(2n) time
+        * Building tree takes O(n) time
+     * Space complexity: O(n)
+        * O(n) for NGE Array
+        * O(n) recursion stack space in worst case.
+     */
+    public TreeNode bstFromPreorder_v2(int[] preorder) {
+        int n = preorder.length;
+
+        // Construct the Next Greater Element (NGE) array to find the range of left and right subtree
+        int[] nextGreater = new int[n];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = n-1; i >= 0; i--){
+            while (!stack.isEmpty()  &&  preorder[i] >= preorder[stack.peek()])
+                stack.pop();
+            nextGreater[i] = !stack.isEmpty() ? stack.peek() : n;
+            stack.push(i);
+        }
+        // Build Tree
+        return dfs(0, n-1, preorder, nextGreater);
+    }
+
+    private TreeNode dfs(int low, int high, int[] preorder, int[] nextGreater){
+        if (low > high)
+            return null;
+        TreeNode root = new TreeNode(preorder[low]);
+
+        // nextGreater[low] is the position where Right Subtree starts, (bcoz greater value than node)
+        root.left = dfs(low + 1, nextGreater[low] - 1, preorder, nextGreater);
+        root.right = dfs(nextGreater[low], high, preorder, nextGreater);
         return root;
     }
 
