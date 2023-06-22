@@ -58,6 +58,17 @@ public class Knapsack_01 {
 
         return dp[i][availableWt] = Math.max(takeIntoBag, notTakeIntoBag);
     }
+    /*
+    This also works...
+    static int f(int i, int capacity, int[] val, int[] wts, Integer[][] dp) {
+        if (i < 0)
+            return 0;
+        if (dp[i][capacity] != null)
+            return dp[i][capacity];
+        int take = wts[i] <= capacity ? val[i] + f(i-1, capacity - wts[i], val, wts, dp) : 0;
+        int notTake = f(i-1, capacity, val, wts, dp);
+        return dp[i][capacity] = Math.max(take, notTake);
+    }*/
 
 
     /************************************ Tabulation *************************************
@@ -84,6 +95,19 @@ public class Knapsack_01 {
         }
         return dp[n - 1][maxWeight];
     }
+    /*
+    This also works...
+    static int knapSack_tabu(int W, int wts[], int val[], int n) {
+        int[][] dp = new int[n + 1][W + 1];
+        for (int i = 1; i <= n; i++){
+            for (int cap = 0; cap <= W; cap++){
+                int take = cap >= wts[i-1] ? val[i-1] + dp[i-1][cap - wts[i-1]] : 0;
+                int notTake = dp[i-1][cap];
+                dp[i][cap] = Math.max(take, notTake);
+            }
+        }
+        return dp[n][W];
+    }*/
 
 
     /************************************ Space optimization *************************************
@@ -136,4 +160,17 @@ public class Knapsack_01 {
         }
         return dp[maxWeight];
     }
+    /*
+    This also works...
+    static int knapSack(int W, int wts[], int val[], int n) {
+        int[] dp = new int[W + 1];
+        for (int i = 1; i <= n; i++){
+            for (int cap = W; cap >= 0; cap--){
+                int take = cap >= wts[i-1] ? val[i-1] + dp[cap - wts[i-1]] : 0;
+                int notTake = dp[cap];
+                dp[cap] = Math.max(take, notTake);
+            }
+        }
+        return dp[W];
+    }*/
 }

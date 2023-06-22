@@ -114,16 +114,14 @@ public class LongestIncreasingSubsequence {
 
         for (int i = 1; i <= n; i++){
             int[] curr_DP = new int[n + 1];
-            for (int nextGreaterIndex = i; nextGreaterIndex <= n; nextGreaterIndex++){
+            for (int nextGreater = i; nextGreater <= n; nextGreater++){
                 // Take into subsequence
-                int take = 0;
-                if (nextGreaterIndex == n || nums[i - 1] < nums[nextGreaterIndex])
-                    take = 1 + dp[i - 1];
+                int take = nextGreater == n || nums[i - 1] < nums[nextGreater] ? 1 + dp[i - 1] : 0;
 
                 // Don't take into subsequence
-                int notTake = dp[nextGreaterIndex];
+                int notTake = dp[nextGreater];
 
-                curr_DP[nextGreaterIndex] = Math.max(take, notTake);
+                curr_DP[nextGreater] = Math.max(take, notTake);
             }
             dp = curr_DP;
         }
@@ -143,17 +141,13 @@ public class LongestIncreasingSubsequence {
      */
     private int lengthOfLIS_space_1DDP(int[] nums){
         int n = nums.length;
-        int[] dp = new int[n + 1];
+        int[] dp = new int[n+1];
 
         for (int i = 1; i <= n; i++){
-            for (int nextGreaterIndex = n; nextGreaterIndex >= i; nextGreaterIndex--){
-                int take = 0;
-                if (nextGreaterIndex == n || nums[i - 1] < nums[nextGreaterIndex])
-                    take = 1 + dp[i - 1];
-
-                int notTake = dp[nextGreaterIndex];
-
-                dp[nextGreaterIndex] = Math.max(take, notTake);
+            for (int nextGreater = i; nextGreater <= n; nextGreater++){
+                int take = nextGreater == n || nums[i - 1] < nums[nextGreater] ? 1 + dp[i - 1] : 0;
+                int notTake = dp[nextGreater];
+                dp[nextGreater] = Math.max(take, notTake);
             }
         }
         return dp[n];

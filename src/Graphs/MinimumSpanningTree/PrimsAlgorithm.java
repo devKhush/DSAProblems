@@ -133,16 +133,16 @@ public class PrimsAlgorithm {
         while (!minHeap.isEmpty()){
             // Extract the vertex from MinHeap with "Minimum Edge Weight from its parent", from all the
             // vertices that are not yet included in MST
-            int minEdgeWtNode = minHeap.remove().node;
+            int node = minHeap.remove().node;
 
             // Add the picked vertex to the MST Set
-            MST_Included[minEdgeWtNode] = true;
+            MST_Included[node] = true;
 
             // Update Edge weight b/w adjacent vertices & its parent vertex (which is picked vertex).
             // Consider only those vertices which are not yet included in MST
-            for (Vertex neighbour : adjList.get(minEdgeWtNode)){
+            for (Vertex neighbour : adjList.get(node)){
                 if (!MST_Included[neighbour.node]  &&  MST_EdgeWtFromParent[neighbour.node] > neighbour.edgeWt){
-                    MST_Parent[neighbour.node] = minEdgeWtNode;
+                    MST_Parent[neighbour.node] = node;
                     MST_EdgeWtFromParent[neighbour.node] = neighbour.edgeWt;
                     minHeap.add(new Vertex(neighbour.node, MST_EdgeWtFromParent[neighbour.node]));
                 }

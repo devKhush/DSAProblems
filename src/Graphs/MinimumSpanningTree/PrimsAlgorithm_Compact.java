@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 // https://youtu.be/mJcZjjKzeqk
 // https://practice.geeksforgeeks.org/problems/minimum-spanning-tree/1
 
-public class PrimsAlgorithm_Compact {
+public class    PrimsAlgorithm_Compact {
     /***************************************** BFS Dijkstra Algorithm ***********************************
      * Intuition: Add all the edges with the min. edge first, so that MST can be constructed.
         * MST always has minimum weighted edges, so always take min. weighted edges first
@@ -45,12 +45,10 @@ public class PrimsAlgorithm_Compact {
             int node = minHeap.peek()[0];
             int edgeWt = minHeap.remove()[1];
 
-            if (mstIncluded[node])
-                continue;
-
-            mstIncluded[node] = true;
-            mstCost += edgeWt;
-
+            if (mstIncluded[node]) {
+                mstIncluded[node] = true;
+                mstCost += edgeWt;
+            }
             for (Vertex neighbour : adj[node]){
                 if (!mstIncluded[neighbour.node]){
                     mstParent[neighbour.node] = node;
