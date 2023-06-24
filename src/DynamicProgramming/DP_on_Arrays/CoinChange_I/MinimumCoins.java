@@ -28,6 +28,18 @@ public class MinimumCoins {
         int noTakeCoin = f(i - 1, target, arr);
         return Math.min(takeCoin, noTakeCoin);
     }
+    /*
+    Another Solution...
+    public int f(int i, int amount, int[] coins){
+        if (amount == 0)
+            return 0;
+        if (i < 0)
+            return (int)1e9;
+
+        int take = amount >= coins[i] ? 1 + f(i, amount - coins[i], coins) : (int)1e9;
+        int notTake = f(i - 1, amount, coins);
+        return Math.min(take, notTake);
+    }*/
 
 
     /************************************** Memoization ***************************************
@@ -57,6 +69,20 @@ public class MinimumCoins {
         int noTakeCoin = f(i - 1, target, arr, dp);
         return dp[i][target] = Math.min(takeCoin, noTakeCoin);
     }
+    /*
+    Another Solution...
+    public int f(int i, int amount, int[] coins, Integer[][] dp){
+        if (amount == 0)
+            return 0;
+        if (i < 0)
+            return (int)1e9;
+        if (dp[i][amount] != null)
+            return dp[i][amount];
+
+        int take = amount >= coins[i] ? 1 + f(i, amount - coins[i], coins, dp) : (int)1e9;
+        int notTake = f(i - 1, amount, coins, dp);
+        return dp[i][amount] = Math.min(take, notTake);
+    }*/
 
 
     /*************************************** Tabulation *******************************************
@@ -83,13 +109,30 @@ public class MinimumCoins {
         }
         return dp[n - 1][amount] < 1e9 ? dp[n - 1][amount] : -1;
     }
+    /*
+    Another Solution based on memoization...
+    public int coinChange(int[] coins, int amount) {
+        int n = coins.length;
+        int[][] dp = new int[n + 1][amount + 1];
+        Arrays.fill(dp[0], (int)1e9);
+        dp[0][0] = 0;
+
+        for (int i = 1; i <= n; i++){
+            for (int amt = 0; amt <= amount; amt++){
+                int take = amt >= coins[i-1] ? 1 + dp[i][amt - coins[i-1]] : (int)1e9;
+                int notTake = dp[i - 1][amt];
+                dp[i][amt] = Math.min(take, notTake);
+            }
+        }
+        return dp[n][amount] < (int)1e9 ? dp[n][amount] : -1;
+    }*/
 
 
 
     /*************************************** Space Optimization *************************************
      * Time Complexity: O(n * Target)
      * Space Complexity: O(Target)
-        * 1D DP array
+        * Two 1D DP array
      */
     public static int minimumCoins(int[] coins, int n, int amount) {
         int[] dp = new int[amount + 1];
@@ -114,4 +157,42 @@ public class MinimumCoins {
         return dp[amount] < 1e9 ? dp[amount] : -1;
     }
 
+
+    /***************************** Single 1D Array Space Optimization ****************************
+     * Time Complexity: O(n * Target)
+     * Space Complexity: O(Target)
+        * Single 1D DP array
+     */
+    public int coinChange(int[] coins, int amount) {
+        int n = coins.length;
+        int[] dp = new int[amount + 1];
+        for (int amt = 0; amt <= amount; amt++){
+            dp[amt] = amt % coins[0] == 0 ? amt / coins[0] : (int)1e9;
+        }
+        for (int i = 1; i < n; i++){
+            for (int amt = 0; amt <= amount; amt++){
+                int take = amt >= coins[i] ? 1 + dp[amt - coins[i]] : (int)1e9;
+                int notTake = dp[amt];
+                dp[amt] = Math.min(take, notTake);
+            }
+        }
+        return dp[amount] < (int)1e9 ? dp[amount] : -1;
+    }
+    /*
+    Another Solution...
+    public int coinChange(int[] coins, int amount) {
+        int n = coins.length;
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, (int)1e9);
+        dp[0] = 0;
+
+        for (int i = 1; i <= n; i++){
+            for (int amt = 0; amt <= amount; amt++){
+                int take = amt >= coins[i-1] ? 1 + dp[amt - coins[i-1]] : (int)1e9;
+                int notTake = dp[amt];
+                dp[amt] = Math.min(take, notTake);
+            }
+        }
+        return dp[amount] < (int)1e9 ? dp[amount] : -1;
+    }*/
 }

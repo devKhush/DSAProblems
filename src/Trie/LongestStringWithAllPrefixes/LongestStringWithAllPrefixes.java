@@ -50,20 +50,21 @@ public class LongestStringWithAllPrefixes {
             trie.insert(word);
 
         // This string has all the prefix of that word in the Trie AND It is the longest one
-        String longestWordWithAllPrefix = "";
+        int longestWordLength = 0;
+        String longestWordWithAllPrefix = null;
 
         // Traverse all the words
         for (String word : words){
 
             // Check whether all the prefix of that word is present in the Trie or not
             if (trie.containsAllPrefixOfWord(word)) {
-
                 int wordLength = word.length();
-                int longestWordLength = longestWordWithAllPrefix.length();
 
                 // Pick up the answer with maximum length
-                if (wordLength > longestWordLength)
+                if (wordLength > longestWordLength) {
                     longestWordWithAllPrefix = word;
+                    longestWordLength = wordLength;
+                }
 
                 // If both are of same length pick up the string which is lexicographically smaller
                 else if (wordLength == longestWordLength  && longestWordWithAllPrefix.compareTo(word) > 0)

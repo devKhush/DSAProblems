@@ -31,6 +31,19 @@ public class RodCutting {
         int notCutRod = f(i - 1, rodLength, price, dp);
         return dp[i][rodLength] = Math.max(cutRod, notCutRod);
     }
+    /*
+    Another Solution...
+    private int f(int i, int length, int[] prices, Integer[][] dp){
+        if (length == 0)
+            return 0;
+        if (i < 0)
+            return -(int)1e9;
+        if (dp[i][length] != null)
+            return dp[i][length];
+        int take = length >= i+1 ? prices[i] + f(i, length - (i+1), prices, dp) : -(int)1e9;
+        int notTake = f(i-1, length, prices, dp);
+        return dp[i][length] = Math.max(take, notTake);
+    }*/
 
 
     /************************************ Tabulation *************************************
@@ -58,6 +71,24 @@ public class RodCutting {
         }
         return dp[n - 1][n];
     }
+    /*
+    Another solution...
+    public int cutRod(int prices[], int length) {
+        int n = prices.length;
+
+        int[][] dp = new int[n + 1][length + 1];
+        Arrays.fill(dp[0], -(int)1e9);
+        dp[0][0] = 0;
+
+        for (int i = 1; i <= n; i++){
+            for (int len = 0; len <= length; len++){
+                int take = len >= i ? prices[i-1] + dp[i][len - i] : -(int)1e9;
+                int notTake = dp[i-1][len];
+                dp[i][len] = Math.max(take, notTake);
+            }
+        }
+        return dp[n][length];
+    }*/
 
 
     /************************************ Space optimization to 1D array *************************************
@@ -86,4 +117,22 @@ public class RodCutting {
         }
         return dp[n];
     }
+    /*
+    Another Solution...
+    public int cutRod(int prices[], int length) {
+        int n = prices.length;
+
+        int[] dp = new int[length + 1];
+        Arrays.fill(dp, -(int)1e9);
+        dp[0] = 0;
+
+        for (int i = 1; i <= n; i++){
+            for (int len = 0; len <= length; len++){
+                int take = len >= i ? prices[i-1] + dp[len - i] : -(int)1e9;
+                int notTake = dp[len];
+                dp[len] = Math.max(take, notTake);
+            }
+        }
+        return dp[length];
+    }*/
 }

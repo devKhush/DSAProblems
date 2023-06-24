@@ -25,11 +25,10 @@ public class CountDistinctSubstrings {
         HashSet<String> set = new HashSet<>();
 
         for (int i = 0; i < n; i++){
-            String subString = "";
-
+            StringBuilder sb = new StringBuilder();
             for (int j = i; j < n; j++){
-                subString += s.charAt(j);
-                set.add(subString);
+                sb.append(s.charAt(j));
+                set.add(sb.toString());
             }
         }
         return set.size();
