@@ -33,9 +33,28 @@ public class UniqueBinarySearchTrees {
         return bst;
     }
 
+    /********************************* Another Intuitive Reursion ***********************************
+     * But don't use this for DP, this will have two states
+     * This solution is improved in above recursion, bcoz we only care about the count of BSTs and
+        not about the values in the BST.
+     */
+    public int numTrees_rec2(int n) {
+        if (n == 0) return 0;
+        return f(1, n);
+    }
+    public int f(int low, int high){
+        if (low >= high)
+            return 1;
+        int bst = 0;
+        for (int i = low; i <= high; i++){
+            bst += f(low, i - 1) * f(i + 1, high);
+        }
+        return bst;
+    }
+
     /************************************* Memoization ******************************************
-     * Time Complexity: O(n)
-        * One DP State
+     * Time Complexity: O(n*n)
+        * One DP state and one loop
      * Space Complexity: O(n)
         * DP Array + Stack Space
      */
