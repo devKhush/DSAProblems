@@ -1,4 +1,4 @@
-package Arrays.LongestSubarrayOf1sAfterDeletingOneElement;
+package SlidingWindow.LongestSubarrayOf1sAfterDeletingOneElement;
 
 // https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/description/
 

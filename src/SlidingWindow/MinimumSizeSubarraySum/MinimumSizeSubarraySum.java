@@ -1,4 +1,4 @@
-package Hashing.MinimumSizeSubarraySum;
+package SlidingWindow.MinimumSizeSubarraySum;
 import java.util.TreeMap;
 
 // PRE-REQUISITE: "Sub Array with sum equals to K"

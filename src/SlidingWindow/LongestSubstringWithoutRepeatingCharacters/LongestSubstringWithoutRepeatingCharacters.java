@@ -1,4 +1,4 @@
-package Strings.LongestSubstringWithoutRepeatingCharacters;
+package SlidingWindow.LongestSubstringWithoutRepeatingCharacters;
 import java.util.HashSet;
 
 // https://youtu.be/qtVh-XEpsJo

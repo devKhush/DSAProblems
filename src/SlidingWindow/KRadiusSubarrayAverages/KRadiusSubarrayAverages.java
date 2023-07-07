@@ -1,4 +1,4 @@
-package Arrays.KRadiusSubarrayAverages;
+package SlidingWindow.KRadiusSubarrayAverages;
 
 // https://leetcode.com/problems/k-radius-subarray-averages/description/
 

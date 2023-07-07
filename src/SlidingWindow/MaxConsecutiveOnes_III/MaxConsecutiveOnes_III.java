@@ -1,8 +1,8 @@
-package Arrays.MaxConsecutiveOnes_II;
+package SlidingWindow.MaxConsecutiveOnes_III;
 
 // https://leetcode.com/problems/max-consecutive-ones-iii/description/
 
-public class MaxConsecutiveOnes_II {
+public class MaxConsecutiveOnes_III {
     /*********************************** Sliding Window ************************************
      * Sliding window approach usually has two nested loops (inner one is while loop)
 
