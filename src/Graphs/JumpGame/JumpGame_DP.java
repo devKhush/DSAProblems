@@ -1,8 +1,8 @@
-package DynamicProgramming.DP_on_Arrays.JumpGame;
+package Graphs.JumpGame;
 
 // https://leetcode.com/problems/jump-game/description/
 
-public class JumpGame {
+public class JumpGame_DP {
     /******************************************* Recursion ************************************
      * Intuition:
         * Basic recursion thinking
@@ -28,8 +28,10 @@ public class JumpGame {
 
 
     /******************************************* Memoization ************************************
-     * Time Complexity: O(n)
+     * Time Complexity: O(n * max)
+        * max => max. value present in array
         * 1 DP states of size n
+        * One loop of size max
      * Space Complexity: O(n)
         * Stack space + DP Array
      */
@@ -55,8 +57,10 @@ public class JumpGame {
 
 
     /******************************************* Tabulation ************************************
-     * Time Complexity: O(n)
+     * Time Complexity: O(n * max)
+        * max => max. value present in array
         * 1 DP states of size n
+        * One loop of size max
      * Space Complexity: O(n)
         * DP Array
      */
