@@ -53,6 +53,35 @@ public class MinimumMultiplicationsToReachEnd {
     }
 
 
+    /*************************************** More compact solution **********************************
+     */
+    int minimumMultiplications_easy(int[] arr, int start, int end) {
+        boolean[] visited = new boolean[100000];
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.add(start);
+        visited[start] = true;
+
+        int multiplications = 0;
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            while (size-- > 0){
+                int val = queue.remove();
+                if (val == end)
+                    return multiplications;
+                for (int a :arr){
+                    int res = (val * a) % 100000;
+                    if (!visited[res]){
+                        visited[res] = true;
+                        queue.add(res);
+                    }
+                }
+            }
+            multiplications++;
+        }
+        return -1;
+    }
+
+
     static class Node {
         int node, steps;
         public Node(int node, int steps) {
